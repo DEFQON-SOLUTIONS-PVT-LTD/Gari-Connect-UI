@@ -17,15 +17,51 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
 import Navbar from "../Navbar/Navbar";
+import Divider from '@mui/material/Divider';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import MobileTimePicker from '@mui/lab/MobileTimePicker';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Stack from "@mui/material/Stack";
+import InputAdornment from "@mui/material/InputAdornment";
+import MobileDatePicker from '@mui/lab/MobileDatePicker'
+
+
 
 export default function Carddetail() {
   const [value, setValue] = React.useState(4);
 
   const [checked, setChecked] = React.useState(true);
 
+  const [values, setValues] = React.useState(new Date("2014-08-18T21:11:54"));
+  const [values1, setValues1] = React.useState(new Date("2014-08-18T21:11:54"));
+
+  const [timevalue, settimeValue] = React.useState(new Date('2018-01-01T00:00:00.000Z'));
+
+  const handleChangedate = (newValue) => {
+    setValues(newValue);
+  };
+
+
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
+
+  const handleChangetime = (newValue) => {
+    settimeValue(newValue);
+  };
+
+
+  const handleChangetimes = (event) => {
+    setChecked(event.target.checked);
+  };
+
+  const handleChangedate2 = (newValue) => {
+    setValues1(newValue);
+  };
+
 
   return (
     <div>
@@ -44,15 +80,25 @@ export default function Carddetail() {
         </div>
         <div className="ml-20">
           <img src="assets/images/logos/Carddetail3.svg" alt="logo" />
+          
+          <div className="relative">
           <img
             width="235"
             src="assets/images/logos/Carddetail5.svg"
             alt="logo"
-          />
+            className="opacity-50"
+            
+         
+          /> 
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-8 px-8">
+            <Button className="opacity-100 text-white">View more</Button>
+            </div>
+</div>
+         
         </div>
       </div>
       <div className="sm:flex flex-row justify-between">
-        <div style={{marginLeft:"18%"}}>
+        <div style={{ marginLeft: "16%" }} >
           <div className="sm:flex" >
             <Typography className="font-normal text-2xl">
               Toyota Corolla Altis-2020
@@ -89,15 +135,16 @@ export default function Carddetail() {
                 (15 Trips)
               </b>
             </Typography>
-            <div style={{ marginLeft:"43%"}}>
+            <div style={{ marginLeft: "43%" }}>
               <IconButton>
                 <FavoriteBorderTwoToneIcon />
               </IconButton>
               <IconButton>
-                <ContentCopyOutlinedIcon />
+              <SendOutlinedIcon />
               </IconButton>
               <IconButton>
-                <SendOutlinedIcon />
+              <ContentCopyOutlinedIcon />
+               
               </IconButton>
             </div>
           </div>
@@ -155,6 +202,7 @@ export default function Carddetail() {
                     </Typography>
                   </div>
                   <div className="flex space-x-4 mt-28">
+
                     <img
                       width="18px"
                       src="assets/images/logos/fapplecarplay.svg"
@@ -186,7 +234,29 @@ export default function Carddetail() {
                   </div>
                 </div>
                 <div>
-                  <div className="flex space-x-4 mt-16">
+                  <div className="flex space-x-4 mt-12">
+                    <img
+                      width="20px"
+                      src="assets/images/logos/fbluetooth.svg"
+                      alt="logo"
+
+                    />
+                    <Typography className="font-medium text-xs">
+                      Bluetooth
+                    </Typography>
+                  </div>
+                  <div className="flex space-x-4 mt-28">
+                    <img
+                      width="20px"
+                      src="assets/images/logos/chargeimg.svg"
+                      alt="logo"
+
+                    />
+                    <Typography className="font-medium text-xs">
+                      USBcharge
+                    </Typography>
+                  </div>
+                  <div className="flex space-x-4 mt-28">
                     <img
                       width="20px"
                       src="assets/images/logos/fbluetooth.svg"
@@ -198,8 +268,8 @@ export default function Carddetail() {
                   </div>
                   <div className="flex space-x-4 mt-28">
                     <img
-                      width="28px"
-                      src="assets/images/logos/fusbcharge.svg"
+                      width="20px"
+                      src="assets/images/logos/chargeimg.svg"
                       alt="logo"
                     />
                     <Typography className="font-medium text-xs">
@@ -218,28 +288,8 @@ export default function Carddetail() {
                   </div>
                   <div className="flex space-x-4 mt-28">
                     <img
-                      width="28px"
-                      src="assets/images/logos/fusbcharge.svg"
-                      alt="logo"
-                    />
-                    <Typography className="font-medium text-xs">
-                      USBcharge
-                    </Typography>
-                  </div>
-                  <div className="flex space-x-4 mt-28">
-                    <img
                       width="20px"
-                      src="assets/images/logos/fbluetooth.svg"
-                      alt="logo"
-                    />
-                    <Typography className="font-medium text-xs">
-                      Bluetooth
-                    </Typography>
-                  </div>
-                  <div className="flex space-x-4 mt-28">
-                    <img
-                      width="28px"
-                      src="assets/images/logos/fusbcharge.svg"
+                      src="assets/images/logos/chargeimg.svg"
                       alt="logo"
                     />
                     <Typography className="font-medium text-xs">
@@ -313,8 +363,8 @@ export default function Carddetail() {
                 </div>
                 <div className="flex space-x-4 mt-28">
                   <img
-                    width="28px"
-                    src="assets/images/logos/fusbcharge.svg"
+                    width="20px"
+                    src="assets/images/logos/chargeimg.svg"
                     alt="logo"
                   />
                   <Typography className="font-medium text-xs">
@@ -351,7 +401,7 @@ export default function Carddetail() {
 
           <div
             className="flex w-full mt-32"
-            
+
           >
             <img
               className="mt-8"
@@ -385,11 +435,11 @@ export default function Carddetail() {
           </div>
           <hr
             className="flex w-full mt-28"
-            
+
           />
           <div
             className="flex w-full mt-28"
-            
+
           >
             <img
               className="mt-8"
@@ -423,11 +473,11 @@ export default function Carddetail() {
           </div>
           <hr
             className="flex w-full mt-28"
-            
+
           />
           <div
             className="flex w-full mt-28"
-            
+
           >
             <img
               className="mt-8"
@@ -461,7 +511,7 @@ export default function Carddetail() {
           </div>
           <hr
             className="flex w-full mt-28"
-            
+
           />
           <div
             className="flex w-full mt-28"
@@ -497,32 +547,180 @@ export default function Carddetail() {
             </Typography>
           </div>
         </div>
-        <div style={{marginRight:"16%"}}>
+        <div style={{ marginRight: "13.5%" }}>
           <div>
-            <Card className="sm:w-11/12 w-11/12 sm:ml-0 ml-40" style={{ height: "417px" }}>
+            <Card className="sm:w-11/12 w-11/12 sm:ml-0 ml-52 " style={{ height: "450px" }}>
               <Typography className="text-lg font-semibold ml-10 mt-10">
                 Book your car
               </Typography>
               <hr />
               <CardContent>
+
+                <div>
+                  <Typography className="pb-12">From</Typography>
+
+
+                  <div className="grid grid-cols-3 border rounded-12 h-48 md:w-320 w-256">
+
+                    <div className="flex flex-row justify-center items-center col-span-2">
+
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <Stack spacing={3}>
+                          <MobileDatePicker
+                            label=""
+                            inputFormat="MM-dd-yyyy"
+                            value={values}
+                            onChange={handleChangedate}
+
+
+                            renderInput={(params) => <TextField
+                              {...params} variant='standard'
+                              InputProps={{
+                                disableUnderline: true,
+                                endAdornment: (
+                                  <InputAdornment position="end">
+                                    <KeyboardArrowDownIcon />
+                                  </InputAdornment>
+                                ),
+                              }}
+
+                            />}
+                          />
+                        </Stack>
+                      </LocalizationProvider>
+                    </div>
+
+
+
+                    <div className="flex flex-row items-center justify-center col-span-1">
+                      <Divider orientation="vertical" flexItem />
+                      <div>
+
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                          <Stack spacing={2}>
+                            <MobileTimePicker
+                              label=""
+                              value={timevalue}
+                              onChange={handleChangetime}
+
+
+
+
+                              renderInput={(params) => <TextField {...params} variant='standard'
+                                className="pl-6"
+                                InputProps={{
+                                  disableUnderline: true,
+                                  endAdornment: (
+                                    <InputAdornment position="end">
+                                      <KeyboardArrowDownIcon />
+                                    </InputAdornment>
+                                  ),
+                                }}
+
+                              />}
+                            />
+                          </Stack>
+                        </LocalizationProvider>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+
+
+
+
+                <div>
+                  <Typography className="py-12">Until</Typography>
+
+
+                  <div className="grid grid-cols-3 border rounded-12 h-48 md:w-320 w-256">
+                    <div className="flex flex-row col-span-2 items-center  justify-center">
+
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <Stack spacing={3}>
+                          <MobileDatePicker
+                            label=""
+                            inputFormat="MM-dd-yyyy"
+                            value={values1}
+                            onChange={handleChangedate2}
+
+                            renderInput={(params) => <TextField {...params} variant='standard'
+                              InputProps={{
+                                disableUnderline: true,
+                                endAdornment: (
+                                  <InputAdornment position="end">
+                                    <KeyboardArrowDownIcon />
+                                  </InputAdornment>
+                                ),
+                              }}
+
+                            />}
+                          />
+                        </Stack>
+                      </LocalizationProvider>
+                    </div>
+
+
+
+                    <div className="flex flex-row items-center justify-center col-span-1">
+                      <Divider orientation="vertical" flexItem />
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <Stack spacing={3}>
+                          <MobileTimePicker
+                            label=""
+                            value={values}
+                            onChange={handleChangedate}
+
+
+
+                            renderInput={(params) => <TextField {...params} variant='standard'
+                              className="pl-6"
+                              InputProps={{
+                                disableUnderline: true,
+                                endAdornment: (
+                                  <InputAdornment position="end">
+                                    <KeyboardArrowDownIcon />
+                                  </InputAdornment>
+                                ),
+                              }}
+
+                            />}
+                          />
+                        </Stack>
+                      </LocalizationProvider>
+
+                    </div>
+                  </div>
+
+                </div>
+
+
+
+
                 <div
-                  className="sm:w-4/5 w-4/5 flex justify-center"
+                  className=""
                   style={{ marginTop: "19px" }}
                 >
+
                   <Button
-                    fullWidth
+
                     style={{
                       backgroundColor: "rgba(210, 42, 143, 1)",
                       fontSize: "16px",
                     }}
-                    className="h-11 text-white rounded-lg"
+                    className="h-11 text-white rounded-lg md:w-320 w-256"
                   >
-                    Sign in
+                    Book now
                   </Button>
                 </div>
+
                 <div
-                  className="sm:w-4/5 w-4/5 rounded-lg mt-96"
+                  className="rounded-lg mt-8 md:w-320 w-256 "
                   style={{ backgroundColor: "#EDF5FE" }}
+
                 >
                   <div className="flex pt-10">
                     <img
@@ -542,9 +740,8 @@ export default function Carddetail() {
                       className="font-normal text-xs"
                       style={{ color: "#667085" }}
                     >
-                      Free cancellation, you can cancel you booking within
-                      <br></br> 1 hour otherwise cancellation charges may apply.
-                      <br></br> For more information go to{" "}
+                      Free cancellation, you can cancel you booking within 1 hour <br></br> otherwise cancellation charges may apply.
+                      For more information <br></br>  go to{" "}
                       <a
                         href="#"
                         style={{ color: "black" }}
@@ -651,15 +848,15 @@ export default function Carddetail() {
               </Typography>
             </div>
             <div className="sm:ml-0 ml-68">
-              <hr className="mt-20"/>
+              <hr className="mt-20" />
             </div>
-            <Typography className="text-sm font-normal flex justify-center mt-20" style={{color:"#F04438"}}>
+            <Typography className="text-sm font-normal flex justify-center mt-20" style={{ color: "#F04438" }}>
               Reportlisting
             </Typography>
           </div>
         </div>
       </div>
-      
+
       <div>
         <img
           style={{ marginTop: "152px" }}
