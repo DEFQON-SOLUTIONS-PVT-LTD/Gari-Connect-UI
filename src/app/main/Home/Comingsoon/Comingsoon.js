@@ -25,7 +25,7 @@ export default function () {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { delay: 1, duration: 1.5 } }}
-        className="pb-96 sm:pb-200"
+        className="pb-96 sm:pb-128"
         style={{ backgroundImage: "url('/assets/images/backgrounds/bgimg.jpg')" }}
       >
         <div className="sm:flex justify-between mt-68">
@@ -38,18 +38,18 @@ export default function () {
                 Coming Soon
               </Typography>
               <Typography
-                className="text-5xl font-normal mt-8"
+                className="text-48 sm:text-64 font-medium mt-8"
                 style={{ color: "#000000" }}
               >
                 Easy Savari<br></br>Manzil asaan..
               </Typography>
               <Typography
-                className="font-normal text-sm sm:text-base mt-12"
+                className="font-300 text-sm sm:text-base mt-12"
                 style={{ color: "#667085" }}
               >
                 Stay tuned for an exciting and convenient service
               </Typography>
-              <Typography className="font-normal text-sm sm:text-base" style={{ color: "#667085" }}>
+              <Typography className="font-300 text-sm sm:text-base" style={{ color: "#667085" }}>
                 coming your way to make your travel seamless.
               </Typography>
             </div>
