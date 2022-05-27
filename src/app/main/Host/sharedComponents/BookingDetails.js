@@ -31,7 +31,7 @@ export default function BookingDetails() {
                             <div className="col-span-1">
                                 <div className="flex flex-col sm:flex-wrap md:flex-row md:items-center">
                                     <div className="mr-16">
-                                        <img style={{ maxWidth: 180, maxHeight: 115 }} src="assets/images/Gari Connect/carimage.png" alt="" />
+                                        <img style={{ maxWidth: 180, maxHeight: 115 }} src="assets/images/GariConnect/carimage.png" alt="" />
                                     </div>
                                     <div className="sm:mt-10 md:my-auto mt-10">
                                         <div className="flex flex-row items-center">
