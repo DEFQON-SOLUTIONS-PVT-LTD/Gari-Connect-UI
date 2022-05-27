@@ -17,9 +17,9 @@ const Footer = () => (
           <img
             width="201"
             height="27px"
-            src="assets/images/Gari Connect/Frame.png"
+            src="assets/images/GariConnect/Frame.png"
             alt="logo"
-          ></img>
+          />
         </div>
         <div>
           <Typography className="text-sm font-normal mt-32 text-white">
