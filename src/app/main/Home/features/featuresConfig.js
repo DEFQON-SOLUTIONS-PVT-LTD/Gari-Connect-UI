@@ -1,11 +1,11 @@
 import { lazy } from 'react';
 import { Redirect } from 'react-router-dom';
 
-const featuresConfig={
+const featuresConfig = {
     settings: {
         layout: {},
     },
-    routes:[
+    routes: [
         {
             path: '/features',
             component: lazy(() => import('./features')),

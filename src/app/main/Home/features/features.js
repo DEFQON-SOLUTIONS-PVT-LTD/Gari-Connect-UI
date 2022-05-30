@@ -151,7 +151,7 @@ function features() {
             Select features
           </h3>
           <CardContent>
-         
+
             <div className="sm:flex flex-row justify-center sm:space-x-20 sm:ml-0 ml-32">
               <Card
                 style={{
@@ -163,13 +163,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={change}>
-               { !status &&<img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!status && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent>
 
                     <img
@@ -203,13 +203,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={b}>
-                { !stat && <img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!stat && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent>
                     <div>
                       <img
@@ -239,13 +239,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={a}>
-                { !statb && <img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!statb && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent>
                     <img
                       className="mx-auto mt-48"
@@ -273,13 +273,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={c}>
-                { !statc && <img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!statc && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent>
                     <img
                       className="mx-auto mt-48"
@@ -307,13 +307,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={d}>
-                { !statd && <img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!statd && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent>
                     <img
                       className="mx-auto mt-40"
@@ -341,13 +341,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={e}>
-                { !state && <img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!state && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent>
                     <img
                       className="mx-auto mt-40"
@@ -376,13 +376,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={f}>
-                { !statf && <img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!statf && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent>
                     <img
                       className="mx-auto mt-44"
@@ -410,13 +410,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={h}>
-                { !stath && <img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!stath && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent >
                     <img
                       className="mx-auto mt-44"
@@ -444,13 +444,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={i}>
-                { !stati && <img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!stati && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent>
                     <img
                       className="mx-auto mt-44"
@@ -478,13 +478,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={j}>
-                { !statj && <img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!statj && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent>
                     <img
                       className="mx-auto mt-44"
@@ -512,13 +512,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={k}>
-                { !statk && <img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!statk && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent>
                     <img
                       className="mx-auto mt-44"
@@ -546,13 +546,13 @@ function features() {
                 }}
               >
                 <CardActionArea onClick={l}>
-                { !statl && <img
-                       className="mt-10 mr-10"
-                      style={{float:"right"}}
-                      width="16"
-                      src="assets/images/logos/Checkbox.svg"
-                      alt="logo"
-                    /> }
+                  {!statl && <img
+                    className="mt-10 mr-10"
+                    style={{ float: "right" }}
+                    width="16"
+                    src="assets/images/logos/Checkbox.svg"
+                    alt="logo"
+                  />}
                   <CardContent>
                     <img
                       className="mx-auto mt-40"
