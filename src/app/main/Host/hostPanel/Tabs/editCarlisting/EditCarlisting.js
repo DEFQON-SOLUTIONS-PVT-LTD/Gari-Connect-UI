@@ -4,6 +4,12 @@ import PropTypes from 'prop-types';
 import { Typography, Tabs, Tab, Box, Card, Divider } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Cardetails from './Tabs/Cardetails';
+// import CarDetails from '../../../sharedComponents/carListing/CarDetails';
+import CarLocation from '../../../sharedComponents/carListing/CarLocation';
+import Features from '../../../sharedComponents/carListing/Features';
+import Availability from '../../../sharedComponents/carListing/Availability';
+import AddImages from '../../../sharedComponents/carListing/AddImages';
+import AddPrice from '../../../sharedComponents/carListing/AddPrice';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -52,7 +58,7 @@ function EditCarlisting() {
             width: "100%"
         },
         panel: {
-            width: "100%"
+            width: "100%",
         },
         head: {
             width: "20%",
@@ -108,29 +114,37 @@ function EditCarlisting() {
                                 <Divider className="mx-12" />
                                 <Tab label="Availibility" {...a11yProps(7)} />
                             </Tabs>
+
                             <TabPanel className={classes.panel} value={value} index={0}>
                                 <Cardetails />
                             </TabPanel>
+
                             <TabPanel className={classes.panel} value={value} index={1}>
-                                Item Two
+                                <Typography>Item Two</Typography>
                             </TabPanel>
+
                             <TabPanel className={classes.panel} value={value} index={2}>
-                                Item Three
+                                <Features />
                             </TabPanel>
+
                             <TabPanel className={classes.panel} value={value} index={3}>
-                                Item Three
+                                <Typography>Item Two</Typography>
                             </TabPanel>
+
                             <TabPanel className={classes.panel} value={value} index={4}>
-                                Item Three
+                                <CarLocation />
                             </TabPanel>
+
                             <TabPanel className={classes.panel} value={value} index={5}>
-                                Item Three
+                                <AddImages />
                             </TabPanel>
+
                             <TabPanel className={classes.panel} value={value} index={6}>
-                                Item Three
+                                <AddPrice />
                             </TabPanel>
+
                             <TabPanel className={classes.panel} value={value} index={7}>
-                                Item Three
+                                <Availability />
                             </TabPanel>
                         </Box>
                     </Card>

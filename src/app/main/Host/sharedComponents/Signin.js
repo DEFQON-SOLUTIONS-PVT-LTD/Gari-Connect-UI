@@ -15,7 +15,6 @@ import FilledInput from "@mui/material/FilledInput";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
-import Signupheader from "../Signupheader/Signupheader";
 
 function SignIn() {
   const [values, setValues] = React.useState({
@@ -34,8 +33,7 @@ function SignIn() {
     event.preventDefault();
   };
   return (
-    <div className="h-xl">
-      <Signupheader />
+    <div>
       {/* <div className="flex">
 		<div >
 		<img className="loginI"  src="assets/images/Gari Connect/LG.png" alt="logo"></img>		
@@ -116,92 +114,92 @@ function SignIn() {
         style={{ marginTop: "36px" }}
       >
         <Card
-          className="xs:w-1/3 sm:w-1/3 md:w-1/3 w-full"
+          className=" xs:w-1/3 sm:w-1/3 md:w-1/3 w-full"
           style={{
             border: "1px solid rgba(195, 203, 205, 0.42)",
             marginTop: "150px",
           }}
         >
-          <div
-            className="flex flex-col justify-center text-center"
-            style={{ marginTop: "21px" }}
-          >
-            <h1 className="text-2xl font-semibold text-grey-900">
-              Welcome Back
-            </h1>
-            <p className="text-sm text-gray-500">
-              Welcome back! please enter your details.
-            </p>
-          </div>
-          <div className="mt-20">
-            <hr style={{ width: "100%" }} />
-          </div>
-          <CardContent>
-
-            <div className="mt-28 mb-2.5">
-              <Button
-                style={{
-                  border: "1px solid #D0D5DD",
-                  height: "44px",
-                  fontSize: "16px",
-                }}
-                className="w-full h-11 text-black rounded-lg "
-              >
-                <img
-                  width="24px"
-                  style={{ marginRight: "12px" }}
-                  src="assets/images/GariConnect/Google.png"
-                  alt="logo"
-                />{" "}
-                Sign in with Google
-              </Button>
-            </div>
-            <div className="">
-              <Button
-                style={{
-                  border: "1px solid #D0D5DD",
-                  height: "44px",
-                  marginTop: "9px",
-                  fontSize: "16px",
-                }}
-                className="w-full h-11 text-black rounded-lg"
-              >
-                {" "}
-                <img
-                  width="24px"
-                  style={{ marginRight: "12px" }}
-                  src="assets/images/GariConnect/Vector.png"
-                  alt="logo"
-                />{" "}
-                Sign in with Facebook
-              </Button>
-            </div>
             <div
-              className="flex flex-row justify-center"
-              style={{ marginTop: "28px" }}
+              className="flex flex-col justify-center text-center"
+              style={{ marginTop: "21px" }}
             >
-              <hr
-                style={{
-                  width: "45%",
-                  marginTop: "8px",
-                  marginRight: "12px",
-                }}
-              />
-              <p
-                style={{
-                  color: "#98A2B3",
-                }}
-              >
-                or
+              <h1 className="text-2xl font-semibold text-grey-900">
+                Welcome Back
+              </h1>
+              <p className="text-sm text-gray-500">
+                Welcome back! please enter your details.
               </p>
-              <hr
-                style={{
-                  width: "45%",
-                  marginTop: "8px",
-                  marginLeft: "12px",
-                }}
-              />
             </div>
+            <div className="mt-20">
+              <hr style={{ width: "100%" }} />
+            </div>
+          <CardContent>
+          
+            <div className="mt-28 mb-2.5">
+                <Button
+                  style={{
+                    border: "1px solid #D0D5DD",
+                    height: "44px",
+                    fontSize: "16px",
+                  }}
+                  className="w-full h-11 text-black rounded-lg "
+                >
+                  <img
+                    width="24px"
+                    style={{ marginRight: "12px" }}
+                    src="assets/images/GariConnect/Google.png"
+                    alt="logo"
+                  />{" "}
+                  Sign in with Google
+                </Button>
+              </div>
+              <div className="">
+                <Button
+                  style={{
+                    border: "1px solid #D0D5DD",
+                    height: "44px",
+                    marginTop: "9px",
+                    fontSize: "16px",
+                  }}
+                  className="w-full h-11 text-black rounded-lg"
+                >
+                  {" "}
+                  <img
+                    width="24px"
+                    style={{ marginRight: "12px" }}
+                    src="assets/images/GariConnect/Vector.png"
+                    alt="logo"
+                  />{" "}
+                  Sign in with Facebook
+                </Button>
+              </div>
+              <div
+                className="flex flex-row justify-center"
+                style={{ marginTop: "28px" }}
+              >
+                <hr
+                  style={{
+                    width: "45%",
+                    marginTop: "8px",
+                    marginRight: "12px",
+                  }}
+                />
+                <p
+                  style={{
+                    color: "#98A2B3",
+                  }}
+                >
+                  or
+                </p>
+                <hr
+                  style={{
+                    width: "45%",
+                    marginTop: "8px",
+                    marginLeft: "12px",
+                  }}
+                />
+              </div>
             <div className="mx-8 mt-16 mb-7">
               <Typography className="text-sm font-medium text-grey-700">
                 Phone number
@@ -264,8 +262,8 @@ function SignIn() {
               </div>
               <div style={{ marginTop: "19px" }}>
                 <Button
-                  // component={Link}
-                  // to="/Cardetail"
+                  component={Link}
+                  to="/Cardetail"
                   style={{
                     backgroundColor: "rgba(210, 42, 143, 1)",
                     height: "44px",
@@ -276,8 +274,8 @@ function SignIn() {
                   Sign in
                 </Button>
               </div>
-
-
+              
+             
             </div>
             <div className="sm:mt-20 mt-24">
               <p
@@ -301,14 +299,14 @@ function SignIn() {
           </CardContent>
         </Card>
       </div>
-      <div className="flex flex-row justify-center">
+      {/* <div className="flex flex-row justify-center ">
         <Typography
           className="absolute bottom-0 text-16 font-normal pb-10"
           style={{ color: "#98A2B3" }}
         >
           © 2022 GariConnect. All rights reserved.
         </Typography>
-      </div>
+      </div> */}
     </div>
   );
 }

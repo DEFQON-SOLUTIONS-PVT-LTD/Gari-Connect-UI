@@ -74,6 +74,7 @@ const Navbar = () => {
                         <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
                             <li className="nav-item">
                                 <Button
+                                    component={Link} to="/Cardetail"
                                     id="basic-button"
                                     aria-controls={open2 ? 'basic-menu' : undefined}
                                     aria-haspopup="true"

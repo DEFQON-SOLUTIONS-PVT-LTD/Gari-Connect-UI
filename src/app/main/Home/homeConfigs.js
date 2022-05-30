@@ -21,6 +21,7 @@ import CarddetailConfig from "./Carddetail/CarddetailConfig";
 import ComingsoonConfig from "./Comingsoon/ComingsoonConfig";
 import GifConfig from "./Gif/GifConfig";
 import ConfirmandpayConfig from "./Confirmandpay/ConfirmandpayConfig";
+import ReceiptConfig from "./Receipt/ReceiptConfig";
 
 
 const homeConfigs = [
@@ -47,5 +48,6 @@ const homeConfigs = [
     ComingsoonConfig,
     GifConfig,
     ConfirmandpayConfig,
+    ReceiptConfig,
 ];
 export default homeConfigs;

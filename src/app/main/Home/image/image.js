@@ -2,10 +2,6 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import IconButton from "@mui/material/IconButton";
-import { styled } from "@mui/material/styles";
-import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 import { Link } from "react-router-dom";
 import Hostheader from "../Hostheader/Hostheader";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -13,13 +9,11 @@ import Box from "@mui/material/Box";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Footer from "../Footer/Footer";
+import { CardActions } from "@mui/material";
+import AddImages from '../../Host/sharedComponents/carListing/AddImages';
 
-const Input = styled("input")({
-  display: "none",
-});
 export default function image() {
   const [open, setOpen] = React.useState(false);
 
@@ -87,74 +81,45 @@ export default function image() {
               See ideal example
             </Button>
           </div>
-          <Card
-            className="sm:w-3/12 w-11/12 sm:ml-20 ml-10 mt-20"
-            style={{
-              height: "161px",
-              border: "1px solid rgba(195, 203, 205, 0.42)",
-            }}
-          >
-            <CardContent>
-              <label
-                className="flex flex-row justify-center mt-24"
-                htmlFor="icon-button-file"
+
+          <AddImages />
+
+          <CardActions className="flex flex-row justify-end">
+            <div className="flex mt-84 mb-20 mr-20" style={{ float: "right" }}>
+              <Button
+                component={Link}
+                to="/availability"
+                style={{
+                  width: "99px",
+                  height: "44px",
+                  background: "#FFFFFF",
+                  color: "black",
+                  fontSize: "16px",
+                  fontWeight: "500px",
+                  borderRadius: "8px",
+                  border: "1px solid #D0D5DD",
+                }}
               >
-                <Input accept="image/*" id="icon-button-file" type="file" />
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <CloudUploadOutlinedIcon />
-                </IconButton>
-              </label>
-              <div className="ml-16">
-                <p className="text-xs font-normal" style={{ color: "#667085" }}>
-                  <b
-                    className="text-sm font-medium"
-                    style={{ color: "#D22A8F" }}
-                  >
-                    Click to upload
-                  </b>
-                  or drag and drop SVG,PNG,JPG or GIF (max,800*400px)
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-          <div className="flex mt-84 mb-20 mr-20" style={{ float: "right" }}>
-            <Button
-              component={Link}
-              to="/availability"
-              style={{
-                width: "99px",
-                height: "44px",
-                background: "#FFFFFF",
-                color: "black",
-                fontSize: "16px",
-                fontWeight: "500px",
-                borderRadius: "8px",
-                border: "1px solid #D0D5DD",
-              }}
-            >
-              Back
-            </Button>
-            <Button
-              component={Link}
-              to="/price"
-              className="ml-10"
-              style={{
-                width: "100px",
-                height: "44px",
-                background: "#D22A8F",
-                color: "#FFFFFF",
-                fontSize: "16px",
-                fontWeight: "500px",
-                borderRadius: "8px",
-              }}
-            >
-              Next
-            </Button>
-          </div>
+                Back
+              </Button>
+              <Button
+                component={Link}
+                to="/price"
+                className="ml-10"
+                style={{
+                  width: "100px",
+                  height: "44px",
+                  background: "#D22A8F",
+                  color: "#FFFFFF",
+                  fontSize: "16px",
+                  fontWeight: "500px",
+                  borderRadius: "8px",
+                }}
+              >
+                Next
+              </Button>
+            </div>
+          </CardActions>
         </Card>
       </div>
       <Dialog
@@ -186,7 +151,7 @@ export default function image() {
         </DialogContent>
         <DialogActions>
           <Button
-          className="mx-auto"
+            className="mx-auto"
             style={{
               width: "86px",
               height: "44px",
