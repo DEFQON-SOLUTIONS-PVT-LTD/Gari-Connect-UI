@@ -31,7 +31,7 @@ export default function Hostheader() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white mb-3 shadow-xl shadow-white h-auto">
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white mb-3 shadow-xl shadow-white min-h-64">
      
      <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start pl-96 sm:pt-0 pt-10 sm:pb-0 pb-10 ">
             <a
@@ -64,6 +64,8 @@ export default function Hostheader() {
               
               <li className="nav-item">
                 <Button
+                component={Link}
+                to="/Cardetail"
                   className="headbutton"
                   style={{
                     background: "#C3CBCD",
