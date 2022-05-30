@@ -1,9 +1,38 @@
 import React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormControl from "@mui/material/FormControl";
+import FilledInput from "@mui/material/FilledInput";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import IconButton from "@mui/material/IconButton";
+import { Link } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
-import Signin from "../../Host/sharedComponents/Signin";
 
 function SignIn() {
-
+  const [values, setValues] = React.useState({
+    password: "",
+  });
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   return (
     <div className="h-xl">
       <Signupheader />
@@ -281,7 +310,6 @@ function SignIn() {
         </Typography>
       </div>
     </div>
-
   );
 }
 export default SignIn;
