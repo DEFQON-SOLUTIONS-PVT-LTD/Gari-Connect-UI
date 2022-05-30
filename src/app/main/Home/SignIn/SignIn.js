@@ -264,8 +264,8 @@ function SignIn() {
               </div>
               <div style={{ marginTop: "19px" }}>
                 <Button
-                  // component={Link}
-                  // to="/Cardetail"
+                  component={Link}
+                  to="/Home/LandingPage"
                   style={{
                     backgroundColor: "rgba(210, 42, 143, 1)",
                     height: "44px",
