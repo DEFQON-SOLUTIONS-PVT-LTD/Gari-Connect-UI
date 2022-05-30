@@ -38,30 +38,30 @@ function LandingPage() {
       <div className="a sm:ml-76 ml-36">
         <div className="sm:flex justify-between">
           <div>
-        <h1 style={{ fontSize: "64px", fontWeight: "600", color: "#000000" }}>
-          Easy savari,<br></br>manzil asaan.
-        </h1>
-        <Typography
-          className="font-normal text-lg"
-          style={{ color: "#667085" }}
-        >
-          Renting a car bring you freedom, we will help<br></br>you to find best
-          car at great price.
-        </Typography>
-        </div>
-       
-        <img  width="815" src="assets/images/logos/landingcar.svg"alt="logo"/>
-        
+            <h1 style={{ fontSize: "64px", fontWeight: "600", color: "#000000" }}>
+              Easy savari,<br></br>manzil asaan.
+            </h1>
+            <Typography
+              className="font-normal text-lg"
+              style={{ color: "#667085" }}
+            >
+              Renting a car bring you freedom, we will help<br></br>you to find best
+              car at great price.
+            </Typography>
+          </div>
+
+          <img width="815" src="assets/images/logos/landingcar.svg" alt="logo" />
+
         </div>
         <div className="sm:flex" style={{ marginTop: "200px" }}>
           <img
             width="700"
             height="600px"
-            src="assets/images/Gari Connect/Car Owner.png"
+            src="assets/images/GariConnect/Car Owner.png"
             alt="logo"
           />
           <div className="mt-20 sm:ml-96">
-            <h4 style={{fontWeight:"400px",fontSize:"12px",color:"#D22A8F",marginBottom:"10px"}}>Start Booking</h4>
+            <h4 style={{ fontWeight: "400px", fontSize: "12px", color: "#D22A8F", marginBottom: "10px" }}>Start Booking</h4>
             <Typography className="text-3xl font-semibold">
               Get affordable,reliable car<br></br>in minute.
             </Typography>
@@ -75,8 +75,8 @@ function LandingPage() {
                 Variety
               </Typography>
             </div>
-            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5",marginTop:"5px"}}>
-            Take yor pick from wide range of models
+            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5", marginTop: "5px" }}>
+              Take yor pick from wide range of models
             </p>
             <div className="flex" style={{ marginTop: "50px" }}>
               <img width="25" src="assets/images/logos/Icon 2.svg" alt="logo" />
@@ -88,7 +88,7 @@ function LandingPage() {
                 Verified Cars
               </Typography>
             </div>
-            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5",marginTop:"5px" }}>
+            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5", marginTop: "5px" }}>
               Rent from our list of votted owner without hassle
             </p>
             <div className="flex" style={{ marginTop: "50px" }}>
@@ -98,10 +98,10 @@ function LandingPage() {
                 variant="h5"
                 style={{ marginLeft: "20px" }}
               >
-              24/7 Support
+                24/7 Support
               </Typography>
             </div>
-            <p style={{ marginLeft:"50px",color:"#000000",opacity:"0.5",marginTop:"5px"}}>
+            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5", marginTop: "5px" }}>
               Support teams ready to help you any time of the day
             </p>
             <Button
@@ -172,7 +172,7 @@ function LandingPage() {
               className="mr-96"
               height="100px"
               width="600px"
-              src="assets/images/Gari Connect/FS.png"
+              src="assets/images/GariConnect/FS.png"
               alt="logo"
             />
           </div>
@@ -188,7 +188,7 @@ function LandingPage() {
             <img
               height="10px"
               width="500px"
-              src="assets/images/Gari Connect/enter.png"
+              src="assets/images/GariConnect/enter.png"
               alt="logo"
             />
           </div>
@@ -319,7 +319,7 @@ function LandingPage() {
                   width="69"
                   height="103px"
                   style={{ borderRadius: "50%" }}
-                  src="assets/images/Gari Connect/card.png"
+                  src="assets/images/GariConnect/card.png"
                   alt="logo"
                 />
                 <div style={{ marginTop: "20px", marginLeft: "10px" }}>
@@ -369,7 +369,7 @@ function LandingPage() {
                   width="69"
                   height="103px"
                   style={{ borderRadius: "50%" }}
-                  src="assets/images/Gari Connect/card.png"
+                  src="assets/images/GariConnect/card.png"
                   alt="logo"
                 />
                 <div style={{ marginTop: "20px", marginLeft: "10px" }}>
@@ -419,7 +419,7 @@ function LandingPage() {
                   width="69"
                   height="103px"
                   style={{ borderRadius: "50%" }}
-                  src="assets/images/Gari Connect/card.png"
+                  src="assets/images/GariConnect/card.png"
                   alt="logo"
                 />
                 <div style={{ marginTop: "20px", marginLeft: "10px" }}>
@@ -468,7 +468,7 @@ function LandingPage() {
                   width="69"
                   height="103px"
                   style={{ borderRadius: "50%" }}
-                  src="assets/images/Gari Connect/card.png"
+                  src="assets/images/GariConnect/card.png"
                   alt="logo"
                 />
                 <div style={{ marginTop: "20px", marginLeft: "10px" }}>
@@ -499,7 +499,7 @@ function LandingPage() {
         </div>
         <div className="sm:flex" style={{ marginTop: "50px" }}>
           <div>
-            <img src="assets/images/Gari Connect/c11.png" alt="logo" />
+            <img src="assets/images/GariConnect/c11.png" alt="logo" />
           </div>
           <div style={{ marginLeft: "90px", marginTop: "50px" }}>
             <h1 style={{ fontSize: "42px", fontWeight: "600" }}>

@@ -32,10 +32,10 @@ const bull = (
 );
 
 function Signup() {
-  
+
   return (
     <div>
-     <Signupheader/> 
+      <Signupheader />
       <div>
         <div className="flex flex-row justify-center">
           <Card
@@ -47,22 +47,22 @@ function Signup() {
             }}
           >
             <div style={{ marginTop: "21px", textAlign: "center" }}>
-          <h1
-            style={{ fontSize: "24px", fontWeight: "600", color: " #101828" }}
-          >
-            Welcome 
-          </h1>
-          <p
-            style={{ fontSize: "14px", fontWeight: "400px", color: "#667085" }}
-          >
-            To make account Please enter your details.
-          </p>
-        </div>
-        <div className="mt-20">
+              <h1
+                style={{ fontSize: "24px", fontWeight: "600", color: " #101828" }}
+              >
+                Welcome
+              </h1>
+              <p
+                style={{ fontSize: "14px", fontWeight: "400px", color: "#667085" }}
+              >
+                To make account Please enter your details.
+              </p>
+            </div>
+            <div className="mt-20">
               <hr style={{ width: "100%" }} />
             </div>
             <CardContent>
-            <div style={{ marginTop: "26px" }}>
+              <div style={{ marginTop: "26px" }}>
                 <Button
                   style={{
                     height: "44px",
@@ -76,7 +76,7 @@ function Signup() {
                   <img
                     width="25px"
                     style={{ marginRight: "5px" }}
-                    src="assets/images/Gari Connect/Google.png"
+                    src="assets/images/GariConnect/Google.png"
                     alt="logo"
                   ></img>{" "}
                   Sign up with Google
@@ -96,7 +96,7 @@ function Signup() {
                   <img
                     width="25px"
                     style={{ marginRight: "5px" }}
-                    src="assets/images/Gari Connect/Vector.png"
+                    src="assets/images/GariConnect/Vector.png"
                     alt="logo"
                   ></img>{" "}
                   Sign up with Facebook
@@ -146,7 +146,7 @@ function Signup() {
                 />
               </FormControl>
 
-   
+
 
               <div style={{ marginTop: "12px" }}>
                 <Button
@@ -163,34 +163,34 @@ function Signup() {
                   Sign up
                 </Button>
               </div>
-              
+
               <div className="sm:mt-20 mt-24">
-              <p
-                style={{
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  textAlign: "center",
-                  marginTop: "24px",
-                }}
-              >
-                Alresdy have an acount?<a href="/Signin" style={{
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  color: "#D22A8F",
-                  textAlign: "center",
-                  marginTop: "24px",
-                  textDecoration: "none",
-                }}>Sign in</a>
-              </p>
-            </div>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    textAlign: "center",
+                    marginTop: "24px",
+                  }}
+                >
+                  Alresdy have an acount?<a href="/Signin" style={{
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    color: "#D22A8F",
+                    textAlign: "center",
+                    marginTop: "24px",
+                    textDecoration: "none",
+                  }}>Sign in</a>
+                </p>
+              </div>
             </CardContent>
           </Card>
         </div>
       </div>
       <div className="flex flex-row justify-center ">
         <Typography
-        className="absolute bottom-0 text-16 font-normal pb-10"
-          style={{color: "#98A2B3"}}
+          className="absolute bottom-0 text-16 font-normal pb-10"
+          style={{ color: "#98A2B3" }}
         >
           © 2022 GariConnect. All rights reserved.
         </Typography>

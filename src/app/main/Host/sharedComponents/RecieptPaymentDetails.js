@@ -1,12 +1,12 @@
 import React from 'react'
-import Navbar  from '../hostPanel/Navbar'
-import { Typography, TextField, FormControl, Button, DialogTitle, DialogContent, DialogActions, Dialog } from '@mui/material';
+import { Typography, Button, DialogTitle, DialogContent, DialogActions, Dialog } from '@mui/material';
 import Icon from '@mui/material/Icon';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const RecieptPaymentDetails = () => {
+
+
+const RecieptPaymentDetails = ({childToParent}) => {
     const [open, setOpen] = React.useState(true);
- 
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -14,72 +14,67 @@ const RecieptPaymentDetails = () => {
 
     const handleClose = () => {
         setOpen(false);
+        childToParent(false);
     };
     return (
         <>
-        <Navbar />
-        <Dialog open={open} onClose={handleClose} className="" sx={{ '& .MuiDialog-paper': { borderRadius: 2 } }}>
+       
+        <Dialog open={open} onClose={handleClose} fullWidth  >
                 <DialogTitle className="border-b mb-16 flex flex-row justify-between items-center">
                     <Typography className="text-xl">
-                        Report a problem
+                       Booking receipt
                     </Typography>
                     <Icon className="cursor-pointer" onClick={handleClose}>close</Icon>
                 </DialogTitle>
-                <DialogContent className="flex flex-col">
-                    <FormControl>
-                        <TextField
-                            sx={{
-                                width: 530,
-                                maxWidth: '100%',
-                            }}
-                            className="rounded-none"
-                            margin="dense"
-                            id="name"
-                            label="Your name"
-                            type="text"
-                            fullWidth
-                            variant="outlined"
-                        />
-                    </FormControl>
-                    <FormControl>
-                        <TextField
-                            sx={{
-                                width: 530,
-                                maxWidth: '100%',
-                            }}
-                            className="rounded-none"
-                            margin="dense"
-                            id="email"
-                            label="Email address"
-                            type="email"
-                            fullWidth
-                            variant="outlined"
-                        />
-                    </FormControl>
-                    <FormControl>
-                        <TextField
-                            sx={{
-                                width: 530,
-                                maxWidth: '100%',
-                            }}
-                            className="rounded-none"
-                            margin="dense"
-                            id="detail"
-                            label="Write your problem"
-                            type="text"
-                            fullWidth
-                            variant="outlined"
-                            multiline
-                            rows={6}
-                        />
-                    </FormControl>
+                
+                <DialogContent className="flex flex-col justify-between">
+
+                    <div className='flex flex-row justify-between'>
+                    <Typography  sx={{color: '#667085'}}>Host</Typography>
+                    <Typography>Hassan Ali</Typography>
+                    </div>
+
+                    <div className='flex flex-row justify-between py-12'>
+                    <Typography sx={{color: '#667085'}}>Date</Typography>
+                    <Typography>07-05-2022</Typography>
+                    </div>
+
+                    <div className='flex flex-row justify-between pb-12'>
+                    <Typography sx={{color: '#667085'}}>Booking ID</Typography>
+                    <Typography sx={{color: '#D22A8F'}} className='underline'>4851sdd4s</Typography>
+                    </div>
+
+                    <div className='flex flex-row justify-between  pb-12'>
+                    <Typography sx={{color: '#667085'}}>Service charges</Typography>
+                    <Typography>PKR 200</Typography>
+                    </div>
+
+                    <div className='flex flex-row justify-between  pb-12'>
+                    <Typography sx={{color: '#667085'}}>Booked for</Typography>
+                    <Typography>5 days * 1500</Typography>
+                    </div>
+
+                    <div className='flex flex-row justify-between  pb-10'>
+                    <Typography sx={{color: '#667085'}}>Life insurance</Typography>
+                    <Typography>PKR 200/day</Typography>
+                    </div>
+
+                    
+                    <div className='border-t flex flex-row justify-between pt-16'>
+                    <Typography sx={{color: '#667085'}}>Total price</Typography>
+                    <Typography className='font-bold'>PKR 8500</Typography>
+                    </div>
+
+                   
                 </DialogContent>
                 <DialogActions>
-                    <Button fullWidth onClick={handleClose} size="large" className="mx-14 mb-20 rounded-md text-white" style={{ backgroundColor: '#D22A8F' }}>
-                        Submit
+                    <Button fullWidth  size="large" className="mx-14 mb-20 rounded-md text-white" style={{ backgroundColor: '#D22A8F' }}>
+                        Download
                     </Button>
                 </DialogActions>
             </Dialog>
+           
+        
          </>
 
     )
