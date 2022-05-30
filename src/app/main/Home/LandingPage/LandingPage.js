@@ -24,6 +24,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
+
 function LandingPage() {
   const [value, setValue] = React.useState(2);
   const [date, setDate] = React.useState(null);
@@ -31,6 +32,7 @@ function LandingPage() {
     <div className="App">
       <div>
         <Header style={{ position: "absolute" }} />
+
       </div>
 
       <div className="a sm:ml-76 ml-36">
