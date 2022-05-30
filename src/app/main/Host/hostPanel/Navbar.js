@@ -187,7 +187,7 @@ const Navbar = () => {
                                     </MenuItem>
                                 </Menu>
 
-                                <IconButton>
+                                <IconButton component={Link} to="/Settings">
                                     <SettingsIcon />
                                 </IconButton>
                                 <IconButton onClick={handleClick2}>

@@ -100,27 +100,21 @@ function EditCarlisting() {
                             >
                                 <Tab label="Car details" {...a11yProps(0)} />
                                 <Divider className="mx-12" />
-                                <Tab label="Discription" {...a11yProps(1)} />
+                                <Tab label="Features" {...a11yProps(1)} />
                                 <Divider className="mx-12" />
-                                <Tab label="Features" {...a11yProps(2)} />
+                                <Tab label="Guildlines" {...a11yProps(2)} />
                                 <Divider className="mx-12" />
-                                <Tab label="Guildlines" {...a11yProps(3)} />
+                                <Tab label="Location" {...a11yProps(3)} />
                                 <Divider className="mx-12" />
-                                <Tab label="Location" {...a11yProps(4)} />
+                                <Tab label="Photos" {...a11yProps(4)} />
                                 <Divider className="mx-12" />
-                                <Tab label="Photos" {...a11yProps(5)} />
+                                <Tab label="Price" {...a11yProps(5)} />
                                 <Divider className="mx-12" />
-                                <Tab label="Price" {...a11yProps(6)} />
-                                <Divider className="mx-12" />
-                                <Tab label="Availibility" {...a11yProps(7)} />
+                                <Tab label="Availibility" {...a11yProps(6)} />
                             </Tabs>
 
                             <TabPanel className={classes.panel} value={value} index={0}>
                                 <Cardetails />
-                            </TabPanel>
-
-                            <TabPanel className={classes.panel} value={value} index={1}>
-                                <Typography>Item Two</Typography>
                             </TabPanel>
 
                             <TabPanel className={classes.panel} value={value} index={2}>
@@ -128,7 +122,7 @@ function EditCarlisting() {
                             </TabPanel>
 
                             <TabPanel className={classes.panel} value={value} index={3}>
-                                <Typography>Item Two</Typography>
+                                <Features />
                             </TabPanel>
 
                             <TabPanel className={classes.panel} value={value} index={4}>

@@ -130,6 +130,8 @@ export default function price() {
                 </DialogContent>
                 <DialogActions className="mx-auto mt-32 mb-24">
                   <Button
+                    component={Link}
+                    to="/HostTabs"
                     className="rounded-lg"
                     style={{
                       border: "1px solid #D0D5DD",
@@ -141,6 +143,8 @@ export default function price() {
                     Go to dashboard
                   </Button>
                   <Button
+                    component={Link}
+                    to="/Cardetail"
                     className="rounded-lg"
                     style={{
                       color: "#FFFFFF",
