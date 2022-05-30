@@ -301,7 +301,7 @@ function SignIn() {
           </CardContent>
         </Card>
       </div>
-      <div className="flex flex-row justify-center ">
+      <div className="flex flex-row justify-center">
         <Typography
           className="absolute bottom-0 text-16 font-normal pb-10"
           style={{ color: "#98A2B3" }}
