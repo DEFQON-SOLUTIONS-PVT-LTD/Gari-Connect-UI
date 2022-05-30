@@ -64,8 +64,6 @@ export default function Hostheader() {
               
               <li className="nav-item">
                 <Button
-                  component={Link}
-                  to="/HostTabs"
                   className="headbutton"
                   style={{
                     background: "#C3CBCD",
@@ -80,14 +78,10 @@ export default function Hostheader() {
                 <IconButton>
                   <NotificationsNoneOutlinedIcon />
                 </IconButton>
-                <IconButton
-                 component={Link}
-                 to="/Comingsoon">
+                <IconButton>
                   <SettingsIcon />
                 </IconButton>
-                <IconButton
-                component={Link}
-                to="/Carddetail">
+                <IconButton>
                   <PersonOutlineOutlinedIcon />
                 </IconButton>
               </li>
