@@ -9,7 +9,7 @@ import CardContent from "@mui/material/CardContent";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
 import { Link } from "react-router-dom";
-import Signupheader from "../Signupheader/Signupheader"
+import Signupheader from "../Signupheader/Signupheader";
 
 function OTP() {
   return (

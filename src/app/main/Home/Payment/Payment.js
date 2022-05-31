@@ -84,7 +84,7 @@ function Payment() {
                 marginLeft: "10px",
               }}
             >
-              Personal details
+              Add payment method
             </h3>
             <CardContent>
             <FormControl fullWidth>
@@ -139,11 +139,10 @@ function Payment() {
                     marginBottom: "6px",
                   }}
                 >
-                  Valid till
+                  Expiry date
                 </Typography>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
-        label="Basic example"
         value={value}
         onChange={(newValue) => {
           setValue(newValue);

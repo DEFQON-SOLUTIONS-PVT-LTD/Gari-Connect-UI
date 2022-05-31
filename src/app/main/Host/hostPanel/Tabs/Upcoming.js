@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Typography } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,170 +10,193 @@ import Rating from '@mui/material/Rating';
 import Checkbox from '@mui/material/Checkbox';
 import ClassicSearchPage from 'app/main/Admin/pages/search/classic/ClassicSearchPage';
 import { ClassNames } from '@emotion/react';
+import RecieptPaymentDetails from '../../sharedComponents/RecieptPaymentDetails'
+
 
 
 const Upcoming = () => {
     const [value, setValue] = React.useState(4);
+    const [showdetailsstatus, setstatus] = useState(false);
+
+
+    const showdetails = () => {
+        setstatus(true);
+
+
+
+    }
+    const childToParent = (childdata) => {
+        setstatus(childdata);
+    }
 
 
     return (
-        <div className="grid grid-cols-4 gap-4">
-            <div className="col-span-4">
-                <TableContainer>
-                    <Table sx={{ minWidth: 1080 }} aria-label="simple table">
-                        <TableHead >
-                            <TableRow className="border-t bg-gray-50">
-
-                                <TableCell className="text-12 font-medium"> Guest</TableCell>
-                                <TableCell className="text-12 font-medium ">Booking ID</TableCell>
-                                <TableCell className="text-12 font-medium">Car</TableCell>
-                                <TableCell className="text-12 font-medium ">Booking dates</TableCell>
-                                <TableCell className="text-12 font-medium">Price</TableCell>
-                                <TableCell className="text-12 font-medium ">Status</TableCell>
-                                <TableCell className="text-12 font-medium" >Service Fee</TableCell>
-                                <TableCell></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-
-                            >
-
-                                <TableCell component="th" scope="row" className="flex flex-row items-center">
+        <>
+            {showdetailsstatus &&
+                <RecieptPaymentDetails childToParent={childToParent} />
 
 
-                                    <img src="assets/images/profile/Avatar-0.svg" alt="" />
-                                    <div>
-                                        <Typography className="text-10 font-medium ml-8">Olivia Rhye</Typography>
-                                        <Typography className="text-10 font-normal ml-8" style={{ color: '#D22A8F' }}>5156151dd</Typography>
-                                    </div>
-                                </TableCell>
+            }
 
 
-                                <TableCell className="text-12 text-gray-500 font-normal">5156151dd</TableCell>
-                                <TableCell className="text-12 text-gray-500 font-normal">Honda Afb 8895- 19</TableCell>
-                                <TableCell>
-                                    <div className="flex flex-row">
-                                        <Typography className="flex flex-col">
-                                            <span className="text-sm font-normal text-gray-900">21 March 2022</span>
-                                            <span className="text-12 text-gray-500 font-normal">7 Pm</span>
-                                        </Typography>
-                                        <img className="mx-12" src="assets/images/icons/Arrow6.svg" alt="" />
-                                        <Typography className="flex flex-col">
-                                            <span className="text-sm font-normal text-gray-900">21 March 2022</span>
-                                            <span className="text-12 text-gray-500 font-normal">7 Pm</span>
-                                        </Typography>
-                                    </div>
-                                </TableCell>
-                                <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
+            <div className="grid grid-cols-4 gap-4">
+                <div className="col-span-4">
+                    <TableContainer>
+                        <Table sx={{ minWidth: 1080 }} aria-label="simple table">
+                            <TableHead >
+                                <TableRow className="border-t bg-gray-50">
 
-                                <TableCell className="text-12  font-normal"><Button variant="contained" className="rounded-16" style={{ backgroundColor: 'rgba(240, 68, 56, 0.15)', color: '#F04438' }}>Pending</Button></TableCell>
-                                <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
+                                    <TableCell className="text-12 font-medium">Guest</TableCell>
+                                    <TableCell className="text-12 font-medium ">Booking ID</TableCell>
+                                    <TableCell className="text-12 font-medium">Car</TableCell>
+                                    <TableCell className="text-12 font-medium ">Booking dates</TableCell>
+                                    <TableCell className="text-12 font-medium">Price</TableCell>
+                                    <TableCell className="text-12 font-medium ">Status</TableCell>
+                                    <TableCell className="text-12 font-medium" >Service Fee</TableCell>
+                                    <TableCell></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                <TableRow
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
-                                <TableCell className=" font-normal"><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
+                                >
 
-                                {/* <TableCell className="flex space-x-12">
+                                    <TableCell component="th" scope="row" className="flex flex-row items-center">
+
+
+                                        <img src="assets/images/profile/Avatar-0.svg" alt="" />
+                                        <div>
+                                            <Typography className="text-10 font-medium ml-8">Olivia Rhye</Typography>
+                                            <Typography className="text-10 font-normal ml-8" style={{ color: '#D22A8F' }}>5156151dd</Typography>
+                                        </div>
+                                    </TableCell>
+
+
+                                    <TableCell className="text-12 text-gray-500 font-normal">5156151dd</TableCell>
+                                    <TableCell className="text-12 text-gray-500 font-normal">Honda Afb 8895- 19</TableCell>
+                                    <TableCell>
+                                        <div className="flex flex-row">
+                                            <Typography className="flex flex-col">
+                                                <span className="text-sm font-normal text-gray-900">21 March 2022</span>
+                                                <span className="text-12 text-gray-500 font-normal">7 Pm</span>
+                                            </Typography>
+                                            <img className="mx-12" src="assets/images/icons/Arrow6.svg" alt="" />
+                                            <Typography className="flex flex-col">
+                                                <span className="text-sm font-normal text-gray-900">21 March 2022</span>
+                                                <span className="text-12 text-gray-500 font-normal">7 Pm</span>
+                                            </Typography>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
+
+                                    <TableCell className="text-12  font-normal"><Button variant="contained" className="rounded-16" style={{ backgroundColor: 'rgba(240, 68, 56, 0.15)', color: '#F04438' }}>Pending</Button></TableCell>
+                                    <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
+
+                                    <TableCell onClick={showdetails} className=" font-normal"><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
+
+                                    {/* <TableCell className="flex space-x-12">
                                     <Button variant="outlined" size="medium" className="text-10 rounded" style={{ color: '#667085', borderColor: '#C3CBCD' }}>Cancel booking</Button>
                                     <Button variant="contained" size="medium" className="text-10 rounded" style={{ backgroundColor: '#D22A8F' }}>Handover car</Button>
                                 </TableCell> */}
-                            </TableRow>
+                                </TableRow>
 
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                <TableRow
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
-                            >
+                                >
 
-                                <TableCell component="th" scope="row" className="flex flex-row items-center">
-
-
-                                    <img src="assets/images/profile/Avatar-0.svg" alt="" />
-                                    <div>
-                                        <Typography className="text-10 font-medium ml-8">Olivia Rhye</Typography>
-                                        <Typography className="text-10 font-normal ml-8" style={{ color: '#D22A8F' }}>5156151dd</Typography>
-                                    </div>
-                                </TableCell>
+                                    <TableCell component="th" scope="row" className="flex flex-row items-center">
 
 
-                                <TableCell className="text-12 text-gray-500 font-normal">5156151dd</TableCell>
-                                <TableCell className="text-12 text-gray-500 font-normal">Honda Afb 8895- 19</TableCell>
-                                <TableCell>
-                                    <div className="flex flex-row">
-                                        <Typography className="flex flex-col">
-                                            <span className="text-sm font-normal text-gray-900">21 March 2022</span>
-                                            <span className="text-12 text-gray-500 font-normal">7 Pm</span>
-                                        </Typography>
-                                        <img className="mx-12" src="assets/images/icons/Arrow6.svg" alt="" />
-                                        <Typography className="flex flex-col">
-                                            <span className="text-sm font-normal text-gray-900">21 March 2022</span>
-                                            <span className="text-12 text-gray-500 font-normal">7 Pm</span>
-                                        </Typography>
-                                    </div>
-                                </TableCell>
-                                <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
+                                        <img src="assets/images/profile/Avatar-0.svg" alt="" />
+                                        <div>
+                                            <Typography className="text-10 font-medium ml-8">Olivia Rhye</Typography>
+                                            <Typography className="text-10 font-normal ml-8" style={{ color: '#D22A8F' }}>5156151dd</Typography>
+                                        </div>
+                                    </TableCell>
 
-                                <TableCell className="text-12  font-normal"><Button variant="contained" className="rounded-16" style={{ backgroundColor: 'rgba(4, 106, 243, 0.08)', color: '#046AF3' }}>Released</Button></TableCell>
-                                <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
 
-                                <TableCell className=" font-normal"><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
+                                    <TableCell className="text-12 text-gray-500 font-normal">5156151dd</TableCell>
+                                    <TableCell className="text-12 text-gray-500 font-normal">Honda Afb 8895- 19</TableCell>
+                                    <TableCell>
+                                        <div className="flex flex-row">
+                                            <Typography className="flex flex-col">
+                                                <span className="text-sm font-normal text-gray-900">21 March 2022</span>
+                                                <span className="text-12 text-gray-500 font-normal">7 Pm</span>
+                                            </Typography>
+                                            <img className="mx-12" src="assets/images/icons/Arrow6.svg" alt="" />
+                                            <Typography className="flex flex-col">
+                                                <span className="text-sm font-normal text-gray-900">21 March 2022</span>
+                                                <span className="text-12 text-gray-500 font-normal">7 Pm</span>
+                                            </Typography>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
 
-                                {/* <TableCell className="flex space-x-12">
+                                    <TableCell className="text-12  font-normal"><Button variant="contained" className="rounded-16" style={{ backgroundColor: 'rgba(4, 106, 243, 0.08)', color: '#046AF3' }}>Released</Button></TableCell>
+                                    <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
+
+                                    <TableCell onClick={showdetails} className=" font-normal"><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
+
+                                    {/* <TableCell className="flex space-x-12">
                                     <Button variant="outlined" size="medium" className="text-10 rounded" style={{ color: '#667085', borderColor: '#C3CBCD' }}>Cancel booking</Button>
                                     <Button variant="contained" size="medium" className="text-10 rounded" style={{ backgroundColor: '#D22A8F' }}>Handover car</Button>
                                 </TableCell> */}
-                            </TableRow>
+                                </TableRow>
 
 
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                <TableRow
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
-                            >
+                                >
 
-                                <TableCell component="th" scope="row" className="flex flex-row items-center">
-
-
-                                    <img src="assets/images/profile/Avatar-0.svg" alt="" />
-                                    <div>
-                                        <Typography className="text-10 font-medium ml-8">Olivia Rhye</Typography>
-                                        <Typography className="text-10 font-normal ml-8" style={{ color: '#D22A8F' }}>5156151dd</Typography>
-                                    </div>
-                                </TableCell>
+                                    <TableCell component="th" scope="row" className="flex flex-row items-center">
 
 
-                                <TableCell className="text-12 text-gray-500 font-normal">5156151dd</TableCell>
-                                <TableCell className="text-12 text-gray-500 font-normal">Honda Afb 8895- 19</TableCell>
-                                <TableCell>
-                                    <div className="flex flex-row">
-                                        <Typography className="flex flex-col">
-                                            <span className="text-sm font-normal text-gray-900">21 March 2022</span>
-                                            <span className="text-12 text-gray-500 font-normal">7 Pm</span>
-                                        </Typography>
-                                        <img className="mx-12" src="assets/images/icons/Arrow6.svg" alt="" />
-                                        <Typography className="flex flex-col">
-                                            <span className="text-sm font-normal text-gray-900">21 March 2022</span>
-                                            <span className="text-12 text-gray-500 font-normal">7 Pm</span>
-                                        </Typography>
-                                    </div>
-                                </TableCell>
-                                <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
+                                        <img src="assets/images/profile/Avatar-0.svg" alt="" />
+                                        <div>
+                                            <Typography className="text-10 font-medium ml-8">Olivia Rhye</Typography>
+                                            <Typography className="text-10 font-normal ml-8" style={{ color: '#D22A8F' }}>5156151dd</Typography>
+                                        </div>
+                                    </TableCell>
 
-                                <TableCell className="text-12  font-normal"><Button variant="contained" className="rounded-16" style={{ backgroundColor: 'rgba(240, 68, 56, 0.15)', color: '#F04438' }}>Pending</Button></TableCell>
-                                <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
 
-                                <TableCell className=" font-normal"><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
+                                    <TableCell className="text-12 text-gray-500 font-normal">5156151dd</TableCell>
+                                    <TableCell className="text-12 text-gray-500 font-normal">Honda Afb 8895- 19</TableCell>
+                                    <TableCell>
+                                        <div className="flex flex-row">
+                                            <Typography className="flex flex-col">
+                                                <span className="text-sm font-normal text-gray-900">21 March 2022</span>
+                                                <span className="text-12 text-gray-500 font-normal">7 Pm</span>
+                                            </Typography>
+                                            <img className="mx-12" src="assets/images/icons/Arrow6.svg" alt="" />
+                                            <Typography className="flex flex-col">
+                                                <span className="text-sm font-normal text-gray-900">21 March 2022</span>
+                                                <span className="text-12 text-gray-500 font-normal">7 Pm</span>
+                                            </Typography>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
 
-                                {/* <TableCell className="flex space-x-12">
+                                    <TableCell className="text-12  font-normal"><Button variant="contained" className="rounded-16" style={{ backgroundColor: 'rgba(240, 68, 56, 0.15)', color: '#F04438' }}>Pending</Button></TableCell>
+                                    <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
+
+                                    <TableCell className=" font-normal"><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
+
+                                    {/* <TableCell className="flex space-x-12">
                                     <Button variant="outlined" size="medium" className="text-10 rounded" style={{ color: '#667085', borderColor: '#C3CBCD' }}>Cancel booking</Button>
                                     <Button variant="contained" size="medium" className="text-10 rounded" style={{ backgroundColor: '#D22A8F' }}>Handover car</Button>
                                 </TableCell> */}
-                            </TableRow>
+                                </TableRow>
 
 
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -23,6 +23,7 @@ import FormControl from "@mui/material/FormControl";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import SearchBar from "../../Host/sharedComponents/SearchBar";
 
 
 function LandingPage() {
@@ -38,20 +39,23 @@ function LandingPage() {
       <div className="a sm:ml-76 ml-36">
         <div className="sm:flex justify-between">
           <div>
-        <h1 style={{ fontSize: "64px", fontWeight: "600", color: "#000000" }}>
-          Easy savari,<br></br>manzil asaan.
-        </h1>
-        <Typography
-          className="font-normal text-lg"
-          style={{ color: "#667085" }}
-        >
-          Renting a car bring you freedom, we will help<br></br>you to find best
-          car at great price.
-        </Typography>
+            <h1 style={{ fontSize: "64px", fontWeight: "600", color: "#000000" }}>
+              Easy savari,<br></br>manzil asaan.
+            </h1>
+            <Typography
+              className="font-normal text-lg"
+              style={{ color: "#667085" }}
+            >
+              Renting a car bring you freedom, we will help<br></br>you to find best
+              car at great price.
+            </Typography>
+          </div>
+
+          <img width="815" src="assets/images/logos/landingcar.svg" alt="logo" />
+
         </div>
-       
-        <img  width="815" src="assets/images/logos/landingcar.svg"alt="logo"/>
-        
+        <div className="flex justify-center">
+        <SearchBar/>
         </div>
         <div className="sm:flex" style={{ marginTop: "200px" }}>
           <img
@@ -61,7 +65,7 @@ function LandingPage() {
             alt="logo"
           />
           <div className="mt-20 sm:ml-96">
-            <h4 style={{fontWeight:"400px",fontSize:"12px",color:"#D22A8F",marginBottom:"10px"}}>Start Booking</h4>
+            <h4 style={{ fontWeight: "400px", fontSize: "12px", color: "#D22A8F", marginBottom: "10px" }}>Start Booking</h4>
             <Typography className="text-3xl font-semibold">
               Get affordable,reliable car<br></br>in minute.
             </Typography>
@@ -75,8 +79,8 @@ function LandingPage() {
                 Variety
               </Typography>
             </div>
-            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5",marginTop:"5px"}}>
-            Take yor pick from wide range of models
+            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5", marginTop: "5px" }}>
+              Take yor pick from wide range of models
             </p>
             <div className="flex" style={{ marginTop: "50px" }}>
               <img width="25" src="assets/images/logos/Icon 2.svg" alt="logo" />
@@ -88,7 +92,7 @@ function LandingPage() {
                 Verified Cars
               </Typography>
             </div>
-            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5",marginTop:"5px" }}>
+            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5", marginTop: "5px" }}>
               Rent from our list of votted owner without hassle
             </p>
             <div className="flex" style={{ marginTop: "50px" }}>
@@ -98,10 +102,10 @@ function LandingPage() {
                 variant="h5"
                 style={{ marginLeft: "20px" }}
               >
-              24/7 Support
+                24/7 Support
               </Typography>
             </div>
-            <p style={{ marginLeft:"50px",color:"#000000",opacity:"0.5",marginTop:"5px"}}>
+            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5", marginTop: "5px" }}>
               Support teams ready to help you any time of the day
             </p>
             <Button
@@ -543,40 +547,7 @@ function LandingPage() {
           <p>We've got option to get where you are gooing.Choose a</p>
           <p>car market that suit your mood and budget.</p>
         </div>
-        <div className="mt-36 text-center border-2">
-          <Box sx={{ "& > :not(style)": { m: 1 } }}>
-            <TextField
-              label="Location"
-              id=" Location-with-icon-adornment"
-              placeholder="Where you want to pick your car"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <LocationOnOutlinedIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DatePicker
-                label="From"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-              <DatePicker
-                label="Until"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
-          </Box>
-        </div>
+       
         <div>
           <h1
             className="mt-96 text-4xl font-semibold"

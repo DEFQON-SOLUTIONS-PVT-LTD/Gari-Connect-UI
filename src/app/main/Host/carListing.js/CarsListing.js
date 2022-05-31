@@ -30,11 +30,9 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Navbar from "../Navbar/Navbar";
 
 const CarsListing = () => {
-  
   return (
     <>
-     
-      <Navbar/>
+      <Navbar />
 
       <Navbarfilters />
 
@@ -50,7 +48,7 @@ const CarsListing = () => {
             <CarDetailsCard />
           </div>
           <div className="flex col-span-1">
-            <CarDetailsCard />
+            <CarDetailsCard component={Link} to="/carddetail" />
           </div>
           <div className="flex col-span-1">
             <CarDetailsCard />
