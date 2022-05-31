@@ -73,7 +73,7 @@ export default function Navbar(){
     id="example-navbar-danger"
   >
     <ul className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20">
-      <div className=" border rounded-full w-auto   md:w-md ">
+      <div className=" border rounded-full w-auto  md:w-md ">
         <div className="grid  sm:grid-cols-2 grid-cols-1 gap-4 h-full w-auto">
           <div className="flex items-center ml-16">
             {/* <Divider orientation="vertical" variant="middle" />  */}

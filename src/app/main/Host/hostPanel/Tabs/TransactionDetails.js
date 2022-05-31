@@ -6,10 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Rating from '@mui/material/Rating';
-import Checkbox from '@mui/material/Checkbox';
-import ClassicSearchPage from 'app/main/Admin/pages/search/classic/ClassicSearchPage';
-import { ClassNames } from '@emotion/react';
+
 
 
 
@@ -26,8 +23,8 @@ const TransactionDetails = () => {
                     <TableRow className="border-t bg-gray-50">
 
                         <TableCell className="text-12 font-medium" sx={{ width: '18%' }}>
-                            <div className='flex flex-row items-center'>
-                                <Checkbox />
+                            <div className='flex flex-row items-center ml-9'>
+
                                 Date
                                 <div className=' flex flex-col items-center px-5'>
                                     <img src="/assets/images/icons/polygonup.svg" className='p-2 w-12' alt="Up" />
@@ -59,8 +56,6 @@ const TransactionDetails = () => {
                             </div>
                         </TableCell>
                         <TableCell></TableCell>
-
-
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -69,14 +64,8 @@ const TransactionDetails = () => {
 
                     >
 
-                        <TableCell component="th" scope="row" className="flex flex-row items-center" >
-
-                            <Checkbox />
-
-                            <div>
-                                <Typography className="text-10 font-medium ml-8">21 March 2022</Typography>
-
-                            </div>
+                        <TableCell >
+                            <Typography className="text-12 font-medium ml-8">21 March 2022</Typography>
                         </TableCell>
 
                         <TableCell className="text-12 text-gray-500 font-normal">515551dd</TableCell>
@@ -91,63 +80,16 @@ const TransactionDetails = () => {
 
                     >
 
-                        <TableCell component="th" scope="row" className="flex flex-row items-center">
+                        <TableCell>
 
-                            <Checkbox />
+                            <Typography className="text-12 font-medium ml-8">21 March 2022</Typography>
 
-                            <div>
-                                <Typography className="text-10 font-medium ml-8">21 March 2022</Typography>
-
-                            </div>
                         </TableCell>
 
                         <TableCell className="text-12 text-gray-500 font-normal">515551dd</TableCell>
                         <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
                         <TableCell className="text-12 text-gray-500 font-normal">HBL Account</TableCell>
                         <TableCell className="font-normal" align='right'><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
-
-                    </TableRow>
-
-                    <TableRow
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-
-                    >
-
-                        <TableCell component="th" scope="row" className="flex flex-row items-center">
-
-                            <Checkbox />
-
-                            <div>
-                                <Typography className="text-10 font-medium ml-8">21 March 2022</Typography>
-
-                            </div>
-                        </TableCell>
-
-                        <TableCell className="text-12 text-gray-500 font-normal">515551dd</TableCell>
-                        <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
-                        <TableCell className="text-12 text-gray-500 font-normal">HBL Account</TableCell>
-                        <TableCell className=" font-normal" align='right'><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
-
-                    </TableRow>
-                    <TableRow
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-
-                    >
-
-                        <TableCell component="th" scope="row" className="flex flex-row items-center">
-
-                            <Checkbox />
-
-                            <div>
-                                <Typography className="text-10 font-medium ml-8">21 March 2022</Typography>
-
-                            </div>
-                        </TableCell>
-
-                        <TableCell className="text-12 text-gray-500 font-normal">515551dd</TableCell>
-                        <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
-                        <TableCell className="text-12 text-gray-500 font-normal">HBL Account</TableCell>
-                        <TableCell className=" font-normal" align='right'><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
 
                     </TableRow>
 
