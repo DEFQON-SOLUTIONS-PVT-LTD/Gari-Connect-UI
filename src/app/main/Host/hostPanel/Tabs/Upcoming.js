@@ -6,10 +6,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Rating from '@mui/material/Rating';
-import Checkbox from '@mui/material/Checkbox';
-import ClassicSearchPage from 'app/main/Admin/pages/search/classic/ClassicSearchPage';
-import { ClassNames } from '@emotion/react';
 import RecieptPaymentDetails from '../../sharedComponents/RecieptPaymentDetails'
 
 
@@ -93,12 +89,8 @@ const Upcoming = () => {
                                     <TableCell className="text-12  font-normal"><Button variant="contained" className="rounded-16" style={{ backgroundColor: 'rgba(240, 68, 56, 0.15)', color: '#F04438' }}>Pending</Button></TableCell>
                                     <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
 
-                                    <TableCell onClick={showdetails} className=" font-normal"><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
+                                    <TableCell onClick={showdetails} className=" font-normal"><Typography className='text-12 cursor-pointer' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
 
-                                    {/* <TableCell className="flex space-x-12">
-                                    <Button variant="outlined" size="medium" className="text-10 rounded" style={{ color: '#667085', borderColor: '#C3CBCD' }}>Cancel booking</Button>
-                                    <Button variant="contained" size="medium" className="text-10 rounded" style={{ backgroundColor: '#D22A8F' }}>Handover car</Button>
-                                </TableCell> */}
                                 </TableRow>
 
                                 <TableRow
@@ -137,12 +129,8 @@ const Upcoming = () => {
                                     <TableCell className="text-12  font-normal"><Button variant="contained" className="rounded-16" style={{ backgroundColor: 'rgba(4, 106, 243, 0.08)', color: '#046AF3' }}>Released</Button></TableCell>
                                     <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
 
-                                    <TableCell onClick={showdetails} className=" font-normal"><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
+                                    <TableCell onClick={showdetails} className=" font-normal"><Typography className='text-12 cursor-pointer' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
 
-                                    {/* <TableCell className="flex space-x-12">
-                                    <Button variant="outlined" size="medium" className="text-10 rounded" style={{ color: '#667085', borderColor: '#C3CBCD' }}>Cancel booking</Button>
-                                    <Button variant="contained" size="medium" className="text-10 rounded" style={{ backgroundColor: '#D22A8F' }}>Handover car</Button>
-                                </TableCell> */}
                                 </TableRow>
 
 
@@ -182,12 +170,8 @@ const Upcoming = () => {
                                     <TableCell className="text-12  font-normal"><Button variant="contained" className="rounded-16" style={{ backgroundColor: 'rgba(240, 68, 56, 0.15)', color: '#F04438' }}>Pending</Button></TableCell>
                                     <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
 
-                                    <TableCell className=" font-normal"><Typography className='text-12' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
+                                    <TableCell className=" font-normal "><Typography className='text-12 cursor-pointer' style={{ color: '#D22A8F' }}>View reciept</Typography></TableCell>
 
-                                    {/* <TableCell className="flex space-x-12">
-                                    <Button variant="outlined" size="medium" className="text-10 rounded" style={{ color: '#667085', borderColor: '#C3CBCD' }}>Cancel booking</Button>
-                                    <Button variant="contained" size="medium" className="text-10 rounded" style={{ backgroundColor: '#D22A8F' }}>Handover car</Button>
-                                </TableCell> */}
                                 </TableRow>
 
 
