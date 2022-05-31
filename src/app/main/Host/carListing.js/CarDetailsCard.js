@@ -6,6 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Rating from '@mui/material/Rating';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Link } from "react-router-dom";
 
 const CarDetailsCard = () => {
     const [value, setValue] = React.useState(4);
@@ -14,6 +16,8 @@ const CarDetailsCard = () => {
         <div className="flex flex-wrap -m-3">
             <div className="w-full  flex flex-col p-3">
                 <Card sx={{ maxWidth: 306, height: 375 }} className="text-center rounded">
+                <CardActionArea
+                component={Link} to="/carddetail">
                     <CardMedia
                         className="px-6 pt-6"
                         component="img"
@@ -22,6 +26,7 @@ const CarDetailsCard = () => {
                         image="/assets/images/GariConnect/cardimage.png"
                         alt="logo"
                     />
+                    </CardActionArea>
                     <CardContent>
                         <div className="flex flex-row items-center -mt-31 mb-2">
                             <div className="bg-white py-2 px-4 rounded-sm flex flex-row space-x-6 mt-12">

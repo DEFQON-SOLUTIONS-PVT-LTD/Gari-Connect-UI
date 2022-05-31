@@ -23,6 +23,7 @@ import FormControl from "@mui/material/FormControl";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import SearchBar from "../../Host/sharedComponents/SearchBar";
 
 
 function LandingPage() {
@@ -52,6 +53,9 @@ function LandingPage() {
 
           <img width="815" src="assets/images/logos/landingcar.svg" alt="logo" />
 
+        </div>
+        <div className="flex justify-center">
+        <SearchBar/>
         </div>
         <div className="sm:flex" style={{ marginTop: "200px" }}>
           <img
@@ -543,40 +547,7 @@ function LandingPage() {
           <p>We've got option to get where you are gooing.Choose a</p>
           <p>car market that suit your mood and budget.</p>
         </div>
-        <div className="mt-36 text-center border-2">
-          <Box sx={{ "& > :not(style)": { m: 1 } }}>
-            <TextField
-              label="Location"
-              id=" Location-with-icon-adornment"
-              placeholder="Where you want to pick your car"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <LocationOnOutlinedIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DatePicker
-                label="From"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-              <DatePicker
-                label="Until"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
-          </Box>
-        </div>
+       
         <div>
           <h1
             className="mt-96 text-4xl font-semibold"

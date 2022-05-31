@@ -30,6 +30,7 @@ import MobileDatePicker from '@mui/lab/MobileDatePicker'
 
 
 
+
 export default function Carddetail() {
   const [value, setValue] = React.useState(4);
 
@@ -706,7 +707,7 @@ export default function Carddetail() {
                 >
 
                   <Button
-
+component={Link} to="/Confirmandpay"
                     style={{
                       backgroundColor: "rgba(210, 42, 143, 1)",
                       fontSize: "16px",

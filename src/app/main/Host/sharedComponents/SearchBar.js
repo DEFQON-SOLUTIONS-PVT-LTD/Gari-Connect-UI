@@ -12,6 +12,9 @@ import { LocalizationProvider } from "@mui/lab";
 import Box from "@mui/material/Box";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
+import SearchSharpIcon from '@mui/icons-material/SearchSharp';
+import IconButton from '@mui/material/IconButton';
+import {Link} from "react-router-dom";
 
 
 
@@ -124,6 +127,9 @@ const SearchBar = () => {
                                                             ),
                                                         }}
                                                     />
+                                                    <IconButton
+                                                    component={Link}
+                                                    to="/cars-listing"><SearchSharpIcon/></IconButton>
                                                 </Box>
                                             </div>
                                         </React.Fragment>
