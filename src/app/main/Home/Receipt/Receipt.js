@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState }  from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -10,10 +10,30 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import RecieptPaymentDetails from '../../Host/sharedComponents/RecieptPaymentDetails';
 
 function Receipt() {
+  const [showdetailsstatus, setstatus] = useState(false);
+
+
+  const showdetails = () => {
+      setstatus(true);
+
+
+
+  }
+  const childToParent = (childdata) => {
+      setstatus(childdata);
+  }
+
   return (
+    
     <div>
+      {showdetailsstatus &&
+                <RecieptPaymentDetails childToParent={childToParent} />
+
+
+            }
       <Navbar />
       <div className="flex flex-row justify-center">
         <Card
@@ -45,8 +65,7 @@ function Receipt() {
             </div>
             <div className="sm:mt-28 mt-16">
               <Button
-                component={Link}
-                to="/Setpassword"
+               onClick={showdetails}
                 style={{
                   backgroundColor: "rgba(210, 42, 143, 1)",
                   height: "44px",

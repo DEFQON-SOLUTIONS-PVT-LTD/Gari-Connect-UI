@@ -493,6 +493,9 @@ function LandingPage() {
             </CardContent>
           </Card>
         </div>
+        <div className="flex justify-center mt-52">
+        <SearchBar/>
+        </div>
         <div style={{ marginLeft: "50%", marginTop: "100px" }}>
           <IconButton>
             <ArrowBackIcon fontSize="large" />

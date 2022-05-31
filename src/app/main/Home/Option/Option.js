@@ -187,6 +187,8 @@ function Option() {
             </div>
             <div className="sm:mt-28 mt-16">
               <Button
+              component={Link}
+              to="/Verify"
                 style={{
                   backgroundColor: "rgba(210, 42, 143, 1)",
                   height: "44px",

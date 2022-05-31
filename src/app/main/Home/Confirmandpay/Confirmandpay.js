@@ -22,7 +22,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import Box from "@mui/material/Box";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -30,7 +29,82 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import FilledInput from "@mui/material/FilledInput";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import FormGroup from "@mui/material/FormGroup";
+import { styled } from "@mui/material/styles";
+import RadioGroup from "@mui/material/RadioGroup";
+import Input from "@mui/material/Input";
+import InputLabel from "@mui/material/InputLabel";
+import FormHelperText from "@mui/material/FormHelperText";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import LinearProgress from "@mui/material/LinearProgress";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DatePicker from "@mui/lab/DatePicker";
 
+const BpIcon = styled("span")(({ theme }) => ({
+  borderRadius: "50%",
+  width: 16,
+  height: 16,
+  boxShadow:
+    theme.palette.mode === "dark"
+      ? "0 0 0 1px rgb(16 22 26 / 40%)"
+      : "inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)",
+  backgroundColor: theme.palette.mode === "dark" ? "#394b59" : "#f5f8fa",
+  backgroundImage:
+    theme.palette.mode === "dark"
+      ? "linear-gradient(180deg,hsla(0,0%,100%,.05),hsla(0,0%,100%,0))"
+      : "linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))",
+  ".Mui-focusVisible &": {
+    outline: "2px auto rgba(19,124,189,.6)",
+    outlineOffset: 2,
+  },
+  "input:hover ~ &": {
+    backgroundColor: theme.palette.mode === "dark" ? "#30404d" : "#ebf1f5",
+  },
+  "input:disabled ~ &": {
+    boxShadow: "none",
+    background:
+      theme.palette.mode === "dark"
+        ? "rgba(57,75,89,.5)"
+        : "rgba(206,217,224,.5)",
+  },
+}));
+
+const BpCheckedIcon = styled(BpIcon)({
+  backgroundColor: "#D22A8F",
+  backgroundImage:
+    "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
+  "&:before": {
+    display: "block",
+    width: 16,
+    height: 16,
+    backgroundImage: "radial-gradient(#fff,#fff 28%,transparent 32%)",
+    content: '""',
+  },
+  "input:hover ~ &": {
+    backgroundColor: "#D22A8F",
+  },
+});
+
+function BpRadio(props) {
+  return (
+    <Radio
+      sx={{
+        '&:hover': {
+          bgcolor: 'transparent',
+        },
+      }}
+      disableRipple
+      color="default"
+      checkedIcon={<BpCheckedIcon />}
+      icon={<BpIcon />}
+      {...props}
+    />
+  );
+}
 
 export default function Confirmandpay() {
   const [value, setValue] = React.useState(4);
@@ -76,6 +150,13 @@ export default function Confirmandpay() {
   const passwordMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const [card, setCard] = React.useState("");
+
+  const paymentChange = (event) => {
+    setCard(event.target.value);
+  };
+
+  const [pay, setPay] = React.useState(null);
 
   return (
     <div>
@@ -135,48 +216,28 @@ export default function Confirmandpay() {
                       PKR 200 will be charge for insurance
                     </Typography>
                   </div>
-                  <div className="flex">
+                  <RadioGroup
+        defaultValue="female"
+        aria-labelledby="demo-customized-radios"
+        name="customized-radios"
+      >
+                  <div className="flex space-x-10">
                     <div className="flex">
-                      <Radio
-                        style={{ color: "#D22A8F" }}
-                        checked={selectedValue === "a"}
-                        onChange={radioChange}
-                        value="a"
-                        name="radio-buttons"
-                        inputProps={{ "aria-label": "A" }}
-                        size="small"
-                      />
-                      <Typography
-                        className="text-sm font-medium mt-12"
-                        style={{ color: "#101828" }}
-                      >
-                        Yes
-                      </Typography>
-                    </div>
-                    <div className="flex">
-                      <Radio
-                        style={{ color: "#D22A8F" }}
-                        checked={selectedValue === "b"}
-                        onChange={radioChange}
-                        value="b"
-                        name="radio-buttons"
-                        inputProps={{ "aria-label": "B" }}
-                        size="small"
-                      />
-                      <Typography
-                        className="text-sm font-medium mt-12"
-                        style={{ color: "#101828" }}
-                      >
-                        No
-                      </Typography>
-                    </div>
+                  <FormControlLabel value="female" control={<BpRadio />} label="" />
+                  <Typography className="mt-8 text-sm font-medium">Yes</Typography>
                   </div>
+                  <div className="flex">
+        <FormControlLabel value="male" control={<BpRadio />} label="" />
+        <Typography className="mt-8 text-sm font-medium">NO</Typography>
+        </div>
+                  </div>
+                  </RadioGroup>
                 </div>
                 <hr className="mt-20" />
               </div>
               <div className="mt-28">
                 <Card
-                  className="shadow-none rounded-md border mb-24 w-7/12"
+                  className="shadow-none rounded-md border mb-24 sm:w-8/12 w-full"
                   sx={{ minHeight: 133 }}
                 >
                   <div className="border-b">
@@ -266,6 +327,127 @@ export default function Confirmandpay() {
                   To protect your payment, never transfer money or communicate
                   <br></br> outside os the Gari Connect website or app.
                 </Typography>
+              </div>
+              <div>
+                <Card
+                  className="w-10/12"
+                  style={{
+                    marginTop: "40px",
+                    height: "440px",
+                    border: "1px solid rgba(195, 203, 205, 0.42)",
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "600",
+                      marginTop: "20px",
+                      marginLeft: "10px",
+                    }}
+                  >
+                    Add payment method
+                  </h3>
+                  <CardContent>
+                    <FormControl fullWidth>
+                      <Typography
+                        style={{
+                          marginTop: "14px",
+                          fontSize: "14px",
+                          fontWeight: "500px",
+                          color: "#344054",
+                        }}
+                      >
+                        Choose card
+                      </Typography>
+                      <Select
+                        className="rounded-lg"
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={card}
+                        placeholder="Select a car make"
+                        onChange={paymentChange}
+                        style={{ marginTop: "6px", height: "44px" }}
+                      >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <FormControl fullWidth variant="outlined">
+                      <Typography
+                        style={{
+                          marginTop: "14px",
+                          fontSize: "14px",
+                          fontWeight: "500px",
+                          color: "#344054",
+                        }}
+                      >
+                        Enter card number
+                      </Typography>
+                      <OutlinedInput
+                        className="rounded-lg mb-11 "
+                        placeholder="155485541554"
+                        style={{ marginTop: "6px", height: "44px" }}
+                      />
+                    </FormControl>
+                    <div className="flex space-x-10">
+                      <div className="mt-16">
+                        <Typography
+                          style={{
+                            fontSize: "14px",
+                            fontWeight: "500px",
+                            color: "#344054",
+                            marginBottom: "6px",
+                          }}
+                        >
+                          Expiry date
+                        </Typography>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                          <DatePicker
+                            value={value}
+                            onChange={(newValue) => {
+                              setValue(newValue);
+                            }}
+                            renderInput={(params) => <TextField {...params} />}
+                          />
+                        </LocalizationProvider>
+                      </div>
+                      <FormControl className="w-1/2" variant="outlined">
+                        <Typography
+                          style={{
+                            marginTop: "14px",
+                            fontSize: "14px",
+                            fontWeight: "500px",
+                            color: "#344054",
+                          }}
+                        >
+                          CSV
+                        </Typography>
+                        <OutlinedInput
+                          className="rounded-lg mb-11"
+                          placeholder="849"
+                          style={{ marginTop: "6px", height: "44px" }}
+                        />
+                      </FormControl>
+                    </div>
+                    <div className="mt-28">
+                      <Button
+                        onClick={verifyClickAlert}
+                        style={{
+                          width: "100%",
+                          height: "44px",
+                          background: "#D22A8F",
+                          color: "#FFFFFF",
+                          fontSize: "16px",
+                          fontWeight: "500px",
+                          borderRadius: "8px",
+                        }}
+                      >
+                        Pay now
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
             <div className="col-span-1" style={{ marginRight: "25%" }}>
@@ -368,19 +550,16 @@ export default function Confirmandpay() {
                   </div>
                   <div>
                     <Dialog
-                      style={{ borderRadius: "12px", height: "90%" }}
+                      style={{ borderRadius:"12px",height:"auto"}}
                       open={open}
                       onClose={handleClose}
                     >
                       <div
                         className="flex flex-col justify-center items-center"
-                        style={{ marginTop: "36px" }}
                       >
                         <Card
-                          className="w-full"
                           style={{
-                            border: "1px solid rgba(195, 203, 205, 0.42)",
-                            marginTop: "150px",
+                            border:"1px solid rgba(195, 203, 205, 0.42)",
                           }}
                         >
                           <div
@@ -398,7 +577,6 @@ export default function Confirmandpay() {
                             <hr style={{ width: "100%" }} />
                           </div>
                           <CardContent>
-
                             <div className="mt-28 mb-2.5">
                               <Button
                                 style={{
@@ -483,7 +661,9 @@ export default function Confirmandpay() {
                                   className="rounded-lg"
                                   placeholder="********"
                                   id="outlined-adornment-password"
-                                  type={values.showPassword ? "text" : "password"}
+                                  type={
+                                    values.showPassword ? "text" : "password"
+                                  }
                                   value={values.password}
                                   onChange={passwordChange("password")}
                                   endAdornment={
@@ -510,7 +690,10 @@ export default function Confirmandpay() {
                               >
                                 <FormControlLabel
                                   control={
-                                    <Checkbox style={{ color: "#D22A8F" }} defaultChecked />
+                                    <Checkbox
+                                      style={{ color: "#D22A8F" }}
+                                      defaultChecked
+                                    />
                                   }
                                   label="Remember for 30 days"
                                 />
@@ -518,15 +701,16 @@ export default function Confirmandpay() {
                                   component={Link}
                                   to="/forgetpassword"
                                   className="text-sm text-right mt-2.5 font-medium text-fuchsia-600"
-                                  style={{ color: "#D22A8F", textDecoration: "none" }}
+                                  style={{
+                                    color: "#D22A8F",
+                                    textDecoration: "none",
+                                  }}
                                 >
                                   Forgot Password
                                 </Typography>
                               </div>
                               <div style={{ marginTop: "19px" }}>
                                 <Button
-                                  onClick={verifyClickAlert}
-
                                   style={{
                                     backgroundColor: "rgba(210, 42, 143, 1)",
                                     height: "44px",
@@ -537,8 +721,6 @@ export default function Confirmandpay() {
                                   Sign in
                                 </Button>
                               </div>
-
-
                             </div>
                             <div className="sm:mt-20 mt-24">
                               <p
@@ -549,14 +731,20 @@ export default function Confirmandpay() {
                                   marginTop: "24px",
                                 }}
                               >
-                                Didn't have an acount?<a href="/Signup" style={{
-                                  fontSize: "14px",
-                                  fontWeight: "500",
-                                  color: "#D22A8F",
-                                  textAlign: "center",
-                                  marginTop: "24px",
-                                  textDecoration: "none",
-                                }}>Sign up</a>
+                                Didn't have an acount?
+                                <a
+                                  href="/Signup"
+                                  style={{
+                                    fontSize: "14px",
+                                    fontWeight: "500",
+                                    color: "#D22A8F",
+                                    textAlign: "center",
+                                    marginTop: "24px",
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  Sign up
+                                </a>
                               </p>
                             </div>
                           </CardContent>
@@ -568,17 +756,23 @@ export default function Confirmandpay() {
                     style={{ borderRadius: "12px", height: "90%" }}
                     open={alert}
                     onClose={verifyClose}
-                  ><div className="flex flex-row justify-center">
+                  >
+                    <div className="flex flex-row justify-center">
                       <Card
                         style={{
-                          marginTop: "150px",
                           width: "524px",
                           height: "350px",
                           border: "1px solid rgba(195, 203, 205, 0.42)",
                         }}
                       >
                         <div style={{ marginTop: "21px", textAlign: "center" }}>
-                          <h1 style={{ fontSize: "24px", fontWeight: "600", color: " #101828" }}>
+                          <h1
+                            style={{
+                              fontSize: "24px",
+                              fontWeight: "600",
+                              color: " #101828",
+                            }}
+                          >
                             Verify
                           </h1>
                           <p
@@ -589,55 +783,38 @@ export default function Confirmandpay() {
                               marginTop: "10px",
                             }}
                           >
-                            Please enter 6 digit code send on your phone 034******59
+                            Please enter 6 digit code send on your phone
+                            034******59
                           </p>
                         </div>
                         <div className="w-full mt-20 ">
                           <hr />
                         </div>
                         <CardContent>
-
                           <div className="flex space-x-10">
                             <FormControl fullWidth variant="outlined">
-                              <OutlinedInput
-                                className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48"
-
-                              />
+                              <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
                             </FormControl>
                             <FormControl fullWidth variant="outlined">
-                              <OutlinedInput
-                                className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48"
-
-                              />
+                              <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
                             </FormControl>
                             <FormControl fullWidth variant="outlined">
-                              <OutlinedInput
-                                className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48"
-
-                              />
+                              <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
                             </FormControl>
                             <FormControl fullWidth variant="outlined">
-                              <OutlinedInput
-                                className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48"
-
-                              />
+                              <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
                             </FormControl>
                             <FormControl fullWidth variant="outlined">
-                              <OutlinedInput
-                                className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48"
-
-                              />
+                              <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
                             </FormControl>
                             <FormControl fullWidth variant="outlined">
-                              <OutlinedInput
-                                className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48"
-                              />
+                              <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
                             </FormControl>
                           </div>
                           <div className="sm:mt-28 mt-16">
                             <Button
                               component={Link}
-                              to="/Setpassword"
+                              to="/Receipt"
                               style={{
                                 backgroundColor: "rgba(210, 42, 143, 1)",
                                 height: "44px",
@@ -657,25 +834,32 @@ export default function Confirmandpay() {
                                 marginTop: "24px",
                               }}
                             >
-                              Didn't receive code?<b style={{
-                                fontSize: "14px",
-                                fontWeight: "500",
-                                color: "#D22A8F",
-                                textAlign: "center",
-                                marginTop: "24px",
-                              }}>Resend Code</b>
+                              Didn't receive code?
+                              <b
+                                style={{
+                                  fontSize: "14px",
+                                  fontWeight: "500",
+                                  color: "#D22A8F",
+                                  textAlign: "center",
+                                  marginTop: "24px",
+                                }}
+                              >
+                                Resend Code
+                              </b>
                             </p>
                           </div>
                         </CardContent>
                       </Card>
-                    </div></Dialog>
+                    </div>
+                  </Dialog>
                 </CardContent>
               </Card>
             </div>
           </div>
         </div>
-
-        <Footer />
+        <div className="mt-32">
+          <Footer />
+        </div>
       </div>
     </div>
   );
