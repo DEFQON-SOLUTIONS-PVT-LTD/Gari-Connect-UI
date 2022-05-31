@@ -23,7 +23,9 @@ function Carlocation() {
               className: "w-full",
               marginTop: "40px",
               width: "1000px",
-              height: "600px",
+              marginBottom: '50px',
+              padding: '16px',
+           
               border: "1px solid rgba(195, 203, 205, 0.42)",
             }}
           >
@@ -103,7 +105,7 @@ function Carlocation() {
           </Card>
         </div>
       </div>
-      <div style={{ marginTop: "10%" }}>
+      <div>
         <Footer />
       </div>
     </div>
