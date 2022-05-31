@@ -3,10 +3,10 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PropTypes from 'prop-types';
 import { Typography, Tabs, Tab, Box, Card, Divider, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import Cardetails from './Tabs/Cardetails';
-// import CarDetails from '../../../sharedComponents/carListing/CarDetails';
+import CarDetails from '../../../sharedComponents/carListing/CarDetails';
 import CarLocation from '../../../sharedComponents/carListing/CarLocation';
 import Features from '../../../sharedComponents/carListing/Features';
+import Guidelines from '../../../sharedComponents/carListing/Guidelines';
 import Availability from '../../../sharedComponents/carListing/Availability';
 import AddImages from '../../../sharedComponents/carListing/AddImages';
 import AddPrice from '../../../sharedComponents/carListing/AddPrice';
@@ -59,9 +59,11 @@ function EditCarlisting() {
         },
         panel: {
             width: "100%",
+            height: "64rem"
         },
         head: {
             width: "20%",
+            paddingTop: "3px"
         }
     });
 
@@ -87,7 +89,10 @@ function EditCarlisting() {
                                 value={value}
                                 onChange={handleChange}
                                 aria-label="Vertical tabs example"
-                                sx={{ borderRight: 1, borderColor: 'divider' }}
+                                sx={{
+                                    borderRight: 1, borderColor: 'divider',
+                                    '& .MuiTab-root': { alignItems: 'self-start', justifyContent: 'center' }
+                                }}
                                 TabIndicatorProps={{
                                     style: {
                                         backgroundColor: "#D22A8F"
@@ -98,111 +103,116 @@ function EditCarlisting() {
                                     }
                                 }}
                             >
-                                <Tab label="Car details" {...a11yProps(0)} />
-                                <Divider className="mx-12" />
-                                <Tab label="Features" {...a11yProps(1)} />
-                                <Divider className="mx-12" />
-                                <Tab label="Guildlines" {...a11yProps(2)} />
-                                <Divider className="mx-12" />
-                                <Tab label="Location" {...a11yProps(3)} />
-                                <Divider className="mx-12" />
-                                <Tab label="Photos" {...a11yProps(4)} />
-                                <Divider className="mx-12" />
-                                <Tab label="Price" {...a11yProps(5)} />
-                                <Divider className="mx-12" />
+                                <Tab sx={{ borderBottom: '1px solid #EAECF0', margin: '0 10px 0 10px' }} label="Car details" {...a11yProps(0)} />
+                                <Tab sx={{ borderBottom: '1px solid #EAECF0', margin: '0 10px 0 10px' }} label="Features" {...a11yProps(1)} />
+                                <Tab sx={{ borderBottom: '1px solid #EAECF0', margin: '0 10px 0 10px' }} label="Guildlines" {...a11yProps(2)} />
+                                <Tab sx={{ borderBottom: '1px solid #EAECF0', margin: '0 10px 0 10px' }} label="Location" {...a11yProps(3)} />
+                                <Tab sx={{ borderBottom: '1px solid #EAECF0', margin: '0 10px 0 10px' }} label="Photos" {...a11yProps(4)} />
+                                <Tab sx={{ borderBottom: '1px solid #EAECF0', margin: '0 10px 0 10px' }} label="Price" {...a11yProps(5)} />
                                 <Tab label="Availibility" {...a11yProps(6)} />
                             </Tabs>
 
                             <TabPanel className={classes.panel} value={value} index={0}>
-                                <Cardetails />
+                                <div className="flex flex-row justify-between items-center border-b">
+                                    <div className="">
+                                        <Typography className="text-lg font-medium text-gray-900 ml-24">Car details</Typography>
+                                    </div>
+                                    <div className="flex flex-row space-x-10 mr-10">
+                                        <Button variant="outlined" className="rounded-4">Discard</Button>
+                                        <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
+                                    </div>
+                                </div>
+                                <div className="mx-20">
+                                    <CarDetails />
+                                </div>
+                            </TabPanel>
+
+                            <TabPanel className={classes.panel} value={value} index={1}>
+                                <div className="flex flex-row justify-between items-center border-b">
+                                    <div className="">
+                                        <Typography className="text-lg font-medium text-gray-900 ml-24">Features</Typography>
+                                    </div>
+                                    <div className="flex flex-row space-x-10 mr-10">
+                                        <Button variant="outlined" className="rounded-4">Discard</Button>
+                                        <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
+                                    </div>
+                                </div>
+                                <div className="mx-20">
+                                    <Features />
+                                </div>
                             </TabPanel>
 
                             <TabPanel className={classes.panel} value={value} index={2}>
-                                <div>
-                                    <div className="flex flex-row justify-between items-center border-b">
-                                        <div className="">
-                                            <Typography className="text-lg font-medium text-gray-900 ml-24">Features</Typography>
-                                        </div>
-                                        <div className="flex flex-row space-x-10 mr-10">
-                                            <Button variant="outlined" className="rounded-4">Discard</Button>
-                                            <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
-                                        </div>
+                                <div className="flex flex-row justify-between items-center border-b">
+                                    <div className="">
+                                        <Typography className="text-lg font-medium text-gray-900 ml-24">Guidelines</Typography>
                                     </div>
-                                    <Features />
+                                    <div className="flex flex-row space-x-10 mr-10">
+                                        <Button variant="outlined" className="rounded-4">Discard</Button>
+                                        <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
+                                    </div>
+                                </div>
+                                <div className="mx-20">
+                                    <Guidelines />
                                 </div>
                             </TabPanel>
 
                             <TabPanel className={classes.panel} value={value} index={3}>
-                                <div>
-                                    <div className="flex flex-row justify-between items-center border-b">
-                                        <div className="">
-                                            <Typography className="text-lg font-medium text-gray-900 ml-24">Guidelines</Typography>
-                                        </div>
-                                        <div className="flex flex-row space-x-10 mr-10">
-                                            <Button variant="outlined" className="rounded-4">Discard</Button>
-                                            <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
-                                        </div>
+                                <div className="flex flex-row justify-between items-center border-b">
+                                    <div className="">
+                                        <Typography className="text-lg font-medium text-gray-900 ml-24">Location</Typography>
                                     </div>
-                                    <Features />
+                                    <div className="flex flex-row space-x-10 mr-10">
+                                        <Button variant="outlined" className="rounded-4">Discard</Button>
+                                        <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
+                                    </div>
                                 </div>
-                            </TabPanel>
-
-                            <TabPanel className={classes.panel} value={value} index={4}>
-                                <div>
-                                    <div className="flex flex-row justify-between items-center border-b">
-                                        <div className="">
-                                            <Typography className="text-lg font-medium text-gray-900 ml-24">Location</Typography>
-                                        </div>
-                                        <div className="flex flex-row space-x-10 mr-10">
-                                            <Button variant="outlined" className="rounded-4">Discard</Button>
-                                            <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
-                                        </div>
-                                    </div>
+                                <div className="mx-20">
                                     <CarLocation />
                                 </div>
                             </TabPanel>
 
-                            <TabPanel className={classes.panel} value={value} index={5}>
-                                <div>
-                                    <div className="flex flex-row justify-between items-center border-b">
-                                        <div className="">
-                                            <Typography className="text-lg font-medium text-gray-900 ml-24">Car details</Typography>
-                                        </div>
-                                        <div className="flex flex-row space-x-10 mr-10">
-                                            <Button variant="outlined" className="rounded-4">Discard</Button>
-                                            <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
-                                        </div>
+                            <TabPanel className={classes.panel} value={value} index={4}>
+                                <div className="flex flex-row justify-between items-center border-b">
+                                    <div className="">
+                                        <Typography className="text-lg font-medium text-gray-900 ml-24">Photos</Typography>
                                     </div>
+                                    <div className="flex flex-row space-x-10 mr-10">
+                                        <Button variant="outlined" className="rounded-4">Discard</Button>
+                                        <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
+                                    </div>
+                                </div>
+                                <div className="mx-20">
                                     <AddImages />
                                 </div>
                             </TabPanel>
 
-                            <TabPanel className={classes.panel} value={value} index={6}>
-                                <div>
-                                    <div className="flex flex-row justify-between items-center border-b">
-                                        <div className="">
-                                            <Typography className="text-lg font-medium text-gray-900 ml-24">Car details</Typography>
-                                        </div>
-                                        <div className="flex flex-row space-x-10 mr-10">
-                                            <Button variant="outlined" className="rounded-4">Discard</Button>
-                                            <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
-                                        </div>
+                            <TabPanel className={classes.panel} value={value} index={5}>
+                                <div className="flex flex-row justify-between items-center border-b">
+                                    <div className="">
+                                        <Typography className="text-lg font-medium text-gray-900 ml-24">Price</Typography>
                                     </div>
+                                    <div className="flex flex-row space-x-10 mr-10">
+                                        <Button variant="outlined" className="rounded-4">Discard</Button>
+                                        <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
+                                    </div>
+                                </div>
+                                <div className="mx-20">
                                     <AddPrice />
                                 </div>
                             </TabPanel>
 
-                            <TabPanel className={classes.panel} value={value} index={7}>
-                                <div>
-                                    <div className="flex flex-row justify-between items-center border-b">
-                                        <div className="">
-                                            <Typography className="text-lg font-medium text-gray-900 ml-24">Car details</Typography>
-                                        </div>
-                                        <div className="flex flex-row space-x-10 mr-10">
-                                            <Button variant="outlined" className="rounded-4">Discard</Button>
-                                            <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
-                                        </div>
+                            <TabPanel className={classes.panel} value={value} index={6}>
+                                <div className="flex flex-row justify-between items-center border-b">
+                                    <div className="">
+                                        <Typography className="text-lg font-medium text-gray-900 ml-24">Availability</Typography>
                                     </div>
+                                    <div className="flex flex-row space-x-10 mr-10">
+                                        <Button variant="outlined" className="rounded-4">Discard</Button>
+                                        <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Save changes</Button>
+                                    </div>
+                                </div>
+                                <div className="mx-20">
                                     <Availability />
                                 </div>
                             </TabPanel>

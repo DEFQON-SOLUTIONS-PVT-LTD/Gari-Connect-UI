@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, CardActionArea } from "@mui/material";
 
-const Features = () => {
+const Guidelines = () => {
     const [age, setAge] = React.useState("");
     const handleChange = (event) => {
         setAge(event.target.value);
@@ -529,4 +529,4 @@ const Features = () => {
     );
 };
 
-export default Features;
+export default Guidelines;
