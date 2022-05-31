@@ -91,11 +91,11 @@ const Dashboard = () => {
             </div>
 
             <div className="">
-              <TableContainer className="">
-                <Table className="table-auto" sx={{ minWidth: 1300 }} aria-label="simple table">
+              <TableContainer>
+                <Table  sx={{ minWidth: 1300 }} aria-label="simple table">
                   <TableHead>
                     <TableRow className="border-t bg-gray-50">
-                      <TableCell className="text-12 font-medium">Guest</TableCell>
+                      <TableCell className="text-12 font-medium " style={{width: '15%'}}>Guest</TableCell>
                       <TableCell className="text-12 font-medium">Date</TableCell>
 
                       <TableCell className="text-12 font-medium">
@@ -128,12 +128,12 @@ const Dashboard = () => {
                         <div className="flex flex-row">
                           <Typography className="flex flex-col">
                             <span className="text-10 font-normal text-gray-900">21 March 2022</span>
-                            <span className="text-12 text-gray-500 font-normal">7 Pm</span>
+                            {/* <span className="text-12 text-gray-500 font-normal">7 Pm</span> */}
                           </Typography>
                           <img className="mx-12" src="assets/images/icons/Arrow6.svg" alt="" />
                           <Typography className="flex flex-col">
                             <span className="text-10 font-normal text-gray-900">21 March 2022</span>
-                            <span className="text-12 text-gray-500 font-normal">7 Pm</span>
+                            {/* <span className="text-12 text-gray-500 font-normal">7 Pm</span> */}
                           </Typography>
                         </div>
                       </TableCell>

@@ -57,7 +57,7 @@ function LandingPage() {
           <img
             width="700"
             height="600px"
-            src="assets/images/Gari Connect/Car Owner.png"
+            src="assets/images/GariConnect/Car Owner.png"
             alt="logo"
           />
           <div className="mt-20 sm:ml-96">
@@ -172,7 +172,7 @@ function LandingPage() {
               className="mr-96"
               height="100px"
               width="600px"
-              src="assets/images/Gari Connect/FS.png"
+              src="assets/images/GariConnect/FS.png"
               alt="logo"
             />
           </div>
@@ -188,7 +188,7 @@ function LandingPage() {
             <img
               height="10px"
               width="500px"
-              src="assets/images/Gari Connect/enter.png"
+              src="assets/images/GariConnect/enter.png"
               alt="logo"
             />
           </div>
@@ -319,7 +319,7 @@ function LandingPage() {
                   width="69"
                   height="103px"
                   style={{ borderRadius: "50%" }}
-                  src="assets/images/Gari Connect/card.png"
+                  src="assets/images/GariConnect/card.png"
                   alt="logo"
                 />
                 <div style={{ marginTop: "20px", marginLeft: "10px" }}>
@@ -369,7 +369,7 @@ function LandingPage() {
                   width="69"
                   height="103px"
                   style={{ borderRadius: "50%" }}
-                  src="assets/images/Gari Connect/card.png"
+                  src="assets/images/GariConnect/card.png"
                   alt="logo"
                 />
                 <div style={{ marginTop: "20px", marginLeft: "10px" }}>
@@ -419,7 +419,7 @@ function LandingPage() {
                   width="69"
                   height="103px"
                   style={{ borderRadius: "50%" }}
-                  src="assets/images/Gari Connect/card.png"
+                  src="assets/images/GariConnect/card.png"
                   alt="logo"
                 />
                 <div style={{ marginTop: "20px", marginLeft: "10px" }}>
@@ -468,7 +468,7 @@ function LandingPage() {
                   width="69"
                   height="103px"
                   style={{ borderRadius: "50%" }}
-                  src="assets/images/Gari Connect/card.png"
+                  src="assets/images/GariConnect/card.png"
                   alt="logo"
                 />
                 <div style={{ marginTop: "20px", marginLeft: "10px" }}>
@@ -499,7 +499,7 @@ function LandingPage() {
         </div>
         <div className="sm:flex" style={{ marginTop: "50px" }}>
           <div>
-            <img src="assets/images/Gari Connect/c11.png" alt="logo" />
+            <img src="assets/images/GariConnect/c11.png" alt="logo" />
           </div>
           <div style={{ marginLeft: "90px", marginTop: "50px" }}>
             <h1 style={{ fontSize: "42px", fontWeight: "600" }}>
