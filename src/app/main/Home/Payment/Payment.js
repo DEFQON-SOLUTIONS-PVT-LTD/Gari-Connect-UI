@@ -29,7 +29,7 @@ function Payment() {
   const handleChange = (event) => {
     setAge(event.target.value);
   };
-  
+
   const [value, setValue] = React.useState(null);
   return (
     <div>
@@ -87,7 +87,7 @@ function Payment() {
               Add payment method
             </h3>
             <CardContent>
-            <FormControl fullWidth>
+              <FormControl fullWidth>
                 <Typography
                   style={{
                     marginTop: "14px",
@@ -130,27 +130,27 @@ function Payment() {
                 />
               </FormControl>
               <div className="flex space-x-10">
-              <div className="mt-16">
-              <Typography
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "500px",
-                    color: "#344054",
-                    marginBottom: "6px",
-                  }}
-                >
-                  Expiry date
-                </Typography>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </LocalizationProvider>
-    </div>
+                <div className="mt-16">
+                  <Typography
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: "500px",
+                      color: "#344054",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    Expiry date
+                  </Typography>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={value}
+                      onChange={(newValue) => {
+                        setValue(newValue);
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </div>
                 <FormControl className="w-1/2" variant="outlined">
                   <Typography
                     style={{
@@ -170,63 +170,63 @@ function Payment() {
                 </FormControl>
               </div>
               <div className="flex flex-row justify-between mt-28">
-                  <div>
+                <div>
                   <Button
-                  component={Link}
-                  to=""
-                  className="ml-10"
-                  style={{
-                    width: "127px",
-                    height: "44px",
-                    background: "#FFFFFF",
-                    color: "#101828",
-                    fontSize: "16px",
-                    fontWeight: "500px",
-                    borderRadius: "8px",
-                    border: "1px solid #D22A8F",
-                  }}
+                    component={Link}
+                    to=""
+                    className="ml-10"
+                    style={{
+                      width: "127px",
+                      height: "44px",
+                      background: "#FFFFFF",
+                      color: "#101828",
+                      fontSize: "16px",
+                      fontWeight: "500px",
+                      borderRadius: "8px",
+                      border: "1px solid #D22A8F",
+                    }}
+                  >
+                    Skip for now
+                  </Button>
+                </div>
+                <div
+                  className="flex"
                 >
-                  Skip for now
-                </Button>
-                  </div>
-              <div
-                className="flex"
-              >
-                
-                <Button
-                  component={Link}
-                  to="/Attachments"
-                  className="ml-10"
-                  style={{
-                    width: "73px",
-                    height: "44px",
-                    background: "#FFFFFF",
-                    color: "#101828",
-                    fontSize: "16px",
-                    fontWeight: "500px",
-                    borderRadius: "8px",
-                    border:"1px solid #C3CBCD",
-                  }}
-                >
-                  Back
-                </Button>
-                <Button
-                  component={Link}
-                  to=""
-                  className="ml-10"
-                  style={{
-                    width: "80px",
-                    height: "44px",
-                    background: "#D22A8F",
-                    color: "#FFFFFF",
-                    fontSize: "16px",
-                    fontWeight: "500px",
-                    borderRadius: "8px",
-                  }}
-                >
-                  Finish
-                </Button>
-              </div>
+
+                  <Button
+                    component={Link}
+                    to="/Attachments"
+                    className="ml-10"
+                    style={{
+                      width: "73px",
+                      height: "44px",
+                      background: "#FFFFFF",
+                      color: "#101828",
+                      fontSize: "16px",
+                      fontWeight: "500px",
+                      borderRadius: "8px",
+                      border: "1px solid #C3CBCD",
+                    }}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    component={Link}
+                    to="/SignIn"
+                    className="ml-10"
+                    style={{
+                      width: "80px",
+                      height: "44px",
+                      background: "#D22A8F",
+                      color: "#FFFFFF",
+                      fontSize: "16px",
+                      fontWeight: "500px",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    Finish
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
