@@ -195,6 +195,129 @@ const MyCars = () => {
                         </Card>
                     </div>
 
+                    <div className="col-span-1 relative">
+                        <Card sx={{ maxWidth: 300, height: 380 }} className="opacity-50 text-center shadow-none border rounded">
+                            <CardMedia
+                                sx={{ maxWidth: '300px', height: '200px' }}
+                                className="px-6 pt-6"
+                                component="img"
+                                image="/assets/images/GariConnect/cardimage.png"
+                                alt="logo"
+                            />
+                            <CardContent>
+                                <div className="flex flex-row justify-between items-center mb-10">
+                                    <div className="rounded-sm flex flex-row space-x-6">
+                                        <Rating
+                                            name="simple-controlled"
+                                            value={value}
+                                            onChange={(event, newValue) => {
+                                                setValue(newValue);
+                                            }}
+                                            max={4}
+                                            sx={{ fontSize: 18 }}
+                                        />
+                                        <Typography className="text-sm font-normal">4.0</Typography>
+                                        <Typography className="text-sm font-normal" variant="" color="text.secondary">
+                                            25 trips
+                                        </Typography>
+                                    </div>
+                                    <div className="flex">
+                                        <MoreHorizIcon onClick={handleClick} className="cursor-pointer" />
+                                        <Menu
+                                            id="basic-menu"
+                                            anchorEl={anchorEl}
+                                            open={open}
+                                            onClose={handleClose}
+                                            MenuListProps={{
+                                                'aria-labelledby': 'basic-button',
+                                            }}
+                                            anchorOrigin={{
+                                                vertical: 'bottom',
+                                                horizontal: 'center',
+                                            }}
+                                            transformOrigin={{
+                                                vertical: 'top',
+                                                horizontal: 'right',
+                                            }}
+                                        >
+                                            <MenuItem onClick={() => {
+                                                setShow(!show);
+                                            }}>
+                                                <Typography className="text-14" color="text.secondary">Edit</Typography>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <Typography className="text-14" color="text.secondary">View as a guest</Typography>
+                                            </MenuItem>
+                                            <MenuItem className="flex justify-between items-center">
+                                                <Typography className="text-14 mr-96" color="text.secondary">
+                                                    Status
+                                                    <span className="text-10 ml-4 rounded-full py-4 px-8" style={{ color: '#046AF3', backgroundColor: 'rgba(4, 106, 243, 0.08)' }}>Active</span>
+                                                </Typography>
+                                                <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+                                            </MenuItem>
+                                            <Divider />
+                                            <MenuItem onClick={handleClickOpen}>
+                                                <Typography className="text-14" sx={{ color: '#F04438' }}>Remove</Typography>
+                                            </MenuItem>
+                                        </Menu>
+                                        <Dialog open={open1} onClose={handleClose1} className="" sx={{ '& .MuiDialog-paper': { borderRadius: 2 } }}>
+                                            <DialogTitle className="flex-col mx-auto -mb-8">
+                                                <img className="mx-auto mb-20" style={{ width: '48px', height: '48px' }} src="assets/images/icons/Featuredicon.svg" alt="logo" />
+                                                <Typography className="text-18 font-medium">
+                                                    Remove listing
+                                                </Typography>
+                                            </DialogTitle>
+                                            <DialogContent>
+                                                <Typography className="text-sm font-normal text-center" color="text.secondary">Are you sure you want to remove this listing?</Typography>
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <div className="px-28 mb-20 w-full grid sm:grid-cols-2 grid-cols-1 gap-14">
+                                                    <Button onClick={handleClose1} variant="outlined" size="large" className="mx-auto rounded-md col-span-1" sx={{ width: 170 }}>
+                                                        Yes remove
+                                                    </Button>
+                                                    <Button onClick={handleClose1} size="large" className="mx-auto rounded-md text-white col-span-1" style={{ backgroundColor: '#D22A8F' }} sx={{ width: 170 }}>
+                                                        No
+                                                    </Button>
+                                                </div>
+                                            </DialogActions>
+                                        </Dialog>
+                                    </div>
+                                </div>
+                                <div className="flex flex-row justify-between">
+                                    <div className="flex flex-col">
+                                        <Typography className="text-base font-semibold" gutterBottom variant="">
+                                            Honda Afb 8895- 19
+                                        </Typography>
+                                        <Typography className="text-sm font-normal mr-auto" variant="" color="text.secondary">
+                                            Gulberg 3
+                                        </Typography>
+                                    </div>
+                                </div>
+                                <Divider className="my-12" />
+                                <div className="flex flex-row justify-between">
+                                    <div className="flex flex-col">
+                                        <Typography className="text-sm font-normal" gutterBottom variant="" color="text.secondary">
+                                            Rate per day
+                                        </Typography>
+                                        <Typography className="mr-auto">
+                                            <span className="text-base font-semibold">1200</span> <span className="text-sm font-normal text-gray-500">PKR</span>
+                                        </Typography>
+                                    </div>
+                                    <div className="flex flex-col text-left">
+                                        <Typography className="text-sm font-normal" gutterBottom color="text.secondary">Total earnings</Typography>
+                                        <Typography variant="">
+                                            <span className="text-base font-semibold">25644</span> <span className="text-sm font-normal text-gray-500">PKR</span>
+                                        </Typography>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        <div className="opacity-100 absolute top-1/2 left-1/3  transform -translate-x-1/3 -translate-y-1/2">
+                            <Button variant="contained" className="h-44 rounded-full text-black" style={{ backgroundColor: 'white' }}>Approval pending</Button>
+                        </div>
+                    </div>
+
                     <div className="col-span-1">
                         <Card className="flex flex-row justify-center items-center shadow-none border rounded"
                             style={{ maxWidth: '300px', height: '350px' }}>
@@ -211,7 +334,7 @@ const MyCars = () => {
                 </div>
                 : <div><EditCarlisting /></div>
             }
-        </div>
+        </div >
     )
 }
 
