@@ -15,18 +15,15 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import FilledInput from "@mui/material/FilledInput";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import Hostheader from '../Hostheader/Hostheader';
-import { Link} from "react-router-dom";
+import Hostheader from "../Hostheader/Hostheader";
+import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import LinearProgress from "@mui/material/LinearProgress";
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
-
-
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DatePicker from "@mui/lab/DatePicker";
 
 function Attachments() {
- 
   const [age, setAge] = React.useState("");
 
   const handleChange = (event) => {
@@ -35,7 +32,7 @@ function Attachments() {
   const [value, setValue] = React.useState(null);
   return (
     <div>
-      <Hostheader/>
+      <Hostheader />
       <div>
         <div className="flex flex-row justify-center">
           <Card
@@ -47,19 +44,27 @@ function Attachments() {
               border: "1px solid rgba(195, 203, 205, 0.42)",
             }}
           >
-              <div className="mt-10 ml-10 text-center">
-          <h1
-            style={{ fontSize: "24px", fontWeight: "600", color: " #101828" }}
-          >
-            Create account
-          </h1>
-          <p
-            style={{ fontSize: "14px", fontWeight: "400px", color: "#667085" }}
-          >
-            Please enter details to create account
-          </p>
-        </div>
-        <div>
+            <div className="mt-10 ml-10 text-center">
+              <h1
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "600",
+                  color: " #101828",
+                }}
+              >
+                Create account
+              </h1>
+              <p
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "400px",
+                  color: "#667085",
+                }}
+              >
+                Please enter details to create account
+              </p>
+            </div>
+            <div>
               <Box sx={{ color: "#D22A8F" }}>
                 <LinearProgress
                   color="inherit"
@@ -69,24 +74,22 @@ function Attachments() {
                 />
               </Box>
             </div>
-       
 
-        <h3
-          style={{
-            fontSize: "18px",
-            fontWeight: "600",
-            marginTop: "20px",
-            marginLeft: "10px",
-          }}
-        >
-            
-         Attachments
-        </h3>
+            <h3
+              style={{
+                fontSize: "18px",
+                fontWeight: "600",
+                marginTop: "20px",
+                marginLeft: "10px",
+              }}
+            >
+              Attachments
+            </h3>
             <CardContent>
-             <FormControl fullWidth variant="outlined">
-              <Typography
+              <FormControl fullWidth variant="outlined">
+                <Typography
                   style={{
-                      marginTop: "14px",
+                    marginTop: "14px",
                     fontSize: "14px",
                     fontWeight: "500px",
                     color: "#344054",
@@ -101,39 +104,54 @@ function Attachments() {
                 />
               </FormControl>
               <div className="flex mt-36">
-                  <div>
-              <Typography
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "500px",
-                    color: "#344054",
-                    marginBottom: "6px",
-                  }}
-                >
-                  Valid till
-                </Typography>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
-        label="Basic example"
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </LocalizationProvider>
-    </div>
-    <div className="mt-44 ml-28">
-    <img src="assets/images/logos/filepicker.svg" alt="logo"/>
-    </div>
-    <div className="mt-44 ml-8">
-    <Typography className="text-sm font-medium" style={{ color:"#D22A8F"}}>Attach CNIC</Typography>
-    </div>
-    </div>
+                <div>
+                  <Typography
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: "500px",
+                      color: "#344054",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    Valid till
+                  </Typography>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="Basic example"
+                      value={value}
+                      onChange={(newValue) => {
+                        setValue(newValue);
+                      }}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          sx={{
+                            "& fieldset": {
+                              borderRadius: "8px",
+                              height:"48px"
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </div>
+                <div className="mt-44 ml-28">
+                  <img src="assets/images/logos/filepicker.svg" alt="logo" />
+                </div>
+                <div className="mt-44 ml-8">
+                  <Typography
+                    className="text-sm font-medium"
+                    style={{ color: "#D22A8F" }}
+                  >
+                    Attach CNIC
+                  </Typography>
+                </div>
+              </div>
               <FormControl fullWidth variant="outlined">
-              <Typography
+                <Typography
                   style={{
-                      marginTop: "14px",
+                    marginTop: "14px",
                     fontSize: "14px",
                     fontWeight: "500px",
                     color: "#344054",
@@ -148,40 +166,54 @@ function Attachments() {
                 />
               </FormControl>
               <div className="flex mt-36">
-                  <div>
-              <Typography
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "500px",
-                    color: "#344054",
-                    marginBottom: "6px",
-                  }}
-                >
-                  Valid till
-                </Typography>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
-        label="Basic example"
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </LocalizationProvider>
-    </div>
-    <div className="mt-44 ml-28">
-    <img src="assets/images/logos/filepicker.svg" alt="logo"/>
-    </div>
-    <div className="mt-44 ml-8">
-    <Typography className="text-sm font-medium" style={{ color:"#D22A8F"}}>Attach CNIC</Typography>
-    </div>
-    </div>
-              <div className="flex" style={{marginTop: "27px",position:"right",float:"right"}}>
-              <Button
-                component={Link}
-                to="Personaldetails"
-                className="ml-10"
+                <div>
+                  <Typography
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: "500px",
+                      color: "#344054",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    Valid till
+                  </Typography>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="Basic example"
+                      value={value}
+                      onChange={(newValue) => {
+                        setValue(newValue);
+                      }}
+                      renderInput={(params) => <TextField {...params}
+                      sx={{
+                        "& fieldset": {
+                          borderRadius: "8px",
+                          height:"48px"
+                        },
+                      }} />}
+                    />
+                  </LocalizationProvider>
+                </div>
+                <div className="mt-44 ml-28">
+                  <img src="assets/images/logos/filepicker.svg" alt="logo" />
+                </div>
+                <div className="mt-44 ml-8">
+                  <Typography
+                    className="text-sm font-medium"
+                    style={{ color: "#D22A8F" }}
+                  >
+                    Attach CNIC
+                  </Typography>
+                </div>
+              </div>
+              <div
+                className="flex"
+                style={{ marginTop: "27px", position: "right", float: "right" }}
+              >
+                <Button
+                  component={Link}
+                  to="Personaldetails"
+                  className="ml-10"
                   style={{
                     width: "73px",
                     height: "44px",
@@ -190,15 +222,15 @@ function Attachments() {
                     fontSize: "16px",
                     fontWeight: "500px",
                     borderRadius: "8px",
-                    border:"1px solid #C3CBCD",
+                    border: "1px solid #C3CBCD",
                   }}
                 >
                   Back
                 </Button>
                 <Button
-                component={Link}
-                to="/Payment"
-                className="ml-10"
+                  component={Link}
+                  to="/Payment"
+                  className="ml-10"
                   style={{
                     width: "100px",
                     height: "44px",

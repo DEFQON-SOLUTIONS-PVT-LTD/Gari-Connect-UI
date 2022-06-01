@@ -34,40 +34,70 @@ const Navbarfilters = () => {
                 <div className="flex md:ml-96 md:space-x-12 md:flex-row  flex-col md:space-y-0 space-y-14 ml-55 md:w-md lg:w-2xl">
                     {/* <div className="flex justify-between lg:w-auto lg:static lg:block lg:justify-start ml-96"> */}
                     <Autocomplete
+                    popupIcon={<KeyboardArrowDownIcon />}
                         disablePortal
                         id="combo-box-demo"
                         options={top100Films}
                         sx={{ width: 155 }}
-                        renderInput={(params) => <TextField {...params} label="Make" className=""  />}
+                        renderInput={(params) => <TextField {...params} label="Make"
+                        sx={{
+                            '& fieldset': {
+                                borderRadius: '8px'
+                            }
+                        }}/>}
                         />
 
                      <Autocomplete
+                     popupIcon={<KeyboardArrowDownIcon />}
                         disablePortal
                         id="combo-box-demo"
                         options={top100Films}
                         sx={{ width: 155 }}
-                        renderInput={(params) => <TextField {...params} label="Model" />}
+                        renderInput={(params) => <TextField {...params} label="Model"
+                        sx={{ 
+                            '& fieldset':{
+                                borderRadius: '8px'
+                            }
+                        }} />}
                         />
                         <Autocomplete
+                        popupIcon={<KeyboardArrowDownIcon />}
                         disablePortal
                         id="combo-box-demo"
                         options={top100Films}
                         sx={{ width: 155 }}
-                        renderInput={(params) => <TextField {...params} label="Price" />}
+                        renderInput={(params) => <TextField {...params} label="Price"
+                        sx={{ 
+                            '& fieldset':{
+                                borderRadius: '8px'
+                            }
+                        }} />}
                         />
                         <Autocomplete
+                        popupIcon={<KeyboardArrowDownIcon />}
                         disablePortal
                         id="combo-box-demo"
                         options={top100Films}
                         sx={{ width: 155}}
-                        renderInput={(params) => <TextField {...params} label="Type" />}
+                        renderInput={(params) => <TextField {...params} label="Type"
+                        sx={{
+                            '& fieldset':{
+                                borderRadius: '8px'
+                            }
+                        }} />}
                         />
                          <Autocomplete
+                         popupIcon={<KeyboardArrowDownIcon />}
                         disablePortal
                         id="combo-box-demo"
                         options={top100Films}
                         sx={{ width: 155}}
-                        renderInput={(params) => <TextField {...params} label="Ratings" />}
+                        renderInput={(params) => <TextField {...params} label="Ratings"
+                        sx={{
+                            '& fieldset':{
+                                borderRadius: '8px'
+                            }
+                        }} />}
                         />
                         <Button size="large" variant="contained" style={{backgroundColor: '#D22A8F'}}>
                          All Filters
@@ -75,6 +105,7 @@ const Navbarfilters = () => {
                          
                          <div className="mx-auto">
                         <Autocomplete
+                        popupIcon={<KeyboardArrowDownIcon />}
                         disablePortal
                         id="combo-box-demo"
                         options={top100Films}

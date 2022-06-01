@@ -22,7 +22,7 @@ function Cardetail() {
               className: "w-full px-5",
               marginTop: "40px",
               width: "1001px",
-              height: "800px",
+              height: "810px",
               border: "1px solid rgba(195, 203, 205, 0.42)",
             }}
           >
