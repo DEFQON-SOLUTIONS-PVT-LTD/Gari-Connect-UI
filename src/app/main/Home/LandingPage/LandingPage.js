@@ -5,30 +5,17 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import InputAdornment from "@mui/material/InputAdornment";
-import DateRangeOutlinedIcon from "@mui/icons-material/DateRangeOutlined";
-import PageviewSharpIcon from "@mui/icons-material/PageviewSharp";
 import Rating from "@mui/material/Rating";
 import IconButton from "@mui/material/IconButton";
 import Footer from "../Footer/Footer";
-import Input from "@mui/material/Input";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import SearchBar from "../../Host/sharedComponents/SearchBar";
 
 
 function LandingPage() {
   const [value, setValue] = React.useState(2);
-  const [date, setDate] = React.useState(null);
   return (
     <div className="App">
       <div>

@@ -2,8 +2,8 @@ import React from 'react';
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import Autocomplete from "@mui/material/Autocomplete";
+import Autocomplete from "@mui/material/Autocomplete"; 
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const top100Films = [
     { label: "The Shawshank Redemption", year: 1994 },
@@ -154,6 +154,7 @@ const CarDetails = () => {
                         Make
                     </Typography>
                     <Autocomplete
+                    popupIcon={<KeyboardArrowDownIcon />}
                         className="mt-6"
                         disablePortal
                         id="combo-box-demo"
@@ -164,6 +165,11 @@ const CarDetails = () => {
                                 {...params}
                                 size="medium"
                                 placeholder="Honda"
+                                sx={{
+                                    '& fieldset': {
+                                        borderRadius: '8px'
+                                    }
+                                }}
                             />
                         )}
                     />
@@ -179,12 +185,18 @@ const CarDetails = () => {
                         Category
                     </Typography>
                     <Autocomplete
+                    popupIcon={<KeyboardArrowDownIcon />}
                         className="mt-6"
                         disablePortal
                         id="combo-box-demo"
                         options={top100Films}
                         renderInput={(params) => (
-                            <TextField {...params} placeholder="Elite" />
+                            <TextField {...params} placeholder="Elite"
+                            sx={{
+                                '& fieldset': {
+                                    borderRadius: '8px'
+                                }
+                            }} />
                         )}
                     />
                 </FormControl>
@@ -201,6 +213,7 @@ const CarDetails = () => {
                         Model
                     </Typography>
                     <Autocomplete
+                    popupIcon={<KeyboardArrowDownIcon />}
                         className="mt-6"
                         disablePortal
                         id="combo-box-demo"
@@ -211,6 +224,11 @@ const CarDetails = () => {
                                 {...params}
                                 size="medium"
                                 placeholder="Yaris"
+                                sx={{
+                                    '& fieldset': {
+                                        borderRadius: '8px'
+                                    }
+                                }}
                             />
                         )}
                     />
@@ -226,12 +244,18 @@ const CarDetails = () => {
                         Transmission
                     </Typography>
                     <Autocomplete
+                    popupIcon={<KeyboardArrowDownIcon />}
                         className="mt-6"
                         disablePortal
                         id="combo-box-demo"
                         options={top100Films}
                         renderInput={(params) => (
-                            <TextField {...params} placeholder="Manual" />
+                            <TextField {...params} placeholder="Manual"
+                            sx={{
+                                '& fieldset': {
+                                    borderRadius: '8px'
+                                }
+                            }} />
                         )}
                     />
                 </FormControl>
@@ -247,10 +271,15 @@ const CarDetails = () => {
                     >
                         Plate number
                     </Typography>
-                    <OutlinedInput
+                    <TextField
                         className="rounded-lg mb-11 "
                         placeholder="AFB 8954"
                         style={{ marginTop: "6px", height: "44px" }}
+                        sx={{
+                            '& fieldset': {
+                                borderRadius: '8px'
+                            }
+                        }}
                     />
                 </FormControl>
                 <FormControl fullWidth variant="outlined">
@@ -264,12 +293,18 @@ const CarDetails = () => {
                         ECO friendly
                     </Typography>
                     <Autocomplete
+                    popupIcon={<KeyboardArrowDownIcon />}
                         className="mt-6"
                         disablePortal
                         id="combo-box-demo"
                         options={top100Films}
                         renderInput={(params) => (
-                            <TextField {...params} placeholder="Electric" />
+                            <TextField {...params} placeholder="Electric"
+                            sx={{
+                                '& fieldset': {
+                                    borderRadius: '8px'
+                                }
+                            }} />
                         )}
                     />
                 </FormControl>
@@ -286,6 +321,7 @@ const CarDetails = () => {
                         Type
                     </Typography>
                     <Autocomplete
+                    popupIcon={<KeyboardArrowDownIcon />}
                         className="mt-6"
                         disablePortal
                         id="combo-box-demo"
@@ -296,6 +332,11 @@ const CarDetails = () => {
                                 {...params}
                                 size="medium"
                                 placeholder="Sedan"
+                                sx={{
+                                    '& fieldset': {
+                                        borderRadius: '8px'
+                                    }
+                                }}
                             />
                         )}
                     />
@@ -311,17 +352,23 @@ const CarDetails = () => {
                         Seats
                     </Typography>
                     <Autocomplete
+                    popupIcon={<KeyboardArrowDownIcon />}
                         className="mt-6"
                         disablePortal
                         id="combo-box-demo"
                         options={top100Films}
                         renderInput={(params) => (
-                            <TextField {...params} size="large" placeholder="5" />
+                            <TextField {...params} size="large" placeholder="5"
+                            sx={{
+                                '& fieldset': {
+                                    borderRadius: '8px'
+                                }
+                            }} />
                         )}
                     />
                 </FormControl>
             </div>
-            <div>
+            <div className="mt-20">
                 <FormControl fullWidth variant="outlined">
                     <Typography
                         style={{
@@ -337,6 +384,11 @@ const CarDetails = () => {
                         rows={4}
                         placeholder="Writr description here.."
                         style={{ marginTop: "6px", height: "44px", marginBottom: "30px" }}
+                        sx={{
+                            '& fieldset': {
+                                borderRadius: '8px'
+                            }
+                        }}
                     />
                 </FormControl>
             </div>
