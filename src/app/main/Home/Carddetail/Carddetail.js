@@ -2,17 +2,13 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import FormControl from "@mui/material/FormControl";
 import Footer from "../Footer/Footer";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Rating from "@mui/material/Rating";
-import FavoriteBorderTwoToneIcon from "@mui/icons-material/FavoriteBorderTwoTone";
 import IconButton from "@mui/material/IconButton";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import Checkbox from "@mui/material/Checkbox";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
@@ -22,11 +18,15 @@ import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import MobileTimePicker from "@mui/lab/MobileTimePicker";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Stack from "@mui/material/Stack";
 import InputAdornment from "@mui/material/InputAdornment";
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Carddetail() {
   const [value, setValue] = React.useState(4);
@@ -48,9 +48,7 @@ export default function Carddetail() {
     settimeValue(newValue);
   };
 
-  const handleChangetimes = (event) => {
-    setChecked(event.target.checked);
-  };
+
 
   const handleChangedate2 = (newValue) => {
     setValues1(newValue);
@@ -88,7 +86,7 @@ export default function Carddetail() {
         </div>
       </div>
       <div className="sm:flex flex-row justify-between">
-        <div style={{ marginLeft: "16%" }}>
+        <div style={{ marginLeft: "18%" }}>
           <div className="sm:flex">
             <Typography className="font-normal text-2xl">
               Toyota Corolla Altis-2020
@@ -134,9 +132,17 @@ export default function Carddetail() {
               </b>
             </Typography>
             <div style={{ marginLeft: "43%" }}>
-              <IconButton>
-                <FavoriteBorderTwoToneIcon />
-              </IconButton>
+            <Checkbox
+                  {...label}
+                  icon={<FavoriteBorder />}
+                  checkedIcon={<Favorite />}
+                  sx={{
+                    color: "#667085",
+                    "&.Mui-checked": {
+                      color: "#D22A8F",
+                    },
+                  }}
+                />
               <IconButton>
                 <SendOutlinedIcon />
               </IconButton>
@@ -566,7 +572,7 @@ export default function Carddetail() {
             </Typography>
           </div>
         </div>
-        <div style={{ marginRight: "13.5%" }}>
+        <div style={{ marginRight: "16%" }}>
           <div>
             <Card
               className="sm:w-11/12 w-11/12 sm:ml-0 ml-52 "

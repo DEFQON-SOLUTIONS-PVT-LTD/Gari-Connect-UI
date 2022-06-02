@@ -55,14 +55,14 @@ export default function Header() {
           id="example-navbar-danger"
         >
           <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-            <li className="nav-item">
+            <li className="nav-item mt-6 pr-12">
               <Button
                 className="text-sm font-medium "
                 >
                 How It works
               </Button>
             </li>
-            <li className="nav-item">
+            <li className="nav-item mt-6 pr-12">
               <Button
                 id="basic-button"
                 onClick={handleClick}
@@ -85,7 +85,7 @@ export default function Header() {
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
               </Menu>
             </li>
-            <li className="nav-item">
+            <li className="nav-item mt-6">
               <Button
                 id="basic-button"
                 onClick={handleClick}

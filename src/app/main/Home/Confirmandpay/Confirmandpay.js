@@ -152,8 +152,8 @@ export default function Confirmandpay() {
       <Navbar />
       <div>
         <div className="mt-32">
-          <div className="flex flex-row items-center px-24 py-24 ml-96">
-            <ArrowBackIcon size="large" className="mr-20 ml-44" />
+          <div className="flex flex-row  px-24 py-24 sm:ml-96 ml-0">
+            <ArrowBackIcon size="large" className="mr-20 sm:ml-44 ml-0" />
             <Typography className="text-2xl font-normal font-Gilroy-Medium">
               Confirm and pay
             </Typography>
@@ -303,14 +303,13 @@ export default function Confirmandpay() {
                 </Card>
               </div>
               <div className="flex mt-24">
-                <IconButton>
-                  <ShieldOutlinedIcon
+               <ShieldOutlinedIcon
+               className="mt-10"
                     fontSize="large"
                     style={{ color: "#D22A8F" }}
                   />
-                </IconButton>
                 <Typography
-                  className="text-xs font-normal mt-10"
+                  className="text-xs font-normal mt-10 ml-4"
                   style={{ color: "#667085" }}
                 >
                   To protect your payment, never transfer money or communicate
@@ -385,8 +384,9 @@ export default function Confirmandpay() {
                         style={{ marginTop: "6px", height: "44px" }}
                       />
                     </FormControl>
-                    <div className="flex space-x-10">
-                      <div className="mt-16">
+                    <div className="flex space-x-10 w-full">
+                      
+                      <FormControl className="mt-16 w-1/2">
                         <Typography
                           style={{
                             fontSize: "14px",
@@ -399,6 +399,8 @@ export default function Confirmandpay() {
                         </Typography>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <DatePicker
+                          inputFormat="dd/MM/yyy"
+                          disableOpenPicker={true}
                             value={value}
                             onChange={(newValue) => {
                               setValue(newValue);
@@ -412,7 +414,7 @@ export default function Confirmandpay() {
                             }} />}
                           />
                         </LocalizationProvider>
-                      </div>
+                      </FormControl>
                       <FormControl className="w-1/2" variant="outlined">
                         <Typography
                           style={{
@@ -552,11 +554,11 @@ export default function Confirmandpay() {
                   <div>
                     <Dialog
                       style={{ borderRadius:"12px",height:"auto"}}
+                      fullWidth={true}
                       open={open}
                       onClose={handleClose}
                     >
                       <div
-                        className="flex flex-col justify-center items-center"
                       >
                         <Card
                           style={{
