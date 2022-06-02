@@ -90,7 +90,7 @@ function Personaldetails() {
                     First name
                   </Typography>
                   <OutlinedInput
-                    className="rounded-lg mb-11 "
+                    className="rounded-lg"
                     placeholder="First name"
                     style={{ marginTop: "6px", height: "44px" }}
                   />
@@ -107,7 +107,7 @@ function Personaldetails() {
                     Last name
                   </Typography>
                   <OutlinedInput
-                    className="rounded-lg mb-11"
+                    className="rounded-lg"
                     placeholder="Last name"
                     style={{ marginTop: "6px", height: "44px" }}
                   />

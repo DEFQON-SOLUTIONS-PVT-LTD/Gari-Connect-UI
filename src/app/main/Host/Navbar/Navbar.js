@@ -48,7 +48,7 @@ export default function Navbar(){
     return(
         <nav className="relative flex flex-wrap items-center justify-between px-2 py-20 shadow-lg mb-2">
 <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-  <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start ml-96 h-auto">
+  <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start ml-48 h-auto">
     <a href="/Home/LandingPage">
       <img
         className="headimage"
@@ -72,10 +72,10 @@ export default function Navbar(){
     }
     id="example-navbar-danger"
   >
-    <ul className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20">
-      <div className=" border rounded-full w-auto  md:w-md ">
-        <div className="grid  sm:grid-cols-2 grid-cols-1 gap-4 h-full w-auto">
-          <div className="flex items-center ml-16">
+    <ul className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20" style={{marginLeft:"10%"}}>
+      <div className=" border rounded-full w-auto md:w-md">
+        <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 h-full w-full">
+          <div className="flex items-center">
             {/* <Divider orientation="vertical" variant="middle" />  */}
             <FmdGoodOutlinedIcon />
             <Typography className="mx-6">Location</Typography>
@@ -192,7 +192,7 @@ export default function Navbar(){
     }
     id="example-navbar-danger"
   >
-    <ul className="flex flex-col lg:flex-row list-none h-full ml-48 md:w-auto w-full md:mt-auto mt-14">
+    <ul className="flex flex-col lg:flex-row list-none h-full md:w-auto w-full md:mt-auto mt-14" style={{marginLeft:"40%"}}>
       <li className="nav-item ">
         <div className="flex items-center justify-center md:mb-0 mb-20">
           <Typography className="font-600 text-14 pr-20 ">

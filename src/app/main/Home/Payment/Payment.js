@@ -19,8 +19,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Autocomplete from "@mui/material/Autocomplete";
 
 function Payment() {
-  const [age, setAge] = React.useState("");
-
   const handleChange = (event) => {
     setAge(event.target.value);
   };
@@ -30,7 +28,7 @@ function Payment() {
     <div>
       <Hostheader />
       <div>
-        <div className="flex flex-row justify-center">
+        <div className="flex justify-center">
           <Card
             style={{
               className: "w-full",
@@ -124,26 +122,32 @@ function Payment() {
                 >
                   Enter card number
                 </Typography>
-                <OutlinedInput
-                  className="rounded-lg mb-11 "
+                <TextField
                   placeholder="155485541554"
-                  style={{ marginTop: "6px", height: "44px" }}
+                  sx={{
+                    "& fieldset": {
+                      borderRadius: "8px",
+                      height:"50px",
+                      marginTop: "6px"
+                    },
+                  }}
                 />
               </FormControl>
-              <div className="flex space-x-10">
-                <div className="mt-16">
+              <div className="flex space-x-10 w-full">
+                <div className="mt-16 w-1/2">
                   <Typography
+                  className=" font-medium text-sm"
                     style={{
-                      fontSize: "14px",
-                      fontWeight: "500px",
                       color: "#344054",
-                      marginBottom: "6px",
                     }}
                   >
                     Expiry date
                   </Typography>
+                  <FormControl fullWidth variant="outlined">
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
+                    inputFormat="dd/MM/yyy"
+                    disableOpenPicker={true}
                       value={value}
                       onChange={(newValue) => {
                         setValue(newValue);
@@ -152,36 +156,40 @@ function Payment() {
                       sx={{
                         "& fieldset": {
                           borderRadius: "8px",
-                          height:"48px"
+                          height:"50px",
+                          marginTop: "6px"
                         },
                       }}/>}
                     />
                   </LocalizationProvider>
+                  </FormControl>
                 </div>
                 <FormControl className="w-1/2" variant="outlined">
-                  <Typography
-                    style={{
-                      marginTop: "14px",
-                      fontSize: "14px",
-                      fontWeight: "500px",
-                      color: "#344054",
-                    }}
-                  >
-                    CSV
-                  </Typography>
-                  <OutlinedInput
-                    className="rounded-lg mb-11 w-full"
-                    placeholder="849"
-                    style={{ marginTop: "6px", height: "44px" }}
-                  />
-                </FormControl>
-              </div>
+                <Typography
+                  style={{
+                    marginTop: "14px",
+                    fontSize: "14px",
+                    fontWeight: "500px",
+                    color: "#344054",
+                  }}
+                >
+                  CSV
+                </Typography>
+                <TextField
+                  placeholder="854"
+                  sx={{
+                    "& fieldset": {
+                      borderRadius: "8px",
+                      height:"50px",
+                      marginTop: "6px"
+                    },
+                  }}
+                />
+              </FormControl>
+                </div>
               <div className="flex flex-row justify-between mt-28">
                 <div>
                   <Button
-                    component={Link}
-                    to=""
-                    className="ml-10"
                     style={{
                       width: "127px",
                       height: "44px",
