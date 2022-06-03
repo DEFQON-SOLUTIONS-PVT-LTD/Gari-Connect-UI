@@ -1,32 +1,9 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Link } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
-import SettingsIcon from "@mui/icons-material/Settings";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import MenuIcon from "@mui/icons-material/Menu";
-import Divider from "@mui/material/Divider";
-import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import { Typography } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import Autocomplete from "@mui/material/Autocomplete";
 import Navbarfilters from "./Navbarfilters";
 import CarDetailsCard from "./CarDetailsCard";
 import Footer from "app/main/Home/Footer/Footer";
-
-import { DateRangePicker } from "@mui/lab";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import { LocalizationProvider } from "@mui/lab";
-import Box from "@mui/material/Box";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import InputAdornment from "@mui/material/InputAdornment";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Navbar from "../Navbar/Navbar";
 
 const CarsListing = () => {
@@ -42,8 +19,8 @@ const CarsListing = () => {
       >
         3650 results found
       </Typography>
-      <div className="flex justify-center">
-        <div className="grid lg:grid-cols-4 gap-36 md:grid-cols-3 sm:grid-cols-2 mt-24 ">
+      <div style={{width:'89%'}} className='mx-auto'>
+        <div className="grid lg:grid-cols-4  md:grid-cols-3 sm:grid-cols-2 mt-24 ">
           <div className="flex col-span-1">
             <CarDetailsCard />
           </div>
@@ -71,8 +48,9 @@ const CarsListing = () => {
           </div>
         </div>
       </div>
-
+<div className="mt-88">
       <Footer />
+      </div>
     </>
   );
 };

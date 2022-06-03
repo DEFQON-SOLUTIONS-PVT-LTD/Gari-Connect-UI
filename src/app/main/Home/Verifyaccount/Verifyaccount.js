@@ -101,31 +101,34 @@ function Verifyaccount() {
                 >
                   Resend Code<br></br>
                   </b>
-                  <b
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "500",
-                      textAlign: "center",
-                      colors: "#344054",
-                    }}
-                  >
-                    Or try
-                  </b>
+                  </p>
                   <a
+                  className="flex justify-center mt-10"
                   href="/Option"
                     style={{
                       fontSize: "14px",
                       fontWeight: "500",
-                      color: "#D22A8F",
                       textAlign: "center",
+                      color: "#344054",
                       textDecoration: "none",
+                    }}
+                  >
+                    Or try
+                  <b
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: "500",
+                      color: "#D22A8F",
+                      textAlign: "center", 
+                      paddingLeft: "4px"  
                     }}
                   >
                     {" "}
                     another options
+                  </b>
                   </a>
                
-              </p>
+              
             </div>
           </CardContent>
         </Card>
