@@ -20,7 +20,7 @@ function OTP() {
           style={{
             marginTop: "150px",
             width: "524px",
-            height: "350px",
+            height: "361px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
           }}
         >

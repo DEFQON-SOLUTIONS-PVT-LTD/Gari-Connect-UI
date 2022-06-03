@@ -20,7 +20,7 @@ import { makeStyles } from '@mui/styles';
 const SearchBar = () => {
   const [value, setValue] = React.useState(["20,May", "21,April"]);
   const useStyles = makeStyles({
-    customPicker: {
+    DateRangePicker: {
         '& .Mui-selected': {
             backgroundColor: '#D22A8F',
         },
@@ -33,7 +33,7 @@ const SearchBar = () => {
         '& .MuiButtonBase-root .MuiDateRangePickerDay-root': {
             backgroundColor: '#D22A8F',
         }
-    },
+    },    
 });
 
 const classes = useStyles();
@@ -78,7 +78,6 @@ const classes = useStyles();
                   onChange={(newValue) => {
                     setValue(newValue);
                   }}
-                  classes={{ root: classes.customPicker }}
                   renderInput={(startProps, endProps) => (
                     <React.Fragment>
                       <div className="w-2xl ml-10">

@@ -7,7 +7,6 @@ const HostConfig = [
     HostTabsConfig,
     MenuConfig,
     SharedConfig,
-    HostTabsConfig,
     CarsListingConfig,
 ];
 

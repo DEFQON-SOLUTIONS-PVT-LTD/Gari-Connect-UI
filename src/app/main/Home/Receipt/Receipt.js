@@ -11,6 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import RecieptPaymentDetails from '../../Host/sharedComponents/RecieptPaymentDetails';
+import Footer from "app/main/Home/Footer/Footer";
 
 function Receipt() {
   const [showdetailsstatus, setstatus] = useState(false);
@@ -87,6 +88,9 @@ function Receipt() {
           © 2022 GariConnect. All rights reserved.
         </Typography>
       </div>
+      <div className="mt-96">
+          <Footer />
+        </div>  
     </div>
   );
 }
