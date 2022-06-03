@@ -71,7 +71,7 @@ function settings() {
                 </div>
 
                 <div className="mx-auto w-5/6">
-                    <Card className="rounded-md border border-gray-300 shadow-none">
+                    <Card className="rounded-md border border-gray-300 shadow-none mb-52">
                         <Box
                             className={classes.container}
                             sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex' }}
@@ -81,7 +81,10 @@ function settings() {
                                 value={value}
                                 onChange={handleChange}
                                 aria-label="Vertical tabs example"
-                                sx={{ borderRight: 1, borderColor: 'divider' }}
+                                sx={{
+                                    borderRight: 1, borderColor: 'divider',
+                                    '& .MuiTab-root': { alignItems: 'self-start', justifyContent: 'center' }
+                                }}
                                 TabIndicatorProps={{
                                     style: {
                                         backgroundColor: "#D22A8F"
