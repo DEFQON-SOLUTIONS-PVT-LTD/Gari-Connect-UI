@@ -174,7 +174,9 @@ const MyCars = () => {
                                         </Typography>
                                     </div>
                                 </div>
-                                <Divider className="my-12" />
+                                <div>
+                                    <Divider className="my-12" />
+                                </div>
                                 <div className="flex flex-row justify-between">
                                     <div className="flex flex-col">
                                         <Typography className="text-sm font-normal" gutterBottom variant="" color="text.secondary">
@@ -293,7 +295,9 @@ const MyCars = () => {
                                         </Typography>
                                     </div>
                                 </div>
-                                <Divider className="my-12" />
+                                <div>
+                                    <Divider className="my-12" />
+                                </div>
                                 <div className="flex flex-row justify-between">
                                     <div className="flex flex-col">
                                         <Typography className="text-sm font-normal" gutterBottom variant="" color="text.secondary">

@@ -31,7 +31,7 @@ function TabPanel(props) {
         >
             {value === index && (
                 <Box sx={{ pt: 3 }}>
-                    <Typography>{children}</Typography>
+                    <div>{children}</div>
                 </Box>
             )}
         </div>
@@ -72,11 +72,9 @@ export default function HostTabs() {
 
     return (
         <div className="bg-gray-50">
-            {/* {!show && */}
             <div>
                 <Navbar />
             </div>
-            {/* } */}
 
             <div className="sm:m-96 md:m-32 mx-0 mt-96">
                 <Box sx={{ maxWidth: '100%' }}>
@@ -175,7 +173,7 @@ export default function HostTabs() {
                             </TabPanel>
                         </div>
 
-                         <div className="flex flex-col col-span-1">
+                        <div className="flex flex-col col-span-1">
                             <div className="flex flex-col mb-14">
                                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                                     <Card className="rounded-6 border">
@@ -227,7 +225,7 @@ export default function HostTabs() {
                                             </Typography>
                                         </div>
                                     </div>
-                                </Card> 
+                                </Card>
                             </div>
                         </div>
                     </div>
