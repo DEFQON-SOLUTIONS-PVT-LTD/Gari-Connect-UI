@@ -1,9 +1,19 @@
 import { Button, FormControl, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import React from 'react';
+import React, { useState } from 'react';
 
 
 function Account() {
+
+    const [image, setimage] = useState("assets/images/profile/Hassan.png");
+
+ 
+
+    const setImage = (e) => {
+
+        const [file] = e.target.files;
+        setimage(URL.createObjectURL(file));
+    }
 
     const Input = styled('input')({
         display: 'none',
@@ -24,11 +34,11 @@ function Account() {
             <div className="w-full flex-row py-12 grid grid-cols-3 mb-96">
                 <div className="flex flex-col justify-end text-center space-y-20 col-span-1">
                     <div>
-                        <img className="mx-auto" src="assets/images/profile/Hassan.png" alt="" />
+                        <img className="mx-auto w-224 h-224" src={image} alt="" />
                     </div>
 
                     <label htmlFor="contained-button-file">
-                        <Input accept="image/*" id="contained-button-file" multiple type="file" />
+                        <Input id="contained-button-file" multiple onChange={setImage} type="file" />
                         <Button variant="outlined" className="rounded-4" component="span">
                             Change photo
                         </Button>
