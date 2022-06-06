@@ -35,7 +35,7 @@ const NewRequests = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            <TableRow component={Link} to="/BookingDetails" style={{ textDecoration: 'none' }} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row" className="flex flex-row items-center">
                                     <img src="assets/images/profile/Avatar-0.svg" alt="" />
                                     <div>
@@ -80,7 +80,7 @@ const NewRequests = () => {
                             </TableRow>
 
 
-                            <TableRow component={Link} to="/BookingDetails" style={{ textDecoration: 'none' }} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row" className="flex flex-row items-center">
                                     <img src="assets/images/profile/Avatar-0.svg" alt="" />
                                     <div>
@@ -125,7 +125,7 @@ const NewRequests = () => {
                             </TableRow>
 
 
-                            <TableRow component={Link} to="/BookingDetails" style={{ textDecoration: 'none' }} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row" className="flex flex-row items-center">
                                     <img src="assets/images/profile/Avatar-0.svg" alt="" />
                                     <div>
@@ -168,12 +168,6 @@ const NewRequests = () => {
                                     <Button variant="contained" size="medium" className="text-10 rounded" style={{ backgroundColor: '#D22A8F' }}>Accept</Button>
                                 </TableCell>
                             </TableRow>
-
-
-
-
-
-
                         </TableBody>
                     </Table>
                 </TableContainer>

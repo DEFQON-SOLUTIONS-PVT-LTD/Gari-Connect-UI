@@ -22,7 +22,7 @@ function TabPanel(props) {
         >
             {value === index && (
                 <Box sx={{}}>
-                    <Typography>{children}</Typography>
+                    <div>{children}</div>
                 </Box>
             )}
         </div>
@@ -48,9 +48,6 @@ function Payments() {
                 backgroundColor: "rgba(210, 42, 143, 0.18)",
                 color: '#D22A8F',
                 borderRadius: '30px'
-
-
-
             }
         }
     });
@@ -142,8 +139,6 @@ function Payments() {
                                 <TabPanel value={value} index={1}>
                                     <TransactionDetails />
                                 </TabPanel>
-
-
                             </Box>
                         </div>
 
