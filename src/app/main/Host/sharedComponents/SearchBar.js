@@ -58,7 +58,7 @@ const SearchBar = () => {
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DateRangePicker
                 selected={new Date()}
-                minDate={moment().toDate()}
+                maxDate={moment().toDate()}
                   startText=""
                   endText=""
                   value={value}

@@ -1,32 +1,18 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Checkbox from "@mui/material/Checkbox";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
-import FilledInput from "@mui/material/FilledInput";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import InputLabel from "@mui/material/InputLabel";
-import FormHelperText from "@mui/material/FormHelperText";
 import { Link } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  ></Box>
-);
+
 
 function Createpassword() {
   const [values, setValues] = React.useState({
@@ -99,9 +85,7 @@ function Createpassword() {
                 Enter password
               </Typography>
               <FormControl fullWidth variant="outlined">
-               
-
-                <OutlinedInput
+              <OutlinedInput
                   className="rounded-lg"
                   id="outlined-adornment-password"
                   type={values.showPassword ? "text" : "password"}
@@ -118,9 +102,9 @@ function Createpassword() {
                         edge="end"
                       >
                         {values.showPassword ? (
-                          <VisibilityOff />
-                        ) : (
                           <Visibility />
+                        ) : (
+                          <VisibilityOff />
                         )}
                       </IconButton>
                     </InputAdornment>
@@ -159,9 +143,9 @@ function Createpassword() {
                         edge="end"
                       >
                         {values.showconfirmPassword ? (
-                          <VisibilityOff />
-                        ) : (
                           <Visibility />
+                        ) : (
+                          <VisibilityOff />
                         )}
                       </IconButton>
                     </InputAdornment>

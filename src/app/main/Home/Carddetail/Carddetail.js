@@ -39,25 +39,21 @@ export default function Carddetail() {
   const handleChangedate = (newValue) => {
     setValues(newValue);
   };
-
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
-
   const handleChangetime = (newValue) => {
     settimeValue(newValue);
   };
-
-
-
   const handleChangedate2 = (newValue) => {
     setValues1(newValue);
   };
 
   return (
     <div>
-      <Navbar />
-      <div className="flex flex-row justify-center mt-24">
+      <Navbar/>
+      <div className="flex flex-col justify-center">
+      <div className="sm:flex justify-center mt-24">
         <div>
           <img
             width="540"
@@ -65,12 +61,12 @@ export default function Carddetail() {
             alt="logo"
           />
         </div>
-        <div className="ml-20">
+        <div className="flex flex-col justify-center sm:ml-20 ml-0">
           <img src="assets/images/logos/Carddetail2.svg" alt="logo" />
           <img src="assets/images/logos/Carddetail4.svg" alt="logo" />
         </div>
-        <div className="ml-20">
-          <img src="assets/images/logos/Carddetail3.svg" alt="logo" />
+        <div className="flex flex-col justify-center sm:ml-20">
+          <img src="assets/images/logos/Carddetail3.svg" alt="logo"/>
 
           <div className="relative">
             <img
@@ -85,20 +81,20 @@ export default function Carddetail() {
           </div>
         </div>
       </div>
-      <div className="sm:flex flex-row justify-between">
-        <div style={{ marginLeft: "18%" }}>
+      <div className="grid lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 mx-auto">
+        <div className="col-span-1 sm:ml-160 ml-0">
           <div className="sm:flex">
             <Typography className="font-normal text-2xl">
               Toyota Corolla Altis-2020
             </Typography>
-            <Typography className="font-normal text-2xl sm:ml-68 ml-0">
+            <Typography className="font-normal text-2xl sm:ml-60 ml-208 ">
               PKR 5000
               <b className="font-normal text-sm" style={{ color: "#667085" }}>
                 per day
               </b>
             </Typography>
           </div>
-          <div className="sm:flex space-x-96">
+          <div className="sm:flex sm:space-x-288 space-x-256">
             <Typography
               className="font-normal text-sm"
               style={{ color: "#667085" }}
@@ -107,7 +103,7 @@ export default function Carddetail() {
             </Typography>
             <Typography
               className="font-normal text-sm"
-              style={{ marginLeft: "57%", color: "#667085" }}
+              style={{color:"#667085"}}
             >
               est,total 15000*
             </Typography>
@@ -131,7 +127,7 @@ export default function Carddetail() {
                 (15 Trips)
               </b>
             </Typography>
-            <div style={{ marginLeft: "43%" }}>
+            <div className="ml-224">
             <Checkbox
                   {...label}
                   icon={<FavoriteBorder />}
@@ -572,10 +568,9 @@ export default function Carddetail() {
             </Typography>
           </div>
         </div>
-        <div style={{ marginRight: "16%" }}>
+        <div className="col-span-1 sm:w-7/12 w-10/12 sm:ml-128 ml-0">
           <div>
             <Card
-              className="sm:w-11/12 w-11/12 sm:ml-0 ml-52 "
               style={{ height: "450px" }}
             >
               <Typography className="text-lg font-semibold ml-10 mt-10">
@@ -758,9 +753,7 @@ export default function Carddetail() {
                 </div>
               </CardContent>
             </Card>
-          </div>
-          <div className="mt-10">
-            <Card className="sm:w-11/12 11/12 sm:ml-0 ml-40">
+            <Card className="mt-10">
               <Typography className="text-lg font-semibold ml-10 mt-10">
                 Hosted By
               </Typography>
@@ -839,7 +832,7 @@ export default function Carddetail() {
                 </div>
               </CardContent>
             </Card>
-            <div className="flex mt-24 sm:ml-0 ml-28">
+            <div className="flex mt-24">
               <IconButton>
                 <ShieldOutlinedIcon
                   fontSize="large"
@@ -854,7 +847,7 @@ export default function Carddetail() {
                 communicate outside os the Gari Connect website or app.{" "}
               </Typography>
             </div>
-            <div className="sm:ml-0 ml-68">
+            <div>
               <hr className="mt-20" />
             </div>
             <Typography
@@ -866,7 +859,7 @@ export default function Carddetail() {
           </div>
         </div>
       </div>
-
+      </div>
       <div>
         <img
           style={{ marginTop: "152px" }}

@@ -28,7 +28,7 @@ const CarLocation = () => {
 
   return (
     <div>
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-16">
+      <div className="grid md:grid-cols-2 grid-cols-1 sm:grid-cols-2 gap-16">
         <div className="mt-12">
           <div style={{ height: "45vh", width: "100%" }}>
             <GoogleMapReact
