@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Typography, Dialog, DialogTitle, DialogContent } from '@mui/material';
+import { Button, Typography, Dialog, DialogTitle, DialogContent, IconButton, Collapse, Box } from '@mui/material';
 import PropTypes from 'prop-types';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,6 +7,8 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import CloseIcon from '@mui/icons-material/Close';
+import Alert from '@mui/material/Alert';
 
 function SimpleDialog(props) {
     const { onClose, open } = props;
@@ -34,8 +36,66 @@ SimpleDialog.propTypes = {
     open: PropTypes.bool.isRequired,
 };
 
+function EditDialog(props) {
+    const { onClose, open } = props;
+
+    const [openAlert, setOpenAlert] = React.useState(true);
+
+    const handleClose = () => {
+        onClose(true);
+    };
+
+    return (
+        <Dialog onClose={handleClose} open={open}>
+            <DialogTitle className="flex justify-between items-center border-b">
+                <Typography className="text-20 font-medium">Edit trip dates</Typography>
+                <IconButton onClick={handleClose}>
+                    <CloseIcon className="text-black" />
+                </IconButton>
+            </DialogTitle>
+            <DialogContent>
+                <Typography className="text-18 font-medium text-center mb-10">Request sent to host</Typography>
+                <Typography className="text-12 font-normal text-gray-500 text-center mb-24">Your booking dates will be updated after confirmation <br /> from your host.</Typography>
+
+                <div className="space-y-12">
+                    <Box sx={{ width: '100%' }}>
+                        <Collapse in={openAlert}>
+                            <Alert
+                                action={
+                                    <IconButton
+                                        aria-label="close"
+                                        color="inherit"
+                                        size="small"
+                                        onClick={() => {
+                                            setOpenAlert(false);
+                                        }}
+                                    >
+                                        <CloseIcon fontSize="inherit" />
+                                    </IconButton>
+                                }
+                                className="flex flex-row items-center rounded-8"
+                                icon={<div className="flex items-center justify-center w-28 h-28 rounded-full" style={{ backgroundColor: 'rgba(4, 106, 243, 0.08)' }}><img src="/assets/images/icons/boltIcon.svg" alt="logo" /></div>} severity="info"
+                            >
+                                <Typography className="text-14" sx={{ color: '#046AF3' }}>Additional charges of cost PKR 3600 will be added</Typography>
+                            </Alert>
+                        </Collapse>
+                    </Box>
+
+                    <Button disabled={openAlert} onClick={() => { setOpenAlert(true) }} fullWidth variant="contained" size="large" className="rounded-md" style={{ backgroundColor: '#D22A8F' }}>Send request</Button>
+                </div>
+            </DialogContent>
+        </Dialog>
+    );
+}
+
+EditDialog.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+};
+
 const Completed = () => {
     const [open, setOpen] = React.useState(false);
+    const [open1, setOpen1] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -43,6 +103,13 @@ const Completed = () => {
 
     const handleClose = () => {
         setOpen(false);
+    };
+    const handleClickOpen1 = () => {
+        setOpen1(true);
+    };
+
+    const handleClose1 = () => {
+        setOpen1(false);
     };
 
     return (
@@ -116,7 +183,11 @@ const Completed = () => {
                                 </TableCell>
                                 <TableCell className="text-12 text-gray-500 font-normal">15000 PKR</TableCell>
                                 <TableCell>
-                                    <Button variant="outlined" size="medium" className="text-10 rounded mr-12" style={{ color: '#667085', borderColor: '#C3CBCD' }}>Edit</Button>
+                                    <Button onClick={handleClickOpen1} variant="outlined" size="medium" className="text-10 rounded mr-12" style={{ color: '#667085', borderColor: '#C3CBCD' }}>Edit</Button>
+                                    <EditDialog
+                                        open={open1}
+                                        onClose={handleClose1}
+                                    />
                                     <Button onClick={handleClickOpen} variant="contained" size="medium" className="text-10 rounded" style={{ backgroundColor: '#D22A8F' }}>Handover car</Button>
                                     <SimpleDialog
                                         open={open}
