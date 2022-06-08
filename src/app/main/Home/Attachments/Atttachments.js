@@ -117,7 +117,7 @@ function Attachments() {
                   </Typography>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
-                      disableOpenPicker={true}
+                      disableOpenPicker={false}
                       inputFormat="dd/MM/yyy"
                       value={value}
                       onChange={(newValue) => {
@@ -181,7 +181,7 @@ function Attachments() {
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                     inputFormat="dd/MM/yyy"
-                    disableOpenPicker={true}
+                    disableOpenPicker={false}
                       value={value}
                       onChange={(newValue) => {
                         setValue(newValue);
