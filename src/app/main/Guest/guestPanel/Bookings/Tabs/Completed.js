@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Typography, Dialog, DialogTitle, DialogContent, IconButton, Collapse, Box } from '@mui/material';
+import { FormControl, TextField, Button, Typography, Dialog, DialogTitle, DialogContent, IconButton, Collapse, Box } from '@mui/material';
 import PropTypes from 'prop-types';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -53,9 +53,20 @@ function EditDialog(props) {
                     <CloseIcon className="text-black" />
                 </IconButton>
             </DialogTitle>
-            <DialogContent>
+            <DialogContent className="space-y-12">
                 <Typography className="text-18 font-medium text-center mb-10">Request sent to host</Typography>
                 <Typography className="text-12 font-normal text-gray-500 text-center mb-24">Your booking dates will be updated after confirmation <br /> from your host.</Typography>
+
+                <div>
+                    <FormControl fullWidth>
+                        <TextField
+                            id="outlined-multiline-static"
+                            multiline
+                            rows={5}
+                            placeholder="Write your problem"
+                        />
+                    </FormControl>
+                </div>
 
                 <div className="space-y-12">
                     <Box sx={{ width: '100%' }}>
