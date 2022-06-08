@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography, TextField, Button } from '@mui/material';
+import { Card, CardContent, Typography, TextField, Button, FormControl } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -87,7 +87,9 @@ const Dashboard = () => {
                   5
                 </span>
               </Typography>
-              <TextField size="small" placeholder="Search area" />
+              <FormControl>
+                <TextField size="small" placeholder="Search area" />
+              </FormControl>
             </div>
 
             <div className="">
@@ -111,7 +113,7 @@ const Dashboard = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    <TableRow component={Link} to="/BookingDetails" style={{ textDecoration: 'none' }} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                       <TableCell component="th" scope="row" className="flex flex-row items-center">
                         <img src="assets/images/profile/Avatar-0.svg" alt="" />
                         <div>
@@ -156,7 +158,7 @@ const Dashboard = () => {
                     </TableRow>
 
 
-                    <TableRow component={Link} to="/BookingDetails" style={{ textDecoration: 'none' }} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                       <TableCell component="th" scope="row" className="flex flex-row items-center">
                         <img src="assets/images/profile/Avatar-0.svg" alt="" />
                         <div>
@@ -201,7 +203,7 @@ const Dashboard = () => {
                     </TableRow>
 
 
-                    <TableRow component={Link} to="/BookingDetails" style={{ textDecoration: 'none' }} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                       <TableCell component="th" scope="row" className="flex flex-row items-center">
                         <img src="assets/images/profile/Avatar-0.svg" alt="" />
                         <div>

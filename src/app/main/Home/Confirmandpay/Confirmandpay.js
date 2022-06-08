@@ -82,8 +82,8 @@ function BpRadio(props) {
   return (
     <Radio
       sx={{
-        '&:hover': {
-          bgcolor: 'transparent',
+        "&:hover": {
+          bgcolor: "transparent",
         },
       }}
       disableRipple
@@ -152,7 +152,7 @@ export default function Confirmandpay() {
       <Navbar />
       <div>
         <div className="mt-32">
-          <div className="flex flex-row  px-24 py-24 sm:ml-96 ml-0">
+          <div className="flex flex-row  px-24 py-24 sm:ml-28 md:ml-28 lg:ml-96">
             <ArrowBackIcon size="large" className="mr-20 sm:ml-44 ml-0" />
             <Typography className="text-2xl font-normal font-Gilroy-Medium">
               Confirm and pay
@@ -206,20 +206,32 @@ export default function Confirmandpay() {
                     </Typography>
                   </div>
                   <RadioGroup
-        defaultValue="female"
-        aria-labelledby="demo-customized-radios"
-        name="customized-radios"
-      >
-                  <div className="flex space-x-10">
-                    <div className="flex">
-                  <FormControlLabel value="female" control={<BpRadio />} label="" />
-                  <Typography className="mt-8 text-sm font-medium">Yes</Typography>
-                  </div>
-                  <div className="flex">
-        <FormControlLabel value="male" control={<BpRadio />} label="" />
-        <Typography className="mt-8 text-sm font-medium">NO</Typography>
-        </div>
-                  </div>
+                    defaultValue="female"
+                    aria-labelledby="demo-customized-radios"
+                    name="customized-radios"
+                  >
+                    <div className="flex space-x-10">
+                      <div className="flex">
+                        <FormControlLabel
+                          value="female"
+                          control={<BpRadio />}
+                          label=""
+                        />
+                        <Typography className="mt-8 text-sm font-medium">
+                          Yes
+                        </Typography>
+                      </div>
+                      <div className="flex">
+                        <FormControlLabel
+                          value="male"
+                          control={<BpRadio />}
+                          label=""
+                        />
+                        <Typography className="mt-8 text-sm font-medium">
+                          NO
+                        </Typography>
+                      </div>
+                    </div>
                   </RadioGroup>
                 </div>
                 <hr className="mt-20" />
@@ -303,11 +315,11 @@ export default function Confirmandpay() {
                 </Card>
               </div>
               <div className="flex mt-24">
-               <ShieldOutlinedIcon
-               className="mt-10"
-                    fontSize="large"
-                    style={{ color: "#D22A8F" }}
-                  />
+                <ShieldOutlinedIcon
+                  className="mt-10"
+                  fontSize="large"
+                  style={{ color: "#D22A8F" }}
+                />
                 <Typography
                   className="text-xs font-normal mt-10 ml-4"
                   style={{ color: "#667085" }}
@@ -336,37 +348,37 @@ export default function Confirmandpay() {
                     Add payment method
                   </h3>
                   <CardContent>
-                  <FormControl fullWidth>
-            <Typography
-              style={{
-                fontSize: "14px",
-                fontWeight: "500px",
-                color: "#344054",
-              }}
-            >
-            Choose card
-            </Typography>
-            <Autocomplete
-              popupIcon={<KeyboardArrowDownIcon />}
-              className="mt-6"
-              disablePortal
-              id="combo-box-demo"
-              options={top100Films}
-              sx={{ height: 44 }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  size="medium"
-                  placeholder="Choose card"
-                  sx={{
-                    "& fieldset": {
-                      borderRadius: "8px",
-                    },
-                  }}
-                />
-              )}
-            />
-          </FormControl>
+                    <FormControl fullWidth>
+                      <Typography
+                        style={{
+                          fontSize: "14px",
+                          fontWeight: "500px",
+                          color: "#344054",
+                        }}
+                      >
+                        Choose card
+                      </Typography>
+                      <Autocomplete
+                        popupIcon={<KeyboardArrowDownIcon />}
+                        className="mt-6"
+                        disablePortal
+                        id="combo-box-demo"
+                        options={top100Films}
+                        sx={{ height: 44 }}
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            size="medium"
+                            placeholder="Choose card"
+                            sx={{
+                              "& fieldset": {
+                                borderRadius: "8px",
+                              },
+                            }}
+                          />
+                        )}
+                      />
+                    </FormControl>
                     <FormControl fullWidth variant="outlined">
                       <Typography
                         style={{
@@ -385,7 +397,6 @@ export default function Confirmandpay() {
                       />
                     </FormControl>
                     <div className="flex space-x-10 w-full">
-                      
                       <FormControl className="mt-16 w-1/2">
                         <Typography
                           style={{
@@ -399,19 +410,23 @@ export default function Confirmandpay() {
                         </Typography>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <DatePicker
-                          inputFormat="dd/MM/yyy"
-                          disableOpenPicker={true}
+                            inputFormat="dd/MM/yyy"
+                            disableOpenPicker={true}
                             value={value}
                             onChange={(newValue) => {
                               setValue(newValue);
                             }}
-                            renderInput={(params) => <TextField {...params}
-                            sx={{ 
-                              '& fieldset':{
-                                borderRadius:"8px",
-                                height:"48px"
-                              }
-                            }} />}
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                sx={{
+                                  "& fieldset": {
+                                    borderRadius: "8px",
+                                    height: "48px",
+                                  },
+                                }}
+                              />
+                            )}
                           />
                         </LocalizationProvider>
                       </FormControl>
@@ -553,16 +568,15 @@ export default function Confirmandpay() {
                   </div>
                   <div>
                     <Dialog
-                      style={{ borderRadius:"12px",height:"auto"}}
+                      style={{ borderRadius: "12px", height: "auto" }}
                       fullWidth={true}
                       open={open}
                       onClose={handleClose}
                     >
-                      <div
-                      >
+                      <div>
                         <Card
                           style={{
-                            border:"1px solid rgba(195, 203, 205, 0.42)",
+                            border: "1px solid rgba(195, 203, 205, 0.42)",
                           }}
                         >
                           <div

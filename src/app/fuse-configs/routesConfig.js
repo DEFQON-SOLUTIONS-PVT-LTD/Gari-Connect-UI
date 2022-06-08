@@ -12,10 +12,12 @@ import { Redirect } from 'react-router-dom';
 import FuseLoading from '@fuse/core/FuseLoading';
 import homeConfigs from 'app/main/Home/homeConfigs';
 import HostConfig from 'app/main/Host/HostConfig';
+import GuestConfig from 'app/main/Guest/GuestConfig';
 
 const routeConfigs = [
   ...HostConfig,
   ...homeConfigs,
+  ...GuestConfig,
   ...appsConfigs,
   ...pagesConfigs,
   ...authRoleExamplesConfigs,

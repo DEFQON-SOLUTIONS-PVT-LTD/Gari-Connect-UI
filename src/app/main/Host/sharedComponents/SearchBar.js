@@ -15,35 +15,21 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
-import { makeStyles } from '@mui/styles';
+import moment from 'moment';
+
+
 
 const SearchBar = () => {
-  const [value, setValue] = React.useState(["20,May", "21,April"]);
-  const useStyles = makeStyles({
-    DateRangePicker: {
-        '& .Mui-selected': {
-            backgroundColor: '#D22A8F',
-        },
-        '& .Mui-selected:hover': {
-            backgroundColor: '#D22A8F',
-        },
-        '& .MuiPickersDay-root:focus': {
-            backgroundColor: '#D22A8F',
-        },
-        '& .MuiButtonBase-root .MuiDateRangePickerDay-root': {
-            backgroundColor: '#D22A8F',
-        }
-    },    
-});
+  const [value, setValue] = React.useState(["20,April", "21,May"]);
+  // newValue={setValue}
 
-const classes = useStyles();
 
   return (
     <>
       <div>
-        <ul className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20">
-          <div className=" border rounded-full w-auto  md:w-md ">
-            <div className="grid  sm:grid-cols-2 grid-cols-1 gap-4 h-full w-9/12">
+        <ul className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20" style={{ marginLeft:"10%"}}>
+          <div className=" border rounded-full w-auto md:w-10/12">
+            <div className="grid  sm:grid-cols-2 grid-cols-1 gap-4 h-full sm:w-full w-11/12">
               <div className="flex items-center ml-16">
                 <FmdGoodOutlinedIcon />
                 <Typography className="mx-6">Location</Typography>
@@ -71,10 +57,12 @@ const classes = useStyles();
               </div>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DateRangePicker
+                selected={new Date()}
+                maxDate={moment().toDate()}
                   startText=""
                   endText=""
                   value={value}
-                  inputFormat="dd,MMM"
+                  inputFormat=""
                   onChange={(newValue) => {
                     setValue(newValue);
                   }}
@@ -96,7 +84,7 @@ const classes = useStyles();
                               disableUnderline: true,
                               endAdornment: (
                                 <InputAdornment position="end">
-                                  <KeyboardArrowDownIcon className="sm:ml-40 ml-0"/>
+                                  <KeyboardArrowDownIcon/>
                                 </InputAdornment>
                               ),
                               startAdornment: (
@@ -126,7 +114,7 @@ const classes = useStyles();
                               disableUnderline: true,
                               endAdornment: (
                                 <InputAdornment position="end">
-                                  <KeyboardArrowDownIcon className="sm:ml-28 ml-10"/>
+                                  <KeyboardArrowDownIcon/>
                                 </InputAdornment>
                               ),
                               startAdornment: (
@@ -138,7 +126,6 @@ const classes = useStyles();
                             }}
                           />
                           <IconButton
-                          className="ml-44"
                             style={{
                               height: "50px",
                               width: "50px",

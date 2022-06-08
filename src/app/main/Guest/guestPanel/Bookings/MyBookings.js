@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import Upcoming from './Upcoming';
-import NewRequests from './NewRequests';
+import Upcoming from './Tabs/Upcoming';
+import Completed from './Tabs/Completed';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -34,7 +34,7 @@ TabPanel.propTypes = {
     value: PropTypes.number.isRequired,
 };
 
-function Bookings() {
+function MyBookings() {
     const [date, setDate] = React.useState(new Date());
     const [value, setValue] = React.useState(0);
 
@@ -69,14 +69,14 @@ function Bookings() {
                                     }}
                                     classes={{ root: classes.customTabs }}
                                 >
-                                    <Tab label={<Typography className="text-sm font-medium">New booking requests</Typography>} />
+                                    <Tab label={<Typography className="text-sm font-medium">Booking requests</Typography>} />
                                     <Tab label={<Typography className="text-sm font-medium">Active</Typography>} />
                                     <Tab label={<Typography className="text-sm font-medium">Upcoming</Typography>} />
                                     <Tab label={<Typography className="text-sm font-medium">Completed</Typography>} />
                                 </Tabs>
                             </Box>
                             <TabPanel value={value} index={0}>
-                                <NewRequests />
+                                <Upcoming />
                             </TabPanel>
 
                             <TabPanel value={value} index={1}>
@@ -88,7 +88,7 @@ function Bookings() {
                             </TabPanel>
 
                             <TabPanel value={value} index={3}>
-                                <Upcoming />
+                                <Completed />
                             </TabPanel>
                         </Box>
                     </div>
@@ -98,4 +98,4 @@ function Bookings() {
     )
 }
 
-export default Bookings
+export default MyBookings
