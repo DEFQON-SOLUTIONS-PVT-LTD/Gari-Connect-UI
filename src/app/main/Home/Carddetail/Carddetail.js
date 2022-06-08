@@ -52,7 +52,7 @@ export default function Carddetail() {
   return (
     <div>
       <Navbar/>
-      <div className="flex flex-col justify-center">
+      <div className="grid grid-cols-1 justify-center">
       <div className="sm:flex justify-center mt-24">
         <div>
           <img
@@ -81,20 +81,20 @@ export default function Carddetail() {
           </div>
         </div>
       </div>
-      <div className="grid lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 mx-auto">
-        <div className="col-span-1 sm:ml-160 ml-0">
-          <div className="sm:flex">
+      <div className="grid lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-2">
+        <div className="col-span-1 sm:ml-8 md:ml-96 lg:ml-320">
+          <div className="sm:flex sm:space-x-48 md:space-x-48">
             <Typography className="font-normal text-2xl">
               Toyota Corolla Altis-2020
             </Typography>
-            <Typography className="font-normal text-2xl sm:ml-60 ml-208 ">
+            <Typography className="font-normal text-2xl">
               PKR 5000
               <b className="font-normal text-sm" style={{ color: "#667085" }}>
                 per day
               </b>
             </Typography>
           </div>
-          <div className="sm:flex sm:space-x-288 space-x-256">
+          <div className="sm:flex sm:space-x-224 md:space-x-256">
             <Typography
               className="font-normal text-sm"
               style={{ color: "#667085" }}
@@ -127,7 +127,7 @@ export default function Carddetail() {
                 (15 Trips)
               </b>
             </Typography>
-            <div className="ml-224">
+            <div className="sm:ml-136 md:ml-208">
             <Checkbox
                   {...label}
                   icon={<FavoriteBorder />}
@@ -147,7 +147,7 @@ export default function Carddetail() {
               </IconButton>
             </div>
           </div>
-          <div className="w-full">
+          <div>
             <hr />
             <div>
               <Typography className="text-base font-semibold mt-8">
@@ -155,15 +155,15 @@ export default function Carddetail() {
               </Typography>
               <Typography style={{ color: "#667085" }}>
                 Extremely comfortable and sporty at the same time: You can go
-                <br></br>
+                
                 wrong with an AMG. You will not regret renting this amazing car.
-                <br></br>
+                
                 Great drive around the city and throught the coast. Extremely
-                <br></br>
+                
                 comfortable and sporty at the same time: You can go wrong with
-                <br></br>
+                
                 an AMG.You will not regret renting this amazing car.Great drive
-                <br></br>
+                
                 around the city and through the coast.
                 <b style={{ color: "#D22A8F" }}>Read more</b>
               </Typography>
@@ -568,7 +568,7 @@ export default function Carddetail() {
             </Typography>
           </div>
         </div>
-        <div className="col-span-1 sm:w-7/12 w-10/12 sm:ml-128 ml-0">
+        <div className="col-span-1 sm:max-w-8/12 md:w-7/12 lg:w-5/12 sm:ml-160 ml-0">
           <div>
             <Card
               style={{ height: "450px" }}

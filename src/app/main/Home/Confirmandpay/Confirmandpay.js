@@ -152,7 +152,7 @@ export default function Confirmandpay() {
       <Navbar />
       <div>
         <div className="mt-32">
-          <div className="flex flex-row  px-24 py-24 sm:ml-96 ml-0">
+          <div className="flex flex-row  px-24 py-24 sm:ml-28 md:ml-28 lg:ml-96">
             <ArrowBackIcon size="large" className="mr-20 sm:ml-44 ml-0" />
             <Typography className="text-2xl font-normal font-Gilroy-Medium">
               Confirm and pay
