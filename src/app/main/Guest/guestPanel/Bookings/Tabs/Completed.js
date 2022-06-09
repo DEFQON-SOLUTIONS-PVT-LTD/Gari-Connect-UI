@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import CloseIcon from '@mui/icons-material/Close';
 import Alert from '@mui/material/Alert';
+import TripDateRange from '../../../../Host/sharedComponents/TripDateRange';
 
 function SimpleDialog(props) {
     const { onClose, open } = props;
@@ -54,12 +55,17 @@ function EditDialog(props) {
                 </IconButton>
             </DialogTitle>
             <DialogContent className="space-y-12">
-                <Typography className="text-18 font-medium text-center mb-10">Request sent to host</Typography>
-                <Typography className="text-12 font-normal text-gray-500 text-center mb-24">Your booking dates will be updated after confirmation <br /> from your host.</Typography>
+                <TripDateRange />
 
                 <div>
                     <FormControl fullWidth>
                         <TextField
+                            sx={{
+                                '& fieldset': {
+                                    borderRadius: '8px',
+                                    border: '1px solid #D0D5DD'
+                                }
+                            }}
                             id="outlined-multiline-static"
                             multiline
                             rows={5}
