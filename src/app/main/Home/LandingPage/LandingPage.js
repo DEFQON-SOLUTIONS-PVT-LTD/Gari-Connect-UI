@@ -110,19 +110,18 @@ function LandingPage() {
           </div>
         </div>
         <Typography
-          className="text-36px font-medium"
+          className="text-36px font-medium text-center"
           variant="h3"
-          style={{ marginTop: "120px" }}
+          style={{ marginTop: "174px" }}
         >
           Browse by make
         </Typography>
         <Typography
-          className="text-5 font-medium"
+          className="text-5 font-medium text-center"
           variant="h6"
           style={{ marginTop: "10px", color: "#000000", opacity: "0.5" }}
         >
-          We've got option to get you where you are going.Choose a<br></br>car
-          make that suits your mood and budget.
+        Pick a makel from our variety and make your savari, your chices.
         </Typography>
         <div style={{ marginTop: "200px" }}></div>
         <div className="sm:flex flex-row justify-between">
