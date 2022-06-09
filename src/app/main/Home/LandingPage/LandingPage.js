@@ -12,6 +12,7 @@ import Rating from "@mui/material/Rating";
 import IconButton from "@mui/material/IconButton";
 import Footer from "../Footer/Footer";
 import SearchBar from "../../Host/sharedComponents/SearchBar";
+import CarCarousel from '../carousel/CarCarousel';
 
 
 function LandingPage() {
@@ -42,7 +43,7 @@ function LandingPage() {
 
         </div>
         <div className="flex justify-center">
-        <SearchBar/>
+          <SearchBar />
         </div>
         <div className="sm:flex" style={{ marginTop: "200px" }}>
           <img
@@ -109,21 +110,16 @@ function LandingPage() {
             </Button>
           </div>
         </div>
-        <Typography
-          className="text-36px font-medium"
-          variant="h3"
-          style={{ marginTop: "120px" }}
-        >
-          Browse by make
-        </Typography>
-        <Typography
-          className="text-5 font-medium"
-          variant="h6"
-          style={{ marginTop: "10px", color: "#000000", opacity: "0.5" }}
-        >
-          We've got option to get you where you are going.Choose a<br></br>car
-          make that suits your mood and budget.
-        </Typography>
+
+        <div className="h-xs space-y-80">
+          <div className="space-y-12">
+            <Typography className="text-36 font-medium text-center">Browse by make</Typography>
+            <Typography className="text-16 text-center" color="text.secondary">Pick a makel from our variety and make your savari, your choice.</Typography>
+          </div>
+
+          <CarCarousel />
+        </div>
+
         <div style={{ marginTop: "200px" }}></div>
         <div className="sm:flex flex-row justify-between">
           <div style={{ marginTop: "100px" }}>
@@ -481,7 +477,7 @@ function LandingPage() {
           </Card>
         </div>
         <div className="flex justify-center mt-52">
-        <SearchBar/>
+          <SearchBar />
         </div>
         <div style={{ marginLeft: "50%", marginTop: "100px" }}>
           <IconButton>
@@ -537,7 +533,7 @@ function LandingPage() {
           <p>We've got option to get where you are gooing.Choose a</p>
           <p>car market that suit your mood and budget.</p>
         </div>
-       
+
         <div>
           <h1
             className="mt-96 text-4xl font-semibold"
