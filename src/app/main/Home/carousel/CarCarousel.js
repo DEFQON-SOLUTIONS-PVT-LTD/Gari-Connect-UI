@@ -37,68 +37,69 @@ const CarCarousel = () => {
                 showDots={true}
                 infinite={true}
                 focusOnSelect={true}
+                dotListClass='react-multi-carousel-dot-list'
             >
-                <div className="">
+                <div className="space-y-28">
                     <img className="" src="/assets/images/GariConnect/image1.png" alt="logo" />
-                    <div className="flex flex-row items-center justify-center space-x-12">
+                    <div className="flex flex-row items-center space-x-12 ml-52">
                         <img src="/assets/images/icons/carbrand1.svg" alt="logo" />
-                        <Typography className="">Toyota</Typography>
+                        <Typography className="text-24 font-medium">Toyota</Typography>
                     </div>
                 </div>
 
-                <div className="">
-                    <img className="" src="/assets/images/GariConnect/image2.png" alt="logo" />
-                    <div className="flex flex-row items-center justify-center space-x-12">
-                        <img src="/assets/images/icons/carbrand2.svg" alt="logo" />
-                        <Typography className="">Hyundai</Typography>
-                    </div>
-                </div>
-
-                <div className="">
-                    <img className="" src="/assets/images/GariConnect/image3.png" alt="logo" />
-                    <div className="flex flex-row items-center justify-center space-x-12">
-                        <img src="/assets/images/icons/carbrand3.svg" alt="logo" />
-                        <Typography className="">Nissan</Typography>
-                    </div>
-                </div>
-
-                <div className="">
-                    <img className="" src="/assets/images/GariConnect/image4.png" alt="logo" />
-                    <div className="flex flex-row items-center justify-center space-x-12">
-                        <img src="/assets/images/icons/carbrand4.svg" alt="logo" />
-                        <Typography className="">Honda</Typography>
-                    </div>
-                </div>
-
-                <div className="">
+                <div className="space-y-28">
                     <img className="" src="/assets/images/GariConnect/image1.png" alt="logo" />
-                    <div className="flex flex-row items-center justify-center space-x-12">
-                        <img src="/assets/images/icons/carbrand1.svg" alt="logo" />
-                        <Typography className="">Toyota</Typography>
-                    </div>
-                </div>
-
-                <div className="">
-                    <img className="" src="/assets/images/GariConnect/image2.png" alt="logo" />
-                    <div className="flex flex-row items-center justify-center space-x-12">
+                    <div className="flex flex-row items-center space-x-12 ml-52">
                         <img src="/assets/images/icons/carbrand2.svg" alt="logo" />
-                        <Typography className="">Hyundai</Typography>
+                        <Typography className="text-24 font-medium">Hyundai</Typography>
                     </div>
                 </div>
 
-                <div className="">
-                    <img className="" src="/assets/images/GariConnect/image3.png" alt="logo" />
-                    <div className="flex flex-row items-center justify-center space-x-12">
+                <div className="space-y-28">
+                    <img className="" src="/assets/images/GariConnect/image1.png" alt="logo" />
+                    <div className="flex flex-row items-center space-x-12 ml-52">
                         <img src="/assets/images/icons/carbrand3.svg" alt="logo" />
-                        <Typography className="">Nissan</Typography>
+                        <Typography className="text-24 font-medium">Nissan</Typography>
                     </div>
                 </div>
 
-                <div className="">
-                    <img className="" src="/assets/images/GariConnect/image4.png" alt="logo" />
-                    <div className="flex flex-row items-center justify-center space-x-12">
+                <div className="space-y-28">
+                    <img className="" src="/assets/images/GariConnect/image1.png" alt="logo" />
+                    <div className="flex flex-row items-center space-x-12 ml-52">
                         <img src="/assets/images/icons/carbrand4.svg" alt="logo" />
-                        <Typography className="">Honda</Typography>
+                        <Typography className="text-24 font-medium">Honda</Typography>
+                    </div>
+                </div>
+
+                <div className="space-y-28">
+                    <img className="" src="/assets/images/GariConnect/image1.png" alt="logo" />
+                    <div className="flex flex-row items-center space-x-12 ml-52">
+                        <img src="/assets/images/icons/carbrand1.svg" alt="logo" />
+                        <Typography className="text-24 font-medium">Toyota</Typography>
+                    </div>
+                </div>
+
+                <div className="space-y-28">
+                    <img className="" src="/assets/images/GariConnect/image1.png" alt="logo" />
+                    <div className="flex flex-row items-center space-x-12 ml-52">
+                        <img src="/assets/images/icons/carbrand2.svg" alt="logo" />
+                        <Typography className="text-24 font-medium">Hyundai</Typography>
+                    </div>
+                </div>
+
+                <div className="space-y-28">
+                    <img className="" src="/assets/images/GariConnect/image1.png" alt="logo" />
+                    <div className="flex flex-row items-center space-x-12 ml-52">
+                        <img src="/assets/images/icons/carbrand3.svg" alt="logo" />
+                        <Typography className="text-24 font-medium">Nissan</Typography>
+                    </div>
+                </div>
+
+                <div className="space-y-28">
+                    <img className="" src="/assets/images/GariConnect/image1.png" alt="logo" />
+                    <div className="flex flex-row items-center space-x-12 ml-52">
+                        <img src="/assets/images/icons/carbrand4.svg" alt="logo" />
+                        <Typography className="text-24 font-medium">Honda</Typography>
                     </div>
                 </div>
             </Carousel>

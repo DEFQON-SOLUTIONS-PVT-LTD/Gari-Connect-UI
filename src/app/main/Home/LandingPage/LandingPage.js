@@ -24,8 +24,8 @@ function LandingPage() {
 
       </div>
 
-      <div className="a sm:ml-76 ml-36">
-        <div className="sm:flex justify-between">
+      <div className="a">
+        <div className="sm:flex justify-between  sm:ml-76 ml-36">
           <div>
             <h1 style={{ fontSize: "64px", fontWeight: "600", color: "#000000" }}>
               Easy savari,<br></br>manzil asaan.
@@ -45,7 +45,7 @@ function LandingPage() {
         <div className="flex justify-center">
           <SearchBar />
         </div>
-        <div className="sm:flex" style={{ marginTop: "200px" }}>
+        <div className="sm:flex sm:ml-76 ml-36" style={{ marginTop: "200px" }}>
           <img
             width="700"
             height="600px"
@@ -111,17 +111,18 @@ function LandingPage() {
           </div>
         </div>
 
-        <div className="h-xs space-y-80">
-          <div className="space-y-12">
+        <div className="h-sm space-y-80 my-96" style={{ backgroundColor: 'rgba(233, 235, 239, 0.5)' }}>
+          <div className="space-y-12 pt-60">
             <Typography className="text-36 font-medium text-center">Browse by make</Typography>
             <Typography className="text-16 text-center" color="text.secondary">Pick a makel from our variety and make your savari, your choice.</Typography>
           </div>
 
-          <CarCarousel />
+          <div className="ml-40">
+            <CarCarousel />
+          </div>
         </div>
 
-        <div style={{ marginTop: "200px" }}></div>
-        <div className="sm:flex flex-row justify-between">
+        <div className="sm:flex flex-row sm:ml-76 ml-36 justify-between">
           <div style={{ marginTop: "100px" }}>
             <h1 style={{ fontSize: "42px", fontWeight: "600" }}>
               Your Safety drive us
@@ -137,7 +138,7 @@ function LandingPage() {
               Are not underlings are other nations, caught with our selves
               <br></br> in the net os life and time, felloew prisoner.
             </Typography>
-            <div className="sm:flex mt-72">
+            <div className="sm:flex sm:ml-76 ml-36 mt-72">
               <Button
                 variant="contained"
                 style={{
@@ -487,7 +488,7 @@ function LandingPage() {
             <ArrowForwardIcon fontSize="large" className="arrow" />
           </IconButton>
         </div>
-        <div className="sm:flex" style={{ marginTop: "50px" }}>
+        <div className="sm:flex sm:ml-76 ml-36" style={{ marginTop: "50px" }}>
           <div>
             <img src="assets/images/GariConnect/c11.png" alt="logo" />
           </div>
@@ -534,7 +535,7 @@ function LandingPage() {
           <p>car market that suit your mood and budget.</p>
         </div>
 
-        <div>
+        <div className="sm:ml-76 ml-36">
           <h1
             className="mt-96 text-4xl font-semibold"
             style={{
