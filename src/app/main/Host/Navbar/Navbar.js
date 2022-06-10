@@ -18,14 +18,9 @@ import Box from "@mui/material/Box";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 
-
-
-
 export default function Navbar() {
-
   const [value, setValue] = React.useState(["20,May", "21,April"]);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -71,7 +66,10 @@ export default function Navbar() {
           }
           id="example-navbar-danger"
         >
-          <ul className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20" style={{ marginLeft: "10%" }}>
+          <ul
+            className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20"
+            style={{ marginLeft: "10%" }}
+          >
             <div className=" border rounded-full w-auto md:w-md">
               <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 h-full w-full">
                 <div className="flex items-center">
@@ -111,9 +109,7 @@ export default function Navbar() {
                     renderInput={(startProps, endProps) => (
                       <React.Fragment>
                         <div className="w-2xl ml-10">
-                          <Box
-                            sx={{ display: "flex", alignItems: "flex-end" }}
-                          >
+                          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                             <Divider
                               orientation="vertical"
                               className="h-36 md:visible invisible"
@@ -142,9 +138,7 @@ export default function Navbar() {
                           </Box>
                         </div>
                         <div className="w-2xl">
-                          <Box
-                            sx={{ display: "flex", alignItems: "flex-end" }}
-                          >
+                          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                             <Divider
                               orientation="vertical"
                               className="h-36"
@@ -194,7 +188,7 @@ export default function Navbar() {
                   Become a host
                 </Typography>
                 <IconButton
-                onClick={viewClick}
+                  onClick={viewClick}
                   aria-label="delete"
                   size="large"
                   style={{ backgroundColor: "#F0F1F4" }}
@@ -202,29 +196,70 @@ export default function Navbar() {
                   <PersonOutlineOutlinedIcon fontSize="inherit" />
                 </IconButton>
                 <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
-                }}
-              >
-                <MenuItem onClick={viewClose}>How it will work</MenuItem>
-                <MenuItem onClick={viewClose}>Company</MenuItem>
-                <MenuItem onClick={viewClose}>Insurance & protection</MenuItem>
-                <MenuItem onClick={viewClose}>Resources</MenuItem>
-                <MenuItem onClick={viewClose} style={{color:"#D22A8F",border:"1px solid #F2F4F7"}}>Become a host</MenuItem>
-                <MenuItem onClick={viewClose}>Sign up</MenuItem>
-                <MenuItem onClick={viewClose}>Login</MenuItem>
-              </Menu>
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    How it will work
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    Company
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    Insurance & protection
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    Resources
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#D22A8F", border: "1px solid #F2F4F7" }}
+                  >
+                    Become a host
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    Sign up
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    Login
+                  </MenuItem>
+                </Menu>
               </div>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
   );
 }
 const top100Films = [
@@ -354,4 +389,3 @@ const top100Films = [
   { title: "3 Idiots", year: 2009 },
   { title: "Monty Python and the Holy Grail", year: 1975 },
 ];
-
