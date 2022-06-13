@@ -6,8 +6,17 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ViewButton from "../sharedComponents/ViewButton";
-import Drawer from "../sharedComponents/Drawer";
+// import Drawer from "../sharedComponents/Drawer";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
+import Star from "../sharedComponents/Star";
+import Withdriver from "../sharedComponents/Withdriver";
 
+function valuetext(value) {
+  return `${value}°C`;
+}
 const Navbarfilters = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -17,6 +26,33 @@ const Navbarfilters = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const [price, setPrice] = React.useState(false);
+
+  const priceClick = () => {
+    setPrice((prev) => !prev);
+  };
+
+  const priceClickAway = () => {
+    setPrice(false);
+  };
+  const [value, setValue] = React.useState([20, 37]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const styles = {
+    position: "absolute",
+    top: 28,
+    right: 0,
+    left: 0,
+    zIndex: 1,
+    p: 1,
+    bgcolor: "background.paper",
+    width: 382,
+    height: 158,
+  };
+
   return (
     <>
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-20 shadow-lg bg-white mb-3 md:flex-row flex-col ">
@@ -59,24 +95,37 @@ const Navbarfilters = () => {
               />
             )}
           />
-          <Autocomplete
-            popupIcon={<KeyboardArrowDownIcon />}
-            disablePortal
-            id="combo-box-demo"
-            options={top100Films}
-            sx={{ width: 155 }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Price"
-                sx={{
-                  "& fieldset": {
-                    borderRadius: "8px",
-                  },
+          <ClickAwayListener onClickAway={priceClickAway}>
+            <Box sx={{ position: "relative" }}>
+              <Button
+                className="text-xs"
+                style={{
+                  border: "1px solid #D0D5DD",
+                  height: "52px",
+                  width: "128px",
+                  borderRadius: "8px",
+                  color: "#667085",
                 }}
-              />
-            )}
-          />
+                type="button"
+                onClick={priceClick}
+                endIcon={<KeyboardArrowDownIcon />}
+              >
+                Price
+              </Button>
+              {price ? (
+                <Box className="mt-28" sx={styles}>
+                  <Slider
+                  className="mt-60"
+                    getAriaLabel={() => "Temperature range"}
+                    value={value}
+                    onChange={handleChange}
+                    valueLabelDisplay="auto"
+                    getAriaValueText={valuetext}
+                  />
+                </Box>
+              ) : null}
+            </Box>
+          </ClickAwayListener>
           <Autocomplete
             popupIcon={<KeyboardArrowDownIcon />}
             disablePortal
@@ -95,25 +144,19 @@ const Navbarfilters = () => {
               />
             )}
           />
-          <Autocomplete
-            popupIcon={<KeyboardArrowDownIcon />}
-            disablePortal
-            id="combo-box-demo"
-            options={top100Films}
-            sx={{ width: 155 }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Ratings"
-                sx={{
-                  "& fieldset": {
-                    borderRadius: "8px",
-                  },
-                }}
-              />
-            )}
-          />
-        <Drawer/>
+         <Star />
+         <Withdriver/>
+          {/* <Drawer/> */}
+          <Button
+            className="w-96 h-52"
+            style={{
+              backgroundColor: "#D22A8F",
+              borderRadius: "8px",
+              color: "#FFFFFF",
+            }}
+          >
+            Search
+          </Button>
 
           <div>
             <Button

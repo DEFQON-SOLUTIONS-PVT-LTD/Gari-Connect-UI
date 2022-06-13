@@ -62,10 +62,19 @@ export default function TemporaryDrawer() {
           </Typography> 
         </AccordionSummary>
         <AccordionDetails>
-           <div className='flex flex-col justify-start'>
+           <div>
+             <div className='flex'>
       <Checkbox {...label}  />
+      <Typography style={{color:"#667085"}} className='font-normal text-lg'>2</Typography>
+      </div>
+      <div className='flex'>
       <Checkbox {...label} />
+      <Typography style={{color:"#667085"}} className='font-normal text-lg'>3</Typography>
+      </div>
+      </div>
+      <div className='flex'>
       <Checkbox {...label}  />
+      <Typography style={{color:"#667085"}} className='font-normal text-lg'>4</Typography>
     </div>
         </AccordionDetails>
       </Accordion>

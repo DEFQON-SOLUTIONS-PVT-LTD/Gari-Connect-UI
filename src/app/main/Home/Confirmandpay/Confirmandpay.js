@@ -407,7 +407,7 @@ export default function Confirmandpay() {
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <DatePicker
                             inputFormat="dd/MM/yyy"
-                            disableOpenPicker={true}
+                            // disableOpenPicker={true}
                             value={value}
                             onChange={(newValue) => {
                               setValue(newValue);
