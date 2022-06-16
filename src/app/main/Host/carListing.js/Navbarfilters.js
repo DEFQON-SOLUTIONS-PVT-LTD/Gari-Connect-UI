@@ -115,7 +115,7 @@ const Navbarfilters = () => {
               {price ? (
                 <Box className="mt-28" sx={styles}>
                   <Slider
-                  className="mt-60"
+                    className="mt-60"
                     getAriaLabel={() => "Temperature range"}
                     value={value}
                     onChange={handleChange}
@@ -144,8 +144,8 @@ const Navbarfilters = () => {
               />
             )}
           />
-         <Star />
-         <Withdriver/>
+          <Star />
+          <Withdriver />
           {/* <Drawer/> */}
           <Button
             className="w-96 h-52"

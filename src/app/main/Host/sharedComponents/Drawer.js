@@ -62,6 +62,7 @@ export default function TemporaryDrawer() {
           </Typography> 
         </AccordionSummary>
         <AccordionDetails>
+<<<<<<< HEAD
            <div>
              <div className='flex'>
       <Checkbox {...label}  />
@@ -75,6 +76,12 @@ export default function TemporaryDrawer() {
       <div className='flex'>
       <Checkbox {...label}  />
       <Typography style={{color:"#667085"}} className='font-normal text-lg'>4</Typography>
+=======
+           <div className='flex flex-col justify-start'>
+      <Checkbox {...label}  />
+      <Checkbox {...label} />
+      <Checkbox {...label}  />
+>>>>>>> 8b57caa (drawer)
     </div>
         </AccordionDetails>
       </Accordion>
