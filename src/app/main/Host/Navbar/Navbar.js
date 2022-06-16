@@ -1,13 +1,9 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Link } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
-import SettingsIcon from "@mui/icons-material/Settings";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import Divider from "@mui/material/Divider";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
@@ -15,32 +11,30 @@ import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
-import Navbarfilters from "../carListing.js/Navbarfilters";
-import CarDetailsCard from "../carListing.js/CarDetailsCard";
-import Footer from "app/main/Home/Footer/Footer";
-
 import { DateRangePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { LocalizationProvider } from "@mui/lab";
 import Box from "@mui/material/Box";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import InputAdornment from "@mui/material/InputAdornment";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
-
 
 export default function Navbar() {
-
   const [value, setValue] = React.useState(["20,May", "21,April"]);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const [view, setView] = React.useState(null);
+  const viewOpen = Boolean(anchorEl);
+  const viewClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const viewClose = () => {
     setAnchorEl(null);
   };
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -72,7 +66,10 @@ export default function Navbar() {
           }
           id="example-navbar-danger"
         >
-          <ul className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20" style={{ marginLeft: "10%" }}>
+          <ul
+            className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20"
+            style={{ marginLeft: "10%" }}
+          >
             <div className=" border rounded-full w-auto md:w-md">
               <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 h-full w-full">
                 <div className="flex items-center">
@@ -92,7 +89,6 @@ export default function Navbar() {
                           variant="standard"
                           InputProps={{
                             ...params.InputProps,
-
                             disableUnderline: true,
                             type: "search",
                           }}
@@ -113,16 +109,13 @@ export default function Navbar() {
                     renderInput={(startProps, endProps) => (
                       <React.Fragment>
                         <div className="w-2xl ml-10">
-                          <Box
-                            sx={{ display: "flex", alignItems: "flex-end" }}
-                          >
+                          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                             <Divider
                               orientation="vertical"
                               className="h-36 md:visible invisible"
                               sx={{ color: "action.active", mr: 1, my: 0.5 }}
                               variant="middle"
                             />
-
                             <TextField
                               {...startProps}
                               variant="standard"
@@ -144,18 +137,14 @@ export default function Navbar() {
                             />
                           </Box>
                         </div>
-
                         <div className="w-2xl">
-                          <Box
-                            sx={{ display: "flex", alignItems: "flex-end" }}
-                          >
+                          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                             <Divider
                               orientation="vertical"
                               className="h-36"
                               sx={{ color: "action.active", mr: 1, my: 0.5 }}
                               variant="middle"
                             />
-
                             <TextField
                               {...endProps}
                               variant="standard"
@@ -198,21 +187,79 @@ export default function Navbar() {
                 <Typography className="font-600 text-14 pr-20 ">
                   Become a host
                 </Typography>
-
                 <IconButton
+                  onClick={viewClick}
                   aria-label="delete"
                   size="large"
                   style={{ backgroundColor: "#F0F1F4" }}
                 >
                   <PersonOutlineOutlinedIcon fontSize="inherit" />
                 </IconButton>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    How it will work
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    Company
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    Insurance & protection
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    Resources
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#D22A8F", border: "1px solid #F2F4F7" }}
+                  >
+                    Become a host
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    Sign up
+                  </MenuItem>
+                  <MenuItem
+                    onClick={viewClose}
+                    className="font-normal text-sm"
+                    style={{ color: "#667085" }}
+                  >
+                    Login
+                  </MenuItem>
+                </Menu>
               </div>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
   );
 }
 const top100Films = [
@@ -342,4 +389,3 @@ const top100Films = [
   { title: "3 Idiots", year: 2009 },
   { title: "Monty Python and the Holy Grail", year: 1975 },
 ];
-

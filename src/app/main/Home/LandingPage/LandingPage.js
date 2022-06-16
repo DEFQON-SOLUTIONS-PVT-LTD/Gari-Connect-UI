@@ -12,6 +12,7 @@ import Rating from "@mui/material/Rating";
 import IconButton from "@mui/material/IconButton";
 import Footer from "../Footer/Footer";
 import SearchBar from "../../Host/sharedComponents/SearchBar";
+import CarCarousel from '../carousel/CarCarousel';
 
 
 function LandingPage() {
@@ -23,8 +24,8 @@ function LandingPage() {
 
       </div>
 
-      <div className="a sm:ml-76 ml-36">
-        <div className="sm:flex justify-between">
+      <div className="a">
+        <div className="sm:flex justify-between  sm:ml-76 ml-36">
           <div>
             <h1 style={{ fontSize: "64px", fontWeight: "600", color: "#000000" }}>
               Easy savari,<br></br>manzil asaan.
@@ -42,9 +43,9 @@ function LandingPage() {
 
         </div>
         <div className="flex justify-center">
-        <SearchBar/>
+          <SearchBar />
         </div>
-        <div className="sm:flex" style={{ marginTop: "200px" }}>
+        <div className="sm:flex sm:ml-76 ml-36" style={{ marginTop: "200px" }}>
           <img
             width="700"
             height="600px"
@@ -110,19 +111,18 @@ function LandingPage() {
           </div>
         </div>
         <Typography
-          className="text-36px font-medium"
+          className="text-36px font-medium text-center"
           variant="h3"
-          style={{ marginTop: "120px" }}
+          style={{ marginTop: "174px" }}
         >
           Browse by make
         </Typography>
         <Typography
-          className="text-5 font-medium"
+          className="text-5 font-medium text-center"
           variant="h6"
           style={{ marginTop: "10px", color: "#000000", opacity: "0.5" }}
         >
-          We've got option to get you where you are going.Choose a<br></br>car
-          make that suits your mood and budget.
+          Pick a makel from our variety and make your savari, your chices.
         </Typography>
         <div style={{ marginTop: "200px" }}></div>
         <div className="sm:flex flex-row justify-between">
@@ -141,7 +141,7 @@ function LandingPage() {
               Are not underlings are other nations, caught with our selves
               <br></br> in the net os life and time, felloew prisoner.
             </Typography>
-            <div className="sm:flex mt-72">
+            <div className="sm:flex sm:ml-76 ml-36 mt-72">
               <Button
                 variant="contained"
                 style={{
@@ -481,7 +481,7 @@ function LandingPage() {
           </Card>
         </div>
         <div className="flex justify-center mt-52">
-        <SearchBar/>
+          <SearchBar />
         </div>
         <div style={{ marginLeft: "50%", marginTop: "100px" }}>
           <IconButton>
@@ -491,7 +491,7 @@ function LandingPage() {
             <ArrowForwardIcon fontSize="large" className="arrow" />
           </IconButton>
         </div>
-        <div className="sm:flex" style={{ marginTop: "50px" }}>
+        <div className="sm:flex sm:ml-76 ml-36" style={{ marginTop: "50px" }}>
           <div>
             <img src="assets/images/GariConnect/c11.png" alt="logo" />
           </div>
@@ -537,8 +537,8 @@ function LandingPage() {
           <p>We've got option to get where you are gooing.Choose a</p>
           <p>car market that suit your mood and budget.</p>
         </div>
-       
-        <div>
+
+        <div className="sm:ml-76 ml-36">
           <h1
             className="mt-96 text-4xl font-semibold"
             style={{

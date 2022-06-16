@@ -103,10 +103,6 @@ export default function Confirmandpay() {
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
-  const [selectedValue, setSelectedValue] = React.useState("a");
-  const radioChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -238,7 +234,7 @@ export default function Confirmandpay() {
               </div>
               <div className="mt-28">
                 <Card
-                  className="shadow-none rounded-md border mb-24 sm:w-8/12 w-full"
+                  className="shadow-none rounded-md border mb-24 sm:w-8/12 w-10/12"
                   sx={{ minHeight: 133 }}
                 >
                   <div className="border-b">
@@ -411,7 +407,7 @@ export default function Confirmandpay() {
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <DatePicker
                             inputFormat="dd/MM/yyy"
-                            disableOpenPicker={true}
+                            // disableOpenPicker={true}
                             value={value}
                             onChange={(newValue) => {
                               setValue(newValue);
@@ -471,7 +467,7 @@ export default function Confirmandpay() {
             <div className="col-span-1" style={{ marginRight: "25%" }}>
               <Card
                 className="shadow-none rounded-md border ml-auto"
-                sx={{ maxWidth: "533px", minHeight: "544px" }}
+                sx={{ maxWidth: "533px", minHeight: "510px" }}
               >
                 <CardContent>
                   <div className="flex flex-row">
@@ -692,9 +688,9 @@ export default function Confirmandpay() {
                                         edge="end"
                                       >
                                         {values.showPassword ? (
-                                          <VisibilityOff />
-                                        ) : (
                                           <Visibility />
+                                        ) : (
+                                          <VisibilityOff />
                                         )}
                                       </IconButton>
                                     </InputAdornment>

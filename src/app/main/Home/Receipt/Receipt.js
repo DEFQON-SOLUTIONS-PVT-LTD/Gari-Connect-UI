@@ -41,7 +41,7 @@ function Receipt() {
           style={{
             marginTop: "150px",
             width: "524px",
-            height: "250px",
+            height: "auto",
             border: "1px solid rgba(195, 203, 205, 0.42)",
           }}
         >
@@ -88,7 +88,7 @@ function Receipt() {
           © 2022 GariConnect. All rights reserved.
         </Typography>
       </div>
-      <div className="mt-96">
+      <div className="mt-160">
           <Footer />
         </div>  
     </div>
