@@ -110,19 +110,22 @@ function LandingPage() {
             </Button>
           </div>
         </div>
-
-        <div className="h-sm space-y-80 my-96" style={{ backgroundColor: 'rgba(233, 235, 239, 0.5)' }}>
-          <div className="space-y-12 pt-60">
-            <Typography className="text-36 font-medium text-center">Browse by make</Typography>
-            <Typography className="text-16 text-center" color="text.secondary">Pick a makel from our variety and make your savari, your choice.</Typography>
-          </div>
-
-          <div className="ml-40">
-            <CarCarousel />
-          </div>
-        </div>
-
-        <div className="sm:flex flex-row sm:ml-76 ml-36 justify-between">
+        <Typography
+          className="text-36px font-medium text-center"
+          variant="h3"
+          style={{ marginTop: "174px" }}
+        >
+          Browse by make
+        </Typography>
+        <Typography
+          className="text-5 font-medium text-center"
+          variant="h6"
+          style={{ marginTop: "10px", color: "#000000", opacity: "0.5" }}
+        >
+          Pick a makel from our variety and make your savari, your chices.
+        </Typography>
+        <div style={{ marginTop: "200px" }}></div>
+        <div className="sm:flex flex-row justify-between">
           <div style={{ marginTop: "100px" }}>
             <h1 style={{ fontSize: "42px", fontWeight: "600" }}>
               Your Safety drive us

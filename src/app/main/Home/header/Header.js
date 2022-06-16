@@ -1,7 +1,4 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import "styles/garistyle.css";
@@ -12,7 +9,9 @@ import { Link } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 
-const preventDefault = (event) => event.preventDefault();
+
+
+
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
