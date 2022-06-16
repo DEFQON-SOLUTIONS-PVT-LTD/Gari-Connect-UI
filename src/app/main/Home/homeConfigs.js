@@ -9,7 +9,7 @@ import CreatepasswordConfig from "./Createpassword/CreatepasswordConfig";
 import PersonaldetailsConfig from "./Personaldetails/PersonaldetailsConfig";
 import CardetailConfig from "./Cardetail/CardetailConfig";
 import CarlocationConfig from "./Carlocation/CarlocationConfig";
-import featuresConfig from "./features/featuresConfig";
+import FeaturesConfig from "./features/FeaturesConfig";
 import availabilityConfig from "./availability/availabilityConfig";
 import imageConfig from "./image/imageConfig";
 import priceConfig from "./price/priceConfig";
@@ -36,7 +36,7 @@ const homeConfigs = [
     PersonaldetailsConfig,
     CardetailConfig,
     CarlocationConfig,
-    featuresConfig,
+    FeaturesConfig,
     availabilityConfig,
     imageConfig,
     priceConfig,
