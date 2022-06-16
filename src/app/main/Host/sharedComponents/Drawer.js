@@ -39,57 +39,50 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(anchor, true)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-    <div className='mt-28 ml-32'>
-     <Typography className='font-semibold text-xl ' >Filters</Typography>
-     </div>
-     <Divider className='mt-28'/>
-     <div className='mt-20 ml-32'>
-     <Typography className='font-normal text-lg'style={{color:"#667085"}} >Transmission</Typography> 
-     </div>
-     <Divider className='mt-20'/>
-     <div className='mt-20 ml-32'>
-     <Typography className='font-normal text-lg'style={{color:"#667085"}} >Features</Typography> 
-     </div>
-     <Divider className='mt-20'/>
-     <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+      <div className='mt-28 ml-32'>
+        <Typography className='font-semibold text-xl ' >Filters</Typography>
+      </div>
+      <Divider className='mt-28' />
+      <div className='mt-20 ml-32'>
+        <Typography className='font-normal text-lg' style={{ color: "#667085" }} >Transmission</Typography>
+      </div>
+      <Divider className='mt-20' />
+      <div className='mt-20 ml-32'>
+        <Typography className='font-normal text-lg' style={{ color: "#667085" }} >Features</Typography>
+      </div>
+      <Divider className='mt-20' />
+      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography className='font-normal text-lg'style={{color:"#667085"}}>
-           Seats
-          </Typography> 
+          <Typography className='font-normal text-lg' style={{ color: "#667085" }}>
+            Seats
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
-<<<<<<< HEAD
-           <div>
-             <div className='flex'>
-      <Checkbox {...label}  />
-      <Typography style={{color:"#667085"}} className='font-normal text-lg'>2</Typography>
-      </div>
-      <div className='flex'>
-      <Checkbox {...label} />
-      <Typography style={{color:"#667085"}} className='font-normal text-lg'>3</Typography>
-      </div>
-      </div>
-      <div className='flex'>
-      <Checkbox {...label}  />
-      <Typography style={{color:"#667085"}} className='font-normal text-lg'>4</Typography>
-=======
-           <div className='flex flex-col justify-start'>
-      <Checkbox {...label}  />
-      <Checkbox {...label} />
-      <Checkbox {...label}  />
->>>>>>> 8b57caa (drawer)
-    </div>
+          <div>
+            <div className='flex'>
+              <Checkbox {...label} />
+              <Typography style={{ color: "#667085" }} className='font-normal text-lg'>2</Typography>
+            </div>
+            <div className='flex'>
+              <Checkbox {...label} />
+              <Typography style={{ color: "#667085" }} className='font-normal text-lg'>3</Typography>
+            </div>
+          </div>
+          <div className='flex'>
+            <Checkbox {...label} />
+            <Typography style={{ color: "#667085" }} className='font-normal text-lg'>4</Typography>
+          </div>
         </AccordionDetails>
       </Accordion>
-     <div className='mt-20 ml-32'>
-     <Typography className='font-normal text-lg'style={{color:"#667085"}} >Green Vehicles</Typography> 
-     </div>
-     <Divider className='mt-20'/>
-     
+      <div className='mt-20 ml-32'>
+        <Typography className='font-normal text-lg' style={{ color: "#667085" }} >Green Vehicles</Typography>
+      </div>
+      <Divider className='mt-20' />
+
     </Box>
   );
 
@@ -104,7 +97,7 @@ export default function TemporaryDrawer() {
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
-            PaperProps={{ style: { height: "auto",marginTop:"5%",width:"30%" } }}
+            PaperProps={{ style: { height: "auto", marginTop: "5%", width: "30%" } }}
           >
             {list(anchor)}
           </Drawer>
