@@ -35,8 +35,8 @@ export default function Carddetail() {
         <div className="sm:flex justify-center mt-24">
           <div>
             <img
-              width="540"
-              src="assets/images/logos/Carddetail1.svg"
+              width="100%"
+              src="assets/images/logos/Carddetail5.svg"
               alt="logo"
             />
           </div>
