@@ -64,8 +64,6 @@ export default function Hostheader() {
               
               <li className="nav-item">
                 <Button
-                component={Link}
-                to="/Cardetail"
                   className="headbutton"
                   style={{
                     background: "#C3CBCD",

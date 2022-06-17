@@ -134,14 +134,10 @@ const top100Films = [
 ];
 
 const CarDetails = () => {
-    const [age, setAge] = React.useState("");
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
 
     return (
         <div>
+           
             <div className="flex space-x-10 mt-20">
                 <FormControl fullWidth>
                     <Typography

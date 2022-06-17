@@ -22,6 +22,11 @@ import AddPrice from "../sharedComponents/carListing/AddPrice";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { CardActions } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 function getSteps() {
   return [
@@ -38,19 +43,103 @@ function getSteps() {
 function getStepContent(steps) {
   switch (steps) {
     case 0:
-      return <Cardetail />;
+      return (
+        <div>
+          <Typography
+            className="font-semibold text-lg"
+            style={{
+              color: "#101828",
+            }}
+          >
+            Car details
+          </Typography>
+          <Cardetail />
+        </div>
+      );
     case 1:
-      return <CarLocation />;
+      return (
+        <div>
+          <Typography
+            className="font-semibold text-lg"
+            style={{
+              color: "#101828",
+            }}
+          >
+            Car location
+          </Typography>
+          <CarLocation />
+        </div>
+      );
     case 2:
-      return <Features />;
+      return (
+        <div>
+          <Typography
+            className="font-semibold text-lg"
+            style={{
+              color: "#101828",
+            }}
+          >
+            Features
+          </Typography>{" "}
+          <Features />
+        </div>
+      );
     case 3:
-      return <Guidelines />;
+      return (
+        <div>
+          <Typography
+            className="font-semibold text-lg"
+            style={{
+              color: "#101828",
+            }}
+          >
+            Guidelines
+          </Typography>
+          <Guidelines />
+        </div>
+      );
     case 4:
-      return <Availability />;
+      return (
+        <div>
+          <Typography
+            className="font-semibold text-lg"
+            style={{
+              color: "#101828",
+            }}
+          >
+            Availability
+          </Typography>
+          <Availability />
+        </div>
+      );
     case 5:
-      return <AddImages />;
+      return (
+        <div>
+          <Typography
+            className="font-semibold text-lg"
+            style={{
+              color: "#101828",
+            }}
+          >
+            Add image
+          </Typography>
+          <AddImages />
+        </div>
+      );
     case 6:
-      return <AddPrice />;
+      return (
+        <div>
+          <Typography
+            className="font-semibold text-lg"
+            style={{
+              color: "#101828",
+            }}
+          >
+            Add price
+          </Typography>
+          <AddPrice />
+        </div>
+      );
   }
 }
 
@@ -147,6 +236,16 @@ export default function ListSteppers() {
 
   const steps = getSteps();
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
       <Hostheader />
@@ -170,7 +269,7 @@ export default function ListSteppers() {
       </div>
       <Stack sx={{ width: "100%" }}>
         <Stepper
-        className="mt-40"
+          className="mt-40 sm:w-full w-1/3"
           alternativeLabel
           activeStep={activeStep}
           connector={<ColorlibConnector />}
@@ -183,8 +282,6 @@ export default function ListSteppers() {
             </Step>
           ))}
         </Stepper>
-        {/* <Button onClick={handleNext} disabled={activeStep === 6}>Next</Button>
-      <Button onClick={handleBack} disabled={activeStep === 0}>Back</Button> */}
 
         <div>
           {activeStep === steps.length ? (
@@ -196,27 +293,93 @@ export default function ListSteppers() {
             <div>
               <div className="flex flex-row justify-center">
                 <Card
+                  className="w-4/6 px-5"
                   style={{
-                    className: "w-full px-5",
                     marginTop: "40px",
-                    width: "1001px",
                     border: "1px solid rgba(195, 203, 205, 0.42)",
                   }}
                 >
                   <CardContent>{getStepContent(activeStep)}</CardContent>
                   <div className="mt-36 flex mb-24 justify-end">
-                  <CardActions>
-                    <Button className="w-72 h-44 rounded-lg" style={{border:"1px solid #C3CBCD"}} disabled={activeStep === 0} onClick={handleBack}>
-                      Back
-                    </Button>
-                    <Button
-                      onClick={handleNext}
-                      className="w-72 h-44 rounded-lg"
-                      style={{color:"#FFFFFF",backgroundColor:"#D22A8F"}}
-                    >
-                      {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                    </Button>
-                  </CardActions>
+                    <CardActions>
+                      <Button
+                        className="w-72 h-44 rounded-lg"
+                        style={{ border: "1px solid #C3CBCD" }}
+                        disabled={activeStep === 0}
+                        onClick={handleBack}
+                      >
+                        Back
+                      </Button>
+                      <Button
+                        onClick={
+                          activeStep === steps.length - 1
+                            ? handleClickOpen
+                            : handleNext
+                        }
+                        className="w-72 h-44 rounded-lg"
+                        style={{ color: "#FFFFFF", backgroundColor: "#D22A8F" }}
+                      >
+                        Next
+                      </Button>
+                      <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                      >
+                        <DialogTitle>
+                          <div className="flex flex-row justify-center ">
+                            <img
+                              width="48"
+                              src="assets/images/logos/popup.svg"
+                              alt="logo"
+                            />
+                          </div>
+                        </DialogTitle>
+                        <DialogContent>
+                          <DialogContentText
+                            className="text-lg font-medium text-center"
+                            style={{ color: "#101828" }}
+                          >
+                            Car listed succesfully
+                          </DialogContentText>
+                          <Typography
+                            className="font-normal text-sm text-center"
+                            style={{ color: "#667085" }}
+                          >
+                            Your car is listed successfully, please wait
+                            <br></br> for approval, Thanks
+                          </Typography>
+                        </DialogContent>
+                        <DialogActions className="mb-24">
+                          <Button
+                            className="rounded-lg"
+                            onClick={handleClose}
+                            style={{
+                              width: "170px",
+                              height: "44px",
+                              border: "1px solid #D0D5DD",
+                              background: "#FFFFFF",
+                            }}
+                          >
+                            Go to dashboard
+                          </Button>
+                          <Button
+                            className="rounded-lg"
+                            onClick={handleClose}
+                            autoFocus
+                            style={{
+                              width: "170px",
+                              height: "44px",
+                              background: "#D22A8F",
+                              color: "#FFFFFF",
+                            }}
+                          >
+                            List another car
+                          </Button>
+                        </DialogActions>
+                      </Dialog>
+                    </CardActions>
                   </div>
                 </Card>
               </div>

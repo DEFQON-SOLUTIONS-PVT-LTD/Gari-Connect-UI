@@ -39,7 +39,7 @@ function forgetpassword() {
                   color: " #101828",
                 }}
               >
-                Forget password
+                Forgot password
               </h1>
               <p
                 style={{

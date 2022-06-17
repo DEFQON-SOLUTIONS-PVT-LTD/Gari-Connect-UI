@@ -1,40 +1,27 @@
-import React,{ useState }  from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import FormControl from "@mui/material/FormControl";
-import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import RecieptPaymentDetails from '../../Host/sharedComponents/RecieptPaymentDetails';
+import RecieptPaymentDetails from "../../Host/sharedComponents/RecieptPaymentDetails";
 import Footer from "app/main/Home/Footer/Footer";
 
 function Receipt() {
   const [showdetailsstatus, setstatus] = useState(false);
 
-
   const showdetails = () => {
-      setstatus(true);
-
-
-
-  }
+    setstatus(true);
+  };
   const childToParent = (childdata) => {
-      setstatus(childdata);
-  }
+    setstatus(childdata);
+  };
 
   return (
-    
     <div>
-      {showdetailsstatus &&
-                <RecieptPaymentDetails childToParent={childToParent} />
-
-
-            }
+      {showdetailsstatus && (
+        <RecieptPaymentDetails childToParent={childToParent} />
+      )}
       <Navbar />
       <div className="flex flex-row justify-center">
         <Card
@@ -61,12 +48,12 @@ function Receipt() {
                 style={{ color: "#667085" }}
               >
                 Your car is listed successfully, please wait for
-                <br/> approval, Thanks
+                <br /> approval, Thanks
               </Typography>
             </div>
             <div className="sm:mt-28 mt-16">
               <Button
-               onClick={showdetails}
+                onClick={showdetails}
                 style={{
                   backgroundColor: "rgba(210, 42, 143, 1)",
                   height: "44px",
@@ -89,8 +76,8 @@ function Receipt() {
         </Typography>
       </div>
       <div className="mt-160">
-          <Footer />
-        </div>  
+        <Footer />
+      </div>
     </div>
   );
 }
