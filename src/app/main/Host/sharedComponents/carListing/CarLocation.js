@@ -1,8 +1,6 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import GoogleMapReact from "google-map-react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -12,12 +10,6 @@ import TextField from "@mui/material/TextField";
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const CarLocation = () => {
-  const [age, setAge] = React.useState("");
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
   const defaultProps = {
     center: {
       lat: 31.5204,

@@ -35,8 +35,7 @@ export default function Carddetail() {
         <div className="sm:flex justify-center mt-24">
           <div>
             <img
-              width="100%"
-              src="assets/images/logos/Carddetail5.svg"
+              src="assets/images/logos/Carddetail1.svg"
               alt="logo"
             />
           </div>
@@ -49,7 +48,7 @@ export default function Carddetail() {
 
             <div className="relative">
               <img
-                width="235"
+                width="100%"
                 src="assets/images/logos/Carddetail5.svg"
                 alt="logo"
                 className="opacity-50"

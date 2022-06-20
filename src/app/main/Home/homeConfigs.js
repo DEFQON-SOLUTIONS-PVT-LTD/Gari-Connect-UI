@@ -7,13 +7,6 @@ import SignupConfig from "./Signup/SignupConfig";
 import VerifyaccountConfig from "./Verifyaccount/VerifyaccountConfig";
 import CreatepasswordConfig from "./Createpassword/CreatepasswordConfig";
 import PersonaldetailsConfig from "./Personaldetails/PersonaldetailsConfig";
-import CardetailConfig from "./Cardetail/CardetailConfig";
-import CarlocationConfig from "./Carlocation/CarlocationConfig";
-import featuresConfig from "./features/featuresConfig";
-import availabilityConfig from "./availability/availabilityConfig";
-import imageConfig from "./image/imageConfig";
-import priceConfig from "./price/priceConfig";
-import guidelineConfig from "./guideline/guidelineConfig";
 import OptionConfig from "./Option/OptionConfig";
 import AttachmentsConfig from "./Attachments/AttachmentsConfig";
 import PaymentConfig from "./Payment/PaymentConfig";
@@ -34,13 +27,6 @@ const homeConfigs = [
     VerifyaccountConfig,
     CreatepasswordConfig,
     PersonaldetailsConfig,
-    CardetailConfig,
-    CarlocationConfig,
-    featuresConfig,
-    availabilityConfig,
-    imageConfig,
-    priceConfig,
-    guidelineConfig,
     OptionConfig,
     AttachmentsConfig,
     PaymentConfig,
