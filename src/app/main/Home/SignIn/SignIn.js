@@ -13,6 +13,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
+import Divider from '@mui/material/Divider';
 
 function SignIn() {
   const [values, setValues] = React.useState({
@@ -231,9 +232,9 @@ function SignIn() {
                         edge="end"
                       >
                         {values.showPassword ? (
-                          <VisibilityOff />
-                        ) : (
                           <Visibility />
+                        ) : (
+                          <VisibilityOff />
                         )}
                       </IconButton>
                     </InputAdornment>
