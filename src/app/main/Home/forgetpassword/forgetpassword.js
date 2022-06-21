@@ -1,18 +1,14 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
 import Signupheader from "../Signupheader/Signupheader";
-import IconButton from '@mui/material/IconButton';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-  
+import IconButton from "@mui/material/IconButton";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 function forgetpassword() {
   return (
@@ -27,11 +23,16 @@ function forgetpassword() {
             border: "1px solid rgba(195, 203, 205, 0.42)",
           }}
         >
-             <div className="flex mt-20" >
-             <IconButton size="small" className="mb-40">
-        <ArrowBackIosNewIcon style={{color:"rgba(0, 0, 0, 1)"}} />
-      </IconButton>
-      <div className="text-center sm:ml-40 mr-28">
+          <div className="flex mt-20">
+            <IconButton
+              component={Link}
+              to="/Signin"
+              size="small"
+              className="mb-40"
+            >
+              <ArrowBackIosNewIcon style={{ color: "rgba(0, 0, 0, 1)" }} />
+            </IconButton>
+            <div className="text-center sm:ml-40 mr-28">
               <h1
                 style={{
                   fontSize: "24px",
@@ -50,11 +51,11 @@ function forgetpassword() {
               >
                 Enter your phone number to reset your password
               </p>
-              </div>
             </div>
-            <div className="w-full mt-20">
-              <hr/>
-            </div>
+          </div>
+          <div className="w-full mt-20">
+            <hr />
+          </div>
           <CardContent>
             <Typography
               style={{
@@ -68,7 +69,7 @@ function forgetpassword() {
             </Typography>
             <FormControl fullWidth variant="outlined">
               <OutlinedInput
-              type="number"
+                type="number"
                 className="rounded-lg mb-11"
                 placeholder="+92 | 3524584205"
                 style={{ marginTop: "6px", height: "44px" }}

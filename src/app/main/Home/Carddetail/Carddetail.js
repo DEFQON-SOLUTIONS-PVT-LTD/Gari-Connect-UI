@@ -16,7 +16,7 @@ import Navbar from "../Navbar/Navbar";
 import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
-import TripDateRange from '../../Host/sharedComponents/TripDateRange';
+import TripDateRange from "../../Host/sharedComponents/TripDateRange";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -35,16 +35,29 @@ export default function Carddetail() {
         <div className="sm:flex justify-center mt-24">
           <div>
             <img
+              style={{maxHeight:"95%"}}
               src="assets/images/logos/Carddetail1.svg"
               alt="logo"
             />
           </div>
           <div className="flex flex-col justify-center sm:ml-20 ml-0">
-            <img src="assets/images/logos/Carddetail2.svg" alt="logo" />
-            <img src="assets/images/logos/Carddetail4.svg" alt="logo" />
+            <img
+              width="100%"
+              src="assets/images/logos/Carddetail2.svg"
+              alt="logo"
+            />
+            <img
+              width="100%"
+              src="assets/images/logos/Carddetail4.svg"
+              alt="logo"
+            />
           </div>
-          <div className="flex flex-col justify-center sm:ml-20">
-            <img src="assets/images/logos/Carddetail3.svg" alt="logo" />
+          <div className="flex flex-col justify-center sm:ml-20 mb-20">
+            <img
+              width="100%"
+              src="assets/images/logos/Carddetail3.svg"
+              alt="logo"
+            />
 
             <div className="relative">
               <img
@@ -60,52 +73,56 @@ export default function Carddetail() {
           </div>
         </div>
         <div className="grid lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-2">
-          <div className="col-span-1 sm:ml-8 md:ml-96 lg:ml-320">
-            <div className="sm:flex sm:space-x-48 md:space-x-48">
-              <Typography className="font-normal text-2xl">
+          <div className="col-span-1 sm:ml-8 md:ml-96 lg:ml-288">
+            <div className="grid grid-cols-3 mt-28">
+              <Typography className="font-normal text-2xl col-span-2">
                 Toyota Corolla Altis-2020
               </Typography>
-              <Typography className="font-normal text-2xl">
+              <Typography className="font-normal text-2xl col-span-1">
                 PKR 5000
                 <b className="font-normal text-sm" style={{ color: "#667085" }}>
                   per day
                 </b>
               </Typography>
             </div>
-            <div className="sm:flex sm:space-x-224 md:space-x-256">
+            <div className="grid grid-cols-4 gap-16 mt-8">
               <Typography
-                className="font-normal text-sm"
+                className="font-normal text-sm col-span-3"
                 style={{ color: "#667085" }}
               >
                 Gulberg 3, Lahore
               </Typography>
               <Typography
-                className="font-normal text-sm"
+                className="font-normal text-sm col-span-1"
                 style={{ color: "#667085" }}
               >
                 est,total 15000*
               </Typography>
             </div>
-            <div className="sm:flex">
-              <Rating
-                name="simple-controlled"
-                value={value}
-                max={4}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-                size="medium"
-              />
-              <Typography className="text-sm font-normal ml-6">
-                <b>4.0</b>
-                <b
-                  className="text-sm font-normal ml-6"
-                  style={{ color: "#667085" }}
-                >
-                  (15 Trips)
-                </b>
-              </Typography>
-              <div className="sm:ml-136 md:ml-208">
+            <div className="grid lg:grid-cols-4 md:grid-cols-4 mt-12">
+              <div className="col-span-3">
+                <div className="flex">
+                  <Rating
+                    name="simple-controlled"
+                    value={value}
+                    max={4}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    size="medium"
+                  />
+                  <Typography className="text-sm font-normal ml-6">
+                    <b>4.0</b>
+                    <b
+                      className="text-sm font-normal ml-6"
+                      style={{ color: "#667085" }}
+                    >
+                      (15 Trips)
+                    </b>
+                  </Typography>
+                </div>
+              </div>
+              <div className="col-span-1">
                 <Checkbox
                   {...label}
                   icon={<FavoriteBorder />}
@@ -125,6 +142,34 @@ export default function Carddetail() {
                 </IconButton>
               </div>
             </div>
+            <div className="grid grid-cols-2">
+              <div className="col-span-1">
+                <div className="flex">
+                <img src="assets/images/logos/Petrol.svg" alt="logo" />
+                <Typography className="ml-10 text-xs font-medium">Petrol</Typography>
+                </div>
+                <div className="flex mt-24">
+                <img
+                  src="assets/images/logos/seats.svg"
+                  alt="logo"
+                />
+                <Typography className="ml-10 text-xs font-medium">4 Seats</Typography>
+                </div>
+              </div>
+              <div className="col-span-1">
+              <div className="flex">
+                <img src="assets/images/logos/Petrolgalon.svg" alt="logo" />
+                <Typography className="ml-10 text-xs font-medium">30 mpg</Typography>
+                </div>
+                <div className="flex mt-24">
+                <img
+                  src="assets/images/logos/Door.svg"
+                  alt="logo"
+                />
+                <Typography className="ml-10 text-xs font-medium">4 doors</Typography>
+                </div>
+              </div>
+            </div>
             <div>
               <hr />
               <div>
@@ -133,16 +178,11 @@ export default function Carddetail() {
                 </Typography>
                 <Typography style={{ color: "#667085" }}>
                   Extremely comfortable and sporty at the same time: You can go
-
-                  wrong with an AMG. You will not regret renting this amazing car.
-
-                  Great drive around the city and throught the coast. Extremely
-
-                  comfortable and sporty at the same time: You can go wrong with
-
-                  an AMG.You will not regret renting this amazing car.Great drive
-
-                  around the city and through the coast.
+                  wrong with an AMG. You will not regret renting this amazing
+                  car. Great drive around the city and throught the coast.
+                  Extremely comfortable and sporty at the same time: You can go
+                  wrong with an AMG.You will not regret renting this amazing
+                  car.Great drive around the city and through the coast.
                   <b style={{ color: "#D22A8F" }}>Read more</b>
                 </Typography>
               </div>
@@ -548,9 +588,7 @@ export default function Carddetail() {
           </div>
           <div className="col-span-1 sm:max-w-8/12 md:w-7/12 lg:w-5/12 sm:ml-160 ml-0">
             <div>
-              <Card
-                style={{ height: "450px" }}
-              >
+              <Card style={{ height: "auto" }}>
                 <Typography className="text-lg font-semibold ml-10 mt-10">
                   Book your car
                 </Typography>
@@ -666,7 +704,10 @@ export default function Carddetail() {
                       </div>
                     </div>
                     <div className="flex flex-row items-start ml-auto">
-                      <Typography className="text-12 mr-4" color="text.secondary">
+                      <Typography
+                        className="text-12 mr-4"
+                        color="text.secondary"
+                      >
                         Verified
                       </Typography>
                       <Checkbox
