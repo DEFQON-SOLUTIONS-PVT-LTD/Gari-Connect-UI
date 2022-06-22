@@ -1,18 +1,16 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import React, { useState } from "react";;
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import FormControl from "@mui/material/FormControl";
-import FilledInput from "@mui/material/FilledInput";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import { Link } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
+import OtpInput from "react-otp-input";
 
 function Verifyaccount() {
+  const [code, setCode] = useState("");
+
+  const handleChange = (code) => setCode(code);
   return (
     <div>
       <Signupheader />
@@ -42,29 +40,33 @@ function Verifyaccount() {
               Please enter 6 digit code send on your phone 034******59
             </p>
           </div>
-          <div className="w-full mt-20 ">
+          <div className="w-full mt-20">
             <hr />
           </div>
           <CardContent>
-            <div className="flex space-x-10">
-              <FormControl fullWidth variant="outlined">
-                <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
-              </FormControl>
-              <FormControl fullWidth variant="outlined">
-                <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
-              </FormControl>
-              <FormControl fullWidth variant="outlined">
-                <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
-              </FormControl>
-              <FormControl fullWidth variant="outlined">
-                <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
-              </FormControl>
-              <FormControl fullWidth variant="outlined">
-                <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
-              </FormControl>
-              <FormControl fullWidth variant="outlined">
-                <OutlinedInput className="rounded-lg sm:mt-24 mt-16 text-2xl font-medium sm:h-64 h-48 sm:w-64 w-48" />
-              </FormControl>
+            <div className="flex  justify-center space-x-10">
+              <OtpInput
+                value={code}
+                onChange={handleChange}
+                numInputs={6}
+                separator={<span style={{ width: "8px" }}></span>}
+                isInputNum={true}
+                shouldAutoFocus={true}
+                inputStyle={{
+                  border: "1px solid #D0D5DD",
+                  borderRadius: "8px",
+                  width: "66px",
+                  height: "66px",
+                  fontSize: "12px",
+                  color: "#000",
+                  fontWeight: "500",
+                  fontSize: "32px",
+                }}
+                focusStyle={{
+                  border: "1px solid black",
+                  outline: "none",
+                }}
+              />
             </div>
             <div className="sm:mt-28 mt-16">
               <Button

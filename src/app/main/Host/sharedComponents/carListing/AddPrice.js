@@ -71,8 +71,8 @@ function BpRadio(props) {
 }
 const AddPrice = () => {
   return (
-    <div className="flex">
-      <div>
+    <div className="grid lg:grid-cols-2  gap-x-68">
+      <div className="col-span-1">
         <div>
           <Typography
             style={{
@@ -227,7 +227,7 @@ const AddPrice = () => {
         </div>
       </div>
       <div
-      className="mt-128 ml-68"
+      className="mt-128 col-span-1"
         style={{
           height: "241px",
           width: "410px",

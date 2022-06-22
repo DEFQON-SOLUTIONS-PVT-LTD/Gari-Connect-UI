@@ -58,38 +58,58 @@ class JwtService extends FuseUtils.EventEmitter {
     });
   };
 
-  signInWithEmailAndPassword = (email, password) => {
+  signInWithEmailAndPassword = (phoneno, password) => {
     return new Promise((resolve, reject) => {
       axios
-        .get('/api/auth', {
-          data: {
-            email,
-            password,
-          },
+        .post('http://192.168.100.36:8080/api/auth/signin', {
+          phoneno,
+          password
         })
         .then((response) => {
-          if (response.data.user) {
-            this.setSession(response.data.access_token);
-            resolve(response.data.user);
+          if (response.data) {
+            var obj = {
+              role: (response.data.roleId == 1) ? 'admin' : response.data.roleId,
+              data: {
+                displayName: response.data.firstname,
+                email: response.data.email
+              }
+            }
+            this.setSession(response.accessToken);
+            resolve(obj);
           } else {
             reject(response.data.error);
           }
-        });
+        })
+        .catch(error => {
+          reject([
+            {
+              type: error.response.data.type,
+              message: error.response.data.message
+            },
+            {
+              type: error.response.data.type,
+              message: error.response.data.message
+            }
+          ]);
+        })
     });
   };
 
   signInWithToken = () => {
     return new Promise((resolve, reject) => {
       axios
-        .get('/api/auth/access-token', {
-          data: {
-            access_token: this.getAccessToken(),
-          },
-        })
+        .get('http://192.168.100.36:8080/api/auth/token' + this.getAccessToken())
         .then((response) => {
-          if (response.data.user) {
-            this.setSession(response.data.access_token);
-            resolve(response.data.user);
+          if (response) {
+            var obj = {
+              role: (response.data.roleId == 1) ? 'admin' : response.data.roleId,
+              data: {
+                displayName: response.data.firstname,
+                email: response.data.email
+              }
+            }
+            this.setSession(response.token);
+            resolve(obj);
           } else {
             this.logout();
             reject(new Error('Failed to login with token.'));

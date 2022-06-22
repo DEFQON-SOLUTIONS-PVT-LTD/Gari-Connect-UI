@@ -16,7 +16,14 @@ import Navbar from "../Navbar/Navbar";
 import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
-import TripDateRange from '../../Host/sharedComponents/TripDateRange';
+import TripDateRange from "../../Host/sharedComponents/TripDateRange";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import InputAdornment from "@mui/material/InputAdornment";
+import Dialog from "@mui/material/Dialog";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import OutlinedInput from "@mui/material/OutlinedInput";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -27,7 +34,30 @@ export default function Carddetail() {
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
+  const [open, setOpen] = React.useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const [values, setValues] = React.useState({
+    password: "",
+  });
+  const passwordChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+  const passwordClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+  const passwordMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   return (
     <div>
       <Navbar />
@@ -35,18 +65,30 @@ export default function Carddetail() {
         <div className="sm:flex justify-center mt-24">
           <div>
             <img
+              style={{maxHeight:"94%"}}
               src="assets/images/logos/Carddetail1.svg"
               alt="logo"
             />
           </div>
           <div className="flex flex-col justify-center sm:ml-20 ml-0">
-            <img src="assets/images/logos/Carddetail2.svg" alt="logo" />
-            <img src="assets/images/logos/Carddetail4.svg" alt="logo" />
+            <img
+              width="100%"
+              src="assets/images/logos/Carddetail2.svg"
+              alt="logo"
+            />
+            <img
+              width="100%"
+              src="assets/images/logos/Carddetail4.svg"
+              alt="logo"
+            />
           </div>
-          <div className="flex flex-col justify-center sm:ml-20">
-            <img src="assets/images/logos/Carddetail3.svg" alt="logo" />
-
-            <div className="relative">
+          <div className="flex flex-col justify-center sm:ml-20 mb-20">
+            <img
+              width="100%"
+              src="assets/images/logos/Carddetail3.svg"
+              alt="logo"
+            />
+             <div className="relative">
               <img
                 width="100%"
                 src="assets/images/logos/Carddetail5.svg"
@@ -60,52 +102,56 @@ export default function Carddetail() {
           </div>
         </div>
         <div className="grid lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-2">
-          <div className="col-span-1 sm:ml-8 md:ml-96 lg:ml-320">
-            <div className="sm:flex sm:space-x-48 md:space-x-48">
-              <Typography className="font-normal text-2xl">
+          <div className="col-span-1 sm:ml-8 md:ml-96 lg:ml-288">
+            <div className="grid grid-cols-3 mt-28">
+              <Typography className="font-normal text-2xl col-span-2">
                 Toyota Corolla Altis-2020
               </Typography>
-              <Typography className="font-normal text-2xl">
+              <Typography className="font-normal text-2xl col-span-1">
                 PKR 5000
                 <b className="font-normal text-sm" style={{ color: "#667085" }}>
                   per day
                 </b>
               </Typography>
             </div>
-            <div className="sm:flex sm:space-x-224 md:space-x-256">
+            <div className="grid grid-cols-4 gap-16 mt-8">
               <Typography
-                className="font-normal text-sm"
+                className="font-normal text-sm col-span-3"
                 style={{ color: "#667085" }}
               >
                 Gulberg 3, Lahore
               </Typography>
               <Typography
-                className="font-normal text-sm"
+                className="font-normal text-sm col-span-1"
                 style={{ color: "#667085" }}
               >
                 est,total 15000*
               </Typography>
             </div>
-            <div className="sm:flex">
-              <Rating
-                name="simple-controlled"
-                value={value}
-                max={4}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-                size="medium"
-              />
-              <Typography className="text-sm font-normal ml-6">
-                <b>4.0</b>
-                <b
-                  className="text-sm font-normal ml-6"
-                  style={{ color: "#667085" }}
-                >
-                  (15 Trips)
-                </b>
-              </Typography>
-              <div className="sm:ml-136 md:ml-208">
+            <div className="grid lg:grid-cols-4 md:grid-cols-4 mt-12">
+              <div className="col-span-3">
+                <div className="flex">
+                  <Rating
+                    name="simple-controlled"
+                    value={value}
+                    max={4}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    size="medium"
+                  />
+                  <Typography className="text-sm font-normal ml-6">
+                    <b>4.0</b>
+                    <b
+                      className="text-sm font-normal ml-6"
+                      style={{ color: "#667085" }}
+                    >
+                      (15 Trips)
+                    </b>
+                  </Typography>
+                </div>
+              </div>
+              <div className="col-span-1">
                 <Checkbox
                   {...label}
                   icon={<FavoriteBorder />}
@@ -125,6 +171,34 @@ export default function Carddetail() {
                 </IconButton>
               </div>
             </div>
+            <div className="grid grid-cols-2">
+              <div className="col-span-1">
+                <div className="flex">
+                <img src="assets/images/logos/Petrol.svg" alt="logo" />
+                <Typography className="ml-10 text-xs font-medium">Petrol</Typography>
+                </div>
+                <div className="flex mt-24">
+                <img
+                  src="assets/images/logos/seats.svg"
+                  alt="logo"
+                />
+                <Typography className="ml-10 text-xs font-medium">4 Seats</Typography>
+                </div>
+              </div>
+              <div className="col-span-1">
+              <div className="flex">
+                <img src="assets/images/logos/Petrolgalon.svg" alt="logo" />
+                <Typography className="ml-10 text-xs font-medium">30 mpg</Typography>
+                </div>
+                <div className="flex mt-24">
+                <img
+                  src="assets/images/logos/Door.svg"
+                  alt="logo"
+                />
+                <Typography className="ml-10 text-xs font-medium">4 doors</Typography>
+                </div>
+              </div>
+            </div>
             <div>
               <hr />
               <div>
@@ -133,16 +207,11 @@ export default function Carddetail() {
                 </Typography>
                 <Typography style={{ color: "#667085" }}>
                   Extremely comfortable and sporty at the same time: You can go
-
-                  wrong with an AMG. You will not regret renting this amazing car.
-
-                  Great drive around the city and throught the coast. Extremely
-
-                  comfortable and sporty at the same time: You can go wrong with
-
-                  an AMG.You will not regret renting this amazing car.Great drive
-
-                  around the city and through the coast.
+                  wrong with an AMG. You will not regret renting this amazing
+                  car. Great drive around the city and throught the coast.
+                  Extremely comfortable and sporty at the same time: You can go
+                  wrong with an AMG.You will not regret renting this amazing
+                  car.Great drive around the city and through the coast.
                   <b style={{ color: "#D22A8F" }}>Read more</b>
                 </Typography>
               </div>
@@ -548,9 +617,7 @@ export default function Carddetail() {
           </div>
           <div className="col-span-1 sm:max-w-8/12 md:w-7/12 lg:w-5/12 sm:ml-160 ml-0">
             <div>
-              <Card
-                style={{ height: "450px" }}
-              >
+              <Card style={{ height: "auto" }}>
                 <Typography className="text-lg font-semibold ml-10 mt-10">
                   Book your car
                 </Typography>
@@ -560,8 +627,7 @@ export default function Carddetail() {
 
                   <div className="" style={{ marginTop: "19px" }}>
                     <Button
-                      component={Link}
-                      to="/Confirmandpay"
+                    onClick={handleClickOpen}
                       style={{
                         backgroundColor: "rgba(210, 42, 143, 1)",
                         fontSize: "16px",
@@ -571,7 +637,211 @@ export default function Carddetail() {
                       Book now
                     </Button>
                   </div>
-
+                  <div>
+                    <Dialog
+                      style={{ borderRadius: "12px", height: "auto" }}
+                      fullWidth={true}
+                      open={open}
+                      onClose={handleClose}
+                    >
+                      <div>
+                        <Card
+                          style={{
+                            border: "1px solid rgba(195, 203, 205, 0.42)",
+                          }}
+                        >
+                          <div
+                            className="flex flex-col justify-center text-center"
+                            style={{ marginTop: "21px" }}
+                          >
+                            <h1 className="text-2xl font-semibold text-grey-900">
+                              Welcome Back
+                            </h1>
+                            <p className="text-sm text-gray-500">
+                              Welcome back! please enter your details.
+                            </p>
+                          </div>
+                          <div className="mt-20">
+                            <hr style={{ width: "100%" }} />
+                          </div>
+                          <CardContent>
+                            <div className="mt-28 mb-2.5">
+                              <Button
+                                style={{
+                                  border: "1px solid #D0D5DD",
+                                  height: "44px",
+                                  fontSize: "16px",
+                                }}
+                                className="w-full h-11 text-black rounded-lg "
+                              >
+                                <img
+                                  width="24px"
+                                  style={{ marginRight: "12px" }}
+                                  src="assets/images/GariConnect/Google.png"
+                                  alt="logo"
+                                />{" "}
+                                Sign in with Google
+                              </Button>
+                            </div>
+                            <div className="">
+                              <Button
+                                style={{
+                                  border: "1px solid #D0D5DD",
+                                  height: "44px",
+                                  marginTop: "9px",
+                                  fontSize: "16px",
+                                }}
+                                className="w-full h-11 text-black rounded-lg"
+                              >
+                                {" "}
+                                <img
+                                  width="24px"
+                                  style={{ marginRight: "12px" }}
+                                  src="assets/images/GariConnect/Vector.png"
+                                  alt="logo"
+                                />{" "}
+                                Sign in with Facebook
+                              </Button>
+                            </div>
+                            <div
+                              className="flex flex-row justify-center"
+                              style={{ marginTop: "28px" }}
+                            >
+                              <hr
+                                style={{
+                                  width: "45%",
+                                  marginTop: "8px",
+                                  marginRight: "12px",
+                                }}
+                              />
+                              <p
+                                style={{
+                                  color: "#98A2B3",
+                                }}
+                              >
+                                or
+                              </p>
+                              <hr
+                                style={{
+                                  width: "45%",
+                                  marginTop: "8px",
+                                  marginLeft: "12px",
+                                }}
+                              />
+                            </div>
+                            <div className="mx-8 mt-16 mb-7">
+                              <Typography className="text-sm font-medium text-grey-700">
+                                Phone number
+                              </Typography>
+                              <FormControl fullWidth variant="outlined">
+                                <OutlinedInput
+                                  className="rounded-lg mb-11 "
+                                  placeholder="+92 | 3524584205"
+                                  style={{ marginTop: "6px", height: "44px" }}
+                                />
+                              </FormControl>
+                              <Typography className="text-sm font-medium text-grey-700 mt-20 ml-1.5">
+                                Password
+                              </Typography>
+                              <FormControl fullWidth variant="outlined">
+                                <OutlinedInput
+                                  style={{ marginTop: "6px", height: "44px" }}
+                                  className="rounded-lg"
+                                  placeholder="********"
+                                  id="outlined-adornment-password"
+                                  type={
+                                    values.showPassword ? "text" : "password"
+                                  }
+                                  value={values.password}
+                                  onChange={passwordChange("password")}
+                                  endAdornment={
+                                    <InputAdornment position="end">
+                                      <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={passwordClickShowPassword}
+                                        onMouseDown={passwordMouseDownPassword}
+                                        edge="end"
+                                      >
+                                        {values.showPassword ? (
+                                          <Visibility />
+                                        ) : (
+                                          <VisibilityOff />
+                                        )}
+                                      </IconButton>
+                                    </InputAdornment>
+                                  }
+                                />
+                              </FormControl>
+                              <div
+                                className="flex flex-row justify-between items-center"
+                                style={{ marginTop: "12px" }}
+                              >
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      style={{ color: "#D22A8F" }}
+                                      defaultChecked
+                                    />
+                                  }
+                                  label="Remember for 30 days"
+                                />
+                                <Typography
+                                  component={Link}
+                                  to="/forgetpassword"
+                                  className="text-sm text-right mt-2.5 font-medium text-fuchsia-600"
+                                  style={{
+                                    color: "#D22A8F",
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  Forgot Password
+                                </Typography>
+                              </div>
+                              <div style={{ marginTop: "19px" }}>
+                                <Button
+                                component={Link}
+                                to="/Confirmandpay"
+                                  style={{
+                                    backgroundColor: "rgba(210, 42, 143, 1)",
+                                    height: "44px",
+                                    fontSize: "16px",
+                                  }}
+                                  className="w-full h-11 text-white rounded-lg"
+                                >
+                                  Sign in
+                                </Button>
+                              </div>
+                            </div>
+                            <div className="sm:mt-20 mt-24">
+                              <p
+                                style={{
+                                  fontSize: "14px",
+                                  fontWeight: "500",
+                                  textAlign: "center",
+                                  marginTop: "24px",
+                                }}
+                              >
+                                Didn't have an acount?
+                                <a
+                                  href="/Signup"
+                                  style={{
+                                    fontSize: "14px",
+                                    fontWeight: "500",
+                                    color: "#D22A8F",
+                                    textAlign: "center",
+                                    marginTop: "24px",
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  Sign up
+                                </a>
+                              </p>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </Dialog>
+                  </div>
                   <div
                     className="rounded-lg mt-8 md:w-320 w-256 "
                     style={{ backgroundColor: "#EDF5FE" }}
@@ -589,7 +859,7 @@ export default function Carddetail() {
                         Free Cancellation
                       </Typography>
                     </div>
-                    <div className="ml-48">
+                    <div className="ml-48 pb-10">
                       <Typography
                         className="font-normal text-xs"
                         style={{ color: "#667085" }}
@@ -666,7 +936,10 @@ export default function Carddetail() {
                       </div>
                     </div>
                     <div className="flex flex-row items-start ml-auto">
-                      <Typography className="text-12 mr-4" color="text.secondary">
+                      <Typography
+                        className="text-12 mr-4"
+                        color="text.secondary"
+                      >
                         Verified
                       </Typography>
                       <Checkbox

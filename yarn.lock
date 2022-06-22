@@ -12916,6 +12916,11 @@
     "section-iterator" "^2.0.0"
     "shallow-equal" "^1.2.1"
 
+"react-avatar-uploader@^1.0.3":
+  "integrity" "sha512-f7YVT7gHcllj7ok0XlUM08Z843N9tEKoGj4pvD5E0MHgxHNDPEdSzORqwewApKJBSC+YU5T8McTzqSlES/Dq3Q=="
+  "resolved" "https://registry.npmjs.org/react-avatar-uploader/-/react-avatar-uploader-1.0.3.tgz"
+  "version" "1.0.3"
+
 "react-beautiful-dnd@13.1.0":
   "integrity" "sha512-aGvblPZTJowOWUNiwd6tNfEpgkX5OxmpqxHKNW/4VmvZTNTbeiq7bA3bn5T+QSF2uibXB0D1DmJsb1aC/+3cUA=="
   "resolved" "https://registry.npmjs.org/react-beautiful-dnd/-/react-beautiful-dnd-13.1.0.tgz"
@@ -13077,12 +13082,22 @@
   "resolved" "https://registry.npmjs.org/react-masonry-css/-/react-masonry-css-1.0.16.tgz"
   "version" "1.0.16"
 
+"react-multi-carousel@^2.8.0":
+  "integrity" "sha512-xuxQVGGiH8yWDDWgt9Z9+C+zzoACuBT740cV+6To52DYCwLlQGJIntDFLOCqMsO85Ist1x+630HA8lazb/a/tA=="
+  "resolved" "https://registry.npmjs.org/react-multi-carousel/-/react-multi-carousel-2.8.0.tgz"
+  "version" "2.8.0"
+
 "react-number-format@4.7.3":
   "integrity" "sha512-4EvcANjstypQ5anhanmdEioGc49qbnErfS+yqbhatC0vzQ1okplkWNb0DIY7ABu4RhaxzttEz6pypEy8KsqgBQ=="
   "resolved" "https://registry.npmjs.org/react-number-format/-/react-number-format-4.7.3.tgz"
   "version" "4.7.3"
   dependencies:
     "prop-types" "^15.7.2"
+
+"react-otp-input@^2.4.0":
+  "integrity" "sha512-AIgl7u4sS9BTNCxX1xlaS5fPWay/Zml8Ho5LszXZKXrH1C/TiFsTQGmtl13UecQYO3mSF3HUzG2rrDf0sjEFmg=="
+  "resolved" "https://registry.npmjs.org/react-otp-input/-/react-otp-input-2.4.0.tgz"
+  "version" "2.4.0"
 
 "react-phone-input-2@^2.15.0":
   "integrity" "sha512-60EOJSgmRFl9Ar89/JznaDsdB9FNf5T6nvQf0sN1t3X7exrKHbUT3ij7HZn2Y7jigcPv9EkdyzVr0MiOk1FKmw=="

@@ -1,17 +1,16 @@
 import { lazy } from 'react';
-import { Redirect } from 'react-router-dom';
+import { authRoles } from 'app/auth';
 
-const SignInConfig={
+const SignInConfig = {
     settings: {
         layout: {},
     },
-    routes:[
+    auth: authRoles.onlyGuest,
+    routes: [
         {
             path: '/SignIn',
             component: lazy(() => import('./SignIn')),
-
         },
-
     ]
 }
 export default SignInConfig;

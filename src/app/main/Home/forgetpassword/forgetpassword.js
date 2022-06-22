@@ -1,20 +1,56 @@
 import React from "react";
+import { useEffect } from 'react';
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import FormControl from "@mui/material/FormControl";
 import Signupheader from "../Signupheader/Signupheader";
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-  
+import { sendOtp } from '../store/forgotPasswordSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import _ from '@lodash';
+
+const schema = yup.object().shape({
+  phone_no: yup
+    .string()
+    .required('You must enter a Phone Number')
+    .min(13, 'The Phone Number must be at least 13 digits')
+    .max(13, 'The Phone Number should be max 13 digits'),
+});
+
+const defaultValues = {
+  phone_no: '',
+};
 
 function forgetpassword() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { control, setValue, formState, handleSubmit, reset, trigger, } = useForm({
+    mode: 'onChange',
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
+
+  const { isValid, dirtyFields, errors } = formState;
+
+  useEffect(() => {
+    setValue('phone_no', '+923214199087', { shouldDirty: true, shouldValidate: true });
+  }, [reset, setValue, trigger]);
+
+  function onSubmit(model) {
+    dispatch(sendOtp(model));
+    // .then(() => {
+    //   history.push('/Home/LandingPage');
+    // });
+  }
+
   return (
     <div>
       <Signupheader />
@@ -27,11 +63,16 @@ function forgetpassword() {
             border: "1px solid rgba(195, 203, 205, 0.42)",
           }}
         >
-             <div className="flex mt-20" >
-             <IconButton size="small" className="mb-40">
-        <ArrowBackIosNewIcon style={{color:"rgba(0, 0, 0, 1)"}} />
-      </IconButton>
-      <div className="text-center sm:ml-40 mr-28">
+          <div className="flex mt-20">
+            <IconButton
+              component={Link}
+              to="/Signin"
+              size="small"
+              className="mb-40"
+            >
+              <ArrowBackIosNewIcon style={{ color: "rgba(0, 0, 0, 1)" }} />
+            </IconButton>
+            <div className="text-center sm:ml-40 mr-28">
               <h1
                 style={{
                   fontSize: "24px",
@@ -50,11 +91,11 @@ function forgetpassword() {
               >
                 Enter your phone number to reset your password
               </p>
-              </div>
             </div>
-            <div className="w-full mt-20">
-              <hr/>
-            </div>
+          </div>
+          <div className="w-full mt-20">
+            <hr />
+          </div>
           <CardContent>
             <Typography
               style={{
@@ -66,28 +107,46 @@ function forgetpassword() {
             >
               Phone number
             </Typography>
-            <FormControl fullWidth variant="outlined">
-              <OutlinedInput
-              type="number"
-                className="rounded-lg mb-11"
-                placeholder="+92 | 3524584205"
-                style={{ marginTop: "6px", height: "44px" }}
+            <form
+              className="flex flex-col justify-center w-full"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <Controller
+                name="phone_no"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    InputProps={{
+                      className: "mb-16 rounded-lg mb-11 mt-6 h-[44px]"
+                    }}
+                    placeholder="+92 | 3524584205"
+                    autoFocus
+                    error={!!errors.phone_no}
+                    helperText={errors?.phone_no?.message}
+                    variant="outlined"
+                    fullWidth
+                  />
+                )}
               />
-            </FormControl>
-            <div style={{ marginTop: "12px" }}>
+
+              {/* <div style={{ marginTop: "12px" }}> */}
               <Button
-                component={Link}
-                to="/Verify"
+                // component={Link}
+                // to="/Verify"
+                type="submit"
+                disabled={_.isEmpty(dirtyFields) || !isValid}
                 style={{
                   backgroundColor: "rgba(210, 42, 143, 1)",
                   height: "44px",
                   fontSize: "16px",
                 }}
-                className="w-full text-white rounded-lg"
+                className="w-full mt-[12px] text-white rounded-lg"
               >
                 Submit
               </Button>
-            </div>
+              {/* </div> */}
+            </form>
           </CardContent>
         </Card>
       </div>
