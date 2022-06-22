@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { TextField, Icon, IconButton, InputAdornment } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -34,6 +34,7 @@ const defaultValues = {
 };
 
 function SignIn() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const login = useSelector(({ auth }) => auth.login);
   const { control, setValue, formState, handleSubmit, reset, trigger, setError } = useForm({
@@ -62,7 +63,10 @@ function SignIn() {
   }, [login.errors, setError]);
 
   function onSubmit(model) {
-    dispatch(submitLogin(model));
+    dispatch(submitLogin(model))
+      .then(() => {
+        history.push('/Home/LandingPage');
+      });
   }
 
   return (
@@ -322,10 +326,7 @@ function SignIn() {
                 </div>
                 <div style={{ marginTop: "19px" }}>
                   <Button
-                    // component={Link}
-                    // to="/Home/LandingPage"
                     type="submit"
-                    // value="legacy"
                     disabled={_.isEmpty(dirtyFields) || !isValid}
                     style={{
                       backgroundColor: "rgba(210, 42, 143, 1)",
