@@ -12,16 +12,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Checkbox from "@mui/material/Checkbox";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import IconButton from "@mui/material/IconButton";
 import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
 import { Link } from "react-router-dom";
 import Radio from "@mui/material/Radio";
 import Navbar from "../Navbar/Navbar";
 import Dialog from "@mui/material/Dialog";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextField from "@mui/material/TextField";
@@ -32,6 +28,13 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Autocomplete from "@mui/material/Autocomplete";
+import IconButton from '@mui/material/IconButton';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 const BpIcon = styled("span")(({ theme }) => ({
   borderRadius: "50%",
@@ -96,21 +99,17 @@ function BpRadio(props) {
 }
 
 export default function Confirmandpay() {
+  const [expanded, setExpanded] = React.useState(false);
+
+  const confirmChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
   const [value, setValue] = React.useState(4);
 
   const [checked, setChecked] = React.useState(true);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
-  };
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
   const [alert, setAlert] = React.useState(false);
   const verifyClickAlert = () => {
@@ -119,21 +118,6 @@ export default function Confirmandpay() {
 
   const verifyClose = () => {
     setAlert(false);
-  };
-  const [values, setValues] = React.useState({
-    password: "",
-  });
-  const passwordChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-  const passwordClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-  const passwordMouseDownPassword = (event) => {
-    event.preventDefault();
   };
   const [card, setCard] = React.useState("");
 
@@ -159,34 +143,82 @@ export default function Confirmandpay() {
             style={{ marginLeft: "10%" }}
           >
             <div className="col-span-1">
-              <Typography className="font-normal text-2xl">
-                Your trip
-              </Typography>
+            <div>
+      <Accordion expanded={expanded === 'panel1'} onChange={confirmChange('panel1')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>
+            General settings
+          </Typography>
+          <Typography sx={{ color: 'text.secondary' }}>I am an accordion</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
+            Aliquam eget maximus est, id dignissim quam.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel2'} onChange={confirmChange('panel2')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2bh-content"
+          id="panel2bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>Users</Typography>
+          <Typography sx={{ color: 'text.secondary' }}>
+            You are currently not an owner
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus,
+            varius pulvinar diam eros in elit. Pellentesque convallis laoreet
+            laoreet.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel3'} onChange={confirmChange('panel3')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel3bh-content"
+          id="panel3bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>
+            Advanced settings
+          </Typography>
+          <Typography sx={{ color: 'text.secondary' }}>
+            Filtering has been entirely disabled for whole web server
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
+            amet egestas eros, vitae egestas augue. Duis vel est augue.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel4'} onChange={confirmChange('panel4')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel4bh-content"
+          id="panel4bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>Personal data</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
+            amet egestas eros, vitae egestas augue. Duis vel est augue.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+    </div>
               <div className="w-10/12">
-                <div className="flex justify-between mt-36 mb-32">
-                  <div>
-                    <Typography className="text-18 font-medium mb-6">
-                      Dates
-                    </Typography>
-                    <Typography
-                      className="text-sm font-normal"
-                      color="text.secondary"
-                    >
-                      May 13 – 20
-                    </Typography>
-                  </div>
-                  <div>
-                    <Typography
-                      component={Link}
-                      to="#"
-                      className="text-base font-normal"
-                      style={{ color: "#D22A8F" }}
-                    >
-                      Edit
-                    </Typography>
-                  </div>
-                </div>
-                <div className="flex justify-between mt-32">
+                {/* <div className="flex justify-between mt-32">
                   <div>
                     <Typography
                       className="text-sm font-medium mt-7"
@@ -216,8 +248,8 @@ export default function Confirmandpay() {
                         <Typography className="mt-8 text-sm font-medium">
                           Yes
                         </Typography>
-                      </div>
-                      <div className="flex">
+                      </div> */}
+                {/* <div className="flex">
                         <FormControlLabel
                           value="male"
                           control={<BpRadio />}
@@ -229,240 +261,31 @@ export default function Confirmandpay() {
                       </div>
                     </div>
                   </RadioGroup>
-                </div>
-                <hr className="mt-20" />
+                </div> */}
+                {/* <hr className="mt-20" /> */}
               </div>
-              <div className="mt-28">
-                <Card
-                  className="shadow-none rounded-md border mb-24 sm:w-8/12 w-10/12"
-                  sx={{ minHeight: 133 }}
-                >
-                  <div className="border-b">
-                    <Typography
-                      className="text-12 font-medium px-20 py-10"
-                      style={{ color: "#101828" }}
-                    >
-                      Hosted By
-                    </Typography>
-                  </div>
-                  <CardContent>
-                    <div className="flex flex-row">
-                      <div className="flex sm:flex-col md:flex-row flex-col md:items-center">
-                        <img
-                          className="mr-12"
-                          style={{ maxWidth: 70, maxHeight: 70 }}
-                          src="assets/images/profile/HassanAli.png"
-                          alt=""
-                        />
-                        <div className="flex flex-col">
-                          <Typography className="text-16 font-600 font-Manrope">
-                            Hassan Ali
-                          </Typography>
-                          <div className="flex flex-row items-center mb-4">
-                            <Rating
-                              className="text-16"
-                              name="simple-controlled"
-                              value={value}
-                              onChange={(event, newValue) => {
-                                setValue(newValue);
-                              }}
-                              max={4}
-                            />
-                            <Typography
-                              className="text-12 font-normal ml-8"
-                              color="text.secondary"
-                            >
-                              4.0
-                            </Typography>
-                          </div>
-                          <Typography
-                            className="text-12"
-                            color="text.secondary"
-                          >
-                            487 trips - Joined Sep 2020
-                          </Typography>
-                        </div>
-                      </div>
-                      <div className="flex flex-row items-start ml-auto">
-                        <Typography
-                          className="text-12 mr-4"
-                          color="text.secondary"
-                        >
-                          Verified
-                        </Typography>
-                        <Checkbox
-                          icon={<RadioButtonUncheckedIcon />}
-                          checkedIcon={<CheckCircleIcon />}
-                          checked={checked}
-                          onChange={handleChange}
-                          inputProps={{ "aria-label": "controlled" }}
-                          style={{ padding: 0 }}
-                          sx={{
-                            "& .MuiSvgIcon-root": {
-                              fontSize: 14,
-                              color: "#D22A8F",
-                            },
-                            "& .MuiTouchRipple-root": { display: "none" },
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-              <div className="flex mt-24">
+              <div
+                className="flex mt-24 rounded-lg h-64"
+                style={{
+                  backgroundColor: "rgba(4, 106, 243, 0.07)",
+                  border: "1px solid #046AF3",
+                  width: "489px",
+                }}
+              >
                 <ShieldOutlinedIcon
-                  className="mt-10"
+                  className="my-auto ml-24"
                   fontSize="large"
-                  style={{ color: "#D22A8F" }}
+                  style={{ color: "#046AF3" }}
                 />
                 <Typography
-                  className="text-xs font-normal mt-10 ml-4"
-                  style={{ color: "#667085" }}
+                  className="text-xs font-normal my-auto ml-20"
+                  style={{ color: "#101828" }}
                 >
                   To protect your payment, never transfer money or communicate
                   <br></br> outside os the Gari Connect website or app.
                 </Typography>
               </div>
-              <div>
-                <Card
-                  className="w-10/12"
-                  style={{
-                    marginTop: "40px",
-                    height: "440px",
-                    border: "1px solid rgba(195, 203, 205, 0.42)",
-                  }}
-                >
-                  <h3
-                    style={{
-                      fontSize: "18px",
-                      fontWeight: "600",
-                      marginTop: "20px",
-                      marginLeft: "10px",
-                    }}
-                  >
-                    Add payment method
-                  </h3>
-                  <CardContent>
-                    <FormControl fullWidth>
-                      <Typography
-                        style={{
-                          fontSize: "14px",
-                          fontWeight: "500px",
-                          color: "#344054",
-                        }}
-                      >
-                        Choose card
-                      </Typography>
-                      <Autocomplete
-                        popupIcon={<KeyboardArrowDownIcon />}
-                        className="mt-6"
-                        disablePortal
-                        id="combo-box-demo"
-                        options={top100Films}
-                        sx={{ height: 44 }}
-                        renderInput={(params) => (
-                          <TextField
-                            {...params}
-                            size="medium"
-                            placeholder="Choose card"
-                            sx={{
-                              "& fieldset": {
-                                borderRadius: "8px",
-                              },
-                            }}
-                          />
-                        )}
-                      />
-                    </FormControl>
-                    <FormControl fullWidth variant="outlined">
-                      <Typography
-                        style={{
-                          marginTop: "14px",
-                          fontSize: "14px",
-                          fontWeight: "500px",
-                          color: "#344054",
-                        }}
-                      >
-                        Enter card number
-                      </Typography>
-                      <OutlinedInput
-                        className="rounded-lg mb-11 "
-                        placeholder="155485541554"
-                        style={{ marginTop: "6px", height: "44px" }}
-                      />
-                    </FormControl>
-                    <div className="flex space-x-10 w-full">
-                      <FormControl className="mt-16 w-1/2">
-                        <Typography
-                          style={{
-                            fontSize: "14px",
-                            fontWeight: "500px",
-                            color: "#344054",
-                            marginBottom: "6px",
-                          }}
-                        >
-                          Expiry date
-                        </Typography>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                          <DatePicker
-                            inputFormat="dd/MM/yyy"
-                            // disableOpenPicker={true}
-                            value={value}
-                            onChange={(newValue) => {
-                              setValue(newValue);
-                            }}
-                            renderInput={(params) => (
-                              <TextField
-                                {...params}
-                                sx={{
-                                  "& fieldset": {
-                                    borderRadius: "8px",
-                                    height: "48px",
-                                  },
-                                }}
-                              />
-                            )}
-                          />
-                        </LocalizationProvider>
-                      </FormControl>
-                      <FormControl className="w-1/2" variant="outlined">
-                        <Typography
-                          style={{
-                            marginTop: "14px",
-                            fontSize: "14px",
-                            fontWeight: "500px",
-                            color: "#344054",
-                          }}
-                        >
-                          CSV
-                        </Typography>
-                        <OutlinedInput
-                          className="rounded-lg mb-11"
-                          placeholder="849"
-                          style={{ marginTop: "6px", height: "44px" }}
-                        />
-                      </FormControl>
-                    </div>
-                    <div className="mt-28">
-                      <Button
-                        onClick={verifyClickAlert}
-                        style={{
-                          width: "100%",
-                          height: "44px",
-                          background: "#D22A8F",
-                          color: "#FFFFFF",
-                          fontSize: "16px",
-                          fontWeight: "500px",
-                          borderRadius: "8px",
-                        }}
-                      >
-                        Pay now
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+              
             </div>
             <div className="col-span-1" style={{ marginRight: "25%" }}>
               <Card
@@ -472,11 +295,16 @@ export default function Confirmandpay() {
                 <CardContent>
                   <div className="flex flex-row">
                     <div className="flex sm:flex-col md:flex-row flex-col md:items-center">
-                      <img
+                      <div className="flex">
+                        <div>
+                        <img
+                        width="180"
                         className="mr-12"
-                        src="assets/images/logos/Honda.svg"
+                        src="assets/images/logos/HondaAfb.svg"
                         alt=""
                       />
+                        </div>
+
                       <div className="flex flex-col">
                         <div className="flex flex-row items-center mb-4">
                           <Rating
@@ -511,20 +339,42 @@ export default function Confirmandpay() {
                       </div>
                     </div>
                   </div>
+                  </div>
 
-                  <hr className="pt-20" />
+                  <hr className="mt-20" />
+                  <div className="flex justify-between">
+                    <div className="mt-24">
+                    <Typography className="text-lg font-medium">Sat, Oct 12</Typography>
+                    <Typography className="text-sm" style={{color:'#667085'}}>10:00 AM</Typography>
+                    </div>
+                    <div className="mt-48">
+                    <img
+                        className="mr-12"
+                        src="assets/images/logos/Arrow 12.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div className="mt-24">
+                    <Typography className="text-lg font-medium">Sat, Oct 19</Typography>
+                    <Typography className="text-sm" style={{color:'#667085'}}>10:00 AM</Typography>
+                    </div>
+                    <div className="mt-48">
+                      <IconButton className="w-44 h-44" style={{border: "1px solid #D0D5DD"}}><EditOutlinedIcon style={{color:"#D22A8F"}}/></IconButton>
+                    </div>
+                  </div>
+                  <hr className="mt-20" />
                   <div className="mt-16">
                     <Typography className="text-xl">Price details</Typography>
                   </div>
                   <div className="flex flex-row justify-between items-center mt-20 mr-14">
                     <Typography className="text-base" color="text.secondary">
-                      Rate per day
+                      Trip price
                     </Typography>
                     <Typography className="text-base">Rs 4000/day</Typography>
                   </div>
                   <div className="flex flex-row justify-between items-center mt-20 mr-14">
                     <Typography className="text-base" color="text.secondary">
-                      Booked for
+                      Trip fee
                     </Typography>
                     <Typography className="text-base">5 days</Typography>
                   </div>
@@ -536,7 +386,13 @@ export default function Confirmandpay() {
                   </div>
                   <div className="flex flex-row justify-between items-center mt-20 mr-14">
                     <Typography className="text-base" color="text.secondary">
-                      Subtotal
+                      Pick / Drop off
+                    </Typography>
+                    <Typography className="text-base">Rs 8200/-</Typography>
+                  </div>
+                  <div className="flex flex-row justify-between items-center mt-20 mr-14">
+                    <Typography className="text-base" color="text.secondary">
+                      Total per day
                     </Typography>
                     <Typography className="text-base">Rs 8200/-</Typography>
                   </div>
@@ -545,16 +401,15 @@ export default function Confirmandpay() {
 
                   <div className="flex flex-row justify-between items-center mt-20 mr-14">
                     <Typography className="text-base" color="text.secondary">
-                      Total price
+                      Total 7 day price
                     </Typography>
-                    <Typography className="text-base font-semibold">
+                    <Typography className="text-xl font-semibold" style={{color:"#373F41"}}>
                       Rs 8200/-
                     </Typography>
                   </div>
 
                   <div className="flex flex-row justify-end space-x-10 mt-44 mb-10">
                     <Button
-                      onClick={handleClickOpen}
                       variant="contained"
                       className="rounded-4 text-white w-full"
                       style={{ backgroundColor: "#D22A8F" }}
@@ -562,209 +417,7 @@ export default function Confirmandpay() {
                       Pay now
                     </Button>
                   </div>
-                  <div>
-                    <Dialog
-                      style={{ borderRadius: "12px", height: "auto" }}
-                      fullWidth={true}
-                      open={open}
-                      onClose={handleClose}
-                    >
-                      <div>
-                        <Card
-                          style={{
-                            border: "1px solid rgba(195, 203, 205, 0.42)",
-                          }}
-                        >
-                          <div
-                            className="flex flex-col justify-center text-center"
-                            style={{ marginTop: "21px" }}
-                          >
-                            <h1 className="text-2xl font-semibold text-grey-900">
-                              Welcome Back
-                            </h1>
-                            <p className="text-sm text-gray-500">
-                              Welcome back! please enter your details.
-                            </p>
-                          </div>
-                          <div className="mt-20">
-                            <hr style={{ width: "100%" }} />
-                          </div>
-                          <CardContent>
-                            <div className="mt-28 mb-2.5">
-                              <Button
-                                style={{
-                                  border: "1px solid #D0D5DD",
-                                  height: "44px",
-                                  fontSize: "16px",
-                                }}
-                                className="w-full h-11 text-black rounded-lg "
-                              >
-                                <img
-                                  width="24px"
-                                  style={{ marginRight: "12px" }}
-                                  src="assets/images/GariConnect/Google.png"
-                                  alt="logo"
-                                />{" "}
-                                Sign in with Google
-                              </Button>
-                            </div>
-                            <div className="">
-                              <Button
-                                style={{
-                                  border: "1px solid #D0D5DD",
-                                  height: "44px",
-                                  marginTop: "9px",
-                                  fontSize: "16px",
-                                }}
-                                className="w-full h-11 text-black rounded-lg"
-                              >
-                                {" "}
-                                <img
-                                  width="24px"
-                                  style={{ marginRight: "12px" }}
-                                  src="assets/images/GariConnect/Vector.png"
-                                  alt="logo"
-                                />{" "}
-                                Sign in with Facebook
-                              </Button>
-                            </div>
-                            <div
-                              className="flex flex-row justify-center"
-                              style={{ marginTop: "28px" }}
-                            >
-                              <hr
-                                style={{
-                                  width: "45%",
-                                  marginTop: "8px",
-                                  marginRight: "12px",
-                                }}
-                              />
-                              <p
-                                style={{
-                                  color: "#98A2B3",
-                                }}
-                              >
-                                or
-                              </p>
-                              <hr
-                                style={{
-                                  width: "45%",
-                                  marginTop: "8px",
-                                  marginLeft: "12px",
-                                }}
-                              />
-                            </div>
-                            <div className="mx-8 mt-16 mb-7">
-                              <Typography className="text-sm font-medium text-grey-700">
-                                Phone number
-                              </Typography>
-                              <FormControl fullWidth variant="outlined">
-                                <OutlinedInput
-                                  className="rounded-lg mb-11 "
-                                  placeholder="+92 | 3524584205"
-                                  style={{ marginTop: "6px", height: "44px" }}
-                                />
-                              </FormControl>
-                              <Typography className="text-sm font-medium text-grey-700 mt-20 ml-1.5">
-                                Password
-                              </Typography>
-                              <FormControl fullWidth variant="outlined">
-                                <OutlinedInput
-                                  style={{ marginTop: "6px", height: "44px" }}
-                                  className="rounded-lg"
-                                  placeholder="********"
-                                  id="outlined-adornment-password"
-                                  type={
-                                    values.showPassword ? "text" : "password"
-                                  }
-                                  value={values.password}
-                                  onChange={passwordChange("password")}
-                                  endAdornment={
-                                    <InputAdornment position="end">
-                                      <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={passwordClickShowPassword}
-                                        onMouseDown={passwordMouseDownPassword}
-                                        edge="end"
-                                      >
-                                        {values.showPassword ? (
-                                          <Visibility />
-                                        ) : (
-                                          <VisibilityOff />
-                                        )}
-                                      </IconButton>
-                                    </InputAdornment>
-                                  }
-                                />
-                              </FormControl>
-                              <div
-                                className="flex flex-row justify-between items-center"
-                                style={{ marginTop: "12px" }}
-                              >
-                                <FormControlLabel
-                                  control={
-                                    <Checkbox
-                                      style={{ color: "#D22A8F" }}
-                                      defaultChecked
-                                    />
-                                  }
-                                  label="Remember for 30 days"
-                                />
-                                <Typography
-                                  component={Link}
-                                  to="/forgetpassword"
-                                  className="text-sm text-right mt-2.5 font-medium text-fuchsia-600"
-                                  style={{
-                                    color: "#D22A8F",
-                                    textDecoration: "none",
-                                  }}
-                                >
-                                  Forgot Password
-                                </Typography>
-                              </div>
-                              <div style={{ marginTop: "19px" }}>
-                                <Button
-                                  style={{
-                                    backgroundColor: "rgba(210, 42, 143, 1)",
-                                    height: "44px",
-                                    fontSize: "16px",
-                                  }}
-                                  className="w-full h-11 text-white rounded-lg"
-                                >
-                                  Sign in
-                                </Button>
-                              </div>
-                            </div>
-                            <div className="sm:mt-20 mt-24">
-                              <p
-                                style={{
-                                  fontSize: "14px",
-                                  fontWeight: "500",
-                                  textAlign: "center",
-                                  marginTop: "24px",
-                                }}
-                              >
-                                Didn't have an acount?
-                                <a
-                                  href="/Signup"
-                                  style={{
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                    color: "#D22A8F",
-                                    textAlign: "center",
-                                    marginTop: "24px",
-                                    textDecoration: "none",
-                                  }}
-                                >
-                                  Sign up
-                                </a>
-                              </p>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </Dialog>
-                  </div>
+
                   <Dialog
                     style={{ borderRadius: "12px", height: "90%" }}
                     open={alert}
