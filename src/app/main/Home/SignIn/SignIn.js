@@ -1,35 +1,70 @@
 import React from "react";
+import { yupResolver } from '@hookform/resolvers/yup';
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormControl from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import IconButton from "@mui/material/IconButton";
+import { TextField, Icon, IconButton, InputAdornment } from "@mui/material";
 import { Link } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
+import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { submitLogin } from 'app/auth/store/loginSlice';
+import * as yup from 'yup';
+import _ from '@lodash';
+
+const schema = yup.object().shape({
+  phoneno: yup
+    .string()
+    .required('You must enter a Phone Number')
+    .min(13, 'The Phone Number must be at least 13 digits')
+    .max(13, 'The Phone Number should be max 13 digits'),
+  password: yup
+    .string()
+    .required('Please enter your password.')
+    .min(8, 'Password is too short - should be 8 chars minimum.'),
+});
+
+const defaultValues = {
+  phoneno: '',
+  password: '',
+};
 
 function SignIn() {
-  const [values, setValues] = React.useState({
-    password: "",
+  const dispatch = useDispatch();
+  const login = useSelector(({ auth }) => auth.login);
+  const { control, setValue, formState, handleSubmit, reset, trigger, setError } = useForm({
+    mode: 'onChange',
+    defaultValues,
+    resolver: yupResolver(schema),
   });
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
+
+  const { isValid, dirtyFields, errors } = formState;
+
+  const [initialValue, setInitialValue] = useState();
+  const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    setValue('phoneno', '+923341802271', { shouldDirty: true, shouldValidate: true });
+    setValue('password', 'Test@123', { shouldDirty: true, shouldValidate: true });
+  }, [reset, setValue, trigger]);
+
+  useEffect(() => {
+    login.errors.forEach((error) => {
+      setError(error.type, {
+        type: 'manual',
+        message: error.message,
+      });
     });
-  };
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  }, [login.errors, setError]);
+
+  function onSubmit(model) {
+    dispatch(submitLogin(model));
+  }
+
   return (
     <div className="h-xl">
       <Signupheader />
@@ -142,7 +177,7 @@ function SignIn() {
                   height: "44px",
                   fontSize: "16px",
                 }}
-                className="w-full h-11 text-black rounded-lg "
+                className="w-full h-11 text-black rounded-lg"
               >
                 <img
                   width="24px"
@@ -200,81 +235,109 @@ function SignIn() {
               />
             </div>
             <div className="mx-8 mt-16 mb-7">
-              <Typography className="text-sm font-medium text-grey-700">
-                Phone number
-              </Typography>
-              <FormControl fullWidth variant="outlined">
-                <OutlinedInput
-                  className="rounded-lg mb-11 "
-                  placeholder="+92 | 3524584205"
-                  style={{ marginTop: "6px", height: "44px" }}
-                />
-              </FormControl>
-              <Typography className="text-sm font-medium text-grey-700 mt-20 ml-1.5">
-                Password
-              </Typography>
-              <FormControl fullWidth variant="outlined">
-                <OutlinedInput
-                  style={{ marginTop: "6px", height: "44px" }}
-                  className="rounded-lg"
-                  placeholder="********"
-                  id="outlined-adornment-password"
-                  type={values.showPassword ? "text" : "password"}
-                  value={values.password}
-                  onChange={handleChange("password")}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {values.showPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <div
-                className="flex flex-row justify-between items-center"
-                style={{ marginTop: "12px" }}
-              >
-                <FormControlLabel
-                  control={
-                    <Checkbox style={{ color: "#D22A8F" }} defaultChecked />
-                  }
-                  label="Remember for 30 days"
-                />
-                <Typography
-                  component={Link}
-                  to="/forgetpassword"
-                  className="text-sm text-right mt-2.5 font-medium text-fuchsia-600"
-                  style={{ color: "#D22A8F", textDecoration: "none" }}
-                >
-                  Forgot Password
+              <form className="flex flex-col justify-center w-full" onSubmit={handleSubmit(onSubmit)}>
+                <Typography className="text-sm font-medium text-grey-700">
+                  Phone number
                 </Typography>
-              </div>
-              <div style={{ marginTop: "19px" }}>
-                <Button
-                  component={Link}
-                  to="/Home/LandingPage"
-                  style={{
-                    backgroundColor: "rgba(210, 42, 143, 1)",
-                    height: "44px",
-                    fontSize: "16px",
-                  }}
-                  className="w-full h-11 text-white rounded-lg"
+                <Controller
+                  name="phoneno"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      InputProps={{
+                        className: "mt-6 h-48 rounded-lg",
+                        // startAdornment:
+                        //   <InputAdornment position="start">
+                        //     <Typography className="text-black">+92 |</Typography>
+                        //   </InputAdornment>,
+                      }}
+                      inputProps={{
+                        maxLength: 13
+                      }}
+                      value={initialValue}
+                      onChange={(e) => setInitialValue(e.target.value)}
+                      placeholder="+92 | 3524584205"
+                      fullWidth
+                      {...field}
+                      type="text"
+                      error={!!errors.phoneno}
+                      required
+                      helperText={errors?.phoneno?.message}
+                      variant="outlined"
+                    />
+                  )}
+                />
+
+                <Typography className="text-sm font-medium text-grey-700 mt-20 ml-1.5">
+                  Password
+                </Typography>
+                <Controller
+                  name="password"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      {...field}
+                      className="mb-16"
+                      type="password"
+                      error={!!errors.password}
+                      helperText={errors?.password?.message}
+                      variant="outlined"
+                      InputProps={{
+                        className: 'pr-2 mt-6 h-48 rounded-lg',
+                        type: showPassword ? 'text' : 'password',
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton onClick={() => setShowPassword(!showPassword)} size="large">
+                              <Icon className="text-20" color="action">
+                                {showPassword ? 'visibility' : 'visibility_off'}
+                              </Icon>
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      required
+                    />
+                  )}
+                />
+
+                <div
+                  className="flex flex-row justify-between items-center"
+                  style={{ marginTop: "12px" }}
                 >
-                  Sign in
-                </Button>
-              </div>
-
-
+                  <FormControlLabel
+                    control={
+                      <Checkbox style={{ color: "#D22A8F" }} defaultChecked />
+                    }
+                    label="Remember for 30 days"
+                  />
+                  <Typography
+                    component={Link}
+                    to="/forgetpassword"
+                    className="text-sm text-right mt-2.5 font-medium text-fuchsia-600"
+                    style={{ color: "#D22A8F", textDecoration: "none" }}
+                  >
+                    Forgot Password
+                  </Typography>
+                </div>
+                <div style={{ marginTop: "19px" }}>
+                  <Button
+                    // component={Link}
+                    // to="/Home/LandingPage"
+                    type="submit"
+                    // value="legacy"
+                    disabled={_.isEmpty(dirtyFields) || !isValid}
+                    style={{
+                      backgroundColor: "rgba(210, 42, 143, 1)",
+                      height: "44px",
+                      fontSize: "16px",
+                    }}
+                    className="w-full h-11 text-white rounded-lg"
+                  >
+                    Sign in
+                  </Button>
+                </div>
+              </form>
             </div>
             <div className="sm:mt-20 mt-24">
               <p
