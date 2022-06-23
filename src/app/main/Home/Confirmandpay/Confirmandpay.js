@@ -31,6 +31,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Documents from "../Documents/Documents";
 import Pickanddrop from "../Pickanddrop/Pickanddrop";
 import OtpInput from "react-otp-input";
+// import { styled } from '@mui/material/styles';
 
 
 const BpIcon = styled("span")(({ theme }) => ({
@@ -167,7 +168,7 @@ export default function Confirmandpay() {
                 style={{
                   backgroundColor: "rgba(4, 106, 243, 0.07)",
                   border: "1px solid #046AF3",
-                  width: "489px",
+                  maxWidth: "489px",
                 }}
               >
                 <ShieldOutlinedIcon
@@ -185,6 +186,7 @@ export default function Confirmandpay() {
               </div>
               <div className="mt-16">
                 <Accordion
+                   sx={{maxWidth:"489px"}}
                   expanded={expanded === "panel1"}
                   onChange={confirmChange("panel1")}
                 >
@@ -204,6 +206,7 @@ export default function Confirmandpay() {
                   </AccordionDetails>
                 </Accordion>
                 <Accordion
+                sx={{maxWidth:"489px"}}
                   expanded={expanded === "panel2"}
                   onChange={confirmChange("panel2")}
                 >
@@ -224,6 +227,7 @@ export default function Confirmandpay() {
                   </AccordionDetails>
                 </Accordion>
                 <Accordion
+                sx={{maxWidth:"489px"}}
                   expanded={expanded === "panel3"}
                   onChange={confirmChange("panel3")}
                 >
@@ -290,6 +294,7 @@ export default function Confirmandpay() {
                   </AccordionDetails>
                 </Accordion>
                 <Accordion
+                sx={{maxWidth:"489px"}}
                   expanded={expanded === "panel4"}
                   onChange={confirmChange("panel4")}
                 >
@@ -313,7 +318,7 @@ export default function Confirmandpay() {
                     aria-labelledby="demo-customized-radios"
                     name="customized-radios"
                   >
-                    <div className="flex space-x-10">
+                    <div className="sm:flex sm:space-x-10 space-y-10">
                       <Card style={{width:"142px"}}>
                         <CardContent>
                       <div className="flex">
@@ -453,9 +458,9 @@ export default function Confirmandpay() {
                 </Accordion>
               </div>
             </div>
-            <div className="col-span-1" style={{ marginRight: "25%" }}>
+            <div className="col-span-1">
               <Card
-                className="shadow-none rounded-md border ml-auto"
+                className="shadow-none rounded-md border"
                 sx={{ maxWidth: "533px", minHeight: "510px" }}
               >
                 <CardContent>
