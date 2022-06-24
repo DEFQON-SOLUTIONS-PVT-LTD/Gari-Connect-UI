@@ -1,51 +1,94 @@
 import React from "react";
-import Box from "@mui/material/Box";
+import { yupResolver } from '@hookform/resolvers/yup';
 import Typography from "@mui/material/Typography";
+import { TextField, Icon, IconButton, InputAdornment } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormControl from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import IconButton from "@mui/material/IconButton";
 import Signupheader from "../Signupheader/Signupheader"
+import { useHistory } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { passReset } from 'app/auth/store/resetPasswordSlice';
+import * as yup from 'yup';
+import _ from '@lodash';
 
+yup.addMethod(yup.string, "strongPassword", strongPasswordMethod);
 
+function strongPasswordMethod() {
+  return this.test("strongPasswordTest", _, function (value) {
+    const { path, createError } = this;
+    switch (Boolean(value)) {
+      case !/^(?=.*[a-z])/.test(value):
+        return createError({ path, message: "Password must include lowercase letter" });
+      case !/^(?=.*[A-Z])/.test(value):
+        return createError({ path, message: "Password must include uppercase letter" });
+      case !/^(?=.*[0-9])/.test(value):
+        return createError({ path, message: "Password must include digit" });
+      case !/^(?=.*[!@#\$%\^&\*])/.test(value):
+        return createError({ path, message: "Password must include special character" });
+      default:
+        return true;
+    }
+  });
+};
+
+const schema = yup.object().shape({
+  password: yup.string().required().strongPassword(),
+  // password: yup
+  //   .string()
+  //   .required('Please enter your password.')
+  //   .min(10, 'Password is too short - should be 10 chars minimum.'),
+  password_confirmation: yup
+    .string()
+    .required('Please enter your password.')
+    .min(10, 'Password is too short - should be 10 chars minimum.')
+    .oneOf([yup.ref("password")], "Passwords do not match"),
+  phone_no: yup
+    .string()
+    .required('You must enter a Phone Number')
+    .min(13, 'The Phone Number must be at least 13 digits')
+    .max(13, 'The Phone Number should be max 13 digits'),
+});
+
+const defaultValues = {
+  password: '',
+  password_confirmation: '',
+  phone_no: '',
+};
 
 function Setpassword() {
-  const [values, setValues] = React.useState({
-    password: "",
-    confirmpassword: "",
+  const history = useHistory();
+  const dispatch = useDispatch();
+  // const login = useSelector(({ auth }) => auth.login);
+  const { control, setValue, formState, handleSubmit, reset, trigger, setError } = useForm({
+    mode: 'onChange',
+    defaultValues,
+    resolver: yupResolver(schema),
   });
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  const { isValid, dirtyFields, errors } = formState;
 
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleClickShowconfirmPassword = () => {
-    setValues({
-      ...values,
-      showconfirmPassword: !values.showconfirmPassword,
-    });
-  };
-  const handleMouseDownconfirmPassword = (event) => {
-    event.preventDefault();
-  };
+  useEffect(() => {
+    setValue('password', 'NewPassword123@', { shouldDirty: true, shouldValidate: true });
+    setValue('password_confirmation', 'NewPassword123@', { shouldDirty: true, shouldValidate: true });
+    setValue('phone_no', '+923214199087', { shouldDirty: true, shouldValidate: true });
+  }, [reset, setValue, trigger]);
+
+  function onSubmit(model) {
+    dispatch(passReset(model))
+    // .then(() => {
+    //   history.push('/Home/LandingPage');
+    // });
+  }
+
   return (
     <div>
-      <Signupheader/>
+      <Signupheader />
       <div>
         <div className="flex flex-row justify-center">
           <Card
@@ -56,167 +99,151 @@ function Setpassword() {
               border: "1px solid rgba(195, 203, 205, 0.42)",
             }}
           >
-             <div style={{ marginTop: "20px", textAlign: "center" }}>
-          <h1
-            style={{ fontSize: "24px", fontWeight: "600", color: " #101828" }}
-          >
-            Re-set password
-          </h1>
-          <p
-            style={{ fontSize: "14px", fontWeight: "400px", color: "#667085" }}
-          >
-            Set a strong password for your account
-          </p>
-        </div>
-        <div className="mt-20">
-              <hr style={{width:"100%"}}/>
+            <div style={{ marginTop: "20px", textAlign: "center" }}>
+              <h1
+                style={{ fontSize: "24px", fontWeight: "600", color: " #101828" }}
+              >
+                Re-set password
+              </h1>
+              <p
+                style={{ fontSize: "14px", fontWeight: "400px", color: "#667085" }}
+              >
+                Set a strong password for your account
+              </p>
+            </div>
+            <div className="mt-20">
+              <hr style={{ width: "100%" }} />
             </div>
             <CardContent>
-           
-              <div style={{ marginTop:"25px"}}>
-              
-              <FormControl fullWidth variant="outlined">
-               
-              <Typography
-                style={{
-                  fontSize: "14px",
-                  fontWeight: "500px",
-                  color: "#344054",
-                  
-                }}
-              >
-                Enter password
-              </Typography>
-                <OutlinedInput
-                  className="rounded-lg"
-                  id="outlined-adornment-password"
-                  type={values.showPassword ? "text" : "password"}
-                  placeholder="Enter password"
-                  value={values.password}
-                  onChange={handleChange("password")}
-                  style={{marginTop: "6px",height:"44px" }}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {values.showPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
+              <form className="flex flex-col justify-center w-full" onSubmit={handleSubmit(onSubmit)}>
+                <Typography
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500px",
+                    color: "#344054",
+                  }}
+                >
+                  Enter password
+                </Typography>
+                <Controller
+                  name="password"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      {...field}
+                      type="password"
+                      error={!!errors.password}
+                      helperText={errors?.password?.message}
+                      variant="outlined"
+                      InputProps={{
+                        className: 'pr-2 mt-6 h-48 rounded-lg',
+                        type: showPassword ? 'text' : 'password',
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton onClick={() => setShowPassword(!showPassword)} size="large">
+                              <Icon className="text-20" color="action">
+                                {showPassword ? 'visibility' : 'visibility_off'}
+                              </Icon>
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      required
+                    />
+                  )}
                 />
-              </FormControl>
-              </div>
-              <div style={{ marginTop:"10px"}}>
 
-              <Typography
-                style={{
-                  fontSize: "14px",
-                  fontWeight: "500px",
-                  color: "#344054",
-                  marginTop: "8px",
-                }}
-              >
-                Re-enter password
-              </Typography>
-              <FormControl fullWidth variant="outlined">
-               
-                <OutlinedInput
-                  className="rounded-lg"
-                  id="outlined-adornment-confirmPassword"
-                  type={values.showconfirmPassword ? "text" : "password"}
-                  placeholder="Re-enter password"
-                  value={values.confirmpassword}
-                  onChange={handleChange("confirmpassword")}
-                  style={{marginTop: "6px",height: "44px"}}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle confirmpassword visibility"
-                        onClick={handleClickShowconfirmPassword}
-                        onMouseDown={handleMouseDownconfirmPassword}
-                        edge="end"
-                      >
-                        {values.showconfirmPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
+                <Typography
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500px",
+                    color: "#344054",
+                    marginTop: "8px",
+                  }}
+                >
+                  Re-enter password
+                </Typography>
+                <Controller
+                  name="password_confirmation"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      {...field}
+                      type="password"
+                      error={!!errors.password_confirmation}
+                      helperText={errors?.password_confirmation?.message}
+                      variant="outlined"
+                      InputProps={{
+                        className: 'pr-2 mt-6 h-48 rounded-lg',
+                        type: showConfirmPassword ? 'text' : 'password',
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton onClick={() => setShowConfirmPassword(!showConfirmPassword)} size="large">
+                              <Icon className="text-20" color="action">
+                                {showConfirmPassword ? 'visibility' : 'visibility_off'}
+                              </Icon>
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      required
+                    />
+                  )}
                 />
-              </FormControl>
-              </div>
-              <div className="flex" style={{ marginTop: "16px" }}>
-                <img src="assets/images/logos/Tick.svg" alt="logo"></img>
-                <p
-                  style={{
-                    fontSize: "12px",
-                    fontWeight: "400px",
-                    color: "#667085",
-                    marginLeft: "10px",
-                  }}
-                >
-                  An uppercase character
-                </p>
-              </div>
-              <div className="flex" style={{ marginTop: "12px" }}>
-                <img src="assets/images/logos/Tick.svg" alt="logo"></img>
-                <p
-                  style={{
-                    fontSize: "12px",
-                    fontWeight: "400px",
-                    color: "#667085",
-                    marginLeft: "10px",
-                  }}
-                >
-                  An lowercase character
-                </p>
-              </div>
-              <div className="flex" style={{ marginTop: "12px" }}>
-                <img src="assets/images/logos/Tick.svg" alt="logo"></img>
-                <p
-                  style={{
-                    fontSize: "12px",
-                    fontWeight: "400px",
-                    color: "#667085",
-                    marginLeft: "10px",
-                  }}
-                >
-                  A number (0-9) and/or symbol (Such as !,#, or % )
-                </p>
-              </div>
-              <div className="flex" style={{ marginTop: "12px" }}>
-                <img src="assets/images/logos/Tick.svg" alt="logo"></img>
-                <p
-                  style={{
-                    fontSize: "12px",
-                    fontWeight: "400px",
-                    color: "#667085",
-                    marginLeft: "10px",
-                  }}
-                >
-                  Ten or more character total
-                </p>
-              </div>
 
-              <div style={{ marginTop: "10px" }}>
+                <Controller
+                  name="phone_no"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      InputProps={{
+                        className: "mb-16 rounded-lg mb-11 mt-6 h-[44px]"
+                      }}
+                      placeholder="+92 | 3524584205"
+                      hidden
+                      error={!!errors.phone_no}
+                      helperText={errors?.phone_no?.message}
+                      variant="outlined"
+                      fullWidth
+                    />
+                  )}
+                />
+
+                <div className="flex" style={{ marginTop: "16px" }}>
+                  <img src="assets/images/logos/Tick.svg" alt="logo"></img>
+                  <p style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px" }}>
+                    An uppercase character{errors?.password?.message}
+                  </p>
+                </div>
+                <div className="flex" style={{ marginTop: "12px" }}>
+                  <img src="assets/images/logos/Tick.svg" alt="logo"></img>
+                  <p style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px", }}>
+                    An lowercase character
+                  </p>
+                </div>
+                <div className="flex" style={{ marginTop: "12px" }}>
+                  <img src="assets/images/logos/Tick.svg" alt="logo"></img>
+                  <p style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px" }}>
+                    A number (0-9) and/or symbol (Such as !,#, or % )
+                  </p>
+                </div>
+                <div className="flex" style={{ marginTop: "12px" }}>
+                  <img src="assets/images/logos/Tick.svg" alt="logo"></img>
+                  <p style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px", }}>
+                    Ten or more character total
+                  </p>
+                </div>
+
                 <Button
-                className="w-full"
-                
+                  type="submit"
+                  disabled={_.isEmpty(dirtyFields) || !isValid}
+                  className="w-full text-white mt-auto"
                   style={{
-                    
                     height: "44px",
-                    background: "#D22A8F",
-                    color: "#FFFFFF",
+                    backgroundColor: "#D22A8F",
                     borderRadius: "8px",
                     fontSize: "16px",
                     marginTop: "28px"
@@ -224,20 +251,20 @@ function Setpassword() {
                 >
                   Sign in
                 </Button>
-              </div>
+              </form>
             </CardContent>
           </Card>
         </div>
       </div>
       <div className="flex flex-row justify-center ">
         <Typography
-        className="absolute bottom-0 text-16 font-normal pb-10"
-          style={{color: "#98A2B3"}}
+          className="absolute bottom-0 text-16 font-normal pb-10"
+          style={{ color: "#98A2B3" }}
         >
           © 2022 GariConnect. All rights reserved.
         </Typography>
       </div>
-    </div>
+    </div >
   );
 }
 

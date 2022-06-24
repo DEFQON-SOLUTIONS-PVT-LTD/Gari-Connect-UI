@@ -61,7 +61,7 @@ class JwtService extends FuseUtils.EventEmitter {
   signInWithEmailAndPassword = (phoneno, password) => {
     return new Promise((resolve, reject) => {
       axios
-        .post('http://192.168.100.36:8080/api/auth/signin', {
+        .post('http://api.gariconnect.com:8080/api/auth/signin', {
           phoneno,
           password
         })
@@ -98,7 +98,7 @@ class JwtService extends FuseUtils.EventEmitter {
   signInWithToken = () => {
     return new Promise((resolve, reject) => {
       axios
-        .get('http://192.168.100.36:8080/api/auth/token' + this.getAccessToken())
+        .get('http://api.gariconnect.com:8080/api/auth/token' + this.getAccessToken())
         .then((response) => {
           if (response) {
             var obj = {

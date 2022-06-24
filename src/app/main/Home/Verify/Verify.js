@@ -1,16 +1,58 @@
 import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
+import { Typography, TextField, FormControl } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Link } from "react-router-dom";
+import { useEffect } from 'react';
+import { Link, useHistory } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
-import OtpInput from "react-otp-input";
+import { verifyOtpData } from '../../../../app/auth/store/verifyOtpSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import _ from '@lodash';
+import OTPInput, { ResendOTP } from "otp-input-react";
+
+const schema = yup.object().shape({
+  otp_code: yup
+    .string()
+    .required('You must enter Code'),
+});
+
+const defaultValues = {
+  otp_code: '',
+  phone_no: ''
+};
 
 function OTP() {
-  const [code, setCode] = useState("");
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const otp = useSelector(({ auth }) => auth.forget);
+  const otpStatus = useSelector(({ auth }) => auth.verify);
+  console.log(otp.data.customer.data.otp_code)
+  const { control, setValue, formState, handleSubmit, reset, trigger, } = useForm({
+    mode: 'onChange',
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
 
-  const handleChange = (code) => setCode(code);
+  const { isValid, dirtyFields, errors } = formState;
+
+  useEffect(() => {
+    setValue('otp_code', '');
+    setValue('phone_no', otp.data.customer.data.phone_no);
+  }, [reset, setValue, trigger]);
+
+  function onSubmit(model) {
+    dispatch(verifyOtpData(model))
+      .then(() => {
+        if (otpStatus.data.status === true) {
+          history.push('/Setpassword');
+        }
+      });
+  }
+
   return (
     <div>
       <Signupheader />
@@ -40,48 +82,75 @@ function OTP() {
               Please enter 6 digit code send on your phone 034******59
             </p>
           </div>
-          <div className="w-full mt-20 ">
+          <div className="w-full my-20 ">
             <hr />
           </div>
           <CardContent>
-            <div className="flex justify-center space-x-10">
-              <OtpInput
-                value={code}
-                onChange={handleChange}
-                numInputs={6}
-                separator={<span style={{ width: "8px" }}></span>}
-                isInputNum={true}
-                shouldAutoFocus={true}
-                inputStyle={{
-                  border: "1px solid #D0D5DD",
-                  borderRadius: "8px",
-                  width: "66px",
-                  height: "66px",
-                  fontSize: "12px",
-                  color: "#000",
-                  fontWeight: "500",
-                  fontSize: "32px",
-                }}
-                focusStyle={{
-                  border: "1px solid black",
-                  outline: "none",
-                }}
-              />
-            </div>
-            <div className="sm:mt-28 mt-16">
-              <Button
-                component={Link}
-                to="/Setpassword"
-                style={{
-                  backgroundColor: "rgba(210, 42, 143, 1)",
-                  height: "44px",
-                  fontSize: "16px",
-                }}
-                className="w-full text-white rounded-lg"
-              >
-                Submit
-              </Button>
-            </div>
+            <form className="flex flex-col justify-center w-full" onSubmit={handleSubmit(onSubmit)}>
+              <div className="flex flex-col space-y-40">
+                <FormControl className="mx-auto" variant="outlined">
+                  <Controller
+                    name="otp_code"
+                    control={control}
+                    rules={{ required: 'otp_code' }}
+                    render={({ field: { onChange, value } }) => (
+                      <OTPInput
+                        value={value}
+                        onChange={onChange}
+                        autoFocus
+                        OTPLength={4}
+                        otpType="number"
+                        inputStyles={{
+                          border: "1px solid #D0D5DD",
+                          borderRadius: "8px",
+                          width: "66px",
+                          height: "66px",
+                          fontSize: "12px",
+                          color: "#000",
+                          fontWeight: "500",
+                          fontSize: "32px",
+                        }}
+                        disabled={false}
+
+                      />
+                    )}
+                  />
+                </FormControl>
+                {/* <ResendOTP onResendClick={() => console.log("Resend clicked")} /> */}
+
+                <Controller
+                  name="phone_no"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      InputProps={{
+                        className: "rounded-lg mb-11 mt-6 h-[44px]"
+                      }}
+                      type="text"
+                      hidden
+                      variant="outlined"
+                      fullWidth
+                    />
+                  )}
+                />
+
+                <Button
+                  // component={Link}
+                  // to="/Setpassword"
+                  type="submit"
+                  disabled={_.isEmpty(dirtyFields) || !isValid}
+                  style={{
+                    backgroundColor: "rgba(210, 42, 143, 1)",
+                    height: "44px",
+                    fontSize: "16px",
+                  }}
+                  className="w-full text-white rounded-lg"
+                >
+                  Submit
+                </Button>
+              </div>
+            </form>
             <div className="sm:mt-20 mt-24">
               <p
                 style={{

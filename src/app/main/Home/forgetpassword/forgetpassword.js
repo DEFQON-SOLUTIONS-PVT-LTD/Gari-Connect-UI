@@ -10,8 +10,8 @@ import CardContent from "@mui/material/CardContent";
 import Signupheader from "../Signupheader/Signupheader";
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { sendOtp } from '../store/forgotPasswordSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { sendOtp } from '../../../auth/store/forgetSlice';
+import { useDispatch } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -45,10 +45,10 @@ function forgetpassword() {
   }, [reset, setValue, trigger]);
 
   function onSubmit(model) {
-    dispatch(sendOtp(model));
-    // .then(() => {
-    //   history.push('/Home/LandingPage');
-    // });
+    dispatch(sendOtp(model))
+      .then(() => {
+        history.push('/Verify');
+      });
   }
 
   return (
@@ -130,10 +130,7 @@ function forgetpassword() {
                 )}
               />
 
-              {/* <div style={{ marginTop: "12px" }}> */}
               <Button
-                // component={Link}
-                // to="/Verify"
                 type="submit"
                 disabled={_.isEmpty(dirtyFields) || !isValid}
                 style={{
@@ -145,7 +142,6 @@ function forgetpassword() {
               >
                 Submit
               </Button>
-              {/* </div> */}
             </form>
           </CardContent>
         </Card>
