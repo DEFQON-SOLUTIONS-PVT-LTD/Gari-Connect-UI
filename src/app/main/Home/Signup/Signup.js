@@ -508,7 +508,7 @@ function Signup() {
                     marginTop: "24px",
                   }}
                 >
-                  Already have an acount?
+                  Already have an account?
                   <a
                     href="/Signin"
                     style={{
