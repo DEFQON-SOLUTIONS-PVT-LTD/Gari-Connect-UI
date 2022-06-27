@@ -34,6 +34,10 @@ function strongPasswordMethod() {
   });
 };
 
+function checkInput() {
+
+}
+
 const schema = yup.object().shape({
   password: yup.string().required().strongPassword(),
   // password: yup
@@ -132,6 +136,7 @@ function Setpassword() {
                     <TextField
                       fullWidth
                       {...field}
+                      onKeyUp={checkInput()}
                       type="password"
                       error={!!errors.password}
                       helperText={errors?.password?.message}

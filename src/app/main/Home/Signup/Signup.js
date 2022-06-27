@@ -4,101 +4,95 @@ import { Typography, Icon } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
-import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
-import Autocomplete from "@mui/material/Autocomplete";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import AvatarUploader from "react-avatar-uploader";
+import { submitRegister } from 'app/auth/store/registerSlice';
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { submitLogin } from "app/auth/store/loginSlice";
 import * as yup from "yup";
 import _ from "@lodash";
-
-const top100Films = [
-  { label: "The Shawshank Redemption", year: 1994 },
-  { label: "The Godfather", year: 1972 },
-  { label: "The Godfather: Part II", year: 1974 },
-  { label: "The Dark Knight", year: 2008 },
-  { label: "12 Angry Men", year: 1957 },
-  { label: "Schindler's List", year: 1993 },
-  { label: "Pulp Fiction", year: 1994 },
-];
+import { height } from "@mui/system";
 
 const schema = yup.object().shape({
   email: yup
     .string()
     .email("You must enter a valid email")
     .required("You must enter a email"),
-  password: yup
+  phoneno: yup
     .string()
-    .required('Please enter your password.')
-    .min(10, 'Password is too short - should be 10 chars minimum.'),
-  password_confirmation: yup
-    .string()
-    .required('Please enter your password.')
-    .min(10, 'Password is too short - should be 10 chars minimum.')
-    .oneOf([yup.ref("password")], "Passwords do not match"),
+    .required('You must enter a Phone Number')
+    .min(13, 'The Phone Number must be at least 13 digits')
+    .max(13, 'The Phone Number should be max 13 digits'),
 });
 
 const defaultValues = {
-  email: "",
-  password: "",
+  firstname: '',
+  lastname: '',
+  phoneno: '',
+  email: '',
+  address: '',
+  cityId: '',
+  gender: '',
+  photo: ''
 };
 
 function Signup() {
   const dispatch = useDispatch();
-  const login = useSelector(({ auth }) => auth.login);
-  const {
-    control,
-    setValue,
-    formState,
-    handleSubmit,
-    reset,
-    trigger,
-    setError,
-  } = useForm({
-    mode: "onChange",
+  const authRegister = useSelector(({ auth }) => auth.register);
+
+  const [baseImage, setBaseImage] = useState("assets/images/logos/Avtr.svg");
+
+  const { control, formState, handleSubmit, reset, setError } = useForm({
+    mode: 'onChange',
     defaultValues,
     resolver: yupResolver(schema),
   });
 
   const { isValid, dirtyFields, errors } = formState;
 
-  const [showPassword, setShowPassword] = useState(false);
-
   useEffect(() => {
-    setValue("email", "admin@gmail.com", { shouldDirty: true, shouldValidate: true, });
-    setValue("password", "Admin@1234", { shouldDirty: true, shouldValidate: true });
-    setValue("password_confirmation", "Admin@1234", { shouldDirty: true, shouldValidate: true });
-  }, [reset, setValue, trigger]);
-
-  useEffect(() => {
-    login.errors.forEach((error) => {
+    authRegister.errors.forEach((error) => {
       setError(error.type, {
-        type: "manual",
+        type: 'manual',
         message: error.message,
       });
     });
-  }, [login.errors, setError]);
+  }, [authRegister.errors, setError]);
+
+  const uploadImage = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertBase64(file);
+    setBaseImage(base64);
+  };
 
   function onSubmit(model) {
-    dispatch(submitLogin(model));
+    model.photo = 'testImg'
+    dispatch(submitRegister(model));
   }
 
-  const [gender, setGender] = React.useState("");
 
-  const genderChange = (event) => {
-    setGender(event.target.value);
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
   };
+
 
   return (
     <div>
@@ -218,15 +212,15 @@ function Signup() {
                       First name
                     </Typography>
                     <Controller
-                      name="email"
+                      name="firstname"
                       control={control}
                       render={({ field }) => (
                         <TextField
                           fullWidth
                           {...field}
                           type="text"
-                          error={!!errors.email}
-                          helperText={errors?.email?.message}
+                          error={!!errors.firstname}
+                          helperText={errors?.firstname?.message}
                           InputProps={{
                             className: 'rounded-lg mt-8'
                           }}
@@ -248,15 +242,15 @@ function Signup() {
                       Last name
                     </Typography>
                     <Controller
-                      name="email"
+                      name="lastname"
                       control={control}
                       render={({ field }) => (
                         <TextField
                           fullWidth
                           {...field}
                           type="text"
-                          error={!!errors.email}
-                          helperText={errors?.email?.message}
+                          error={!!errors.lastname}
+                          helperText={errors?.lastname?.message}
                           InputProps={{
                             className: 'rounded-lg mt-8'
                           }}
@@ -305,15 +299,15 @@ function Signup() {
                   Phone number
                 </Typography>
                 <Controller
-                  name="email"
+                  name="phoneno"
                   control={control}
                   render={({ field }) => (
                     <TextField
                       fullWidth
                       {...field}
                       type="text"
-                      error={!!errors.email}
-                      helperText={errors?.email?.message}
+                      error={!!errors.phoneno}
+                      helperText={errors?.phoneno?.message}
                       InputProps={{
                         className: 'rounded-lg mt-8'
                       }}
@@ -321,152 +315,112 @@ function Signup() {
                     />
                   )}
                 />
-                <FormControl fullWidth>
-                  <Typography
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "500px",
-                      color: "#344054",
-                      marginTop: "17px",
-                    }}
-                  >
-                    City
-                  </Typography>
-                  <Autocomplete
-                    popupIcon={
-                      <KeyboardArrowDownIcon
-                        style={{ color: "rgba(16, 24, 40, 1)" }}
-                      />
-                    }
-                    className="mt-6"
-                    disablePortal
-                    id="combo-box-demo"
-                    options={top100Films}
-                    sx={{ height: 44 }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        size="medium"
-                        placeholder="Honda"
-                        sx={{
-                          "& fieldset": {
-                            borderRadius: "8px",
-                          },
-                        }}
-                      />
+
+                <Typography
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500px",
+                    color: "#344054",
+                    marginTop: "17px",
+                  }}
+                >
+                  Street Address
+                </Typography>
+                <Controller
+                  name="address"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      {...field}
+                      type="text"
+                      error={!!errors.address}
+                      helperText={errors?.address?.message}
+                      InputProps={{
+                        className: 'rounded-lg mt-8'
+                      }}
+                      variant="outlined"
+                    />
+                  )}
+                />
+
+                <Typography
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500px",
+                    color: "#344054",
+                    marginTop: "17px",
+                  }}
+                >
+                  City
+                </Typography>
+                <FormControl fullWidth variant="outlined">
+                  <Controller
+                    name="cityId"
+                    control={control}
+                    rules={{ required: 'City' }}
+                    render={({ field: { onChange, value } }) => (
+                      <Select
+                        className="mt-8 mb-16"
+                        sx={{ borderRadius: "8px", height: "44" }}
+                        IconComponent={() => (
+                          <KeyboardArrowDownIcon
+                            className="mr-10"
+                            style={{ color: "rgba(16, 24, 40, 1)" }}
+                          />
+                        )}
+                        error={!!errors.cityId}
+                        required
+                        helpertext={errors?.cityId?.message}
+                        value={value}
+                        onChange={onChange}
+                        labelId="select-city"
+                      >
+                        <MenuItem value="1">Lahore</MenuItem>
+                        <MenuItem value="2">Karachi</MenuItem>
+                        <MenuItem value="3">Islamabad</MenuItem>
+                      </Select>
                     )}
                   />
                 </FormControl>
-                <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                    <Typography
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: "500px",
-                        color: "#344054",
-                        marginTop: "17px",
-                      }}
-                    >
-                      Gender
-                    </Typography>
-                    <Select
-                      className="mt-6"
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={gender}
-                      onChange={genderChange}
-                      sx={{ borderRadius: "8px", height: "44" }}
-                      IconComponent={() => (
-                        <KeyboardArrowDownIcon
-                          className="mr-10"
-                          style={{ color: "rgba(16, 24, 40, 1)" }}
-                        />
-                      )}
-                    >
-                      <MenuItem value={10}>Male</MenuItem>
-                      <MenuItem value={20}>Female</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
-                <div style={{ marginTop: "25px" }}>
-                  <Typography
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "500px",
-                      color: "#344054",
-                    }}
-                  >
-                    Enter password
-                  </Typography>
+
+                <Typography
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500px",
+                    color: "#344054",
+                    marginTop: "17px",
+                  }}
+                >
+                  Gender
+                </Typography>
+                <FormControl fullWidth variant="outlined">
                   <Controller
-                    name="password"
+                    name="gender"
                     control={control}
-                    render={({ field }) => (
-                      <TextField
-                        fullWidth
-                        {...field}
-                        type="password"
-                        error={!!errors.password}
-                        helperText={errors?.password?.message}
-                        variant="outlined"
-                        InputProps={{
-                          className: 'pr-2 rounded-lg mt-8',
-                          type: showPassword ? 'text' : 'password',
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <IconButton onClick={() => setShowPassword(!showPassword)} size="large">
-                                <Icon className="text-20" color="action">
-                                  {showPassword ? 'visibility' : 'visibility_off'}
-                                </Icon>
-                              </IconButton>
-                            </InputAdornment>
-                          ),
-                        }}
+                    rules={{ required: 'Gender' }}
+                    render={({ field: { onChange, value } }) => (
+                      <Select
+                        className="mt-8 mb-16"
+                        sx={{ borderRadius: "8px", height: "44" }}
+                        IconComponent={() => (
+                          <KeyboardArrowDownIcon
+                            className="mr-10"
+                            style={{ color: "rgba(16, 24, 40, 1)" }}
+                          />
+                        )}
+                        error={!!errors.gender}
                         required
-                      />
+                        helpertext={errors?.gender?.message}
+                        value={value}
+                        onChange={onChange}
+                      >
+                        <MenuItem value="male">Male</MenuItem>
+                        <MenuItem value="female">Female</MenuItem>
+                      </Select>
                     )}
                   />
-                </div>
-                <div style={{ marginTop: "10px" }}>
-                  <Typography
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "500px",
-                      color: "#344054",
-                      marginTop: "8px",
-                    }}
-                  >
-                    Re-enter password
-                  </Typography>
-                  <Controller
-                    name="password"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        fullWidth
-                        {...field}
-                        type="password"
-                        error={!!errors.password}
-                        helperText={errors?.password?.message}
-                        variant="outlined"
-                        InputProps={{
-                          className: 'pr-2 rounded-lg mt-8',
-                          type: showPassword ? 'text' : 'password',
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <IconButton onClick={() => setShowPassword(!showPassword)} size="large">
-                                <Icon className="text-20" color="action">
-                                  {showPassword ? 'visibility' : 'visibility_off'}
-                                </Icon>
-                              </IconButton>
-                            </InputAdornment>
-                          ),
-                        }}
-                        required
-                      />
-                    )}
-                  />
-                </div>
+                </FormControl>
 
                 <Typography
                   className="font-medium text-sm mt-24"
@@ -474,26 +428,40 @@ function Signup() {
                 >
                   Upload profile photo
                 </Typography>
-                <div className="flex mt-12">
-                  <AvatarUploader size={59} uploadURL="http://localhost:3000" />
-                  <Typography
-                    className="mt-16 ml-12 font-medium text-sm"
-                    style={{ color: "#D22A8F" }}
-                  >
-                    Browse
-                  </Typography>
+                <div>
+                  <input
+                    htmlFor="browseImg"
+                    className="hidden"
+                    type="file"
+                    id="browseImg"
+                    onChange={(e) => {
+                      uploadImage(e);
+                    }}
+                  />
+
+                  <div className="flex items-center mt-12">
+                    <img style={{ backgroundColor: '#F0F1F4', borderRadius: '50%', height: '60px' }} src={baseImage} />
+                    <label
+                      htmlFor="browseImg"
+                      className="ml-12 font-medium text-sm cursor-pointer"
+                      style={{ color: "#D22A8F" }}
+                    >
+                      Browse
+                    </label>
+                  </div>
                 </div>
                 <div style={{ marginTop: "20px" }}>
                   <Button
-                    component={Link}
-                    to="/Verifyaccount"
+                    type="submit"
+                    // disabled={_.isEmpty(dirtyFields) || !isValid}
+                    // component={Link}
+                    // to="/Verifyaccount"
                     style={{
                       height: "44px",
                       background: "#D22A8F",
-                      color: "#FFFFFF",
                       fontSize: "16px",
                     }}
-                    className="w-full rounded-lg"
+                    className="w-full rounded-lg text-white"
                   >
                     Sign up
                   </Button>
@@ -527,7 +495,7 @@ function Signup() {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </div >
       <div className="flex flex-row justify-center mt-60">
         <Typography
           className="absolute bottom-0 text-16 font-normal pb-10"
@@ -536,7 +504,7 @@ function Signup() {
           © 2022 GariConnect. All rights reserved.
         </Typography>
       </div>
-    </div>
+    </div >
   );
 }
 

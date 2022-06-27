@@ -5,22 +5,27 @@ import jwtService from 'app/services/jwtService';
 import { createUserSettingsFirebase, setUserData } from './userSlice';
 
 export const submitRegister =
-  ({ displayName, password, email }) =>
-  async (dispatch) => {
-    return jwtService
-      .createUser({
-        displayName,
-        password,
-        email,
-      })
-      .then((user) => {
-        dispatch(setUserData(user));
-        return dispatch(registerSuccess());
-      })
-      .catch((errors) => {
-        return dispatch(registerError(errors));
-      });
-  };
+  ({ firstname, lastname, phoneno, email, address, cityId, gender, photo }) =>
+    async (dispatch) => {
+      return jwtService
+        .createUser({
+          firstname,
+          lastname,
+          phoneno,
+          email,
+          address,
+          cityId,
+          gender,
+          photo
+        })
+        .then((user) => {
+          dispatch(setUserData(user));
+          return dispatch(registerSuccess());
+        })
+        .catch((errors) => {
+          return dispatch(registerError(errors));
+        });
+    };
 
 export const registerWithFirebase = (model) => async (dispatch) => {
   if (!firebaseService.auth) {
