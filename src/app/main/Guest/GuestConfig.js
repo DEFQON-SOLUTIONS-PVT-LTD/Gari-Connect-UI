@@ -1,7 +1,9 @@
 import GuestPanelConfig from './guestPanel/GuestPanelConfig';
+import GuestMenuConfig from './menu/GuestMenuConfig';
 
 const GuestConfig = [
-    GuestPanelConfig
+    GuestPanelConfig,
+    GuestMenuConfig,
 ];
 
 export default GuestConfig;

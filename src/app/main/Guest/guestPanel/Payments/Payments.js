@@ -74,11 +74,11 @@ function Payments() {
                                         classes={{ root: classes.customTabs }}
                                     >
                                         <Tab className='md:ml-0 ml-10' label={<Typography className="text-sm font-medium">Payments</Typography>} />
-                                        <Tab className='md:ml-0 ml-10' label={<Typography className="text-sm font-medium">Transactions history</Typography>} />
+                                        {/* <Tab className='md:ml-0 ml-10' label={<Typography className="text-sm font-medium">Transactions history</Typography>} /> */}
 
                                         <div className="md:ml-auto ml-10 flex  items-center  md:mr-5 md:my-0 my-14">
-                                            <Button variant="outlined" className="rounded-4 mr-10 ">Export CSV</Button>
-                                            <Button variant="contained" className="rounded-4 text-white" style={{ backgroundColor: '#D22A8F' }}>Download Invoices</Button>
+                                            <Button variant="outlined" className="rounded-4 mr-10 h-36 text-xs">Export CSV</Button>
+                                            <Button variant="contained" className="rounded-4 text-white h-36" style={{ backgroundColor: '#101828' }}>Download Invoices</Button>
                                         </div>
                                     </Tabs>
                                 </Box>

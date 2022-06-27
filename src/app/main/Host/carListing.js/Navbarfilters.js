@@ -14,7 +14,6 @@ import Slider from "@mui/material/Slider";
 import Star from "../sharedComponents/Star";
 import Withdriver from "../sharedComponents/Withdriver";
 
-
 function valuetext(value) {
   return `${value}°C`;
 }
@@ -44,14 +43,14 @@ const Navbarfilters = () => {
 
   const styles = {
     position: "absolute",
-    top: 28,
+    top: 60,
     right: 0,
     left: 0,
     zIndex: 1,
     p: 1,
     bgcolor: "background.paper",
     width: 382,
-    height: 158,
+    height: 178,
   };
 
   return (
@@ -60,7 +59,9 @@ const Navbarfilters = () => {
         <div className="flex md:ml-96 md:space-x-12 md:flex-row  flex-col md:space-y-0 space-y-14 ml-55 md:w-md lg:w-2xl">
           {/* <div className="flex justify-between lg:w-auto lg:static lg:block lg:justify-start ml-96"> */}
           <Autocomplete
-            popupIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
+            popupIcon={
+              <KeyboardArrowDownIcon style={{ color: "rgba(0, 0, 0, 1)" }} />
+            }
             disablePortal
             id="combo-box-demo"
             options={top100Films}
@@ -79,7 +80,9 @@ const Navbarfilters = () => {
           />
 
           <Autocomplete
-            popupIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
+            popupIcon={
+              <KeyboardArrowDownIcon style={{ color: "rgba(0, 0, 0, 1)" }} />
+            }
             disablePortal
             id="combo-box-demo"
             options={top100Films}
@@ -109,27 +112,57 @@ const Navbarfilters = () => {
                 }}
                 type="button"
                 onClick={priceClick}
-                endIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
+                endIcon={
+                  <KeyboardArrowDownIcon
+                    style={{ color: "rgba(0, 0, 0, 1)" }}
+                  />
+                }
               >
                 Price
               </Button>
               {price ? (
-                <Box className="mt-28" sx={styles}>
+                <Box sx={styles}>
+                  <Typography className="text-base font-medium mt-16">
+                    PKR 2000 - PKR 5000+/day
+                  </Typography>
                   <Slider
-                    className="mt-60"
+                    className="mt-12"
                     getAriaLabel={() => "Temperature range"}
                     value={value}
                     onChange={handleChange}
                     valueLabelDisplay="auto"
                     getAriaValueText={valuetext}
                   />
+                  <div className="flex justify-between">
+                    <Typography className="font-medium text-sm">0</Typography>
+                    <Typography className="font-medium text-sm">
+                      10000
+                    </Typography>
+                  </div>
+                  <div
+                    className="mt-16"
+                    style={{
+                      width: "144px",
+                      height: "34px",
+                      backgroundColor: "#000000",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    <Typography
+                      className="pt-6 pl-12"
+                      style={{ color: "#FFFFFF" }}
+                    >
+                      View 200+ results
+                    </Typography>
+                  </div>
                 </Box>
               ) : null}
             </Box>
-     
           </ClickAwayListener>
           <Autocomplete
-            popupIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
+            popupIcon={
+              <KeyboardArrowDownIcon style={{ color: "rgba(0, 0, 0, 1)" }} />
+            }
             disablePortal
             id="combo-box-demo"
             options={top100Films}
@@ -165,7 +198,9 @@ const Navbarfilters = () => {
               id="basic-button"
               onClick={handleClick}
               style={{ width: "104px", height: "52px" }}
-              endIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
+              endIcon={
+                <KeyboardArrowDownIcon style={{ color: "rgba(0, 0, 0, 1)" }} />
+              }
             >
               Sort by
             </Button>

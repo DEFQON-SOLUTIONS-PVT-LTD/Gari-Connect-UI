@@ -4,6 +4,8 @@ import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import Autocomplete from "@mui/material/Autocomplete"; 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import Divider from '@mui/material/Divider';
+import { border } from '@mui/system';
 
 const top100Films = [
     { label: "The Shawshank Redemption", year: 1994 },
@@ -208,9 +210,10 @@ const CarDetails = () => {
                     >
                         Model
                     </Typography>
+                    <div className='flex w-full rounded-lg mt-6' style={{ border: '1px solid #D0D5DD',height:"53px" }}>
+                        <div className='w-3/4'>
                     <Autocomplete
                     popupIcon={<KeyboardArrowDownIcon />}
-                        className="mt-6"
                         disablePortal
                         id="combo-box-demo"
                         options={top100Films}
@@ -222,12 +225,38 @@ const CarDetails = () => {
                                 placeholder="Yaris"
                                 sx={{
                                     '& fieldset': {
-                                        borderRadius: '8px'
+                                        borderRadius: '8px',
+                                        border:"none"
                                     }
                                 }}
                             />
                         )}
                     />
+                    </div>
+                    <Divider orientation="vertical"  />
+                    <div className='w-1/4'>
+                    <Autocomplete
+                    popupIcon={<KeyboardArrowDownIcon />}
+                        disablePortal
+                        id="combo-box-demo"
+                        options={top100Films}
+                        sx={{ height: 44 }}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                size="medium"
+                                placeholder="2018"
+                                sx={{
+                                    '& fieldset': {
+                                        borderRadius: '8px',
+                                        border:"none"
+                                    }
+                                }}
+                            />
+                        )}
+                    /> 
+                    </div>
+                    </div>
                 </FormControl>
                 <FormControl fullWidth variant="outlined">
                     <Typography

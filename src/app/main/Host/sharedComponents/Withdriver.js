@@ -88,7 +88,7 @@ export default function Star(){
         zIndex: 1,
         p: 1,
         bgcolor: "background.paper",
-        width: 281,
+        width: 170,
         height: 77,
       };
     return(
