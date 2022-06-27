@@ -14,6 +14,7 @@ import Slider from "@mui/material/Slider";
 import Star from "../sharedComponents/Star";
 import Withdriver from "../sharedComponents/Withdriver";
 
+
 function valuetext(value) {
   return `${value}°C`;
 }
@@ -59,7 +60,7 @@ const Navbarfilters = () => {
         <div className="flex md:ml-96 md:space-x-12 md:flex-row  flex-col md:space-y-0 space-y-14 ml-55 md:w-md lg:w-2xl">
           {/* <div className="flex justify-between lg:w-auto lg:static lg:block lg:justify-start ml-96"> */}
           <Autocomplete
-            popupIcon={<KeyboardArrowDownIcon />}
+            popupIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
             disablePortal
             id="combo-box-demo"
             options={top100Films}
@@ -78,7 +79,7 @@ const Navbarfilters = () => {
           />
 
           <Autocomplete
-            popupIcon={<KeyboardArrowDownIcon />}
+            popupIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
             disablePortal
             id="combo-box-demo"
             options={top100Films}
@@ -108,7 +109,7 @@ const Navbarfilters = () => {
                 }}
                 type="button"
                 onClick={priceClick}
-                endIcon={<KeyboardArrowDownIcon />}
+                endIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
               >
                 Price
               </Button>
@@ -125,9 +126,10 @@ const Navbarfilters = () => {
                 </Box>
               ) : null}
             </Box>
+     
           </ClickAwayListener>
           <Autocomplete
-            popupIcon={<KeyboardArrowDownIcon />}
+            popupIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
             disablePortal
             id="combo-box-demo"
             options={top100Films}
@@ -163,7 +165,7 @@ const Navbarfilters = () => {
               id="basic-button"
               onClick={handleClick}
               style={{ width: "104px", height: "52px" }}
-              endIcon={<KeyboardArrowDownIcon />}
+              endIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
             >
               Sort by
             </Button>

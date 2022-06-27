@@ -42,7 +42,7 @@ export default function Star (){
             }}
             type="button"
             onClick={priceClick}
-            endIcon={<KeyboardArrowDownIcon />}
+            endIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
           >
             Rating
           </Button>
