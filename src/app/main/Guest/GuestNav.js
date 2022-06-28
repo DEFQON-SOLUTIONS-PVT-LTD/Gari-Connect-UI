@@ -101,8 +101,8 @@ const GuestNav = () => {
                                 </Button>
                             </li>
                             <li className="nav-item space-x-10">
-                                <IconButton>
-                                    <FavoriteBorderIcon />
+                                <IconButton component={Link} to="/FavouriteCars">
+                                    <FavoriteBorderIcon style={{color:"#D22A8F"}}/>
                                 </IconButton>
                                 <IconButton onClick={handleClick3}>
                                     <NotificationsNoneOutlinedIcon />
@@ -200,7 +200,7 @@ const GuestNav = () => {
                                     </MenuItem>
                                 </Menu>
 
-                                <IconButton component={Link} to="/Settings">
+                                <IconButton component={Link} to="/GuestSetting">
                                     <SettingsIcon />
                                 </IconButton>
                                 <IconButton onClick={handleClick2}>

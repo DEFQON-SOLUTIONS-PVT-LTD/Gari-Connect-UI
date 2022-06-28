@@ -25,7 +25,7 @@ const CarsListing = () => {
             <CarDetailsCard />
           </div>
           <div className="flex col-span-1">
-            <CarDetailsCard component={Link} to="/carddetail" />
+            <CarDetailsCard />
           </div>
           <div className="flex col-span-1">
             <CarDetailsCard />

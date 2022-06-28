@@ -2,6 +2,7 @@ import { authRoles } from 'app/auth';
 import GuestSetting from './GuestSetting/GuestSetting';
 import GuestSupport from './Guestsupport/Support';
 import GuestProfile from './Guestprofile/GuestProfile';
+import Favouritecar from "./Favouritecar/Favouritecar";
 
 const GuestMenuConfig = {
     auth: authRoles.onlyGuest,
@@ -17,6 +18,10 @@ const GuestMenuConfig = {
         {
             path: '/GuestProfile',
             component: GuestProfile,
+        },
+        {
+            path: '/FavouriteCars',
+            component: Favouritecar,
         }
     ],
 };

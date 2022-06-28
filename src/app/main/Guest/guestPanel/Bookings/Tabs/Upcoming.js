@@ -15,8 +15,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import DoDisturbOutlinedIcon from '@mui/icons-material/DoDisturbOutlined';
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
-import ArrowForwardSharpIcon from '@mui/icons-material/ArrowForwardSharp';
-import IconButton from '@mui/material/IconButton';
 import Drawer from "../../../../Host/sharedComponents/Drawer";
 
 function SimpleDialog(props) {
@@ -334,7 +332,8 @@ const Upcoming = () => {
                 <TableCell>
                     <DoDisturbOutlinedIcon className="ml-12" style={{color:"#F04438"}}/>
                 </TableCell>
-                <TableCell><IconButton><ArrowForwardSharpIcon/></IconButton></TableCell>
+                <TableCell>
+                  <Drawer/></TableCell>
               </TableRow>
 
               <TableRow
@@ -404,7 +403,8 @@ const Upcoming = () => {
                 <TableCell>
                     <TaskAltOutlinedIcon className="ml-12" style={{color:"#039855"}}/>
                 </TableCell>
-                <TableCell><IconButton><ArrowForwardSharpIcon/></IconButton></TableCell>
+                <TableCell>
+                  <Drawer/></TableCell>
               </TableRow>
             </TableBody>
           </Table>
