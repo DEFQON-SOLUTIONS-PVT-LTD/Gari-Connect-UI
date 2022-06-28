@@ -10,8 +10,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 
 const schema = yup.object().shape({
-  Autocomplete: yup.array().required("Select a make."),
-  TextField: yup.string().required("You must enter a value"),
+  make: yup.array().required("Select a make."),
+  plate: yup.string().required("You must enter a value"),
 });
 
 const top100Films = [
@@ -254,6 +254,7 @@ const CarDetails = () => {
           <Controller
             render={({ field }) => (
               <TextField
+              required
                 className="rounded-lg mb-11 "
                 placeholder="AFB 8954"
                 style={{ marginTop: "6px", height: "44px" }}

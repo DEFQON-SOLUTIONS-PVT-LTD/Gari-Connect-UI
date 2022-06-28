@@ -6,6 +6,16 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import { styled } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller, useForm } from "react-hook-form";
+
+const schema = yup.object().shape({
+  Autocomplete: yup.array().required("Select a make."),
+  TextField: yup.string().required("You must enter a value"),
+});
 
 const BpIcon = styled("span")(({ theme }) => ({
   borderRadius: "50%",
@@ -70,6 +80,14 @@ function BpRadio(props) {
   );
 }
 const AddPrice = () => {
+  const { handleSubmit, register, reset, control, watch, formState } = useForm({
+    mode: "all",
+    resolver: yupResolver(schema),
+  });
+
+  const { isValid, dirtyFields, errors, touchedFields } = formState;
+
+  const data = watch();
   return (
     <div className="grid lg:grid-cols-2  gap-x-68">
       <div className="col-span-1">
@@ -84,14 +102,22 @@ const AddPrice = () => {
           >
             Price per day
           </Typography>
-          <FormControl className="w-full" variant="outlined">
-            <OutlinedInput
-              className="rounded-lg"
-              placeholder="Select a car make"
-              type="number"
-              style={{ marginTop: "6px", height: "44px" }}
-            />
-          </FormControl>
+          <Controller
+            render={({ field }) => (
+              <TextField
+                className="rounded-lg mb-11 w-full"
+                placeholder="Select a car make"
+                style={{ marginTop: "6px", height: "44px" }}
+                sx={{
+                  "& fieldset": {
+                    borderRadius: "8px",
+                  },
+                }}
+              />
+            )}
+            name="price"
+            control={control}
+          />
           <Typography
             className="text-xs font-normal mt-10"
             style={{ color: "#737B7D" }}
@@ -156,14 +182,22 @@ const AddPrice = () => {
           >
             Add driver price
           </Typography>
-          <FormControl className="w-full" variant="outlined">
-            <OutlinedInput
-              className="rounded-lg"
-              placeholder="Add price"
-              type="number"
-              style={{ marginTop: "6px", height: "44px" }}
-            />
-          </FormControl>
+          <Controller
+            render={({ field }) => (
+              <TextField
+                className="rounded-lg mb-11 w-full"
+                placeholder="Add driver price"
+                style={{ marginTop: "6px", height: "44px" }}
+                sx={{
+                  "& fieldset": {
+                    borderRadius: "8px",
+                  },
+                }}
+              />
+            )}
+            name="driverprice"
+            control={control}
+          />
           <div className="w-full">
             <div className="sm:flex flex-row justify-between mt-32">
               <div>
@@ -216,14 +250,22 @@ const AddPrice = () => {
           >
             Add additional price
           </Typography>
-          <FormControl className="w-full" variant="outlined">
-            <OutlinedInput
-              className="rounded-lg"
-              placeholder="Add price"
-              type="number"
-              style={{ marginTop: "6px", height: "44px" }}
-            />
-          </FormControl>
+          <Controller
+            render={({ field }) => (
+              <TextField
+                className="rounded-lg mb-11 w-full"
+                placeholder="Add price"
+                style={{ marginTop: "6px", height: "44px" }}
+                sx={{
+                  "& fieldset": {
+                    borderRadius: "8px",
+                  },
+                }}
+              />
+            )}
+            name="addprice"
+            control={control}
+          />
         </div>
       </div>
       <div
