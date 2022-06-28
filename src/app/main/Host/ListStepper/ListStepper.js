@@ -107,7 +107,7 @@ function getStepContent(steps) {
               color: "#101828",
             }}
           >
-            Availability
+           Set availability
           </Typography>
           <Availability />
         </div>

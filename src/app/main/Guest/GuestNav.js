@@ -75,6 +75,7 @@ const GuestNav = () => {
                         <ul className="flex flex-col lg:flex-row list-none lg:ml-auto space-x-10">
                             <li>
                                 <Button
+                                component={Link} to="/Home/Landingpage"
                                     className="headbutton rounded-sm"
                                     variant="contained" size="large"
                                     style={{ backgroundColor: '#D22A8F', borderRadius: "4px" }}
@@ -84,7 +85,7 @@ const GuestNav = () => {
                             </li>
                             <li className="nav-item">
                                 <Button
-                                    component={Link} to="/Cardetail"
+                                    component={Link} to="/HostTabs"
                                     id="basic-button"
                                     aria-controls={open2 ? 'basic-menu' : undefined}
                                     aria-haspopup="true"

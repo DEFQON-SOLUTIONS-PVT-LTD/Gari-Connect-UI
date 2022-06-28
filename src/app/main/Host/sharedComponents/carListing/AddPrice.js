@@ -227,7 +227,7 @@ const AddPrice = () => {
         </div>
       </div>
       <div
-      className="mt-128 col-span-1"
+      className="mt-64 col-span-1"
         style={{
           height: "241px",
           width: "410px",

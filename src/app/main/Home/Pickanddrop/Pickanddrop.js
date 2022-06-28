@@ -165,7 +165,7 @@ function Personaldetails() {
                 />
           </FormControl>
                 <Button                 
-                  className="ml-10 mt-12 w-full"
+                  className="mt-12 w-full"
                   style={{
                     height: "44px",
                     background: "#D22A8F",

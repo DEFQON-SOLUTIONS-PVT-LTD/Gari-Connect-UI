@@ -318,8 +318,8 @@ export default function Confirmandpay() {
                     aria-labelledby="demo-customized-radios"
                     name="customized-radios"
                   >
-                    <div className="sm:flex sm:space-x-10 space-y-10">
-                      <Card style={{width:"142px"}}>
+                    <div className="sm:flex sm:space-x-10">
+                      <Card style={{width:"142px",height:""}}>
                         <CardContent>
                       <div className="flex">
                         <FormControlLabel

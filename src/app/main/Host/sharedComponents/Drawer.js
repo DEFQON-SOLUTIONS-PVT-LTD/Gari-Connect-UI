@@ -9,20 +9,19 @@ import {
   DialogContent,
   Collapse,
   Box,
-}from "@mui/material";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+} from "@mui/material";
 import Divider from "@mui/material/Divider";
 import ClearIcon from "@mui/icons-material/Clear";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
-import IconButton from '@mui/material/IconButton';
-import ArrowForwardSharpIcon from '@mui/icons-material/ArrowForwardSharp';
+import IconButton from "@mui/material/IconButton";
+import ArrowForwardSharpIcon from "@mui/icons-material/ArrowForwardSharp";
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
 import TripDateRange from "../sharedComponents/TripDateRange";
 import PropTypes from "prop-types";
-
+import Drawer from '@mui/material/Drawer';
 
 function SimpleDialog(props) {
   const { onClose, open } = props;
@@ -67,6 +66,14 @@ function EditDialog(props) {
   const { onClose, open } = props;
 
   const [openAlert, setOpenAlert] = React.useState(true);
+  const [sent, setSent] = React.useState(false);
+  const otpClickOpen = () => {
+    setSent(true);
+  };
+
+  const otpClose = () => {
+    setSent(false);
+  };
 
   const handleClose = () => {
     onClose(true);
@@ -83,20 +90,21 @@ function EditDialog(props) {
       <DialogContent className="space-y-12">
         <TripDateRange />
         <div>
-          <FormControl fullWidth>
-            <TextField
-              sx={{
-                "& fieldset": {
-                  borderRadius: "8px",
-                  border: "1px solid #D0D5DD",
-                },
-              }}
-              id="outlined-multiline-static"
-              multiline
-              rows={5}
-              placeholder="Write your problem"
-            />
-          </FormControl>
+          <form>
+          <TextField
+          InputProps={{className:"rounded-lg"}}
+            sx={{
+              "& fieldset": {
+                border: "1px solid #D0D5DD",
+              },
+            }}
+            id="outlined-multiline-static"
+            fullWidth
+            multiline
+            rows={5}
+            placeholder="Write your problem"
+          />
+          </form>
         </div>
         <div className="space-y-12">
           <Box sx={{ width: "100%" }}>
@@ -132,10 +140,7 @@ function EditDialog(props) {
             </Collapse>
           </Box>
           <Button
-            disabled={openAlert}
-            onClick={() => {
-              setOpenAlert(true);
-            }}
+          onClick={otpClickOpen}
             fullWidth
             variant="contained"
             size="large"
@@ -144,6 +149,7 @@ function EditDialog(props) {
           >
             Send request
           </Button>
+          <SimpleDialog open={sent} onClose={otpClose}/>
         </div>
       </DialogContent>
     </Dialog>
@@ -155,18 +161,11 @@ EditDialog.propTypes = {
   open: PropTypes.bool.isRequired,
 };
 
-
 export default function SwipeableTemporaryDrawer() {
-  const [open, setOpen] = React.useState(false);
+  
   const [open1, setOpen1] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  
   const handleClickOpen1 = () => {
     setOpen1(true);
   };
@@ -202,10 +201,14 @@ export default function SwipeableTemporaryDrawer() {
         <Typography className="text-black text-24 ml-28">
           Booking Details
         </Typography>
+        <IconButton
+        
+         >
         <ClearIcon
           className="w-48 cursor-pointer"
           style={{ color: "#D22A8F" }}
         />
+        </IconButton>
       </nav>
       <Divider />
       <div className="flex items-center space-x-16">
@@ -266,7 +269,7 @@ export default function SwipeableTemporaryDrawer() {
       <div className="flex justify-between items-center py-12">
         <div className="flex">
           <img
-             src="assets/images/profile/Avatar-0.svg"
+            src="assets/images/profile/Avatar-0.svg"
             alt="Avatar"
             className="mx-20 h-60 w-60"
           />
@@ -318,24 +321,26 @@ export default function SwipeableTemporaryDrawer() {
             <Typography className=" font-bold">
               Alama Iqbal Airport, Lahore
             </Typography>
-            <Typography
-              className="underline cursor-pointer"
-              style={{ color: "#D22A8F" }}
+            <a
+              href="https://maps.google.com/"
+              target="_blank"
+              style={{ color: "#D22A8F",backgroundColor:"white" }}
             >
               View on map
-            </Typography>
+            </a>
           </div>
           <Typography className="py-8">Drop off</Typography>
           <div className="flex space-x-10">
             <Typography className=" font-bold">
               Ho# 38, Phase 6, DHA, Lahore
             </Typography>
-            <Typography
-              className="underline cursor-pointer"
-              style={{ color: "#D22A8F" }}
+            <a
+              href="https://maps.google.com/"
+              target="_blank"
+              style={{ color: "#D22A8F",backgroundColor:"white" }}
             >
               View on map
-            </Typography>
+            </a>
           </div>
         </div>
       </div>
@@ -376,14 +381,13 @@ export default function SwipeableTemporaryDrawer() {
         </div>
       </div>
       <div className=" flex justify-end space-x-8">
-        <Button onClick={handleClickOpen1} className="border-1 h-36 w-160 rounded-4 stroke-2">
+        <Button
+          onClick={handleClickOpen1}
+          className="border-1 h-36 w-160 rounded-4 stroke-2"
+        >
           Rechedule Booking
         </Button>
-        <EditDialog
-       
-        open={open1}
-        onClose={handleClose1}
-      />
+        <EditDialog open={open1} onClose={handleClose1} />
         <Button
           className="border-1 h-36 w-128 rounded-4 stroke-2 text-white"
           style={{ background: "#D22A8F" }}
@@ -398,18 +402,19 @@ export default function SwipeableTemporaryDrawer() {
     <div>
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <IconButton onClick={toggleDrawer(anchor, true)}><ArrowForwardSharpIcon/></IconButton>
-          <SwipeableDrawer
+          <IconButton onClick={toggleDrawer(anchor, true)}>
+            <ArrowForwardSharpIcon />
+          </IconButton>
+          <Drawer
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
             onOpen={toggleDrawer(anchor, true)}
           >
             {list(anchor)}
-          </SwipeableDrawer>
+          </Drawer>
         </React.Fragment>
       ))}
     </div>
   );
 }
-

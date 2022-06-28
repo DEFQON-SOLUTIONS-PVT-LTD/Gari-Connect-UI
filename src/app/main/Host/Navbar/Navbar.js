@@ -42,7 +42,7 @@ export default function Navbar() {
   return (
     <nav className="relative flex flex-wrap items-center justify-between px-2 py-20 shadow-lg mb-2">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start ml-48 h-auto">
+        <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start h-auto">
           <a href="/Home/LandingPage">
             <img
               className="headimage"
@@ -67,8 +67,8 @@ export default function Navbar() {
           id="example-navbar-danger"
         >
           <ul
-            className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20"
-            style={{ marginLeft: "10%" }}
+            className="flex lg:flex-row list-none h-full md:mt-auto mt-20"
+            
           >
             <div className=" border rounded-full w-auto md:w-md">
               <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 h-full w-full">
@@ -81,7 +81,7 @@ export default function Navbar() {
                       freeSolo
                       id="free-solo-2-demo"
                       disableClearable
-                      sx={{ width: 200 }}
+                      sx={{ width: 150 }}
                       options={top100Films.map((option) => option.title)}
                       renderInput={(params) => (
                         <TextField
