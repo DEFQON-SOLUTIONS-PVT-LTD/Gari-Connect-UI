@@ -3,6 +3,7 @@ import GuestSetting from './GuestSetting/GuestSetting';
 import GuestSupport from './Guestsupport/Support';
 import GuestProfile from './Guestprofile/GuestProfile';
 import Favouritecar from "./Favouritecar/Favouritecar";
+import Notifications from './Notofications/Notifications';
 
 const GuestMenuConfig = {
     auth: authRoles.onlyGuest,
@@ -22,6 +23,10 @@ const GuestMenuConfig = {
         {
             path: '/FavouriteCars',
             component: Favouritecar,
+        },
+        {
+            path: '/Notifications',
+            component: Notifications,
         }
     ],
 };

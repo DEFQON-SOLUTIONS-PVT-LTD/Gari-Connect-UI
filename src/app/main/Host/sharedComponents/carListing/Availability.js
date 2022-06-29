@@ -2,8 +2,30 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import Switch from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller, useForm } from "react-hook-form";
+
+const schema = yup.object().shape({
+    Monday: yup.boolean().oneOf([true], 'You must turn it on.'),
+    Tuesday: yup.boolean().oneOf([true], 'You must turn it on.'),
+    Wednesday: yup.boolean().oneOf([true], 'You must turn it on.'),
+    Thursday: yup.boolean().oneOf([true], 'You must turn it on.'),
+    Friday: yup.boolean().oneOf([true], 'You must turn it on.'),
+    Saturday: yup.boolean().oneOf([true], 'You must turn it on.'),
+    Sunday: yup.boolean().oneOf([true], 'You must turn it on.'),
+  });
 
 const Availability = () => {
+
+    const { handleSubmit, register, reset, control, watch, formState } = useForm({
+        mode: "all",
+        resolver: yupResolver(schema),
+      });
+    
+      const { isValid, dirtyFields, errors, touchedFields } = formState;
+    
+      const data = watch();
 
     const AntSwitch = styled(Switch)(({ theme }) => ({
         width: 28,
@@ -54,7 +76,14 @@ const Availability = () => {
                     <Typography className="text-sm font-medium ">Monday</Typography>
                 </div>
                 <div style={{ float: "right" }}>
+                <Controller
+            name="Monday"
+            type="checkbox"
+            control={control}
+            render={({ field: { onChange, value, ref, onBlur } }) => (
                     <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+                    )}
+                    />
                 </div>
             </div>
             <hr
@@ -65,7 +94,15 @@ const Availability = () => {
                     <Typography className="text-sm font-medium ">Tuesday</Typography>
                 </div>
                 <div style={{ float: "right" }}>
-                    <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+                <Controller
+            name="Tuesday"
+            type="checkbox"
+            control={control}
+            render={({ field: { onChange, value, ref, onBlur } }) => (
+                    <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }}
+                   />
+                    )}
+                    />
                 </div>
             </div>
             <hr
@@ -76,7 +113,14 @@ const Availability = () => {
                     <Typography className="text-sm font-medium ">Wednesday</Typography>
                 </div>
                 <div style={{ float: "right" }}>
+                <Controller
+            name="Wednesday"
+            type="checkbox"
+            control={control}
+            render={({ field: { onChange, value, ref, onBlur } }) => (
                     <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+                    )}
+                    />
                 </div>
             </div>
             <hr
@@ -87,7 +131,14 @@ const Availability = () => {
                     <Typography className="text-sm font-medium ">Thursday</Typography>
                 </div>
                 <div style={{ float: "right" }}>
+                <Controller
+            name="Thursday"
+            type="checkbox"
+            control={control}
+            render={({ field: { onChange, value, ref, onBlur } }) => (
                     <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+                    )}
+                    />
                 </div>
             </div>
             <hr
@@ -98,7 +149,14 @@ const Availability = () => {
                     <Typography className="text-sm font-medium ">Friday</Typography>
                 </div>
                 <div style={{ float: "right" }}>
+                <Controller
+            name="Friday"
+            type="checkbox"
+            control={control}
+            render={({ field: { onChange, value, ref, onBlur } }) => (
                     <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+                    )}
+                    />
                 </div>
             </div>
             <hr
@@ -109,7 +167,14 @@ const Availability = () => {
                     <Typography className="text-sm font-medium ">Saturday</Typography>
                 </div>
                 <div style={{ float: "right" }}>
+                <Controller
+            name="Saturday"
+            type="checkbox"
+            control={control}
+            render={({ field: { onChange, value, ref, onBlur } }) => (
                     <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+                    )}
+                    />
                 </div>
             </div>
             <hr
@@ -120,7 +185,14 @@ const Availability = () => {
                     <Typography className="text-sm font-medium ">Sunday</Typography>
                 </div>
                 <div style={{ float: "right" }}>
+                <Controller
+            name="Sunday"
+            type="checkbox"
+            control={control}
+            render={({ field: { onChange, value, ref, onBlur } }) => (
                     <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+                    )}
+                    />
                 </div>
             </div>
             <hr

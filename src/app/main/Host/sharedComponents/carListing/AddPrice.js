@@ -1,20 +1,18 @@
 import React from "react";
 import { Typography,Box } from "@mui/material";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import FormControl from "@mui/material/FormControl";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
-
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 
 const schema = yup.object().shape({
-  Autocomplete: yup.array().required("Select a make."),
-  TextField: yup.string().required("You must enter a value"),
+  price: yup.string().required("You must enter a value"),
+  driverPrice: yup.string().required("You must enter a value"),
+  additionalPrice: yup.string().required("You must enter a value"),
 });
 
 const BpIcon = styled("span")(({ theme }) => ({
@@ -103,11 +101,18 @@ const AddPrice = () => {
             Price per day
           </Typography>
           <Controller
+          name="price"
+          control={control}
             render={({ field }) => (
               <TextField
                 className="rounded-lg mb-11 w-full"
                 placeholder="Select a car make"
                 style={{ marginTop: "6px", height: "44px" }}
+                {...field}
+                type="number"
+                error={!!errors.price}
+                required
+                helperText={errors?.price?.message}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -115,11 +120,9 @@ const AddPrice = () => {
                 }}
               />
             )}
-            name="price"
-            control={control}
           />
           <Typography
-            className="text-xs font-normal mt-10"
+            className="text-xs font-normal mt-24"
             style={{ color: "#737B7D" }}
           >
             Suggestion: Minimmum price should be amount x and max is amount x
@@ -183,11 +186,18 @@ const AddPrice = () => {
             Add driver price
           </Typography>
           <Controller
+           name="driverPrice"
+           control={control}
             render={({ field }) => (
               <TextField
                 className="rounded-lg mb-11 w-full"
                 placeholder="Add driver price"
                 style={{ marginTop: "6px", height: "44px" }}
+                {...field}
+                type="number"
+                error={!!errors.driverPrice}
+                required
+                helperText={errors?.driverPrice?.message}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -195,8 +205,6 @@ const AddPrice = () => {
                 }}
               />
             )}
-            name="driverprice"
-            control={control}
           />
           <div className="w-full">
             <div className="sm:flex flex-row justify-between mt-32">
@@ -251,11 +259,18 @@ const AddPrice = () => {
             Add additional price
           </Typography>
           <Controller
+          name="additionalPrice"
+          control={control}
             render={({ field }) => (
               <TextField
                 className="rounded-lg mb-11 w-full"
                 placeholder="Add price"
                 style={{ marginTop: "6px", height: "44px" }}
+                {...field}
+                type="number"
+                error={!!errors.additionalPrice}
+                required
+                helperText={errors?.additionalPrice?.message}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -263,8 +278,6 @@ const AddPrice = () => {
                 }}
               />
             )}
-            name="addprice"
-            control={control}
           />
         </div>
       </div>

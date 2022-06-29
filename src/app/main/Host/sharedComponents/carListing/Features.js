@@ -10,8 +10,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 
 const schema = yup.object().shape({
-  Autocomplete: yup.array().required("Select a make."),
-  TextField: yup.string().required("You must enter a value"),
+  door: yup.array().min(1,"You must select a area"),
+  fuel: yup.array().min(1,"You must select a area"),
+  kmpl: yup.string().required("Please select KMPL "),
+  seats: yup.string().required("You must enter number of seats"),
 });
 
 const top100Films = [
@@ -26,7 +28,6 @@ const top100Films = [
     label: "The Lord of the Rings: The Return of the King",
     year: 2003,
   },
- 
 ];
 
 const Features = () => {
@@ -147,14 +148,23 @@ const Features = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
+              multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
                 id="combo-box-demo"
                 options={top100Films}
+                value={value}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
+                  error={!!errors.fuel}
+                  helperText={errors?.fuel?.message}
+                  onBlur={onBlur}
+                  inputRef={ref}
                     {...params}
                     size="medium"
                     placeholder="Petrol"
@@ -180,10 +190,16 @@ const Features = () => {
             KMPL
           </Typography>
           <Controller
+            name="kmpl"
+            control={control}
             render={({ field }) => (
               <TextField
                 className="rounded-lg mb-11 "
                 placeholder="28"
+                {...field}
+                error={!!errors.kmpl}
+                required
+                helperText={errors?.kmpl?.message}
                 style={{ marginTop: "6px", height: "44px" }}
                 sx={{
                   "& fieldset": {
@@ -192,8 +208,6 @@ const Features = () => {
                 }}
               />
             )}
-            name="kmpl"
-            control={control}
           />
         </FormControl>
       </div>
@@ -209,19 +223,28 @@ const Features = () => {
             Doors
           </Typography>
           <Controller
-            name="doors"
+            name="door"
             control={control}
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
+              multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
                 id="combo-box-demo"
                 options={top100Films}
+                value={value}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
+                  error={!!errors.door}
+                  helperText={errors?.door?.message}
+                  onBlur={onBlur}
+                  inputRef={ref}
                     {...params}
                     size="medium"
                     placeholder="4"
@@ -247,10 +270,16 @@ const Features = () => {
             Seats
           </Typography>
           <Controller
+           name="seats"
+           control={control}
             render={({ field }) => (
               <TextField
                 className="rounded-lg mb-11 "
                 placeholder="4"
+                {...field}
+                error={!!errors.seats}
+                required
+                helperText={errors?.seats?.message}
                 style={{ marginTop: "6px", height: "44px" }}
                 sx={{
                   "& fieldset": {
@@ -259,8 +288,6 @@ const Features = () => {
                 }}
               />
             )}
-            name="seats"
-            control={control}
           />
         </FormControl>
       </div>

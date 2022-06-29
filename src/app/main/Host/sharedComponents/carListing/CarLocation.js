@@ -1,7 +1,5 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import FormControl from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import GoogleMapReact from "google-map-react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -10,9 +8,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 
-const schema = yup.object().shape({
-  Autocomplete: yup.array().required("Select a make."),
-  TextField: yup.string().required("You must enter a value"),
+const schema = yup.object().shape({ 
+  city: yup.array().min(1,"You must select a area"),
+  area: yup.string().required("You must select a area"),
+  address: yup.string().required("You must select an address"),
+  zip: yup.string().required("You must enter an zip code"),
 });
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -74,14 +74,23 @@ const CarLocation = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
+              multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
                 id="combo-box-demo"
                 options={top100Films}
+                value={value}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
+                  error={!!errors.city}
+                  helperText={errors?.city?.message}
+                  onBlur={onBlur}
+                  inputRef={ref}
                   className="w-full"
                     {...params}
                     size="medium"
@@ -109,11 +118,18 @@ const CarLocation = () => {
               Area
             </Typography>
             <Controller
+             name="area"
+             control={control}
             render={({ field }) => (
               <TextField
                 className="rounded-lg mb-11 w-full"
                 placeholder="Canal view"
                 style={{ marginTop: "6px", height: "44px" }}
+                {...field}
+                      type="text"
+                      error={!!errors.area}
+                      required
+                      helperText={errors?.area?.message}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -121,8 +137,6 @@ const CarLocation = () => {
                 }}
               />
             )}
-            name="area"
-            control={control}
           />
          
           
@@ -137,11 +151,18 @@ const CarLocation = () => {
               Street address
             </Typography>
             <Controller
+            name="address"
+            control={control}
             render={({ field }) => (
               <TextField
                 className="rounded-lg mb-11 w-full"
                 placeholder="25 A,Street 26, Canal view"
                 style={{ marginTop: "6px", height: "44px" }}
+                {...field}
+                type="text"
+                error={!!errors.address}
+                required
+                helperText={errors?.address?.message}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -149,8 +170,6 @@ const CarLocation = () => {
                 }}
               />
             )}
-            name="street"
-            control={control}
           />
          
 
@@ -166,11 +185,18 @@ const CarLocation = () => {
               Zip code
             </Typography>
             <Controller
+            name="zip"
+            control={control}
             render={({ field }) => (
               <TextField
                 className="rounded-lg mb-11 w-full"
                 placeholder="5400"
                 style={{ marginTop: "6px", height: "44px" }}
+                type="numbers"
+                error={!!errors.zip}
+                {...field}
+                required
+                helperText={errors?.zip?.message}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -178,8 +204,6 @@ const CarLocation = () => {
                 }}
               />
             )}
-            name="Zip"
-            control={control}
           />
          
         </div>
