@@ -2,6 +2,7 @@ import React from "react";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Typography from "@mui/material/Typography";
 import { TextField, Icon, IconButton, InputAdornment } from "@mui/material";
+import DoneIcon from '@mui/icons-material/Done';
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -33,10 +34,6 @@ function strongPasswordMethod() {
     }
   });
 };
-
-function checkInput() {
-
-}
 
 const schema = yup.object().shape({
   password: yup.string().required().strongPassword(),
@@ -78,8 +75,8 @@ function Setpassword() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   useEffect(() => {
-    setValue('password', 'NewPassword123@', { shouldDirty: true, shouldValidate: true });
-    setValue('password_confirmation', 'NewPassword123@', { shouldDirty: true, shouldValidate: true });
+    setValue('password', '', { shouldDirty: true, shouldValidate: true });
+    setValue('password_confirmation', '', { shouldDirty: true, shouldValidate: true });
     setValue('phone_no', '+923214199087', { shouldDirty: true, shouldValidate: true });
   }, [reset, setValue, trigger]);
 
@@ -88,6 +85,48 @@ function Setpassword() {
     // .then(() => {
     //   history.push('/Home/LandingPage');
     // });
+  }
+
+  function checkPassword() {
+    var pass = document.getElementById('pass1');
+    var num = document.getElementById('num');
+    var upper = document.getElementById('upper');
+    var lower = document.getElementById('lower');
+    var len = document.getElementById('len');
+
+    var icon1 = document.getElementById('icon1');
+    var icon2 = document.getElementById('icon2');
+    var icon3 = document.getElementById('icon3');
+    var icon4 = document.getElementById('icon4');
+
+    if (pass.value.match(/^(?=.*[0-9])/)) {
+      (num.style.color = 'black') && (icon1.style.color = 'green')
+    }
+    else {
+      (num.style.color = 'gray') && (icon1.style.color = 'red')
+    }
+
+    if (pass.value.match(/^(?=.*[A-Z])/)) {
+      (upper.style.color = 'black') && (icon2.style.color = 'green')
+    }
+    else {
+      (upper.style.color = 'gray') && (icon2.style.color = 'red')
+    }
+
+    if (pass.value.match(/^(?=.*[a-z])/)) {
+      (lower.style.color = 'black') && (icon3.style.color = 'green')
+    }
+    else {
+      (lower.style.color = 'gray') && (icon3.style.color = 'red')
+    }
+
+    if (pass.value.length < 10) {
+      (len.style.color = 'gray') && (icon4.style.color = 'red')
+    }
+    else {
+      (len.style.color = 'black') && (icon4.style.color = 'green')
+    }
+
   }
 
   return (
@@ -135,8 +174,9 @@ function Setpassword() {
                   render={({ field }) => (
                     <TextField
                       fullWidth
+                      id="pass1"
+                      onKeyUp={checkPassword}
                       {...field}
-                      onKeyUp={checkInput()}
                       type="password"
                       error={!!errors.password}
                       helperText={errors?.password?.message}
@@ -218,26 +258,26 @@ function Setpassword() {
                 />
 
                 <div className="flex" style={{ marginTop: "16px" }}>
-                  <img src="assets/images/logos/Tick.svg" alt="logo"></img>
-                  <p style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px" }}>
-                    An uppercase character{errors?.password?.message}
+                  <DoneIcon id="icon2" className="text-18" />
+                  <p id="upper" style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px" }}>
+                    An uppercase character
                   </p>
                 </div>
                 <div className="flex" style={{ marginTop: "12px" }}>
-                  <img src="assets/images/logos/Tick.svg" alt="logo"></img>
-                  <p style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px", }}>
+                  <DoneIcon id="icon3" className="text-18" />
+                  <p id="lower" style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px", }}>
                     An lowercase character
                   </p>
                 </div>
-                <div className="flex" style={{ marginTop: "12px" }}>
-                  <img src="assets/images/logos/Tick.svg" alt="logo"></img>
-                  <p style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px" }}>
+                <div id="icon1" className="flex" style={{ marginTop: "12px" }}>
+                  <DoneIcon id="icon1" className="text-18" />
+                  <p id="num" style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px" }}>
                     A number (0-9) and/or symbol (Such as !,#, or % )
                   </p>
                 </div>
                 <div className="flex" style={{ marginTop: "12px" }}>
-                  <img src="assets/images/logos/Tick.svg" alt="logo"></img>
-                  <p style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px", }}>
+                  <DoneIcon id="icon4" className="text-18" />
+                  <p id="len" style={{ fontSize: "12px", fontWeight: "400px", color: "#667085", marginLeft: "10px", }}>
                     Ten or more character total
                   </p>
                 </div>

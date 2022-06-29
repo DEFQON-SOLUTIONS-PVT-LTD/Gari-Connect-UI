@@ -5,7 +5,6 @@ export const verifyOtpData = createAsyncThunk('auth/verifyOtp/verifyOtpData',
     async (dataModel, { dispatch, getState }) => {
         const response = await axios.post('http://api.gariconnect.com:8080/api/auth/verifyotp', dataModel);
         const data = await response.data;
-
         return data;
     });
 

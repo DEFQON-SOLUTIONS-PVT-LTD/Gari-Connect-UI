@@ -45,6 +45,7 @@ function forgetpassword() {
   }, [reset, setValue, trigger]);
 
   function onSubmit(model) {
+    console.log('Model: ', model);
     dispatch(sendOtp(model))
       .then(() => {
         history.push('/Verify');

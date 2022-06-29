@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import moment from 'moment';
 import { Typography, TextField, FormControl } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -7,12 +8,14 @@ import { useEffect } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
 import { verifyOtpData } from '../../../../app/auth/store/verifyOtpSlice';
+import { sendOtp } from '../../../auth/store/forgetSlice'
 import { useDispatch, useSelector } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import _ from '@lodash';
-import OTPInput, { ResendOTP } from "otp-input-react";
+import OTPInput from "otp-input-react";
+import Countdown from "react-countdown";
 
 const schema = yup.object().shape({
   otp_code: yup
@@ -30,7 +33,8 @@ function OTP() {
   const dispatch = useDispatch();
   const otp = useSelector(({ auth }) => auth.forget);
   const otpStatus = useSelector(({ auth }) => auth.verify);
-  console.log(otp.data.customer.data.otp_code)
+  console.log(otp.data.customer.data.otp_code);
+  console.log(otp.data.customer.data.otp_expiry);
   const { control, setValue, formState, handleSubmit, reset, trigger, } = useForm({
     mode: 'onChange',
     defaultValues,
@@ -38,6 +42,8 @@ function OTP() {
   });
 
   const { isValid, dirtyFields, errors } = formState;
+
+  const otpTime = otp.data.customer.data.otp_expiry;
 
   useEffect(() => {
     setValue('otp_code', '');
@@ -53,6 +59,32 @@ function OTP() {
       });
   }
 
+  function onResend() {
+    let phone = {
+      phone_no: otp.data.customer.data.phone_no
+    };
+    dispatch(sendOtp(phone))
+      .then(() => {
+        console.log("Resend:", otp.data.customer.data.phone_no);
+      })
+  }
+
+  const Completionist = () => {
+    return (
+      <Button onClick={onResend} className="text-14 font-medium" style={{ color: '#D22A8F' }}>Resend Code</Button>
+    )
+  }
+
+  const renderer = ({ minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return <Completionist />;
+    } else {
+      // Render a countdown
+      return <span>{minutes}:{seconds}</span>;
+    }
+  };
+
   return (
     <div>
       <Signupheader />
@@ -60,8 +92,8 @@ function OTP() {
         <Card
           style={{
             marginTop: "150px",
-            width: "524px",
-            height: "361px",
+            minWidth: "524px",
+            minHeight: "361px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
           }}
         >
@@ -116,7 +148,6 @@ function OTP() {
                     )}
                   />
                 </FormControl>
-                {/* <ResendOTP onResendClick={() => console.log("Resend clicked")} /> */}
 
                 <Controller
                   name="phone_no"
@@ -136,8 +167,6 @@ function OTP() {
                 />
 
                 <Button
-                  // component={Link}
-                  // to="/Setpassword"
                   type="submit"
                   disabled={_.isEmpty(dirtyFields) || !isValid}
                   style={{
@@ -151,28 +180,23 @@ function OTP() {
                 </Button>
               </div>
             </form>
-            <div className="sm:mt-20 mt-24">
-              <p
-                style={{
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  textAlign: "center",
-                  marginTop: "24px",
-                }}
-              >
-                Didn't receive code?
-                <b
+
+            <div className="flex items-center justify-center sm:mt-20 mt-24">
+              <div className="flex items-center">
+                <p
+                  className="mx-10"
                   style={{
                     fontSize: "14px",
                     fontWeight: "500",
-                    color: "#D22A8F",
                     textAlign: "center",
-                    marginTop: "24px",
                   }}
                 >
-                  Resend Code
-                </b>
-              </p>
+                  Didn't receive code?
+                </p>
+                <div className="w-auto">
+                  <Countdown renderer={renderer} date={new Date(otpTime).getTime()} />
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -185,7 +209,7 @@ function OTP() {
           © 2022 GariConnect. All rights reserved.
         </Typography>
       </div>
-    </div>
+    </div >
   );
 }
 export default OTP;

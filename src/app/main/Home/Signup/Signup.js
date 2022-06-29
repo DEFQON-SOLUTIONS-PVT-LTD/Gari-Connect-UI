@@ -17,9 +17,14 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import _ from "@lodash";
-import { height } from "@mui/system";
 
 const schema = yup.object().shape({
+  firstname: yup
+    .string()
+    .required('You must enter your First Name.'),
+  lastname: yup
+    .string()
+    .required('You must enter a Last Name'),
   email: yup
     .string()
     .email("You must enter a valid email")
@@ -29,6 +34,9 @@ const schema = yup.object().shape({
     .required('You must enter a Phone Number')
     .min(13, 'The Phone Number must be at least 13 digits')
     .max(13, 'The Phone Number should be max 13 digits'),
+  address: yup
+    .string()
+    .required('You must enter an address'),
 });
 
 const defaultValues = {
@@ -46,7 +54,7 @@ function Signup() {
   const dispatch = useDispatch();
   const authRegister = useSelector(({ auth }) => auth.register);
 
-  const [baseImage, setBaseImage] = useState("assets/images/logos/Avtr.svg");
+  const [baseImage, setBaseImage] = useState("assets/images/profile/placeholderProfile.png");
 
   const { control, formState, handleSubmit, reset, setError } = useForm({
     mode: 'onChange',
@@ -219,6 +227,7 @@ function Signup() {
                           fullWidth
                           {...field}
                           type="text"
+                          required
                           error={!!errors.firstname}
                           helperText={errors?.firstname?.message}
                           InputProps={{
@@ -249,6 +258,7 @@ function Signup() {
                           fullWidth
                           {...field}
                           type="text"
+                          required
                           error={!!errors.lastname}
                           helperText={errors?.lastname?.message}
                           InputProps={{
@@ -278,6 +288,7 @@ function Signup() {
                       fullWidth
                       {...field}
                       type="text"
+                      required
                       error={!!errors.email}
                       helperText={errors?.email?.message}
                       InputProps={{
@@ -306,6 +317,7 @@ function Signup() {
                       fullWidth
                       {...field}
                       type="text"
+                      required
                       error={!!errors.phoneno}
                       helperText={errors?.phoneno?.message}
                       InputProps={{
@@ -334,6 +346,7 @@ function Signup() {
                       fullWidth
                       {...field}
                       type="text"
+                      required
                       error={!!errors.address}
                       helperText={errors?.address?.message}
                       InputProps={{
@@ -453,7 +466,7 @@ function Signup() {
                 <div style={{ marginTop: "20px" }}>
                   <Button
                     type="submit"
-                    // disabled={_.isEmpty(dirtyFields) || !isValid}
+                    disabled={_.isEmpty(dirtyFields) || !isValid}
                     // component={Link}
                     // to="/Verifyaccount"
                     style={{
