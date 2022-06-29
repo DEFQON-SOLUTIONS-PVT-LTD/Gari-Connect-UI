@@ -105,7 +105,7 @@ const GuestNav = () => {
                                 <IconButton component={Link} to="/FavouriteCars">
                                     <FavoriteBorderIcon style={{color:"#D22A8F"}}/>
                                 </IconButton>
-                                <IconButton onClick={handleClick3}>
+                                <IconButton  component={Link} to="/Notifications">
                                     <NotificationsNoneOutlinedIcon />
                                 </IconButton>
                                 <Menu

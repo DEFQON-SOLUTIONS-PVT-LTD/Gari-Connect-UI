@@ -9,10 +9,24 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 
+
+
 const schema = yup.object().shape({
-  make: yup.array().required("Select a make."),
+  make: yup.array().min(1,"Please select a make."),
+  category: yup.array().min(1,"Please select a category."),
+  model: yup.array().min(1,"Please select a model."),
+  model1: yup.array().min(1,"Please select a model."),
+  chassis: yup.array().min(1,"Please select chassis number."),
+  transmission: yup.array().min(1,"Please select transmission."),
+  type: yup.array().min(1,"Please select a type."),
+  eco: yup.array().min(1,"Please select ECO."),
   plate: yup.string().required("You must enter a value"),
+  description: yup.string().required("Please enter description"),
 });
+const defaultValues = {
+  make: [],
+};
+
 
 const top100Films = [
   { label: "The Great Dictator", year: 1940 },
@@ -44,6 +58,7 @@ const CarDetails = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
+
   const data = watch();
   return (
     <div>
@@ -61,30 +76,36 @@ const CarDetails = () => {
           <Controller
             name="make"
             control={control}
-            defaultValue={[]}
+            defaultValues={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
-                popupIcon={<KeyboardArrowDownIcon />}
+              multiple
                 className="mt-6"
-                disablePortal
-                id="combo-box-demo"
+                popupIcon={<KeyboardArrowDownIcon />}
                 options={top100Films}
-                sx={{ height: 44 }}
+                value={value}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    size="medium"
-                    placeholder="Honda"
+                    placeholder="Make"
                     sx={{
                       "& fieldset": {
                         borderRadius: "8px",
                       },
                     }}
+                    error={!!errors.make}
+                    helperText={errors?.make?.message}
+                    onBlur={onBlur}
+                    inputRef={ref}
                   />
                 )}
               />
             )}
           />
+
         </FormControl>
         <FormControl fullWidth variant="outlined">
           <Typography
@@ -102,14 +123,23 @@ const CarDetails = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
+              multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
                 id="combo-box-demo"
                 options={top100Films}
+                value={value}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
+                  error={!!errors.category}
+                    helperText={errors?.category?.message}
+                    onBlur={onBlur}
+                    inputRef={ref}
                     {...params}
                     size="medium"
                     placeholder="Elite"
@@ -147,13 +177,22 @@ const CarDetails = () => {
                 defaultValue={[]}
                 render={({ field: { onChange, value, onBlur, ref } }) => (
                   <Autocomplete
+                  multiple
                     popupIcon={<KeyboardArrowDownIcon />}
                     disablePortal
                     id="combo-box-demo"
                     options={top100Films}
+                    value={value}
+                    onChange={(event, newValue) => {
+                      onChange(newValue);
+                    }}
                     sx={{ height: 44 }}
                     renderInput={(params) => (
                       <TextField
+                      error={!!errors.model}
+                    helperText={errors?.model?.message}
+                    onBlur={onBlur}
+                    inputRef={ref}
                         {...params}
                         size="medium"
                         placeholder="Yaris"
@@ -172,18 +211,27 @@ const CarDetails = () => {
             <Divider orientation="vertical" />
             <div className="w-1/4">
               <Controller
-                name="model"
+                name="model1"
                 control={control}
                 defaultValue={[]}
                 render={({ field: { onChange, value, onBlur, ref } }) => (
                   <Autocomplete
+                  multiple
                     popupIcon={<KeyboardArrowDownIcon />}
                     disablePortal
                     id="combo-box-demo"
                     options={top100Films}
+                    value={value}
+                    onChange={(event, newValue) => {
+                      onChange(newValue);
+                    }}
                     sx={{ height: 44 }}
                     renderInput={(params) => (
                       <TextField
+                      error={!!errors.model1}
+                    helperText={errors?.model1?.message}
+                    onBlur={onBlur}
+                    inputRef={ref}
                         {...params}
                         size="medium"
                         placeholder="2018"
@@ -217,14 +265,23 @@ const CarDetails = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
+              multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
                 id="combo-box-demo"
                 options={top100Films}
+                value={value}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
+                  error={!!errors.chassis}
+                    helperText={errors?.chassis?.message}
+                    onBlur={onBlur}
+                    inputRef={ref}
                     {...params}
                     size="medium"
                     placeholder="Chassis number"
@@ -252,12 +309,17 @@ const CarDetails = () => {
             Plate number
           </Typography>
           <Controller
+            name="plate"
+            control={control}
             render={({ field }) => (
               <TextField
-              required
                 className="rounded-lg mb-11 "
                 placeholder="AFB 8954"
                 style={{ marginTop: "6px", height: "44px" }}
+                error={!!errors.plate}
+                required
+                {...field}
+                helperText={errors?.plate?.message}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -265,8 +327,8 @@ const CarDetails = () => {
                 }}
               />
             )}
-            name="platenumber"
-            control={control}
+           
+          
           />
         </FormControl>
         <FormControl fullWidth variant="outlined">
@@ -285,14 +347,23 @@ const CarDetails = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
+              multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
                 id="combo-box-demo"
                 options={top100Films}
+                value={value}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
+                  error={!!errors.transmission}
+                    helperText={errors?.transmission?.message}
+                    onBlur={onBlur}
+                    inputRef={ref}
                     {...params}
                     size="medium"
                     placeholder="Manual"
@@ -325,14 +396,23 @@ const CarDetails = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
+              multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
                 id="combo-box-demo"
                 options={top100Films}
+                value={value}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
+                  error={!!errors.type}
+                    helperText={errors?.type?.message}
+                    onBlur={onBlur}
+                    inputRef={ref}
                     {...params}
                     size="medium"
                     placeholder="Sedan"
@@ -363,14 +443,23 @@ const CarDetails = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
+              multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
                 id="combo-box-demo"
                 options={top100Films}
+                value={value}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
+                  error={!!errors.eco}
+                    helperText={errors?.eco?.message}
+                    onBlur={onBlur}
+                    inputRef={ref}
                     {...params}
                     size="medium"
                     placeholder="Electric"
@@ -398,11 +487,18 @@ const CarDetails = () => {
             Description
           </Typography>
           <Controller
+           name="description"
+           control={control}
             render={({ field }) => (
               <TextField
                 multiline
                 rows={4}
                 placeholder="Writr description here.."
+                {...field}
+                      type="text"
+                      error={!!errors.description}
+                      required
+                      helperText={errors?.description?.message}
                 style={{
                   marginTop: "6px",
                   height: "44px",
@@ -415,11 +511,9 @@ const CarDetails = () => {
                 }}
               />
             )}
-            name="description"
-            control={control}
           />
         </FormControl>
-      </div>
+         </div>
     </div>
   );
 };
