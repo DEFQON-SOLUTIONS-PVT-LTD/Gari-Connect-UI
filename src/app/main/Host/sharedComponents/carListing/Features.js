@@ -9,9 +9,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 
+// const defaultFeaturesFlags =  {   bluetooth:falsae      }
+
+// --------------------------------------------------------------
+
 const schema = yup.object().shape({
-  door: yup.array().min(1,"You must select a area"),
-  fuel: yup.array().min(1,"You must select a area"),
+  door: yup.array().min(1, "You must select a area"),
+  fuel: yup.array().min(1, "You must select a area"),
   kmpl: yup.string().required("Please select KMPL "),
   seats: yup.string().required("You must enter number of seats"),
 });
@@ -38,94 +42,52 @@ const Features = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
-  const data = watch();
-  const event = "#FFFFFF";
-  const [bg, setBg] = useState(null);
-  const [status, setstatus] = useState(true);
-
-  const change = () => {
-    let newBg = "#FDF4F9";
-    setBg(newBg);
-    setstatus(!status);
-  };
-  const [ba, setBa] = useState(null);
-  const [stat, setstat] = useState(true);
-  const b = () => {
-    let newBa = "#FDF4F9";
-    setBa(newBa);
-    setstat(!stat);
-  };
-  const [bb, setBb] = useState(null);
-  const [statb, setstatb] = useState(true);
-  const a = () => {
-    let newBb = "#FDF4F9";
-    setBb(newBb);
-    setstatb(!statb);
-  };
-  const [bc, setBc] = useState(null);
-  const [statc, setstatc] = useState(true);
-  const c = () => {
-    let newBc = "#FDF4F9";
-    setBc(newBc);
-    setstatc(!statc);
-  };
-  const [bd, setBd] = useState(null);
-  const [statd, setstatd] = useState(true);
-  const d = () => {
-    let newBd = "#FDF4F9";
-    setBd(newBd);
-    setstatd(!statd);
-  };
-  const [be, setBe] = useState(null);
-  const [state, setstate] = useState(true);
-  const e = () => {
-    let newBe = "#FDF4F9";
-    setBe(newBe);
-    setstate(!state);
-  };
-  const [bf, setBf] = useState(null);
-  const [statf, setstatf] = useState(true);
-  const f = () => {
-    let newBf = "#FDF4F9";
-    setBf(newBf);
-    setstatf(!statf);
-  };
-  const [bh, setBh] = useState(null);
-  const [stath, setstath] = useState(true);
-  const h = () => {
-    let newBh = "#FDF4F9";
-    setBh(newBh);
-    setstath(!stath);
-  };
-  const [bi, setBi] = useState(null);
-  const [stati, setstati] = useState(true);
-  const i = () => {
-    let newBi = "#FDF4F9";
-    setBi(newBi);
-    setstati(!stati);
-  };
-  const [bj, setBj] = useState(null);
-  const [statj, setstatj] = useState(true);
-  const j = () => {
-    let newBj = "#FDF4F9";
-    setBj(newBj);
-    setstatj(!statj);
-  };
-  const [bk, setBk] = useState(null);
-  const [statk, setstatk] = useState(true);
-  const k = () => {
-    let newBk = "#FDF4F9";
-    setBk(newBk);
-    setstatk(!statk);
-  };
-  const [bl, setBl] = useState(null);
-  const [statl, setstatl] = useState(true);
-  const l = () => {
-    let newBl = "#FDF4F9";
-    setBl(newBl);
-    setstatl(!statl);
+  const features = {
+    blueTooth:{
+      id:1,
+      availability:false},
+      keylessEntry:{
+        id:2,
+        availability:false},
+        appleCar:{
+          id:3,
+          availability:false},
+          USB:{
+            id:4,
+            availability:false},
+            backupCamera:{
+              id:5,
+              availability:false},
+              auxInput:{
+                id:6,
+                availability:false},
+                tollPass:{
+                  id:7,
+                  availability:false},
+    heatedSeat:{
+        id:8,
+        availability:false},
+        sunRoof:{
+          id:9,
+          availability:false},
+          wheelDriver:{
+            id:10,
+            availability:false},
+            GPS:{
+              id:11,
+              availability:false},
+              auxInput2:{
+                id:12,
+                availability:false},
   };
 
+  const [flags, setFlags] = useState(features);
+   
+  const handleCardClick = (key, value  , identity  ) => {
+    
+    setFlags({ ...flags, [key]:  {  id: identity ,  availability :  !value }});
+    
+  };
   return (
     <div>
       <Typography className="font-semibold text-sm mt-10">
@@ -148,7 +110,7 @@ const Features = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
-              multiple
+                multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
@@ -161,10 +123,10 @@ const Features = () => {
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
-                  error={!!errors.fuel}
-                  helperText={errors?.fuel?.message}
-                  onBlur={onBlur}
-                  inputRef={ref}
+                    error={!!errors.fuel}
+                    helperText={errors?.fuel?.message}
+                    onBlur={onBlur}
+                    inputRef={ref}
                     {...params}
                     size="medium"
                     placeholder="Petrol"
@@ -228,7 +190,7 @@ const Features = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
-              multiple
+                multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
@@ -241,10 +203,10 @@ const Features = () => {
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
-                  error={!!errors.door}
-                  helperText={errors?.door?.message}
-                  onBlur={onBlur}
-                  inputRef={ref}
+                    error={!!errors.door}
+                    helperText={errors?.door?.message}
+                    onBlur={onBlur}
+                    inputRef={ref}
                     {...params}
                     size="medium"
                     placeholder="4"
@@ -270,8 +232,8 @@ const Features = () => {
             Seats
           </Typography>
           <Controller
-           name="seats"
-           control={control}
+            name="seats"
+            control={control}
             render={({ field }) => (
               <TextField
                 className="rounded-lg mb-11 "
@@ -298,11 +260,16 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: status ? event : bg,
+            backgroundColor: flags.blueTooth.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={change}>
-            {!status && (
+          <CardActionArea
+            onClick={() => {
+              handleCardClick(Object.keys(features)[0], flags.blueTooth.availability   , flags.blueTooth.id    );
+              
+            }}
+          >
+            {flags.blueTooth.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -310,7 +277,8 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
+
             <CardContent>
               <img
                 className="mx-auto"
@@ -337,11 +305,16 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: stat ? event : ba,
+            backgroundColor: flags.keylessEntry.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={b}>
-            {!stat && (
+          <CardActionArea
+              onClick={() => {
+                handleCardClick(Object.keys(features)[1], flags.keylessEntry.availability   , flags.keylessEntry.id    );
+                
+              }}
+          >
+            {flags.keylessEntry.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -349,7 +322,7 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
             <CardContent>
               <div>
                 <img
@@ -374,11 +347,16 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: statb ? event : bb,
+            backgroundColor: flags.appleCar.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={a}>
-            {!statb && (
+          <CardActionArea
+             onClick={() => {
+              handleCardClick(Object.keys(features)[2], flags.appleCar.availability   , flags.appleCar.id    );
+              
+            }}
+          >
+            {flags.appleCar.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -386,7 +364,8 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
+
             <CardContent>
               <img
                 className="mx-auto mt-48"
@@ -409,11 +388,16 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: statc ? event : bc,
+            backgroundColor: flags.USB.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={c}>
-            {!statc && (
+          <CardActionArea
+             onClick={() => {
+              handleCardClick(Object.keys(features)[3], flags.USB.availability   , flags.USB.id    );
+              
+            }}
+          >
+            {flags.USB.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -421,7 +405,8 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
+
             <CardContent>
               <img
                 className="mx-auto mt-48"
@@ -444,11 +429,16 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: statd ? event : bd,
+            backgroundColor: flags.backupCamera.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={d}>
-            {!statd && (
+          <CardActionArea
+             onClick={() => {
+              handleCardClick(Object.keys(features)[4], flags.backupCamera.availability   , flags.backupCamera.id    );
+              
+            }}
+          >
+            {flags.backupCamera.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -456,7 +446,7 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
             <CardContent>
               <img
                 className="mx-auto mt-40"
@@ -479,11 +469,16 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: state ? event : be,
+            backgroundColor: flags.auxInput.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={e}>
-            {!state && (
+          <CardActionArea
+             onClick={() => {
+              handleCardClick(Object.keys(features)[5], flags.auxInput.availability   , flags.auxInput.id    );
+              
+            }}
+          >
+            {flags.auxInput.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -491,7 +486,7 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
             <CardContent>
               <img
                 className="mx-auto mt-40"
@@ -508,19 +503,24 @@ const Features = () => {
             </CardContent>
           </CardActionArea>
         </Card>
-        {/* </div>
-                <div className="grid grid-cols-1 gap-10 sm:grid-cols-4 md:grid-cols-6"> */}
+      </div>
+      <div className="grid grid-cols-1 gap-10 sm:grid-cols-4 md:grid-cols-6 mt-16">
         <Card
           className="col-span-1 rounded-md shadow-sm"
           style={{
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: statf ? event : bf,
+            backgroundColor: flags.tollPass.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={f}>
-            {!statf && (
+          <CardActionArea
+             onClick={() => {
+              handleCardClick(Object.keys(features)[6], flags.tollPass.availability   , flags.tollPass.id    );
+              
+            }}
+          >
+            {flags.tollPass.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -528,7 +528,7 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
             <CardContent>
               <img
                 className="mx-auto mt-44"
@@ -551,11 +551,16 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: stath ? event : bh,
+            backgroundColor: flags.heatedSeat.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={h}>
-            {!stath && (
+          <CardActionArea
+             onClick={() => {
+              handleCardClick(Object.keys(features)[7], flags.heatedSeat.availability   , flags.heatedSeat.id    );
+              
+            }}
+          >
+            {flags.heatedSeat.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -563,7 +568,7 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
             <CardContent>
               <img
                 className="mx-auto mt-44"
@@ -586,11 +591,16 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: stati ? event : bi,
+            backgroundColor: flags.sunRoof.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={i}>
-            {!stati && (
+          <CardActionArea
+             onClick={() => {
+              handleCardClick(Object.keys(features)[8], flags.sunRoof.availability   , flags.sunRoof.id    );
+              
+            }}
+          >
+            {flags.sunRoof.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -598,7 +608,7 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
             <CardContent>
               <img
                 className="mx-auto mt-44"
@@ -621,11 +631,16 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: statj ? event : bj,
+            backgroundColor: flags.wheelDriver.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={j}>
-            {!statj && (
+          <CardActionArea
+           onClick={() => {
+            handleCardClick(Object.keys(features)[9], flags.wheelDriver.availability   , flags.wheelDriver.id    );
+            
+          }}
+          >
+            {flags.wheelDriver.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -633,7 +648,7 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
             <CardContent>
               <img
                 className="mx-auto mt-44"
@@ -656,11 +671,16 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: statk ? event : bk,
+            backgroundColor: flags.GPS.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={k}>
-            {!statk && (
+          <CardActionArea
+            onClick={() => {
+              handleCardClick(Object.keys(features)[10], flags.GPS.availability   , flags.GPS.id    );
+              
+            }}
+          >
+            {flags.GPS.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -668,7 +688,7 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
             <CardContent>
               <img
                 className="mx-auto mt-44"
@@ -691,11 +711,16 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: statl ? event : bl,
+            backgroundColor: flags.auxInput2.availability ? "#FDF4F9" : "null",
           }}
         >
-          <CardActionArea onClick={l}>
-            {!statl && (
+          <CardActionArea
+              onClick={() => {
+                handleCardClick(Object.keys(features)[11], flags.auxInput2.availability   , flags.auxInput2.id    );
+                
+              }}
+          >
+            {flags.auxInput2.availability ? (
               <img
                 className="mt-10 mr-10"
                 style={{ float: "right" }}
@@ -703,7 +728,7 @@ const Features = () => {
                 src="assets/images/logos/Checkbox.svg"
                 alt="logo"
               />
-            )}
+            ) : null}
             <CardContent>
               <img
                 className="mx-auto mt-40"
