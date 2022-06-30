@@ -203,7 +203,7 @@ export default function Carddetail() {
               </div>
             </div>
             <div>
-              <hr />
+              <hr className="mt-36"/>
               <div>
                 <Typography className="text-base font-semibold mt-8">
                   Descripton
@@ -635,7 +635,7 @@ export default function Carddetail() {
                         backgroundColor: "rgba(210, 42, 143, 1)",
                         fontSize: "16px",
                       }}
-                      className="h-11 text-white rounded-lg md:w-320 w-256"
+                      className="h-11 text-white rounded-lg w-full"
                     >
                       Book now
                     </Button>
@@ -846,7 +846,7 @@ export default function Carddetail() {
                     </Dialog>
                   </div>
                   <div
-                    className="rounded-lg mt-8 md:w-320 w-256 "
+                    className="rounded-lg mt-8 w-full "
                     style={{ backgroundColor: "#EDF5FE" }}
                   >
                     <div className="flex pt-10">
