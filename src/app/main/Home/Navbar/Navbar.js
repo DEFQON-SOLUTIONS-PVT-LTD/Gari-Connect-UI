@@ -67,9 +67,9 @@ export default function Navbar() {
               <div className="grid  sm:grid-cols-2 grid-cols-1 gap-4 h-full w-auto">
                 <div className="flex items-center ml-16">
                   {/* <Divider orientation="vertical" variant="middle" />  */}
-                  <FmdGoodOutlinedIcon />
-                  <Typography className="mx-6">Location</Typography>
-                  <Stack spacing={2}>
+                  <FmdGoodOutlinedIcon style={{color:"#98A2B3"}}/>
+                  <Typography className="mx-6" style={{color:"#98A2B3"}}>Location</Typography>
+                  <Stack>
                     <Autocomplete
                       freeSolo
                       id="free-solo-2-demo"
@@ -126,7 +126,7 @@ export default function Navbar() {
                                 ),
                                 startAdornment: (
                                   <InputAdornment position="start">
-                                    <CalendarTodayOutlinedIcon className="ml-5" />
+                                    <CalendarTodayOutlinedIcon className="ml-5 w-20" />
                                     <Typography>From</Typography>
                                   </InputAdornment>
                                 ),
@@ -154,12 +154,12 @@ export default function Navbar() {
                                 disableUnderline: true,
                                 endAdornment: (
                                   <InputAdornment position="end">
-                                    <KeyboardArrowDownIcon />
+                                    <KeyboardArrowDownIcon className="mr-6"/>
                                   </InputAdornment>
                                 ),
                                 startAdornment: (
                                   <InputAdornment position="start">
-                                    <CalendarTodayOutlinedIcon className="ml-5" />
+                                    <CalendarTodayOutlinedIcon className="ml-5 w-20" />
                                     <Typography>Until</Typography>
                                   </InputAdornment>
                                 ),
