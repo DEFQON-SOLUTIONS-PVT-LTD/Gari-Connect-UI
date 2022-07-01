@@ -19,7 +19,7 @@ import IconButton from "@mui/material/IconButton";
 import ArrowForwardSharpIcon from "@mui/icons-material/ArrowForwardSharp";
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
-import TripDateRange from "../sharedComponents/TripDateRange";
+import TripDateRange from "../Host/sharedComponents/TripDateRange";
 import PropTypes from "prop-types";
 import Drawer from '@mui/material/Drawer';
 
@@ -107,38 +107,20 @@ function EditDialog(props) {
           </form>
         </div>
         <div className="space-y-12">
-          <Box sx={{ width: "100%" }}>
-            <Collapse in={openAlert}>
-              <Alert
-                action={
-                  <IconButton
-                    aria-label="close"
-                    color="inherit"
-                    size="small"
-                    onClick={() => {
-                      setOpenAlert(false);
-                    }}
-                  >
-                    <CloseIcon fontSize="inherit" />
-                  </IconButton>
-                }
-                className="flex flex-row items-center rounded-8"
-                icon={
-                  <div
-                    className="flex items-center justify-center w-28 h-28 rounded-full"
-                    style={{ backgroundColor: "rgba(4, 106, 243, 0.08)" }}
-                  >
-                    <img src="/assets/images/icons/boltIcon.svg" alt="logo" />
-                  </div>
-                }
-                severity="info"
+        <div
+              className="flex w-full h-44 rounded-8"
+              style={{ backgroundColor: "rgba(4, 106, 243, 0.07)" }}
+            >
+              <div
+                className="flex items-center justify-center w-28 h-28 rounded-full mt-8 ml-6"
+                style={{ backgroundColor: "rgba(4, 106, 243, 0.08)" }}
               >
-                <Typography className="text-14" sx={{ color: "#046AF3" }}>
-                  Additional charges of cost PKR 3600 will be added
-                </Typography>
-              </Alert>
-            </Collapse>
-          </Box>
+                <img src="/assets/images/icons/boltIcon.svg" alt="logo" />
+              </div>
+              <Typography className="pt-12 pl-20 font-normal text-sm" style={{color:'#046AF3'}}>
+                Additional charges of cost PKR 3600 will be added
+              </Typography>
+            </div>
           <Button
           onClick={otpClickOpen}
             fullWidth

@@ -115,7 +115,7 @@ const PaymentsBilling = () => {
           </div>
         </div>
         <div className="ml-36 mt-36">
-          <Accordion className="w-1/2">
+          <Accordion className="w-2/5">
             <AccordionSummary
               InputProps={{ className: "h-80" }}
               expandIcon={<ExpandMoreIcon />}
@@ -141,12 +141,11 @@ const PaymentsBilling = () => {
             <hr className="mt-8"/>
                      <div className="flex justify-between mt-16">
                   <RadioGroup
-                  className="mx-auto"
                     defaultValue="female"
                     aria-labelledby="demo-customized-radios"
                     name="customized-radios"
                   >
-                    <div className="sm:flex sm:space-x-10 ">
+                    <div className="sm:flex sm:space-x-10">
                       <Card style={{width:"142px"}}>
                         <CardContent>
                       <div className="flex">

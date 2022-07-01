@@ -10,7 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import DoDisturbOutlinedIcon from "@mui/icons-material/DoDisturbOutlined";
 import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
-import Drawer from "../../../../Host/sharedComponents/Drawer";
+import Drawer from "../../../Drawer";
 
 
 const Completed = () => {

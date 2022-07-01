@@ -95,12 +95,9 @@ export default function Star(){
         <ClickAwayListener onClickAway={priceClickAway}>
         <Box sx={{ position: "relative" }}>
           <Button
-            className="text-xs"
+            className="text-xs w-136 h-52 rounded-lg"
             style={{
               border: "1px solid #D0D5DD",
-              height: "52px",
-              width: "128px",
-              borderRadius: "8px",
               color: "#667085",
             }}
             type="button"

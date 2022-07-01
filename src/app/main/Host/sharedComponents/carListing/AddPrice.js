@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography,Box } from "@mui/material";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -78,6 +78,22 @@ function BpRadio(props) {
   );
 }
 const AddPrice = () => {
+  const [withDriverFlag, setWithDriverFlag] = useState(true);
+
+
+const withDriverFlagHandle  = ()=>{
+
+
+    setWithDriverFlag(   !withDriverFlag   )
+   
+
+}
+
+
+
+
+
+ 
   const { handleSubmit, register, reset, control, watch, formState } = useForm({
     mode: "all",
     resolver: yupResolver(schema),
@@ -144,15 +160,18 @@ const AddPrice = () => {
                 </Typography>
               </div>
               <div>
-                <RadioGroup
-                  defaultValue="female"
+                <RadioGroup    onChange={ withDriverFlagHandle   }
+
+                  defaultValue="male"
                   aria-labelledby="demo-customized-radios"
                   name="customized-radios"
                 >
                   <div className="flex space-x-12">
                     <div className="flex">
                       <FormControlLabel
-                        value="female"
+                      
+                      
+                        value="male"
                         control={<BpRadio />}
                         label=""
                       />
@@ -162,7 +181,8 @@ const AddPrice = () => {
                     </div>
                     <div className="flex">
                       <FormControlLabel
-                        value="male"
+                      
+                        value="female"
                         control={<BpRadio />}
                         label=""
                       />
@@ -175,12 +195,12 @@ const AddPrice = () => {
               </div>
             </div>
           </div>
+
+              {  withDriverFlag &&  (<div>
           <Typography
+          className="text-sm font-medium mt-36"
             style={{
-              fontSize: "14px",
-              fontWeight: "500px",
               color: "#344054",
-              marginTop: "35px",
             }}
           >
             Add driver price
@@ -216,36 +236,6 @@ const AddPrice = () => {
                   Providing Pickup and drop off
                 </Typography>
               </div>
-              <div>
-                <RadioGroup
-                  defaultValue="female"
-                  aria-labelledby="demo-customized-radios"
-                  name="customized-radios"
-                >
-                  <div className="flex space-x-12">
-                    <div className="flex">
-                      <FormControlLabel
-                        value="female"
-                        control={<BpRadio />}
-                        label=""
-                      />
-                      <Typography className="font-medium text-sm pt-6">
-                        Yes
-                      </Typography>
-                    </div>
-                    <div className="flex">
-                      <FormControlLabel
-                        value="male"
-                        control={<BpRadio />}
-                        label=""
-                      />
-                      <Typography className="font-medium text-sm pt-6">
-                        No
-                      </Typography>
-                    </div>
-                  </div>
-                </RadioGroup>
-              </div>
             </div>
           </div>
           <Typography
@@ -279,7 +269,11 @@ const AddPrice = () => {
               />
             )}
           />
+          </div>)        }
+
+          
         </div>
+        
       </div>
       <div
       className="mt-64 col-span-1"
