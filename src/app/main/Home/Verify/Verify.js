@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, TextField, FormControl } from "@mui/material";
+import { Typography, TextField, FormControl, FormHelperText } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -28,13 +28,14 @@ const defaultValues = {
 };
 
 function OTP() {
+
   const history = useHistory();
   const dispatch = useDispatch();
   const otp = useSelector(({ auth }) => auth.forget);
   const otpStatus = useSelector(({ auth }) => auth.verify);
   console.log(otp.data.customer.data.otp_code);
   console.log(otp.data.customer.data.otp_expiry);
-  const { control, setValue, formState, handleSubmit, reset, trigger, } = useForm({
+  const { control, setValue, formState, handleSubmit, reset, trigger, setError } = useForm({
     mode: 'onChange',
     defaultValues,
     resolver: yupResolver(schema),
@@ -51,8 +52,16 @@ function OTP() {
 
   function onSubmit(model) {
     dispatch(verifyOtpData(model))
-      .then(() => {
-        if (otpStatus.data.status === true) {
+      .then((result) => {
+        if (result.error) {
+          console.log(result.error.message)
+          setError(
+            "otp_code",
+            {
+              type: "manual",
+              message: "OTP is Invalid"
+            })
+        } else {
           history.push('/Setpassword');
         }
       });
@@ -119,7 +128,7 @@ function OTP() {
           <CardContent>
             <form className="flex flex-col justify-center w-full" onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col space-y-40">
-                <FormControl className="mx-auto" variant="outlined">
+                <FormControl className="mx-auto" variant="outlined" >
                   <Controller
                     name="otp_code"
                     control={control}
@@ -128,6 +137,8 @@ function OTP() {
                       <OTPInput
                         value={value}
                         onChange={onChange}
+                        error={!!errors.otp_code}
+                        required
                         autoFocus
                         OTPLength={4}
                         otpType="number"
@@ -146,6 +157,7 @@ function OTP() {
                       />
                     )}
                   />
+                  <FormHelperText className="text-red">{errors?.otp_code?.message}</FormHelperText>
                 </FormControl>
 
                 <Controller

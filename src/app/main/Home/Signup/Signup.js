@@ -1,6 +1,6 @@
 import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Typography, Icon } from "@mui/material";
+import { Typography, Icon, FormHelperText } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -37,6 +37,15 @@ const schema = yup.object().shape({
   address: yup
     .string()
     .required('You must enter an address'),
+  cityId: yup
+    .string()
+    .required('You must select a city'),
+  gender: yup
+    .string()
+    .required('You must select a value'),
+  photo: yup
+    .mixed()
+    .required('Photo is required'),
 });
 
 const defaultValues = {
@@ -55,9 +64,9 @@ function Signup() {
   const dispatch = useDispatch();
   const authRegister = useSelector(({ auth }) => auth.register);
 
-  const [baseImage, setBaseImage] = useState("assets/images/profile/placeholderProfile.png");
+  const [baseImage, setBaseImage] = useState("");
 
-  const { control, formState, handleSubmit, reset, setError } = useForm({
+  const { control, formState, handleSubmit, reset, setError, register } = useForm({
     mode: 'onChange',
     defaultValues,
     resolver: yupResolver(schema),
@@ -65,14 +74,14 @@ function Signup() {
 
   const { isValid, dirtyFields, errors } = formState;
 
-  useEffect(() => {
-    authRegister.errors.forEach((error) => {
-      setError(error.type, {
-        type: 'manual',
-        message: error.message,
-      });
-    });
-  }, [authRegister.errors, setError]);
+  // useEffect(() => {
+  //   authRegister.errors.forEach((error) => {
+  //     setError(error.type, {
+  //       type: 'manual',
+  //       message: error.message,
+  //     });
+  //   });
+  // }, [authRegister.errors, setError]);
 
   const uploadImage = async (e) => {
     const file = e.target.files[0];
@@ -97,10 +106,21 @@ function Signup() {
 
   function onSubmit(model) {
     model.photo = baseImage;
-    debugger;
     dispatch(submitRegister(model))
-      .then(() => {
-        history.push('/Verifyaccount');
+      .then((result) => {
+        console.log(result.payload)
+        if (result) {
+          setError(
+            "errorName",
+            {
+              type: "manual",
+              message: result.payload[0].message
+            }
+          )
+        }
+        else {
+          history.push('/Verifyaccount');
+        }
       })
   }
 
@@ -445,6 +465,8 @@ function Signup() {
                 </Typography>
                 <div>
                   <input
+                    {...register('photo', { required: true })}
+                    name="photo"
                     htmlFor="browseImg"
                     className="hidden"
                     type="file"
@@ -455,7 +477,8 @@ function Signup() {
                   />
 
                   <div className="flex items-center mt-12">
-                    <img style={{ backgroundColor: '#F0F1F4', borderRadius: '50%', height: '60px' }} src={baseImage} />
+
+                    <img style={{ backgroundImage: "url('assets/images/profile/placeholderProfile.png')", borderRadius: '50%', height: '60px', width: '60px' }} src={baseImage} />
                     <label
                       htmlFor="browseImg"
                       className="ml-12 font-medium text-sm cursor-pointer"
@@ -465,6 +488,7 @@ function Signup() {
                     </label>
                   </div>
                 </div>
+                <FormHelperText className="text-red">{errors?.errorName?.message}</FormHelperText>
                 <div style={{ marginTop: "20px" }}>
                   <Button
                     type="submit"

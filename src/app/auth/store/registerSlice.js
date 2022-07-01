@@ -19,8 +19,10 @@ export const submitRegister =
           photo
         })
         .then((user) => {
-          dispatch(setUserData(user));
-          return dispatch(registerSuccess());
+          dispatch(setUserData(user))
+            .then(() => {
+              return dispatch(registerSuccess());
+            })
         })
         .catch((errors) => {
           return dispatch(registerError(errors));

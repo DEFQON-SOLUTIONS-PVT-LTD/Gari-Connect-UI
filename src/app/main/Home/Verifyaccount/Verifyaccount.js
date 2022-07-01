@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, TextField, FormControl } from "@mui/material";
+import { Typography, TextField, FormControl, FormHelperText } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
 import { verifyOtpData } from '../../../../app/auth/store/verifyOtpSlice';
-import { sendOtp } from '../../../auth/store/forgetSlice'
+import { sendOtp } from '../../../auth/store/forgetSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -35,15 +35,17 @@ function Verifyaccount() {
   const otpStatus = useSelector(({ auth }) => auth.verify);
   console.log(otp.otp);
   console.log(otp.otp_expiry);
-  const { control, setValue, formState, handleSubmit, reset, trigger, } = useForm({
+
+  const [expTime, setExpTime] = useState(otp.otp_expiry)
+
+
+  const { control, setValue, formState, handleSubmit, reset, trigger, setError } = useForm({
     mode: 'onChange',
     defaultValues,
     resolver: yupResolver(schema),
   });
 
   const { isValid, dirtyFields, errors } = formState;
-
-  const otpTime = otp.otp_expiry;
 
   useEffect(() => {
     setValue('otp_code', '');
@@ -52,11 +54,19 @@ function Verifyaccount() {
 
   function onSubmit(model) {
     dispatch(verifyOtpData(model))
-      .then(() => {
-        if (otpStatus.data.status === true) {
+      .then((result) => {
+        if (result.error) {
+          console.log(result.error.message)
+          setError(
+            "otp_code",
+            {
+              type: "manual",
+              message: "OTP is Invalid"
+            })
+        } else {
           history.push('/Createpassword');
         }
-      });
+      })
   }
 
   function onResend() {
@@ -64,9 +74,10 @@ function Verifyaccount() {
       phone_no: otp.phoneno
     };
     dispatch(sendOtp(phone))
-      .then(() => {
-        console.log("Resend:", otp.phoneno);
-      })
+      .then((val) => {
+        const expireTime = val.payload.customer.data.otp_expiry;
+        setExpTime(expireTime);
+      });
   }
 
   const Completionist = () => {
@@ -128,6 +139,8 @@ function Verifyaccount() {
                       <OTPInput
                         value={value}
                         onChange={onChange}
+                        error={!!errors.otp_code}
+                        required
                         autoFocus
                         OTPLength={4}
                         otpType="number"
@@ -146,6 +159,7 @@ function Verifyaccount() {
                       />
                     )}
                   />
+                  <FormHelperText className="text-red">{errors?.otp_code?.message}</FormHelperText>
                 </FormControl>
 
                 <Controller
@@ -193,15 +207,13 @@ function Verifyaccount() {
                   Didn't receive code?
                 </p>
                 <div className="w-auto">
-                  <Countdown renderer={renderer} date={new Date(otpTime).getTime()} />
+                  <Countdown renderer={renderer} date={new Date(expTime).getTime()} />
                 </div>
               </div>
             </div>
 
-            <div className="sm:mt-20 mt-24">
-              <a
-                className="flex justify-center mt-10"
-                href="/Option"
+            <div className="flex items-center justify-center sm:mt-14">
+              <Typography
                 style={{
                   fontSize: "14px",
                   fontWeight: "500",
@@ -211,19 +223,22 @@ function Verifyaccount() {
                 }}
               >
                 Or try
-                <b
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "500",
-                    color: "#D22A8F",
-                    textAlign: "center",
-                    paddingLeft: "4px"
-                  }}
-                >
-                  {" "}
-                  another options
-                </b>
-              </a>
+              </Typography>
+
+              <Typography
+                className="cursor-pointer"
+                onClick={() => history.push('/Option')}
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  color: "#D22A8F",
+                  textAlign: "center",
+                  paddingLeft: "4px"
+                }}
+              >
+                {" "}
+                another options
+              </Typography>
 
 
             </div>

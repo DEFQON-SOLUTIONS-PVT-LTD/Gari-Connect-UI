@@ -9,6 +9,22 @@ export const sendOtp = createAsyncThunk('auth/forget/sendOtp',
         return data;
     });
 
+export const otpViaCall = createAsyncThunk('auth/forget/otpViaCall',
+    async (phone, { dispatch, getState }) => {
+        const response = await axios.post('http://api.gariconnect.com:8080/api/auth/makecall', phone);
+        const data = await response.data;
+
+        return data;
+    });
+
+export const otpViaWhatsapp = createAsyncThunk('auth/forget/otpViaWhatsapp',
+    async (phone, { dispatch, getState }) => {
+        const response = await axios.post('http://api.gariconnect.com:8080/api/auth/whatsapp', phone);
+        const data = await response.data;
+
+        return data;
+    });
+
 const initialState = {
     data: [],
     errors: [],
@@ -31,15 +47,17 @@ const forgetSlice = createSlice({
         },
     },
     extraReducers: {
-        [sendOtp.pending]: (state, action) => {
-            state.status = 'loading';
-        },
         [sendOtp.fulfilled]: (state, { payload }) => {
             state.data = payload;
             state.status = 'success';
         },
-        [sendOtp.rejected]: (state, action) => {
-            state.status = 'failed';
+        [otpViaCall.fulfilled]: (state, { payload }) => {
+            state.data = payload;
+            state.status = 'success';
+        },
+        [otpViaWhatsapp.fulfilled]: (state, { payload }) => {
+            state.data = payload;
+            state.status = 'success';
         },
     },
 });

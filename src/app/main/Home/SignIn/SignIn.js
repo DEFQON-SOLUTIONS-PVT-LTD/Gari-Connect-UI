@@ -43,6 +43,8 @@ function SignIn() {
     resolver: yupResolver(schema),
   });
 
+  const onlyNumbers = (e) => { e.target.value = e.target.value.replace(/[^0-9 +]/g, '') };
+
   const { isValid, dirtyFields, errors } = formState;
 
   const [initialValue, setInitialValue] = useState();
@@ -53,19 +55,51 @@ function SignIn() {
     setValue('password', 'Test@123', { shouldDirty: true, shouldValidate: true });
   }, [reset, setValue, trigger]);
 
-  useEffect(() => {
-    login.errors.forEach((error) => {
-      setError(error.type, {
-        type: 'manual',
-        message: error.message,
-      });
-    });
-  }, [login.errors, setError]);
+  // useEffect(() => {
+  //   [
+  //     {
+  //       type: "manual",
+  //       name: "phoneno",
+  //       message: "Double Check This"
+  //     },
+  //     {
+  //       type: "manual",
+  //       name: "password",
+  //       message: "Triple Check This"
+  //     }
+  //   ].forEach(({ name, type, message }) =>
+  //     setError(name, { type, message })
+  //   );
+
+  // login.errors.forEach((error) => {
+  //   setError(error.type, {
+  //     type: 'manual',
+  //     message: error.message,
+  //   });
+  // });
+  // }, [setError]);
 
   function onSubmit(model) {
     dispatch(submitLogin(model))
-      .then(() => {
-        history.push('/Home/LandingPage');
+      .then((result) => {
+        if (result) {
+          [
+            {
+              type: "manual",
+              name: "phoneno",
+              message: result.payload[0].message
+            },
+            {
+              type: "manual",
+              name: "password",
+              message: result.payload[1].message
+            }
+          ].forEach(({ name, type, message }) =>
+            setError(name, { type, message })
+          );
+        } else {
+          history.push('/Home/LandingPage');
+        }
       });
   }
 
@@ -185,6 +219,7 @@ function SignIn() {
                       }}
                       value={initialValue}
                       onChange={(e) => setInitialValue(e.target.value)}
+                      onInput={(e) => onlyNumbers(e)}
                       placeholder="+92 | 3524584205"
                       fullWidth
                       {...field}

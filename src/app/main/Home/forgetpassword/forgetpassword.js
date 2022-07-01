@@ -32,7 +32,7 @@ const defaultValues = {
 function forgetpassword() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { control, setValue, formState, handleSubmit, reset, trigger, } = useForm({
+  const { control, setValue, formState, handleSubmit, reset, trigger, setError } = useForm({
     mode: 'onChange',
     defaultValues,
     resolver: yupResolver(schema),
@@ -45,10 +45,18 @@ function forgetpassword() {
   }, [reset, setValue, trigger]);
 
   function onSubmit(model) {
-    console.log('Model: ', model);
     dispatch(sendOtp(model))
-      .then(() => {
-        history.push('/Verify');
+      .then((result) => {
+        if (result.error) {
+          setError(
+            "phone_no",
+            {
+              type: "manual",
+              message: "Please Enter correct phone number"
+            })
+        } else {
+          history.push('/Verify');
+        }
       });
   }
 
@@ -119,7 +127,7 @@ function forgetpassword() {
                   <TextField
                     {...field}
                     InputProps={{
-                      className: "mb-16 rounded-lg mb-11 mt-6 h-[44px]"
+                      className: "mb-16 rounded-lg mt-6 h-[44px]"
                     }}
                     placeholder="+92 | 3524584205"
                     autoFocus
