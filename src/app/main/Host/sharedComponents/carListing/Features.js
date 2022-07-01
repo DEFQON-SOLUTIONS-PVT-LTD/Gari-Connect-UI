@@ -2,20 +2,22 @@ import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, CardActionArea } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
-import Autocomplete from "@mui/material/Autocomplete";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import TextField from "@mui/material/TextField";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
+import Select from '@mui/material/Select';  
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
 
 // const defaultFeaturesFlags =  {   bluetooth:falsae      }
 
 // --------------------------------------------------------------
 
 const schema = yup.object().shape({
-  door: yup.array().min(1, "You must select a area"),
-  fuel: yup.array().min(1, "You must select a area"),
+  door: yup.string().required("Please select the doors"),
+  fuel: yup.string().required("You must select fuel type"),
   kmpl: yup.string().required("Please select KMPL "),
   seats: yup.string().required("You must enter number of seats"),
 });
@@ -105,40 +107,23 @@ const Features = () => {
             Fuel type
           </Typography>
           <Controller
-            name="fuel"
-            control={control}
-            defaultValue={[]}
-            render={({ field: { onChange, value, onBlur, ref } }) => (
-              <Autocomplete
-                multiple
-                popupIcon={<KeyboardArrowDownIcon />}
-                className="mt-6"
-                disablePortal
-                id="combo-box-demo"
-                options={top100Films}
-                value={value}
-                onChange={(event, newValue) => {
-                  onChange(newValue);
-                }}
-                sx={{ height: 44 }}
-                renderInput={(params) => (
-                  <TextField
-                    error={!!errors.fuel}
-                    helperText={errors?.fuel?.message}
-                    onBlur={onBlur}
-                    inputRef={ref}
-                    {...params}
-                    size="medium"
-                    placeholder="Petrol"
-                    sx={{
-                      "& fieldset": {
-                        borderRadius: "8px",
-                      },
-                    }}
+          name="fuel"
+            render={({ field }) => (
+              <FormControl error={!!errors.fuel} required fullWidth>
+                <Select className="mt-6 rounded-8 h-52 w-full"
+                IconComponent={() => (
+                  <KeyboardArrowDownIcon
+                    className="mr-10"
+                    style={{ color: "rgba(16, 24, 40, 1)" }}
                   />
-                )}
-              />
+                )} {...field} variant="outlined" fullWidth>
+                  <MenuItem value="Auto">Auto</MenuItem>
+                  <MenuItem value="Manual">Manual</MenuItem>
+                </Select>
+                <FormHelperText>{errors?.fuel?.message}</FormHelperText>
+              </FormControl>
             )}
+            control={control}
           />
         </FormControl>
         <FormControl fullWidth variant="outlined">
@@ -185,40 +170,23 @@ const Features = () => {
             Doors
           </Typography>
           <Controller
-            name="door"
-            control={control}
-            defaultValue={[]}
-            render={({ field: { onChange, value, onBlur, ref } }) => (
-              <Autocomplete
-                multiple
-                popupIcon={<KeyboardArrowDownIcon />}
-                className="mt-6"
-                disablePortal
-                id="combo-box-demo"
-                options={top100Films}
-                value={value}
-                onChange={(event, newValue) => {
-                  onChange(newValue);
-                }}
-                sx={{ height: 44 }}
-                renderInput={(params) => (
-                  <TextField
-                    error={!!errors.door}
-                    helperText={errors?.door?.message}
-                    onBlur={onBlur}
-                    inputRef={ref}
-                    {...params}
-                    size="medium"
-                    placeholder="4"
-                    sx={{
-                      "& fieldset": {
-                        borderRadius: "8px",
-                      },
-                    }}
+          name="door"
+            render={({ field }) => (
+              <FormControl error={!!errors.door} required fullWidth>
+                <Select className="mt-6 rounded-8 h-52 w-full"
+                IconComponent={() => (
+                  <KeyboardArrowDownIcon
+                    className="mr-10"
+                    style={{ color: "rgba(16, 24, 40, 1)" }}
                   />
-                )}
-              />
+                )} {...field} variant="outlined" fullWidth>
+                  <MenuItem value="Auto">Auto</MenuItem>
+                  <MenuItem value="Manual">Manual</MenuItem>
+                </Select>
+                <FormHelperText>{errors?.door?.message}</FormHelperText>
+              </FormControl>
             )}
+            control={control}
           />
         </FormControl>
         <FormControl fullWidth variant="outlined">
