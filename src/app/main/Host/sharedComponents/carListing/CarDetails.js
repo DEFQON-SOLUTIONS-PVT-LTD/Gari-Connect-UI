@@ -4,10 +4,12 @@ import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import Autocomplete from "@mui/material/Autocomplete";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import Divider from "@mui/material/Divider";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
+import Select from '@mui/material/Select';  
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
 
 
 
@@ -15,13 +17,12 @@ const schema = yup.object().shape({
   make: yup.array().min(1,"Please select a make."),
   category: yup.array().min(1,"Please select a category."),
   model: yup.array().min(1,"Please select a model."),
-  model1: yup.array().min(1,"Please select a model."),
   chassis: yup.string().required("Please enter chassis number."),
-  transmission: yup.array().min(1,"Please select transmission."),
-  type: yup.array().min(1,"Please select a type."),
-  eco: yup.array().min(1,"Please select ECO."),
   plate: yup.string().required("You must enter a value"),
   description: yup.string().required("Please enter description"),
+  transmission: yup.string().required('You must select a value').oneOf(['Auto', 'Manual'], 'Select Auto or Manual.'),
+  type: yup.string().required('You must select a type'),
+  eco: yup.string().required('You must select an ECO'),
 });
 
 
@@ -96,7 +97,7 @@ const CarDetails = () => {
                     inputRef={ref}
                     {...params}
                     size="medium"
-                    placeholder="Elite"
+                    placeholder="Honda"
                     sx={{
                       "& fieldset": {
                         borderRadius: "8px",
@@ -168,88 +169,42 @@ const CarDetails = () => {
           >
             Model
           </Typography>
-          <div
-            className="flex w-full rounded-lg mt-6"
-            style={{ border: "1px solid #D0D5DD", height: "53px" }}
-          >
-            <div className="w-3/4">
-              <Controller
-                name="model"
-                control={control}
-                defaultValue={[]}
-                render={({ field: { onChange, value, onBlur, ref } }) => (
-                  <Autocomplete
-                  multiple
-                    popupIcon={<KeyboardArrowDownIcon />}
-                    disablePortal
-                    id="combo-box-demo"
-                    options={top100Films}
-                    value={value}
-                    onChange={(event, newValue) => {
-                      onChange(newValue);
-                    }}
-                    sx={{ height: 44 }}
-                    renderInput={(params) => (
-                      <TextField
-                      error={!!errors.model}
+          <Controller
+            name="model"
+            control={control}
+            defaultValue={[]}
+            render={({ field: { onChange, value, onBlur, ref } }) => (
+              <Autocomplete
+              multiple
+                popupIcon={<KeyboardArrowDownIcon />}
+                className="mt-6"
+                disablePortal
+                id="combo-box-demo"
+                options={top100Films}
+                value={value}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
+                sx={{ height: 44 }}
+                renderInput={(params) => (
+                  <TextField
+                  error={!!errors.model}
                     helperText={errors?.model?.message}
                     onBlur={onBlur}
                     inputRef={ref}
-                        {...params}
-                        size="medium"
-                        placeholder="Yaris"
-                        sx={{
-                          "& fieldset": {
-                            borderRadius: "8px",
-                            border: "none",
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                )}
-              />
-            </div>
-            <Divider orientation="vertical" />
-            <div className="w-1/4">
-              <Controller
-                name="model1"
-                control={control}
-                defaultValue={[]}
-                render={({ field: { onChange, value, onBlur, ref } }) => (
-                  <Autocomplete
-                  multiple
-                    popupIcon={<KeyboardArrowDownIcon />}
-                    disablePortal
-                    id="combo-box-demo"
-                    options={top100Films}
-                    value={value}
-                    onChange={(event, newValue) => {
-                      onChange(newValue);
+                    {...params}
+                    size="medium"
+                    placeholder="Yaris"
+                    sx={{
+                      "& fieldset": {
+                        borderRadius: "8px",
+                      },
                     }}
-                    sx={{ height: 44 }}
-                    renderInput={(params) => (
-                      <TextField
-                      error={!!errors.model1}
-                    helperText={errors?.model1?.message}
-                    onBlur={onBlur}
-                    inputRef={ref}
-                        {...params}
-                        size="medium"
-                        placeholder="2018"
-                        sx={{
-                          "& fieldset": {
-                            borderRadius: "8px",
-                            border: "none",
-                          },
-                        }}
-                      />
-                    )}
                   />
                 )}
               />
-            </div>
-          </div>
+            )}
+          />
         </FormControl>
         <FormControl fullWidth variant="outlined">
           <Typography
@@ -330,40 +285,23 @@ const CarDetails = () => {
             Transmission
           </Typography>
           <Controller
-            name="transmission"
-            control={control}
-            defaultValue={[]}
-            render={({ field: { onChange, value, onBlur, ref } }) => (
-              <Autocomplete
-              multiple
-                popupIcon={<KeyboardArrowDownIcon />}
-                className="mt-6"
-                disablePortal
-                id="combo-box-demo"
-                options={top100Films}
-                value={value}
-                onChange={(event, newValue) => {
-                  onChange(newValue);
-                }}
-                sx={{ height: 44 }}
-                renderInput={(params) => (
-                  <TextField
-                  error={!!errors.transmission}
-                    helperText={errors?.transmission?.message}
-                    onBlur={onBlur}
-                    inputRef={ref}
-                    {...params}
-                    size="medium"
-                    placeholder="Manual"
-                    sx={{
-                      "& fieldset": {
-                        borderRadius: "8px",
-                      },
-                    }}
+          name="transmission"
+            render={({ field }) => (
+              <FormControl error={!!errors.transmission} required fullWidth>
+                <Select className="mt-6 rounded-8 h-52 w-full"
+                IconComponent={() => (
+                  <KeyboardArrowDownIcon
+                    className="mr-10"
+                    style={{ color: "rgba(16, 24, 40, 1)" }}
                   />
-                )}
-              />
+                )} {...field} variant="outlined" fullWidth>
+                  <MenuItem value="Auto">Auto</MenuItem>
+                  <MenuItem value="Manual">Manual</MenuItem>
+                </Select>
+                <FormHelperText>{errors?.transmission?.message}</FormHelperText>
+              </FormControl>
             )}
+            control={control}
           />
         </FormControl>
       </div>
@@ -379,40 +317,24 @@ const CarDetails = () => {
             Type
           </Typography>
           <Controller
+          
+            render={({ field }) => (
+              <FormControl error={!!errors.type} required fullWidth>
+                <Select className="mt-6 rounded-8 h-52 w-full"
+                IconComponent={() => (
+                  <KeyboardArrowDownIcon
+                    className="mr-10"
+                    style={{ color: "rgba(16, 24, 40, 1)" }}
+                  />
+                )} {...field} variant="outlined" fullWidth>
+                  <MenuItem value="10">Sedan </MenuItem>
+                  <MenuItem value="20">SVS</MenuItem>
+                </Select>
+                <FormHelperText>{errors?.type?.message}</FormHelperText>
+              </FormControl>
+            )}
             name="type"
             control={control}
-            defaultValue={[]}
-            render={({ field: { onChange, value, onBlur, ref } }) => (
-              <Autocomplete
-              multiple
-                popupIcon={<KeyboardArrowDownIcon />}
-                className="mt-6"
-                disablePortal
-                id="combo-box-demo"
-                options={top100Films}
-                value={value}
-                onChange={(event, newValue) => {
-                  onChange(newValue);
-                }}
-                sx={{ height: 44 }}
-                renderInput={(params) => (
-                  <TextField
-                  error={!!errors.type}
-                    helperText={errors?.type?.message}
-                    onBlur={onBlur}
-                    inputRef={ref}
-                    {...params}
-                    size="medium"
-                    placeholder="Sedan"
-                    sx={{
-                      "& fieldset": {
-                        borderRadius: "8px",
-                      },
-                    }}
-                  />
-                )}
-              />
-            )}
           />
         </FormControl>
         <FormControl fullWidth variant="outlined">
@@ -426,40 +348,24 @@ const CarDetails = () => {
             ECO friendly
           </Typography>
           <Controller
+          
+            render={({ field }) => (
+              <FormControl error={!!errors.eco} required fullWidth>
+                <Select className="mt-6 rounded-8 h-52 w-full"
+                IconComponent={() => (
+                  <KeyboardArrowDownIcon
+                    className="mr-10"
+                    style={{ color: "rgba(16, 24, 40, 1)" }}
+                  />
+                )} {...field} variant="outlined" fullWidth>
+                  <MenuItem value="10">Electric</MenuItem>
+                  <MenuItem value="20">Manual</MenuItem>
+                </Select>
+                <FormHelperText>{errors?.eco?.message}</FormHelperText>
+              </FormControl>
+            )}
             name="eco"
             control={control}
-            defaultValue={[]}
-            render={({ field: { onChange, value, onBlur, ref } }) => (
-              <Autocomplete
-              multiple
-                popupIcon={<KeyboardArrowDownIcon />}
-                className="mt-6"
-                disablePortal
-                id="combo-box-demo"
-                options={top100Films}
-                value={value}
-                onChange={(event, newValue) => {
-                  onChange(newValue);
-                }}
-                sx={{ height: 44 }}
-                renderInput={(params) => (
-                  <TextField
-                  error={!!errors.eco}
-                    helperText={errors?.eco?.message}
-                    onBlur={onBlur}
-                    inputRef={ref}
-                    {...params}
-                    size="medium"
-                    placeholder="Electric"
-                    sx={{
-                      "& fieldset": {
-                        borderRadius: "8px",
-                      },
-                    }}
-                  />
-                )}
-              />
-            )}
           />
         </FormControl>
       </div>
