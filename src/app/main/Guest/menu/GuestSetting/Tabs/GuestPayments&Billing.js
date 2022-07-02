@@ -84,11 +84,19 @@ function BpRadio(props) {
 const PaymentsBilling = () => {
   const [value, setValue] = React.useState(4);
   const [open, setOpen] = React.useState(false);
+<<<<<<< HEAD
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
+=======
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+>>>>>>> 55d6308 (Buttons)
   const handleClose = () => {
     setOpen(false);
   };
@@ -138,16 +146,26 @@ const PaymentsBilling = () => {
               </div>
             </AccordionSummary>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 55d6308 (Buttons)
             <AccordionDetails>
               <hr className="mt-8" />
               <div className="flex justify-between mt-16">
                 <RadioGroup
+<<<<<<< HEAD
                   className="mx-auto"
+=======
+>>>>>>> 55d6308 (Buttons)
                   defaultValue="female"
                   aria-labelledby="demo-customized-radios"
                   name="customized-radios"
                 >
+<<<<<<< HEAD
                   <div className="sm:flex sm:space-x-10 ">
+=======
+                  <div className="sm:flex sm:space-x-10">
+>>>>>>> 55d6308 (Buttons)
                     <Card style={{ width: "142px" }}>
                       <CardContent>
                         <div className="flex">
@@ -155,6 +173,7 @@ const PaymentsBilling = () => {
                             value="Visa"
                             control={<BpRadio />}
                             label=""
+<<<<<<< HEAD
 =======
             <AccordionDetails >
             <hr className="mt-8"/>
@@ -177,6 +196,8 @@ const PaymentsBilling = () => {
                             src="assets/images/logos/visa.svg"
                             alt=""
 >>>>>>> ba5dff9 (select)
+=======
+>>>>>>> 55d6308 (Buttons)
                           />
                           <img src="assets/images/logos/visa.svg" alt="" />
                         </div>
@@ -292,6 +313,7 @@ const PaymentsBilling = () => {
                   />
                 </FormControl>
               </div>
+<<<<<<< HEAD
               <Button
                 onClick={handleClickOpen}
                 variant="contained"
@@ -303,6 +325,29 @@ const PaymentsBilling = () => {
               >
                 Book car for Rs 8200
               </Button>
+=======
+              <div className="space-x-10 mb-20" style={{float:"right"}}>
+              <Button
+                variant="contained"
+                className="rounded-8 text-black w-96 mt-16 h-44"
+                style={{
+                  backgroundColor: "#FFFFFF",
+                   border:"1px solid rgba(222, 225, 231, 1)"
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="contained"
+                className="rounded-8 text-white w-96 mt-16 h-44"
+                style={{
+                  backgroundColor: "#D22A8F",
+                }}
+              >
+                Add
+              </Button>
+              </div>
+>>>>>>> 55d6308 (Buttons)
             </AccordionDetails>
           </Accordion>
         </div>

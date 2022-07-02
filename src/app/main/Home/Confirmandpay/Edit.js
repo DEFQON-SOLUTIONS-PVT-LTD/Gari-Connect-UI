@@ -63,7 +63,7 @@ const Edit = () => {
           <Typography className="text-20 font-medium">
             Edit trip dates
           </Typography>
-          <IconButton>
+          <IconButton  onClick={handleClose}>
             <CloseIcon className="text-black" />
           </IconButton>
         </DialogTitle>
@@ -199,7 +199,7 @@ const Edit = () => {
           </div>
           <div className="mt-10">
             <Button
-              onClick={handleClose}
+             
               fullWidth
               variant="contained"
               size="large"

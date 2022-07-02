@@ -174,7 +174,7 @@ function Attachments() {
                     borderRadius: "8px",
                   }}
                 >
-                  Continue to booking
+                  Continue to bookings
                 </Button>
         </div>
       </div>
