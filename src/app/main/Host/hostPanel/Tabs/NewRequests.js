@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import { Link } from "react-router-dom";
 import DoDisturbOutlinedIcon from "@mui/icons-material/DoDisturbOutlined";
 import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
-import Drawer from "../../../Host/sharedComponents/Drawer";
+import Drawer from "../../../Guest/Drawer";
 
 const NewRequests = () => {
   const [value, setValue] = React.useState(4);

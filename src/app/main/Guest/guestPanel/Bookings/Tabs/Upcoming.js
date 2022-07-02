@@ -15,12 +15,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import DoDisturbOutlinedIcon from '@mui/icons-material/DoDisturbOutlined';
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
-<<<<<<< HEAD
 import Drawer from "../Drawer";
 import TripEnd from "./TripEnd"
-=======
-import Drawer from "../../../Drawer";
->>>>>>> 68fce9b (resolved conflicts)
 
 function SimpleDialog(props) {
   const { onClose, open } = props;
@@ -194,9 +190,9 @@ const Upcoming = () => {
                 </TableCell>
                 <TableCell className="text-12 font-medium">With Driver</TableCell>
                 <TableCell className="text-12 font-medium">Pick/Drop</TableCell>
-               
+
                 <TableCell />
-                
+
               </TableRow>
             </TableHead>
             <TableBody>
@@ -262,13 +258,13 @@ const Upcoming = () => {
                   15000 PKR
                 </TableCell>
                 <TableCell>
-                <TaskAltOutlinedIcon className="ml-12" style={{color:"#039855"}}/>
+                  <TaskAltOutlinedIcon className="ml-12" style={{ color: "#039855" }} />
                 </TableCell>
                 <TableCell>
-                    <TaskAltOutlinedIcon className="ml-12" style={{color:"#039855"}}/>
+                  <TaskAltOutlinedIcon className="ml-12" style={{ color: "#039855" }} />
                 </TableCell>
                 <TableCell>
-                  <Drawer/></TableCell>
+                  <Drawer /></TableCell>
               </TableRow>
               <TableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -332,13 +328,13 @@ const Upcoming = () => {
                   15000 PKR
                 </TableCell>
                 <TableCell>
-                <DoDisturbOutlinedIcon className="ml-12" style={{color:"#F04438"}}/>
+                  <DoDisturbOutlinedIcon className="ml-12" style={{ color: "#F04438" }} />
                 </TableCell>
                 <TableCell>
-                    <DoDisturbOutlinedIcon className="ml-12" style={{color:"#F04438"}}/>
+                  <DoDisturbOutlinedIcon className="ml-12" style={{ color: "#F04438" }} />
                 </TableCell>
                 <TableCell>
-                  <TripEnd/></TableCell>
+                  <TripEnd /></TableCell>
               </TableRow>
 
               <TableRow
@@ -403,13 +399,13 @@ const Upcoming = () => {
                   15000 PKR
                 </TableCell>
                 <TableCell>
-                <TaskAltOutlinedIcon className="ml-12" style={{color:"#039855"}}/>
+                  <TaskAltOutlinedIcon className="ml-12" style={{ color: "#039855" }} />
                 </TableCell>
                 <TableCell>
-                    <TaskAltOutlinedIcon className="ml-12" style={{color:"#039855"}}/>
+                  <TaskAltOutlinedIcon className="ml-12" style={{ color: "#039855" }} />
                 </TableCell>
                 <TableCell>
-                  <Drawer/></TableCell>
+                  <Drawer /></TableCell>
               </TableRow>
             </TableBody>
           </Table>

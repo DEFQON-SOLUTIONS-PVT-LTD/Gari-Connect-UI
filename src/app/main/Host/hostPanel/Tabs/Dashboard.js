@@ -17,7 +17,7 @@ import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import DoDisturbOutlinedIcon from "@mui/icons-material/DoDisturbOutlined";
 import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
-import Drawer from "../../../Host/sharedComponents/Drawer";
+import Drawer from "../../../Guest/Drawer"
 
 const Dashboard = () => {
   const [value, setValue] = React.useState(4);
