@@ -19,7 +19,7 @@ export default function Notifications() {
 
             <Typography className="font-medium text-xs">Today</Typography>
         
-        <Card className="border-2 rounded-8 w-full h-88">
+        <Card className="border-2 rounded-8 w-full h-auto">
           <CardContent>
             <div className="flex space-x-20 ">
               <img src="assets/images/logos/noti1.svg" />
@@ -55,7 +55,7 @@ export default function Notifications() {
           </CardContent>
         </Card>
             <Typography className="font-medium text-xs">Yesterday</Typography>
-        <Card className="border-2 rounded-8 w-full h-88">
+        <Card className="border-2 rounded-8 w-full h-auto">
           <CardContent>
             <div className="flex space-x-20 ">
               <img src="assets/images/logos/noti2.svg" />
@@ -83,7 +83,7 @@ export default function Notifications() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-2 rounded-8 w-full h-88">
+        <Card className="border-2 rounded-8 w-full h-auto">
           <CardContent>
             <div className="flex space-x-20 ">
               <img src="assets/images/logos/noti2.svg" />
