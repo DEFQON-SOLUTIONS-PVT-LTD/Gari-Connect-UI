@@ -228,7 +228,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.blueTooth.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.blueTooth.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea
@@ -273,7 +273,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.keylessEntry.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.keylessEntry.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea
@@ -315,7 +315,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.appleCar.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.appleCar.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea
@@ -356,7 +356,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.USB.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.USB.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea
@@ -397,7 +397,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.backupCamera.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.backupCamera.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea
@@ -437,7 +437,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.auxInput.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.auxInput.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea
@@ -479,7 +479,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.tollPass.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.tollPass.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea
@@ -519,7 +519,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.heatedSeat.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.heatedSeat.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea
@@ -559,7 +559,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.sunRoof.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.sunRoof.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea
@@ -599,7 +599,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.wheelDriver.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.wheelDriver.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea
@@ -639,7 +639,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.GPS.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.GPS.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea
@@ -679,7 +679,7 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.auxInput2.availability ? "#FDF4F9" : "null",
+            backgroundColor: flags.auxInput2.availability ? "#FDF4F9" : "#FFFFFF",
           }}
         >
           <CardActionArea

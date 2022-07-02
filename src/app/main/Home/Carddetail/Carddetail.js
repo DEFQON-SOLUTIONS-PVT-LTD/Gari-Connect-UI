@@ -84,7 +84,7 @@ export default function Carddetail() {
           </div>
         </div>
         <div className="grid lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-2">
-          <div className="col-span-1 sm:ml-8 md:ml-96 lg:ml-288">
+          <div className="col-span-1 sm:ml-8 md:ml-96 lg:ml-256">
             <div className="grid grid-cols-3 mt-28">
               <Typography className="font-normal text-2xl col-span-2">
                 Toyota Corolla Altis-2020

@@ -20,7 +20,7 @@ const CarsListing = () => {
         3650 results found
       </Typography>
       <div style={{width:'89%'}} className='mx-auto'>
-        <div className="grid lg:grid-cols-4  md:grid-cols-3 sm:grid-cols-2 mt-24 ">
+        <div className="grid lg:grid-cols-4  md:grid-cols-3 sm:grid-cols-2 mt-24 gap-y-28">
           <div className="flex col-span-1">
             <CarDetailsCard />
           </div>

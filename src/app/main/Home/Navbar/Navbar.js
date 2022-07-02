@@ -65,16 +65,16 @@ export default function Navbar() {
           <ul className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20">
             <div className=" border rounded-full w-auto   md:w-md ">
               <div className="grid  sm:grid-cols-2 grid-cols-1 gap-4 h-full w-auto">
-                <div className="flex items-center ml-16">
+                <div className="flex items-center ml-8">
                   {/* <Divider orientation="vertical" variant="middle" />  */}
                   <FmdGoodOutlinedIcon style={{color:"#98A2B3"}}/>
-                  <Typography className="mx-6" style={{color:"#98A2B3"}}>Location</Typography>
+                  <Typography className="ml-6" style={{color:"#98A2B3"}}>Location</Typography>
                   <Stack>
                     <Autocomplete
                       freeSolo
                       id="free-solo-2-demo"
                       disableClearable
-                      sx={{ width: 200 }}
+                      sx={{ width: 150 }}
                       options={top100Films.map((option) => option.title)}
                       renderInput={(params) => (
                         <TextField
@@ -126,8 +126,8 @@ export default function Navbar() {
                                 ),
                                 startAdornment: (
                                   <InputAdornment position="start">
-                                    <CalendarTodayOutlinedIcon className="ml-5 w-20" />
-                                    <Typography>From</Typography>
+                                    <CalendarTodayOutlinedIcon className="w-20" />
+                                    <Typography className="ml-6">From</Typography>
                                   </InputAdornment>
                                 ),
                               }}
@@ -159,8 +159,8 @@ export default function Navbar() {
                                 ),
                                 startAdornment: (
                                   <InputAdornment position="start">
-                                    <CalendarTodayOutlinedIcon className="ml-5 w-20" />
-                                    <Typography>Until</Typography>
+                                    <CalendarTodayOutlinedIcon className="w-20" />
+                                    <Typography className="ml-6">Until</Typography>
                                   </InputAdornment>
                                 ),
                               }}

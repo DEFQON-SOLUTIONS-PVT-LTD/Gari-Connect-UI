@@ -234,7 +234,7 @@ const Navbarfilters = () => {
           {/* </div> */}
         </div>
 
-        <div className="flex items-center justify-center md:mr-96 mx-auto md:mt-0 mt-28">
+        <div className="flex mr-128 md:mt-0 mt-28">
           <ViewButton />
         </div>
       </nav>

@@ -237,12 +237,10 @@ export default function GuestPanel() {
                   </Card>
                 </LocalizationProvider>
               </div>
-
               <div className="flex flex-col space-y-12">
                 <Typography className="text-lg font-medium">
                   Upcoming bookings
                 </Typography>
-
                 <Card className="rounded-md border pl-8 pb-8">
                   <div className="flex flex-row space-x-32">
                     <div
@@ -270,7 +268,6 @@ export default function GuestPanel() {
                     </div>
                   </div>
                 </Card>
-
                 <Card className="rounded-md border pl-8 pb-8">
                   <div className="flex flex-row space-x-32">
                     <div

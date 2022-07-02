@@ -274,9 +274,9 @@ export default function ListSteppers() {
           </Typography>
         </div>
       </div>
-      <Stack sx={{ width: "100%" }}>
+      <Stack sx={{ minWidth: "100%" }}>
         <Stepper
-          className="mt-40 sm:w-full w-1/3"
+          className="mt-40"
           alternativeLabel
           activeStep={activeStep}
           connector={<ColorlibConnector />}
