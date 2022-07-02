@@ -84,7 +84,7 @@ export default function Carddetail() {
           </div>
         </div>
         <div className="grid lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-2">
-          <div className="col-span-1 sm:ml-8 md:ml-96 lg:ml-256">
+          <div className="col-span-1 sm:ml-8 mx-8 md:ml-96 lg:ml-256">
             <div className="grid grid-cols-3 mt-28">
               <Typography className="font-normal text-2xl col-span-2">
                 Toyota Corolla Altis-2020
@@ -580,7 +580,7 @@ export default function Carddetail() {
               </Typography>
             </div>
           </div>
-          <div className="col-span-1 sm:max-w-8/12 md:w-7/12 lg:w-6/12 sm:ml-128 ml-0">
+          <div className="col-span-1 sm:max-w-8/12 md:w-7/12 lg:w-6/12 sm:ml-128 mx-8 sm:mt-0 mt-20">
             <div>
               <Card style={{ height: "auto" }}>
                 <Typography className="text-lg font-semibold ml-10 mt-10">
