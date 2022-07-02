@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import FormControl from "@mui/material/FormControl";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import TextField from "@mui/material/TextField";
@@ -43,9 +43,7 @@ const schema = yup.object().shape({
   gender: yup
     .string()
     .required('You must select a value'),
-  photo: yup
-    .mixed()
-    .required('Photo is required'),
+  photo: yup.mixed()
 });
 
 const defaultValues = {
@@ -66,7 +64,9 @@ function Signup() {
 
   const [baseImage, setBaseImage] = useState("");
 
-  const { control, formState, handleSubmit, reset, setError, register } = useForm({
+  const onlyNumbers = (e) => { e.target.value = e.target.value.replace(/[^0-9 +]/g, '') };
+
+  const { control, formState, handleSubmit, reset, setError, setValue, trigger, register } = useForm({
     mode: 'onChange',
     defaultValues,
     resolver: yupResolver(schema),
@@ -108,7 +108,6 @@ function Signup() {
     model.photo = baseImage;
     dispatch(submitRegister(model))
       .then((result) => {
-        console.log(result.payload)
         if (result) {
           setError(
             "errorName",
@@ -246,6 +245,7 @@ function Signup() {
                       control={control}
                       render={({ field }) => (
                         <TextField
+                          placeholder="First name"
                           fullWidth
                           {...field}
                           type="text"
@@ -277,6 +277,7 @@ function Signup() {
                       control={control}
                       render={({ field }) => (
                         <TextField
+                          placeholder="Last name"
                           fullWidth
                           {...field}
                           type="text"
@@ -307,6 +308,7 @@ function Signup() {
                   control={control}
                   render={({ field }) => (
                     <TextField
+                      placeholder="abc@gmail.com"
                       fullWidth
                       {...field}
                       type="text"
@@ -336,12 +338,17 @@ function Signup() {
                   control={control}
                   render={({ field }) => (
                     <TextField
+                      placeholder="+92 | 3524584205"
+                      inputProps={{
+                        maxLength: 13
+                      }}
                       fullWidth
                       {...field}
                       type="text"
                       required
                       error={!!errors.phoneno}
                       helperText={errors?.phoneno?.message}
+                      onInput={(e) => onlyNumbers(e)}
                       InputProps={{
                         className: 'rounded-lg mt-8'
                       }}
@@ -365,6 +372,7 @@ function Signup() {
                   control={control}
                   render={({ field }) => (
                     <TextField
+                      placeholder="House# 26, St. 14, DHA"
                       fullWidth
                       {...field}
                       type="text"
@@ -411,9 +419,9 @@ function Signup() {
                         onChange={onChange}
                         labelId="select-city"
                       >
-                        <MenuItem value="1">Lahore</MenuItem>
-                        <MenuItem value="2">Karachi</MenuItem>
-                        <MenuItem value="3">Islamabad</MenuItem>
+                        {/* <MenuItem value="1">Islamabad</MenuItem>
+                        <MenuItem value="2">Karachi</MenuItem> */}
+                        <MenuItem value="3">Lahore</MenuItem>
                       </Select>
                     )}
                   />
@@ -465,22 +473,20 @@ function Signup() {
                 </Typography>
                 <div>
                   <input
-                    {...register('photo', { required: true })}
-                    name="photo"
-                    htmlFor="browseImg"
+                    htmlFor="photo"
                     className="hidden"
+                    {...register("photo")}
                     type="file"
-                    id="browseImg"
+                    id="photo"
                     onChange={(e) => {
                       uploadImage(e);
                     }}
                   />
 
                   <div className="flex items-center mt-12">
-
                     <img style={{ backgroundImage: "url('assets/images/profile/placeholderProfile.png')", borderRadius: '50%', height: '60px', width: '60px' }} src={baseImage} />
                     <label
-                      htmlFor="browseImg"
+                      htmlFor="photo"
                       className="ml-12 font-medium text-sm cursor-pointer"
                       style={{ color: "#D22A8F" }}
                     >
@@ -488,11 +494,13 @@ function Signup() {
                     </label>
                   </div>
                 </div>
+                {errors.photo && <p>{errors.photo.message}</p>}
+
                 <FormHelperText className="text-red">{errors?.errorName?.message}</FormHelperText>
                 <div style={{ marginTop: "20px" }}>
                   <Button
                     type="submit"
-                    disabled={_.isEmpty(dirtyFields) || !isValid}
+                    disabled={_.isEmpty(dirtyFields) || !isValid && !baseImage}
                     style={{
                       height: "44px",
                       background: "#D22A8F",

@@ -38,10 +38,12 @@ function forgetpassword() {
     resolver: yupResolver(schema),
   });
 
+  const onlyNumbers = (e) => { e.target.value = e.target.value.replace(/[^0-9 +]/g, '') };
+
   const { isValid, dirtyFields, errors } = formState;
 
   useEffect(() => {
-    setValue('phone_no', '+923214199087', { shouldDirty: true, shouldValidate: true });
+    setValue('phone_no', '', { shouldDirty: true, shouldValidate: true });
   }, [reset, setValue, trigger]);
 
   function onSubmit(model) {
@@ -130,8 +132,9 @@ function forgetpassword() {
                       className: "mb-16 rounded-lg mt-6 h-[44px]"
                     }}
                     placeholder="+92 | 3524584205"
-                    autoFocus
+                    onInput={(e) => onlyNumbers(e)}
                     error={!!errors.phone_no}
+                    required
                     helperText={errors?.phone_no?.message}
                     variant="outlined"
                     fullWidth
