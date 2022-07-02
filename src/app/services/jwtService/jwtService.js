@@ -48,9 +48,8 @@ class JwtService extends FuseUtils.EventEmitter {
   createUser = (data) => {
     return new Promise((resolve, reject) => {
       axios.post('http://api.gariconnect.com:8080/api/user/create', data).then((response) => {
-        if (response.user.data) {
-          console.log(response.message);
-          resolve(response.user.data);
+        if (response) {
+          resolve(response.data.user.data);
         } else {
           reject(response.data.error);
         }

@@ -82,11 +82,10 @@ export const setUserData = (user) => async (dispatch, getState) => {
   history.location.state = {
     redirectUrl: user.redirectUrl, // for example 'apps/academy'
   };
-
   /*
     Set User Settings
      */
-  dispatch(setDefaultSettings(user.data.settings));
+  dispatch(setDefaultSettings(user.data));
 
   dispatch(setUser(user));
 };

@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import FormControl from "@mui/material/FormControl";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import TextField from "@mui/material/TextField";
@@ -51,6 +51,7 @@ const defaultValues = {
 };
 
 function Signup() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const authRegister = useSelector(({ auth }) => auth.register);
 
@@ -79,13 +80,6 @@ function Signup() {
     setBaseImage(base64);
   };
 
-  function onSubmit(model) {
-    model.photo = 'testImg'
-    dispatch(submitRegister(model));
-  }
-
-
-
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -101,6 +95,14 @@ function Signup() {
     });
   };
 
+  function onSubmit(model) {
+    model.photo = baseImage;
+    debugger;
+    dispatch(submitRegister(model))
+      .then(() => {
+        history.push('/Verifyaccount');
+      })
+  }
 
   return (
     <div>
@@ -467,8 +469,6 @@ function Signup() {
                   <Button
                     type="submit"
                     disabled={_.isEmpty(dirtyFields) || !isValid}
-                    // component={Link}
-                    // to="/Verifyaccount"
                     style={{
                       height: "44px",
                       background: "#D22A8F",

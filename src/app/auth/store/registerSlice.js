@@ -91,7 +91,7 @@ export const registerWithFirebase = (model) => async (dispatch) => {
 };
 
 const initialState = {
-  success: false,
+  data: [],
   errors: [],
 };
 
@@ -99,6 +99,9 @@ const registerSlice = createSlice({
   name: 'auth/register',
   initialState,
   reducers: {
+    signupData: (state, action) => {
+      state.data = action.payload;
+    },
     registerSuccess: (state, action) => {
       state.success = true;
       state.errors = [];
@@ -108,9 +111,15 @@ const registerSlice = createSlice({
       state.errors = action.payload;
     },
   },
-  extraReducers: {},
+  extraReducers: {
+    [submitRegister.fulfilled]: (state, { payload }) => {
+      state.data = payload;
+      console.log(state);
+      state.status = 'success';
+    },
+  },
 });
 
-export const { registerSuccess, registerError } = registerSlice.actions;
+export const { signupData, registerSuccess, registerError } = registerSlice.actions;
 
 export default registerSlice.reducer;

@@ -9,6 +9,14 @@ export const passReset = createAsyncThunk('auth/resetPassword/passReset',
         return data;
     });
 
+export const createPassword = createAsyncThunk('auth/resetPassword/createPassword',
+    async (params, { dispatch, getState }) => {
+        const response = await axios.put('http://api.gariconnect.com:8080/api/user/createPassword', params);
+        const data = await response.data;
+
+        return data;
+    });
+
 const initialState = {
     data: [],
     errors: [],
@@ -21,6 +29,9 @@ const resetPasswordSlice = createSlice({
         resetData: (state, action) => {
             state.data = action.payload;
         },
+        createPass: (state, action) => {
+            state.data = action.payload;
+        },
         resetPasswordSuccess: (state, action) => {
             state.success = true;
             state.errors = [];
@@ -31,18 +42,16 @@ const resetPasswordSlice = createSlice({
         },
     },
     extraReducers: {
-        [passReset.pending]: (state, action) => {
-            state.status = 'loading';
-        },
         [passReset.fulfilled]: (state, { payload }) => {
             state.data = payload;
             state.status = 'success';
         },
-        [passReset.rejected]: (state, action) => {
-            state.status = 'failed';
+        [createPassword.fulfilled]: (state, { payload }) => {
+            state.data = payload;
+            state.status = 'success';
         },
     },
 });
 
-export const { resetData } = resetPasswordSlice.actions;
+export const { resetData, createPass } = resetPasswordSlice.actions;
 export default resetPasswordSlice.reducer;

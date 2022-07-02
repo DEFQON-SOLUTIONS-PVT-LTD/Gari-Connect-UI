@@ -1,16 +1,89 @@
-import React, { useState } from "react";;
-import Typography from "@mui/material/Typography";
+import React, { useState } from "react";
+import { Typography, TextField, FormControl } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Link } from "react-router-dom";
+import { useEffect } from 'react';
+import { Link, useHistory } from "react-router-dom";
 import Signupheader from "../Signupheader/Signupheader";
-import OtpInput from "react-otp-input";
+import { verifyOtpData } from '../../../../app/auth/store/verifyOtpSlice';
+import { sendOtp } from '../../../auth/store/forgetSlice'
+import { useDispatch, useSelector } from 'react-redux';
+import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import _ from '@lodash';
+import OTPInput from "otp-input-react";
+import Countdown from "react-countdown";
+
+const schema = yup.object().shape({
+  otp_code: yup
+    .string()
+    .required('You must enter Code'),
+});
+
+const defaultValues = {
+  otp_code: '',
+  phone_no: ''
+};
+
 
 function Verifyaccount() {
-  const [code, setCode] = useState("");
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const otp = useSelector(({ auth }) => auth.user);
+  const otpStatus = useSelector(({ auth }) => auth.verify);
+  console.log(otp.otp);
+  console.log(otp.otp_expiry);
+  const { control, setValue, formState, handleSubmit, reset, trigger, } = useForm({
+    mode: 'onChange',
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
 
-  const handleChange = (code) => setCode(code);
+  const { isValid, dirtyFields, errors } = formState;
+
+  const otpTime = otp.otp_expiry;
+
+  useEffect(() => {
+    setValue('otp_code', '');
+    setValue('phone_no', otp.phoneno);
+  }, [reset, setValue, trigger]);
+
+  function onSubmit(model) {
+    dispatch(verifyOtpData(model))
+      .then(() => {
+        if (otpStatus.data.status === true) {
+          history.push('/Createpassword');
+        }
+      });
+  }
+
+  function onResend() {
+    let phone = {
+      phone_no: otp.phoneno
+    };
+    dispatch(sendOtp(phone))
+      .then(() => {
+        console.log("Resend:", otp.phoneno);
+      })
+  }
+
+  const Completionist = () => {
+    return (
+      <Button onClick={onResend} className="text-14 font-medium" style={{ color: '#D22A8F' }}>Resend Code</Button>
+    )
+  }
+
+  const renderer = ({ minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return <Completionist />;
+    } else {
+      // Render a countdown
+      return <span>{minutes}:{seconds}</span>;
+    }
+  };
   return (
     <div>
       <Signupheader />
@@ -44,93 +117,115 @@ function Verifyaccount() {
             <hr />
           </div>
           <CardContent>
-            <div className="flex  justify-center space-x-10">
-              <OtpInput
-                value={code}
-                onChange={handleChange}
-                numInputs={6}
-                separator={<span style={{ width: "8px" }}></span>}
-                isInputNum={true}
-                shouldAutoFocus={true}
-                inputStyle={{
-                  border: "1px solid #D0D5DD",
-                  borderRadius: "8px",
-                  width: "66px",
-                  height: "66px",
-                  fontSize: "12px",
-                  color: "#000",
-                  fontWeight: "500",
-                  fontSize: "32px",
-                }}
-                focusStyle={{
-                  border: "1px solid black",
-                  outline: "none",
-                }}
-              />
+            <form className="flex flex-col justify-center w-full" onSubmit={handleSubmit(onSubmit)}>
+              <div className="flex flex-col space-y-40">
+                <FormControl className="mx-auto" variant="outlined">
+                  <Controller
+                    name="otp_code"
+                    control={control}
+                    rules={{ required: 'otp_code' }}
+                    render={({ field: { onChange, value } }) => (
+                      <OTPInput
+                        value={value}
+                        onChange={onChange}
+                        autoFocus
+                        OTPLength={4}
+                        otpType="number"
+                        inputStyles={{
+                          border: "1px solid #D0D5DD",
+                          borderRadius: "8px",
+                          width: "66px",
+                          height: "66px",
+                          fontSize: "12px",
+                          color: "#000",
+                          fontWeight: "500",
+                          fontSize: "32px",
+                        }}
+                        disabled={false}
+
+                      />
+                    )}
+                  />
+                </FormControl>
+
+                <Controller
+                  name="phone_no"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      InputProps={{
+                        className: "rounded-lg mb-11 mt-6 h-[44px]"
+                      }}
+                      type="text"
+                      hidden
+                      variant="outlined"
+                      fullWidth
+                    />
+                  )}
+                />
+
+                <Button
+                  type="submit"
+                  disabled={_.isEmpty(dirtyFields) || !isValid}
+                  style={{
+                    backgroundColor: "rgba(210, 42, 143, 1)",
+                    height: "44px",
+                    fontSize: "16px",
+                  }}
+                  className="w-full text-white rounded-lg"
+                >
+                  Submit
+                </Button>
+              </div>
+            </form>
+
+            <div className="flex items-center justify-center sm:mt-20 mt-24">
+              <div className="flex items-center">
+                <p
+                  className="mx-10"
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    textAlign: "center",
+                  }}
+                >
+                  Didn't receive code?
+                </p>
+                <div className="w-auto">
+                  <Countdown renderer={renderer} date={new Date(otpTime).getTime()} />
+                </div>
+              </div>
             </div>
-            <div className="sm:mt-28 mt-16">
-              <Button
-              component={Link}
-              to="/Createpassword"
-                style={{
-                  backgroundColor: "rgba(210, 42, 143, 1)",
-                  height: "44px",
-                  fontSize: "16px",
-                }}
-                className="w-full text-white rounded-lg"
-              >
-                Submit
-              </Button>
-            </div>
+
             <div className="sm:mt-20 mt-24">
-              <p
+              <a
+                className="flex justify-center mt-10"
+                href="/Option"
                 style={{
                   fontSize: "14px",
                   fontWeight: "500",
                   textAlign: "center",
-                  marginTop: "24px",
+                  color: "#344054",
+                  textDecoration: "none",
                 }}
               >
-                Didn't receive code?
+                Or try
                 <b
                   style={{
                     fontSize: "14px",
                     fontWeight: "500",
                     color: "#D22A8F",
                     textAlign: "center",
-                    marginTop: "24px",
+                    paddingLeft: "4px"
                   }}
                 >
-                  Resend Code<br></br>
-                  </b>
-                  </p>
-                  <a
-                  className="flex justify-center mt-10"
-                  href="/Option"
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "500",
-                      textAlign: "center",
-                      color: "#344054",
-                      textDecoration: "none",
-                    }}
-                  >
-                    Or try
-                  <b
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "500",
-                      color: "#D22A8F",
-                      textAlign: "center", 
-                      paddingLeft: "4px"  
-                    }}
-                  >
-                    {" "}
-                    another options
-                  </b>
-                  </a>
-               
-              
+                  {" "}
+                  another options
+                </b>
+              </a>
+
+
             </div>
           </CardContent>
         </Card>
