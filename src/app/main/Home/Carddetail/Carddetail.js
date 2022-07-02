@@ -24,6 +24,7 @@ import Dialog from "@mui/material/Dialog";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import ReportList from "./ReportList";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -65,7 +66,7 @@ export default function Carddetail() {
         <div className="sm:flex justify-center mt-24">
           <div>
             <img
-              style={{maxHeight:"94%"}}
+              style={{ maxHeight: "94%" }}
               src="assets/images/logos/Carddetail1.svg"
               alt="logo"
             />
@@ -88,7 +89,7 @@ export default function Carddetail() {
               src="assets/images/logos/Carddetail3.svg"
               alt="logo"
             />
-             <div className="relative">
+            <div className="relative">
               <img
                 width="100%"
                 src="assets/images/logos/Carddetail5.svg"
@@ -174,28 +175,30 @@ export default function Carddetail() {
             <div className="grid grid-cols-2">
               <div className="col-span-1">
                 <div className="flex">
-                <img src="assets/images/logos/Petrol.svg" alt="logo" />
-                <Typography className="ml-10 text-xs font-medium">Petrol</Typography>
+                  <img src="assets/images/logos/Petrol.svg" alt="logo" />
+                  <Typography className="ml-10 text-xs font-medium">
+                    Petrol
+                  </Typography>
                 </div>
                 <div className="flex mt-24">
-                <img
-                  src="assets/images/logos/seats.svg"
-                  alt="logo"
-                />
-                <Typography className="ml-10 text-xs font-medium">4 Seats</Typography>
+                  <img src="assets/images/logos/seats.svg" alt="logo" />
+                  <Typography className="ml-10 text-xs font-medium">
+                    4 Seats
+                  </Typography>
                 </div>
               </div>
               <div className="col-span-1">
-              <div className="flex">
-                <img src="assets/images/logos/Petrolgalon.svg" alt="logo" />
-                <Typography className="ml-10 text-xs font-medium">30 mpg</Typography>
+                <div className="flex">
+                  <img src="assets/images/logos/Petrolgalon.svg" alt="logo" />
+                  <Typography className="ml-10 text-xs font-medium">
+                    30 mpg
+                  </Typography>
                 </div>
                 <div className="flex mt-24">
-                <img
-                  src="assets/images/logos/Door.svg"
-                  alt="logo"
-                />
-                <Typography className="ml-10 text-xs font-medium">4 doors</Typography>
+                  <img src="assets/images/logos/Door.svg" alt="logo" />
+                  <Typography className="ml-10 text-xs font-medium">
+                    4 doors
+                  </Typography>
                 </div>
               </div>
             </div>
@@ -627,7 +630,7 @@ export default function Carddetail() {
 
                   <div className="" style={{ marginTop: "19px" }}>
                     <Button
-                    onClick={handleClickOpen}
+                      onClick={handleClickOpen}
                       style={{
                         backgroundColor: "rgba(210, 42, 143, 1)",
                         fontSize: "16px",
@@ -799,8 +802,8 @@ export default function Carddetail() {
                               </div>
                               <div style={{ marginTop: "19px" }}>
                                 <Button
-                                component={Link}
-                                to="/Confirmandpay"
+                                  component={Link}
+                                  to="/Confirmandpay"
                                   style={{
                                     backgroundColor: "rgba(210, 42, 143, 1)",
                                     height: "44px",
@@ -979,12 +982,9 @@ export default function Carddetail() {
               <div>
                 <hr className="mt-20" />
               </div>
-              <Typography
-                className="text-sm font-normal flex justify-center mt-20"
-                style={{ color: "#F04438" }}
-              >
-                Reportlisting
-              </Typography>
+              <div className=" text-center mt-20 font-400 text-14 ">
+                <ReportList />
+              </div>
             </div>
           </div>
         </div>
