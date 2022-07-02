@@ -130,7 +130,7 @@ export default function Navbar() {
                                 startAdornment: (
                                   <InputAdornment position="start">
                                     <CalendarTodayOutlinedIcon className="w-20"/>
-                                    <Typography>From</Typography>
+                                    <Typography className="ml-6">From</Typography>
                                   </InputAdornment>
                                 ),
                               }}
@@ -159,7 +159,7 @@ export default function Navbar() {
                                 startAdornment: (
                                   <InputAdornment position="start">
                                     <CalendarTodayOutlinedIcon className="w-20" />
-                                    <Typography>Until</Typography>
+                                    <Typography className="ml-6">Until</Typography>
                                   </InputAdornment>
                                 ),
                               }}
