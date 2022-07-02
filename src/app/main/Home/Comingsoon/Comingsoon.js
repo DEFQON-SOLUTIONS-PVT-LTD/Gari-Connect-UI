@@ -44,7 +44,7 @@ export default function () {
         className="h-640"
         style={{ backgroundImage: "url('/assets/images/backgrounds/bgimg.jpg')" }}
       >
-        <div className="sm:flex justify-between mt-68">
+        <div className="sm:flex justify-between sm:mt-68 mt-20">
           <div className="mx-20 sm:mx-96">
             <motion.div initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1, transition: { delay: 1, duration: 1.5 } }} className="text-center sm:text-left -mx-20 sm:mx-auto">
               <Typography
@@ -54,7 +54,7 @@ export default function () {
                 Coming Soon
               </Typography>
               <Typography
-                className="text-48 sm:text-6xl font-medium mt-8"
+                className="text-48 sm:text-6xl text-3xl font-medium mt-8"
                 style={{ color: "#000000" }}
               >
                 Easy Savari<br></br>Manzil asaan..
