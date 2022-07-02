@@ -30,7 +30,10 @@ function SimpleDialog(props) {
   const handleClose1 = () => {
     onClose(true);
   };
+console.log(
 
+  "TEST"
+)
   return (
     <Dialog onClose={handleClose1} open={open}>
       <DialogTitle className="mx-auto">
