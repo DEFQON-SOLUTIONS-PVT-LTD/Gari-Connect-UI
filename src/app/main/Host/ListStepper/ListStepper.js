@@ -27,6 +27,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { Controller, useForm } from "react-hook-form";
 
 function getSteps() {
   return [
@@ -107,7 +108,7 @@ function getStepContent(steps) {
               color: "#101828",
             }}
           >
-           Set availability
+            Set availability
           </Typography>
           <Availability />
         </div>
@@ -226,6 +227,12 @@ ColorlibStepIcon.propTypes = {
 };
 
 export default function ListSteppers() {
+  const { handleSubmit, register, reset, control, watch, formState } = useForm({
+    mode: "all",
+  });
+  const { isValid, dirtyFields, errors, touchedFields } = formState;
+
+  const data = watch();
   const [activeStep, setActiveStep] = React.useState(0);
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -311,13 +318,15 @@ export default function ListSteppers() {
                         Back
                       </Button>
                       <Button
+                        type="submit"
+                        // disabled={_.isEmpty(dirtyFields) || !isValid}
                         onClick={
                           activeStep === steps.length - 1
                             ? handleClickOpen
                             : handleNext
                         }
-                        className="w-72 h-44 rounded-lg"
-                        style={{ color: "#FFFFFF", backgroundColor: "#D22A8F" }}
+                        className="w-72 h-44 rounded-lg text-white"
+                        style={{ backgroundColor: "#D22A8F" }}
                       >
                         Next
                       </Button>

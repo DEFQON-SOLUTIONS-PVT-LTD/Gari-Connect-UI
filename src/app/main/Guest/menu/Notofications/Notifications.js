@@ -3,10 +3,15 @@ import Typography from "@mui/material/Typography";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import { CardContent, Card } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
+import GuestNav from "../../GuestNav";
+import Footer from "app/main/Home/Footer/Footer";
 
 export default function Notifications() {
   return (
     <>
+    <div>
+    <GuestNav/>
+    </div>
       <div className="mt-68 mx-auto space-y-14">
         <div>
           <Typography className="font-medium text-2xl">Notification</Typography>
@@ -14,7 +19,7 @@ export default function Notifications() {
 
             <Typography className="font-medium text-xs">Today</Typography>
         
-        <Card className="border-2 rounded-8 w-640 h-88">
+        <Card className="border-2 rounded-8 w-full h-88">
           <CardContent>
             <div className="flex space-x-20 ">
               <img src="assets/images/logos/noti1.svg" />
@@ -50,7 +55,7 @@ export default function Notifications() {
           </CardContent>
         </Card>
             <Typography className="font-medium text-xs">Yesterday</Typography>
-        <Card className="border-2 rounded-8 w-640 h-88">
+        <Card className="border-2 rounded-8 w-full h-88">
           <CardContent>
             <div className="flex space-x-20 ">
               <img src="assets/images/logos/noti2.svg" />
@@ -78,7 +83,7 @@ export default function Notifications() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-2 rounded-8 w-640 h-88">
+        <Card className="border-2 rounded-8 w-full h-88">
           <CardContent>
             <div className="flex space-x-20 ">
               <img src="assets/images/logos/noti2.svg" />
@@ -108,6 +113,9 @@ export default function Notifications() {
             </div>
           </CardContent>
         </Card>
+      </div>
+      <div className="mt-136">
+      <Footer/>
       </div>
     </>
   );

@@ -22,8 +22,6 @@ import RadioGroup from "@mui/material/RadioGroup";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
-import IconButton from "@mui/material/IconButton";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -31,6 +29,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Documents from "../Documents/Documents";
 import Pickanddrop from "../Pickanddrop/Pickanddrop";
 import OtpInput from "react-otp-input";
+import Edit from "./Edit";
 // import { styled } from '@mui/material/styles';
 
 
@@ -142,6 +141,16 @@ export default function Confirmandpay() {
   };
   const childToParent = (childdata) => {
     setstatus(childdata);
+  };
+  const [open1, setOpen1] = React.useState(false);
+
+  
+  const handleClickOpen1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = () => {
+    setOpen1(false);
   };
 
   return (
@@ -547,12 +556,7 @@ export default function Confirmandpay() {
                       </Typography>
                     </div>
                     <div className="mt-48">
-                      <IconButton
-                        className="w-44 h-44"
-                        style={{ border: "1px solid #D0D5DD" }}
-                      >
-                        <EditOutlinedIcon style={{ color: "#D22A8F" }} />
-                      </IconButton>
+                      <Edit/>
                     </div>
                   </div>
                   <hr className="mt-20" />

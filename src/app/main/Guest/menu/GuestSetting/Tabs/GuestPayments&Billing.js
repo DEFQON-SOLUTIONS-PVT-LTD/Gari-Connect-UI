@@ -115,7 +115,7 @@ const PaymentsBilling = () => {
           </div>
         </div>
         <div className="ml-36 mt-36">
-          <Accordion className="w-1/2">
+          <Accordion className="w-2/5">
             <AccordionSummary
               InputProps={{ className: "h-80" }}
               expandIcon={<ExpandMoreIcon />}
@@ -137,6 +137,7 @@ const PaymentsBilling = () => {
                 </div>
               </div>
             </AccordionSummary>
+<<<<<<< HEAD
             <AccordionDetails>
               <hr className="mt-8" />
               <div className="flex justify-between mt-16">
@@ -154,6 +155,28 @@ const PaymentsBilling = () => {
                             value="Visa"
                             control={<BpRadio />}
                             label=""
+=======
+            <AccordionDetails >
+            <hr className="mt-8"/>
+                     <div className="flex justify-between mt-16">
+                  <RadioGroup
+                    defaultValue="female"
+                    aria-labelledby="demo-customized-radios"
+                    name="customized-radios"
+                  >
+                    <div className="sm:flex sm:space-x-10">
+                      <Card style={{width:"142px"}}>
+                        <CardContent>
+                      <div className="flex">
+                        <FormControlLabel
+                          value="Visa"
+                          control={<BpRadio />}
+                          label=""
+                        />
+                        <img
+                            src="assets/images/logos/visa.svg"
+                            alt=""
+>>>>>>> ba5dff9 (select)
                           />
                           <img src="assets/images/logos/visa.svg" alt="" />
                         </div>

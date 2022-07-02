@@ -1,7 +1,6 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -17,6 +16,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import TripDateRange from "../../Host/sharedComponents/TripDateRange";
+<<<<<<< HEAD
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -25,6 +25,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import ReportList from "./ReportList";
+=======
+import Signin from "../Carddetail/Signin";
+
+>>>>>>> ba5dff9 (select)
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -35,30 +39,7 @@ export default function Carddetail() {
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const [values, setValues] = React.useState({
-    password: "",
-  });
-  const passwordChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-  const passwordClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-  const passwordMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  
   return (
     <div>
       <Navbar />
@@ -203,7 +184,7 @@ export default function Carddetail() {
               </div>
             </div>
             <div>
-              <hr className="mt-36"/>
+              <hr className="mt-36" />
               <div>
                 <Typography className="text-base font-semibold mt-8">
                   Descripton
@@ -223,7 +204,7 @@ export default function Carddetail() {
                 <Typography className="text-base font-semibold mt-8">
                   Features
                 </Typography>
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row space-x-136">
                   <div>
                     <div className="flex space-x-4 mt-16">
                       <img
@@ -327,26 +308,7 @@ export default function Carddetail() {
                         USBcharge
                       </Typography>
                     </div>
-                    <div className="flex space-x-4 mt-28">
-                      <img
-                        width="20px"
-                        src="assets/images/logos/fbluetooth.svg"
-                        alt="logo"
-                      />
-                      <Typography className="font-medium text-xs">
-                        Bluetooth
-                      </Typography>
-                    </div>
-                    <div className="flex space-x-4 mt-28">
-                      <img
-                        width="20px"
-                        src="assets/images/logos/chargeimg.svg"
-                        alt="logo"
-                      />
-                      <Typography className="font-medium text-xs">
-                        USBcharge
-                      </Typography>
-                    </div>
+                   
                   </div>
                 </div>
               </div>
@@ -358,7 +320,7 @@ export default function Carddetail() {
                   Guidelines
                 </Typography>
               </div>
-              <div className="flex flex-row justify-between">
+              <div className="flex flex-row space-x-136">
                 <div>
                   <div className="flex space-x-4 mt-16">
                     <img
@@ -618,7 +580,7 @@ export default function Carddetail() {
               </Typography>
             </div>
           </div>
-          <div className="col-span-1 sm:max-w-8/12 md:w-7/12 lg:w-5/12 sm:ml-160 ml-0">
+          <div className="col-span-1 sm:max-w-8/12 md:w-7/12 lg:w-6/12 sm:ml-128 ml-0">
             <div>
               <Card style={{ height: "auto" }}>
                 <Typography className="text-lg font-semibold ml-10 mt-10">
@@ -628,6 +590,7 @@ export default function Carddetail() {
                 <CardContent>
                   <TripDateRange />
 
+<<<<<<< HEAD
                   <div className="" style={{ marginTop: "19px" }}>
                     <Button
                       onClick={handleClickOpen}
@@ -844,7 +807,12 @@ export default function Carddetail() {
                         </Card>
                       </div>
                     </Dialog>
+=======
+                  <div className="mt-20" >
+                  <Signin/>
+>>>>>>> ba5dff9 (select)
                   </div>
+                  
                   <div
                     className="rounded-lg mt-8 w-full "
                     style={{ backgroundColor: "#EDF5FE" }}
@@ -871,7 +839,6 @@ export default function Carddetail() {
                         hour <br></br> otherwise cancellation charges may apply.
                         For more information <br></br> go to{" "}
                         <a
-                          href="#"
                           style={{ color: "black" }}
                           className="text-sm font-light"
                         >
@@ -982,9 +949,18 @@ export default function Carddetail() {
               <div>
                 <hr className="mt-20" />
               </div>
+<<<<<<< HEAD
               <div className=" text-center mt-20 font-400 text-14 ">
                 <ReportList />
               </div>
+=======
+              <Typography
+                className="text-sm font-normal flex justify-center mt-20"
+                style={{ color: "#F04438" }}
+              >
+                Report listing
+              </Typography>
+>>>>>>> ba5dff9 (select)
             </div>
           </div>
         </div>
