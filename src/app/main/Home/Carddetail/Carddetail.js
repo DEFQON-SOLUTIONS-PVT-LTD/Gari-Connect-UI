@@ -571,7 +571,7 @@ export default function Carddetail() {
           </div>
           <div className="col-span-1 sm:max-w-8/12 md:w-7/12 lg:w-6/12 sm:ml-128 mx-8 sm:mt-0 mt-20">
             <div>
-              <Card style={{ height: "auto" }}>
+              <Card style={{ height: "auto",border: "1px solid rgba(195, 203, 205, 0.42)" }}>
                 <Typography className="text-lg font-semibold ml-10 mt-10">
                   Book your car
                 </Typography>
@@ -619,7 +619,7 @@ export default function Carddetail() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="mt-10">
+              <Card className="mt-10" style={{border: "1px solid rgba(195, 203, 205, 0.42)" }}>
                 <Typography className="text-lg font-semibold ml-10 mt-10">
                   Hosted By
                 </Typography>
