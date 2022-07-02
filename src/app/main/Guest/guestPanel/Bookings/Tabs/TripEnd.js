@@ -21,7 +21,7 @@ import Alert from "@mui/material/Alert";
 import PropTypes from "prop-types";
 import TripDateRange from "app/main/Host/sharedComponents/TripDateRange";
 import Drawer from "@mui/material/Drawer";
-import ButtonEnd from "../../Bookings/ButtonEnd"
+import ButtonEnd from "../../Bookings/ButtonEnd" 
 
 
 function SimpleDialog(props) {
