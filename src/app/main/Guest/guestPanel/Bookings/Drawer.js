@@ -19,9 +19,11 @@ import IconButton from "@mui/material/IconButton";
 import ArrowForwardSharpIcon from "@mui/icons-material/ArrowForwardSharp";
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
-import TripDateRange from "../sharedComponents/TripDateRange";
 import PropTypes from "prop-types";
-import Drawer from '@mui/material/Drawer';
+import Drawer from "@mui/material/Drawer";
+import TripDateRange from "app/main/Host/sharedComponents/TripDateRange";
+import ButtonCancel from "./Tabs/ButtonCancel";
+
 
 function SimpleDialog(props) {
   const { onClose, open } = props;
@@ -91,23 +93,23 @@ function EditDialog(props) {
         <TripDateRange />
         <div>
           <form>
-          <TextField
-          InputProps={{className:"rounded-lg"}}
-            sx={{
-              "& fieldset": {
-                border: "1px solid #D0D5DD",
-              },
-            }}
-            id="outlined-multiline-static"
-            fullWidth
-            multiline
-            rows={5}
-            placeholder="Write your problem"
-          />
+            <TextField
+              InputProps={{ className: "rounded-lg" }}
+              sx={{
+                "& fieldset": {
+                  border: "1px solid #D0D5DD",
+                },
+              }}
+              id="outlined-multiline-static"
+              fullWidth
+              multiline
+              rows={5}
+              placeholder="Write your problem"
+            />
           </form>
         </div>
         <div className="space-y-12">
-          <Box sx={{ width: "100%" }}>
+          <Box className="w-full">
             <Collapse in={openAlert}>
               <Alert
                 action={
@@ -140,7 +142,7 @@ function EditDialog(props) {
             </Collapse>
           </Box>
           <Button
-          onClick={otpClickOpen}
+            onClick={otpClickOpen}
             fullWidth
             variant="contained"
             size="large"
@@ -149,7 +151,7 @@ function EditDialog(props) {
           >
             Send request
           </Button>
-          <SimpleDialog open={sent} onClose={otpClose}/>
+          <SimpleDialog open={sent} onClose={otpClose} />
         </div>
       </DialogContent>
     </Dialog>
@@ -162,10 +164,8 @@ EditDialog.propTypes = {
 };
 
 export default function SwipeableTemporaryDrawer() {
-  
   const [open1, setOpen1] = React.useState(false);
 
-  
   const handleClickOpen1 = () => {
     setOpen1(true);
   };
@@ -191,23 +191,15 @@ export default function SwipeableTemporaryDrawer() {
 
   const list = (anchor) => (
     <Box
-      className="p-8"
-      sx={{ width: 412 }}
+      className="md:w-400 lg:w-512"
       role="presentation"
       onClick={toggleDrawer(anchor, true)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <nav className="flex justify-between items-center py-16">
-        <Typography className="text-black text-24 ml-28">
-          Booking Details
-        </Typography>
-        <IconButton
-        
-         >
-        <ClearIcon
-          className="w-48 cursor-pointer"
-          style={{ color: "#D22A8F" }}
-        />
+      <nav className="flex justify-between items-center ml-24 py-16">
+        <Typography className="text-black text-24">Booking Details</Typography>
+        <IconButton>
+          <ClearIcon className="w-24 h-24" style={{ color: "#D22A8F" }} />
         </IconButton>
       </nav>
       <Divider />
@@ -215,7 +207,7 @@ export default function SwipeableTemporaryDrawer() {
         <img
           src="/assets/images/GariConnect/carimage.png"
           alt="car"
-          className="py-20 ml-28"
+          className="py-20 ml-24"
         />
         <div>
           <div className="flex space-x-8 ">
@@ -234,20 +226,20 @@ export default function SwipeableTemporaryDrawer() {
               Honda Afb 8895-19
             </Typography>
             <Typography className="" style={{ color: "#667085" }}>
-              Gulberg 35
+              Gulberg 3
             </Typography>
           </div>
         </div>
       </div>
 
       <Divider />
-      <div className="py-16 ml-28">
+      <div className="py-16 ml-24">
         <div>
           <Typography className="text-black text-18 font-medium">
             Dates
           </Typography>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between pr-160">
           <div>
             <Typography className="text-16 font-medium">Sat, Oct 12</Typography>
             <Typography className="text-12">10:00 AM</Typography>
@@ -263,7 +255,7 @@ export default function SwipeableTemporaryDrawer() {
       </div>
       <Divider />
 
-      <div className="py-10 ml-28">
+      <div className="py-10 ml-24">
         <Typography className="text-black text-18 font-medium">Host</Typography>
       </div>
       <div className="flex justify-between items-center py-12">
@@ -279,7 +271,7 @@ export default function SwipeableTemporaryDrawer() {
                 Olivia Rhye
               </Typography>
             </div>
-            <div className="flex justify-between space-x-4">
+            <div className="flex justify-between">
               <Stack spacing={1}>
                 <Rating name="half-rating" max={4} defaultValue={4} />
               </Stack>
@@ -294,9 +286,9 @@ export default function SwipeableTemporaryDrawer() {
             </div>
           </div>
         </div>
-        <div>
+        <div className="sm:mr-24 mr-10  space-y-8">
           <Typography
-            className="text-14 text-center ml-auto rounded-full w-64"
+            className="text-14 text-center ml-auto rounded-12 w-60 h-24"
             style={{ background: "#eefaf5" }}
           >
             15 trips
@@ -308,10 +300,10 @@ export default function SwipeableTemporaryDrawer() {
       </div>
       <Divider />
       <div className="py-16">
-        <Typography className="text-black text-18 font-medium ml-28">
+        <Typography className="text-black text-18 font-medium ml-24">
           Trip details
         </Typography>
-        <div className="ml-28 py-14">
+        <div className="ml-24 py-14">
           <div className="flex space-x-10">
             <Typography>With driver</Typography>
             <TaskAltIcon style={{ color: "#039855" }} />
@@ -324,7 +316,7 @@ export default function SwipeableTemporaryDrawer() {
             <a
               href="https://maps.google.com/"
               target="_blank"
-              style={{ color: "#D22A8F",backgroundColor:"white" }}
+              style={{ color: "#D22A8F", backgroundColor: "white" }}
             >
               View on map
             </a>
@@ -337,7 +329,7 @@ export default function SwipeableTemporaryDrawer() {
             <a
               href="https://maps.google.com/"
               target="_blank"
-              style={{ color: "#D22A8F",backgroundColor:"white" }}
+              style={{ color: "#D22A8F", backgroundColor: "white" }}
             >
               View on map
             </a>
@@ -348,52 +340,52 @@ export default function SwipeableTemporaryDrawer() {
 
       <div className="py-16 space-y-9">
         <div>
-          <Typography className="text-black text-18 font-medium ml-28">
+          <Typography className="text-black text-18 font-medium ml-24">
             Price
           </Typography>
         </div>
-        <div className="space-y-9 px-16 ml-12">
-          <div className="flex justify-between items-center">
-            <Typography className="">Driver fee</Typography>
+        <div className="space-y-9 ml-10 mr-10">
+          <div className="flex justify-between ml-14 mr-14">
+            <Typography>Driver fee</Typography>
             <Typography className="font-medium">Rs 2000</Typography>
           </div>
-          <div className="flex justify-between items-center">
-            <Typography className="">Pickup / drop off fee</Typography>
+          <div className="flex justify-between ml-14 mr-14">
+            <Typography>Pickup / drop off fee</Typography>
             <Typography className="font-medium">Rs 2000</Typography>
           </div>
-          <div className="flex justify-between items-center">
-            <Typography className="">7 Days car rent</Typography>
+          <div className="flex justify-between ml-14 mr-14">
+            <Typography>7 Days car rent</Typography>
             <Typography className="font-medium">Rs 82000</Typography>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between ml-14 mr-14">
             <Typography className="font-medium">Total</Typography>
             <Typography className="font-medium">Rs 12200</Typography>
           </div>
-          <div
-            className="flex justify-between items-center h-28"
-            style={{ background: "#f1f1f2" }}
-          >
-            <Typography className="font-medium">You will pay</Typography>
-            <Typography className="font-medium" style={{ color: "#D22A8F" }}>
-              Rs 11000
-            </Typography>
+          <div className="h-44 w-full" style={{ background: "#f1f1f2" }}>
+            <div className="flex justify-between ml-14 mr-14">
+              <Typography className="font-medium mt-12">
+                You will pay
+              </Typography>
+              <Typography
+                className="font-medium mt-12"
+                style={{ color: "#D22A8F" }}
+              >
+                Rs 11000
+              </Typography>
+            </div>
           </div>
         </div>
       </div>
-      <div className=" flex justify-end space-x-8">
+      <div className=" flex justify-end pb-16 space-x-8 mr-9">
         <Button
+          variant="outlined"
           onClick={handleClickOpen1}
-          className="border-1 h-36 w-160 rounded-4 stroke-2"
+          className="rounded-4"
         >
           Rechedule Booking
         </Button>
         <EditDialog open={open1} onClose={handleClose1} />
-        <Button
-          className="border-1 h-36 w-128 rounded-4 stroke-2 text-white"
-          style={{ background: "#D22A8F" }}
-        >
-          Cancel Booking
-        </Button>
+        <ButtonCancel/>
       </div>
     </Box>
   );

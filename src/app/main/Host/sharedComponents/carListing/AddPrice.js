@@ -198,48 +198,6 @@ const AddPrice = () => {
             name="driverprice"
             control={control}
           />
-          <div className="w-full">
-            <div className="sm:flex flex-row justify-between mt-32">
-              <div>
-                <Typography
-                  className="text-sm font-medium mt-7"
-                  style={{ color: "#101828" }}
-                >
-                  Providing Pickup and drop off
-                </Typography>
-              </div>
-              <div>
-                <RadioGroup
-                  defaultValue="female"
-                  aria-labelledby="demo-customized-radios"
-                  name="customized-radios"
-                >
-                  <div className="flex space-x-12">
-                    <div className="flex">
-                      <FormControlLabel
-                        value="female"
-                        control={<BpRadio />}
-                        label=""
-                      />
-                      <Typography className="font-medium text-sm pt-6">
-                        Yes
-                      </Typography>
-                    </div>
-                    <div className="flex">
-                      <FormControlLabel
-                        value="male"
-                        control={<BpRadio />}
-                        label=""
-                      />
-                      <Typography className="font-medium text-sm pt-6">
-                        No
-                      </Typography>
-                    </div>
-                  </div>
-                </RadioGroup>
-              </div>
-            </div>
-          </div>
           <Typography
             style={{
               fontSize: "14px",

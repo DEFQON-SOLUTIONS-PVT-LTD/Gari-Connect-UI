@@ -154,4 +154,4 @@ const TripDateRange = () => {
     )
 }
 
-export default TripDateRange
+export default TripDateRange;

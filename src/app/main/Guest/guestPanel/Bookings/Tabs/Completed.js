@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  Typography,
-} from "@mui/material";
+import { Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,12 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import DoDisturbOutlinedIcon from "@mui/icons-material/DoDisturbOutlined";
 import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
-import Drawer from "../../../../Host/sharedComponents/Drawer";
-
+import Drawer from "../Drawer";
 
 const Completed = () => {
-  
-
   return (
     <div className="grid grid-cols-4 gap-4">
       <div className="col-span-4">
@@ -147,12 +142,20 @@ const Completed = () => {
                   15000 PKR
                 </TableCell>
                 <TableCell>
-                  <DoDisturbOutlinedIcon className="ml-12" style={{color:"#F04438"}}/>
+                  <DoDisturbOutlinedIcon
+                    className="ml-12"
+                    style={{ color: "#F04438" }}
+                  />
                 </TableCell>
                 <TableCell>
-                  <DoDisturbOutlinedIcon className="ml-12" style={{color:"#F04438"}}/>
+                  <DoDisturbOutlinedIcon
+                    className="ml-12"
+                    style={{ color: "#F04438" }}
+                  />
                 </TableCell>
-                <TableCell><Drawer/></TableCell>
+                <TableCell>
+                  <Drawer />
+                </TableCell>
               </TableRow>
 
               <TableRow
@@ -217,12 +220,20 @@ const Completed = () => {
                   15000 PKR
                 </TableCell>
                 <TableCell>
-                  <TaskAltOutlinedIcon className="ml-12" style={{color:"#039855"}}/>
+                  <TaskAltOutlinedIcon
+                    className="ml-12"
+                    style={{ color: "#039855" }}
+                  />
                 </TableCell>
                 <TableCell>
-                  <TaskAltOutlinedIcon className="ml-12" style={{color:"#039855"}}/>
+                  <TaskAltOutlinedIcon
+                    className="ml-12"
+                    style={{ color: "#039855" }}
+                  />
                 </TableCell>
-                <TableCell><Drawer/></TableCell>
+                <TableCell>
+                  <Drawer />
+                </TableCell>
               </TableRow>
 
               <TableRow
@@ -287,12 +298,20 @@ const Completed = () => {
                   15000 PKR
                 </TableCell>
                 <TableCell>
-                  <DoDisturbOutlinedIcon className="ml-12" style={{color:"#F04438"}}/>
+                  <DoDisturbOutlinedIcon
+                    className="ml-12"
+                    style={{ color: "#F04438" }}
+                  />
                 </TableCell>
                 <TableCell>
-                  <DoDisturbOutlinedIcon className="ml-12" style={{color:"#F04438"}}/>
+                  <DoDisturbOutlinedIcon
+                    className="ml-12"
+                    style={{ color: "#F04438" }}
+                  />
                 </TableCell>
-                <TableCell><Drawer/></TableCell>
+                <TableCell>
+                  <Drawer />
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>

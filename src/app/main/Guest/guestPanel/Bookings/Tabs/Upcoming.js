@@ -15,7 +15,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import DoDisturbOutlinedIcon from '@mui/icons-material/DoDisturbOutlined';
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
-import Drawer from "../../../../Host/sharedComponents/Drawer";
+import Drawer from "../Drawer";
+import TripEnd from "./TripEnd"
 
 function SimpleDialog(props) {
   const { onClose, open } = props;
@@ -36,7 +37,7 @@ function SimpleDialog(props) {
         <Typography className="text-13 font-normal text-gray-500 text-center mb-24">
           Are you sure you want to booking? Cancellation
           <br /> charges PKR 500 will applied, for more information
-          <br /> read{" "}
+          <br /> read
           <span style={{ color: "#046AF3" }}>cancallation policy</span>
         </Typography>
         <div className="flex items-center justify-center space-x-12">
@@ -333,7 +334,7 @@ const Upcoming = () => {
                     <DoDisturbOutlinedIcon className="ml-12" style={{color:"#F04438"}}/>
                 </TableCell>
                 <TableCell>
-                  <Drawer/></TableCell>
+                  <TripEnd/></TableCell>
               </TableRow>
 
               <TableRow

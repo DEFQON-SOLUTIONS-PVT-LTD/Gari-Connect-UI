@@ -10988,6 +10988,11 @@
   "resolved" "https://registry.npmjs.org/os-browserify/-/os-browserify-0.3.0.tgz"
   "version" "0.3.0"
 
+"otp-input-react@^0.3.0":
+  "integrity" "sha512-6HDgAUp+biz18cfeX8189g6sOqA5UGmTeqkREz1MI8x92N8kU/M8YtwLtl60j3pbGkMVbrm3f4n4wtXPeVpMmg=="
+  "resolved" "https://registry.npmjs.org/otp-input-react/-/otp-input-react-0.3.0.tgz"
+  "version" "0.3.0"
+
 "p-each-series@^2.1.0":
   "integrity" "sha512-ycIL2+1V32th+8scbpTvyHNaHe02z0sjgh91XXjAk+ZeXoPN4Z46DVUnzdso0aX4KckKw0FNNFHdjZ2UsZvxiA=="
   "resolved" "https://registry.npmjs.org/p-each-series/-/p-each-series-2.2.0.tgz"
@@ -12933,6 +12938,13 @@
     "react-redux" "^7.2.0"
     "redux" "^4.0.4"
     "use-memo-one" "^1.1.1"
+
+"react-countdown@^2.3.2":
+  "integrity" "sha512-Q4SADotHtgOxNWhDdvgupmKVL0pMB9DvoFcxv5AzjsxVhzOVxnttMbAywgqeOdruwEAmnPhOhNv/awAgkwru2w=="
+  "resolved" "https://registry.npmjs.org/react-countdown/-/react-countdown-2.3.2.tgz"
+  "version" "2.3.2"
+  dependencies:
+    "prop-types" "^15.7.2"
 
 "react-dev-utils@^11.0.3":
   "integrity" "sha512-dx0LvIGHcOPtKbeiSUM4jqpBl3TcY7CDjZdfOIcKeznE7BWr9dg0iPG90G5yfVQ+p/rGNMXdbfStvzQZEVEi4A=="
