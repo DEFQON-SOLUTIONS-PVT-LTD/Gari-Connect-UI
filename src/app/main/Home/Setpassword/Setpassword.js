@@ -46,11 +46,6 @@ const schema = yup.object().shape({
     .required('Please enter your password.')
     .min(10, 'Password is too short - should be 10 chars minimum.')
     .oneOf([yup.ref("password")], "Passwords do not match"),
-  phone_no: yup
-    .string()
-    .required('You must enter a Phone Number')
-    .min(13, 'The Phone Number must be at least 13 digits')
-    .max(13, 'The Phone Number should be max 13 digits'),
 });
 
 const defaultValues = {
@@ -62,7 +57,7 @@ const defaultValues = {
 function Setpassword() {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const login = useSelector(({ auth }) => auth.login);
+  const allData = useSelector(({ auth }) => auth.forget);
   const { control, setValue, formState, handleSubmit, reset, trigger, setError } = useForm({
     mode: 'onChange',
     defaultValues,
@@ -74,19 +69,19 @@ function Setpassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const phoneNum = allData.data.customer.data.phone_no;
+
   useEffect(() => {
     setValue('password', '', { shouldDirty: true, shouldValidate: true });
     setValue('password_confirmation', '', { shouldDirty: true, shouldValidate: true });
-    setValue('phone_no', '+923214199087', { shouldDirty: true, shouldValidate: true });
+    setValue('phone_no', phoneNum, { shouldDirty: true, shouldValidate: true });
   }, [reset, setValue, trigger]);
 
   function onSubmit(model) {
     dispatch(passReset(model))
       .then((result) => {
-        if (result) {
-          console.log(result);
-        } else {
-          history.push('/Home/LandingPage');
+        if (result.payload.status === true) {
+          history.push('/SignIn');
         }
       });
   }

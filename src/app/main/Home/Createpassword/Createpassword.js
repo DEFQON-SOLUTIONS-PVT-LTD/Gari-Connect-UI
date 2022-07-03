@@ -36,7 +36,7 @@ function strongPasswordMethod() {
 };
 
 const schema = yup.object().shape({
-  password: yup.string().required().strongPassword(),
+  password: yup.string().required().min(10, 'Password is too short - should be 10 chars minimum.').strongPassword(),
   // password: yup
   //   .string()
   //   .required('Please enter your password.')
@@ -46,11 +46,6 @@ const schema = yup.object().shape({
     .required('Please enter your password.')
     .min(10, 'Password is too short - should be 10 chars minimum.')
     .oneOf([yup.ref("password")], "Passwords do not match"),
-  userId: yup
-    .string()
-    .required('You must enter a Phone Number')
-    .min(13, 'The Phone Number must be at least 13 digits')
-    .max(13, 'The Phone Number should be max 13 digits'),
 });
 
 const defaultValues = {
@@ -62,8 +57,7 @@ const defaultValues = {
 function Createpassword() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const userid = useSelector(({ auth }) => auth.register);
-  console.log(userid);
+  const userid = useSelector(({ auth }) => auth.user);
   const { control, setValue, formState, handleSubmit, reset, trigger, setError } = useForm({
     mode: 'onChange',
     defaultValues,
@@ -75,18 +69,22 @@ function Createpassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const uid = userid.userId;
+
   useEffect(() => {
     setValue('password', '', { shouldDirty: true, shouldValidate: true });
     setValue('password_confirmation', '', { shouldDirty: true, shouldValidate: true });
-    setValue('userId', '+923214199087', { shouldDirty: true, shouldValidate: true });
+    setValue('userId', '', { shouldDirty: true, shouldValidate: true });
   }, [reset, setValue, trigger]);
 
   function onSubmit(model) {
-    model.userId = '92';
+    model.userId = uid;
     dispatch(createPassword(model))
-    // .then(() => {
-    //   history.push('/Home/LandingPage');
-    // });
+      .then((result) => {
+        if (result)
+          console.log(result);
+        // history.push('/SignIn');
+      });
   }
 
   function checkPassword() {
@@ -250,10 +248,7 @@ function Createpassword() {
                         InputProps={{
                           className: "mb-16 rounded-lg mb-11 mt-6 h-[44px]"
                         }}
-                        placeholder="+92 | 3524584205"
                         hidden
-                        error={!!errors.userId}
-                        helperText={errors?.userId?.message}
                         variant="outlined"
                         fullWidth
                       />
@@ -296,7 +291,6 @@ function Createpassword() {
                     style={{
                       height: "44px",
                       background: "#D22A8F",
-                      color: "#FFFFFF",
                       borderRadius: "8px",
                       fontSize: "16px",
                     }}
