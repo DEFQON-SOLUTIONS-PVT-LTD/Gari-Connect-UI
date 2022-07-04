@@ -116,7 +116,7 @@ function OTP() {
                 marginTop: "10px",
               }}
             >
-              Please enter 6 digit code send on your phone 034******59
+              Please enter 4 digit code send on your phone 034******59
             </p>
           </div>
           <div className="w-full my-20 ">
@@ -139,7 +139,10 @@ function OTP() {
                         autoFocus
                         OTPLength={4}
                         otpType="number"
+                        className="mx-auto"
                         inputStyles={{
+                          marginRight: 10,
+                          marginLeft: 10,
                           border: "1px solid #D0D5DD",
                           borderRadius: "8px",
                           width: "66px",
@@ -182,7 +185,7 @@ function OTP() {
                     height: "44px",
                     fontSize: "16px",
                   }}
-                  className="w-full text-white rounded-lg"
+                  className="w-8/12 mx-auto text-white rounded-lg"
                 >
                   Submit
                 </Button>

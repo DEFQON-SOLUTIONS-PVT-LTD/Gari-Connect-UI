@@ -70,7 +70,7 @@ export default function () {
               </Typography>
             </motion.div>
 
-            <motion.div variants={boxVariants} initial="hidden" animate="visible" className="absolute sm:static bottom-96 sm:bottom-auto w-full sm:w-auto pr-40 sm:pr-0">
+            <motion.div variants={boxVariants} initial="hidden" animate="visible" className="absolute sm:static bottom-60 sm:bottom-auto w-full sm:w-auto pr-40 sm:pr-0">
               <Typography className="font-medium text-xl sm:mt-44 mb-6 sm:mr-0 mr-8">
                 Get notified when we launch!
               </Typography>
@@ -99,40 +99,6 @@ export default function () {
               </Button>
             </motion.div>
           </div>
-
-          {/* <motion.div
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 500, opacity: 1, transition: { delay: 1, duration: 1.5 } }}
-          >
-            <div className="absolute sm:static bottom-96 sm:bottom-auto w-full sm:w-auto pr-40 sm:pr-0">
-              <Typography className="font-medium text-xl sm:mt-44 mb-6 sm:mr-0 mr-8">
-                Get notified when we launch!
-              </Typography>
-              <div className="flex items-center mb-4 h-40 sm:h-52 bg-white"
-                style={{ borderRadius: '30px', border: '1px solid #E6E9EA' }}>
-                <TextField
-                  fullWidth
-                  variant="standard"
-                  InputProps={{ disableUnderline: true }}
-                  className="pl-16"
-                  placeholder="Your email address"
-                />
-              </div>
-              <Typography
-                className="ml-10 mb-16 text-xs font-normal"
-                style={{ color: "#667085" }}
-              >
-                Don't worry, we won't spam you.
-              </Typography>
-
-              <Button fullWidth variant="contained"
-                className="h-40 sm:h-52 rounded-full text-12 sm:text-16 font-normal"
-                style={{ backgroundColor: '#D22A8F' }}
-              >
-                Notify me
-              </Button>
-            </div>
-          </motion.div> */}
 
           <div className="mt-60 sm:mt-20 mb-20 sm:mb-auto">
             <motion.img initial={{ x: 1000 }} animate={{ x: 0, transition: { delay: 1, duration: 1.5 } }} className="w-auto sm:h-400 sm:absolute sm:top-80 sm:left-512 md:absolute md:top-136 md:left-lg" style={{}} src="assets/images/GariConnect/pinkcar.png" alt="logo" />

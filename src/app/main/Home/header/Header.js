@@ -8,12 +8,15 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Link } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
-
-
+import { useSelector } from 'react-redux';
 
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const logStatus = useSelector(({ auth }) => auth.login);
+  console.log(logStatus.success)
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -24,8 +27,8 @@ export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>
-    <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white mb-3 shadow-xl shadow-white h-auto">
-     
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white mb-3 shadow-xl shadow-white h-auto">
+
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start sm:pt-0 pt-10 sm:pb-0 pb-10 ml-96">
           <a
             href="/Home/LandingPage"
@@ -46,7 +49,7 @@ export default function Header() {
           </IconButton>
         </div>
         <div
-        
+
           className={
             "lg:flex flex-grow items-center sm:mr-96 justify-center pt-12 pb-12" +
             (navbarOpen ? " flex" : " hidden")
@@ -57,7 +60,7 @@ export default function Header() {
             <li className="nav-item mt-6 pr-12">
               <Button
                 className="text-sm font-medium "
-                >
+              >
                 How It works
               </Button>
             </li>
@@ -65,7 +68,7 @@ export default function Header() {
               <Button
                 id="basic-button"
                 onClick={handleClick}
-               
+
                 endIcon={<KeyboardArrowDownIcon />}
               >
                 Company
@@ -107,17 +110,27 @@ export default function Header() {
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
               </Menu>
             </li>
-            <li className="nav-item mr-32 mt-10 flex space-x-6 sm:mb-0 mb-16 sm:mx-0 mx-auto">
-              <Typography style={{color:"black",fontSize:"14px",fontWeight: "500px",textDecoration:"none"}} component={Link} to="/SignIn">
-                Sign in
-              </Typography>
-              <Typography style={{color:"rgba(195, 203, 205, 1)",fontSize:"14px",fontWeight: "500px"}}>
-               |
-              </Typography>
-              <Typography style={{color:"black",fontSize:"14px",fontWeight: "500px",textDecoration:"none"}} component={Link} to="/Signup">
-                Sign up
-              </Typography>
-            </li>
+            {logStatus.success === true ? (
+              <li className="nav-item mr-32 mt-10 flex space-x-6 sm:mb-0 mb-16 sm:mx-0 mx-auto">
+                <Button component={Link} to="/SignIn" style={{ color: "black", fontSize: "14px", fontWeight: "500px", textDecoration: "none" }}>
+                  Log out
+                </Button>
+              </li>
+            ) : (
+
+              <li className="nav-item mr-32 mt-10 flex space-x-6 sm:mb-0 mb-16 sm:mx-0 mx-auto">
+                <Typography style={{ color: "black", fontSize: "14px", fontWeight: "500px", textDecoration: "none" }} component={Link} to="/SignIn">
+                  Sign in
+                </Typography>
+                <Typography style={{ color: "rgba(195, 203, 205, 1)", fontSize: "14px", fontWeight: "500px" }}>
+                  |
+                </Typography>
+                <Typography style={{ color: "black", fontSize: "14px", fontWeight: "500px", textDecoration: "none" }} component={Link} to="/Signup">
+                  Sign up
+                </Typography>
+              </li>
+            )}
+
             <li className="nav-item sm:mb-0 mb-16 ml-10">
               <Button
                 component={Link}
@@ -133,8 +146,8 @@ export default function Header() {
             </li>
           </ul>
         </div>
-       
-    </nav>
-  </>
+
+      </nav>
+    </>
   );
 }

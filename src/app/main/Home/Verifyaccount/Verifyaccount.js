@@ -145,6 +145,8 @@ function Verifyaccount() {
                         OTPLength={4}
                         otpType="number"
                         inputStyles={{
+                          marginRight: 10,
+                          marginLeft: 10,
                           border: "1px solid #D0D5DD",
                           borderRadius: "8px",
                           width: "66px",
@@ -187,7 +189,7 @@ function Verifyaccount() {
                     height: "44px",
                     fontSize: "16px",
                   }}
-                  className="w-full text-white rounded-lg"
+                  className="w-8/12 mx-auto text-white rounded-lg"
                 >
                   Submit
                 </Button>
