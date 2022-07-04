@@ -17,6 +17,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import _ from "@lodash";
+import FacebookLogin from "react-facebook-login";
 
 const schema = yup.object().shape({
   firstname: yup.string().required("You must enter your First Name."),
@@ -49,6 +50,14 @@ const defaultValues = {
 
 function Signup() {
   const dispatch = useDispatch();
+
+  const responseFacebook = (response) => {
+    console.log(response);
+  };
+
+  const facebookComponentClicked = (e) => {
+    console.log(e);
+  };
 
   function handleCallbackResponse(response) {
     console.log(response);
@@ -95,12 +104,12 @@ function Signup() {
 
     google.accounts.id.renderButton(document.getElementById("signInDiv"), {
       theme: "outline",
-      size: "large",
-      width: "500px",
-      border: "1px solid #D0D5DD",
-      fontSize: "16px",
-      height: "44px",
-      borderRadius: "8px",
+      // size: "large",
+      width: "230px",
+      // border: "1px solid #D0D5DD",
+      fontSize: "36px",
+      height: "344px",
+      // borderRadius: "8px",
     });
 
     google.accounts.id.prompt();
@@ -215,11 +224,12 @@ function Signup() {
             </div>
             <CardContent>
               <div
+                style={{ marginLeft: "140px", width: "230px" }}
                 id="signInDiv"
                 // className="hidden"
                 onClick={handleCallbackResponse}
               ></div>
-              <div style={{ marginTop: "26px" }}>
+              {/* <div style={{ marginTop: "26px" }}>
                 <Button
                   style={{
                     height: "44px",
@@ -238,8 +248,46 @@ function Signup() {
                   ></img>{" "}
                   Sign up with Google
                 </Button>
+              </div> */}
+              <div
+                style={{
+                  marginTop: "10px",
+                  marginLeft: "140px",
+                  // height: "89px",
+                }}
+              >
+                <FacebookLogin
+                  appId="555674115924311"
+                  autoLoad={false}
+                  fields="name,email,picture"
+                  onClick={facebookComponentClicked}
+                  callback={responseFacebook}
+                  textButton="Sign in with Facebook"
+                  // icon={
+                  //   <div style={{ marginTop: "6px" }}>
+                  //     <Button
+                  //       style={{
+                  //         border: "1px solid #D0D5DD",
+                  //         fontSize: "16px",
+                  //         height: "44px",
+                  //         borderRadius: "8px",
+                  //       }}
+                  //       className="w-full"
+                  //     >
+                  //       {" "}
+                  //       <img
+                  //         width="25px"
+                  //         style={{ marginRight: "5px" }}
+                  //         src="assets/images/GariConnect/Vector.png"
+                  //         alt="logo"
+                  //       ></img>{" "}
+                  //     </Button>
+                  //   </div>
+                  // }
+                />
               </div>
-              <div style={{ marginTop: "6px" }}>
+
+              {/* <div style={{ marginTop: "6px" }}>
                 <Button
                   style={{
                     border: "1px solid #D0D5DD",
@@ -258,10 +306,10 @@ function Signup() {
                   ></img>{" "}
                   Sign up with Facebook
                 </Button>
-              </div>
+              </div> */}
               <div
                 className="flex flex-row justify-center"
-                style={{ marginTop: "28px" }}
+                style={{ marginTop: "8px" }}
               >
                 <hr
                   style={{
