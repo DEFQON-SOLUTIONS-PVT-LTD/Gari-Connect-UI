@@ -82,11 +82,8 @@ const AddPrice = () => {
   const price = useSelector((state) => state.price);
   console.log(price);
 
-<<<<<<< HEAD
-=======
   const [withDriverFlag, setWithDriverFlag] = useState(true);
 
->>>>>>> 204cc3a (store and slices with their actions are ready)
   const withDriverFlagHandle = () => {
     setWithDriverFlag(!withDriverFlag);
   };
@@ -205,11 +202,7 @@ const AddPrice = () => {
                 control={control}
                 render={({ field }) => (
                   <TextField
-<<<<<<< HEAD
                     className="rounded-lg mb-11 sm:w-full w-4/5"
-=======
-                    className="rounded-lg mb-11 w-full"
->>>>>>> 204cc3a (store and slices with their actions are ready)
                     placeholder="Add driver price"
                     style={{ marginTop: "6px", height: "44px" }}
                     {...field}
@@ -252,11 +245,7 @@ const AddPrice = () => {
                 control={control}
                 render={({ field }) => (
                   <TextField
-<<<<<<< HEAD
                     className="rounded-lg mb-11 sm:w-full w-4/5"
-=======
-                    className="rounded-lg mb-11 w-full"
->>>>>>> 204cc3a (store and slices with their actions are ready)
                     placeholder="Add price"
                     style={{ marginTop: "6px", height: "44px" }}
                     {...field}

@@ -18,15 +18,6 @@ const schema = yup.object().shape({
 });
 
 const Availability = () => {
-<<<<<<< HEAD
-  const { handleSubmit, register, reset, control, watch, formState } = useForm({
-    mode: "all",
-    resolver: yupResolver(schema),
-  });
-
-  const { isValid, dirtyFields, errors, touchedFields } = formState;
-
-=======
   const availabilities = useSelector((state) => state.availabilities);
   console.log(availabilities);
 
@@ -37,7 +28,6 @@ const Availability = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
->>>>>>> 204cc3a (store and slices with their actions are ready)
   const data = watch();
 
   const AntSwitch = styled(Switch)(({ theme }) => ({

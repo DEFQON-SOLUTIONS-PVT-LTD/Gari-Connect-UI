@@ -63,11 +63,7 @@ const Guidelines = () => {
   };
   return (
     <div>
-<<<<<<< HEAD
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-10 mt-16 sm:ml-0 ml-80">
-=======
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-10 mt-16">
->>>>>>> 204cc3a (store and slices with their actions are ready)
         <Card
           className="col-span-1 rounded-md shadow-sm"
           style={{
@@ -346,11 +342,7 @@ const Guidelines = () => {
           </CardActionArea>
         </Card>
       </div>
-<<<<<<< HEAD
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-4 md:grid-cols-6 mt-16 sm:ml-0 ml-80">
-=======
-      <div className="grid grid-cols-1 gap-10 sm:grid-cols-4 md:grid-cols-6 mt-16">
->>>>>>> 204cc3a (store and slices with their actions are ready)
         <Card
           className="col-span-1 rounded-md shadow-sm"
           style={{

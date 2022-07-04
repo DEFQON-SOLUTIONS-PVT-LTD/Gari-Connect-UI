@@ -19,12 +19,9 @@ const schema = yup.object().shape({
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const CarLocation = () => {
-<<<<<<< HEAD
-=======
   const location = useSelector((state) => state.location);
   console.log(location);
 
->>>>>>> 204cc3a (store and slices with their actions are ready)
   const { handleSubmit, register, reset, control, watch, formState } = useForm({
     mode: "all",
     resolver: yupResolver(schema),
