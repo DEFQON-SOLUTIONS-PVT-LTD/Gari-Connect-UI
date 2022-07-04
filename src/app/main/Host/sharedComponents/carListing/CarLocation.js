@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 const schema = yup.object().shape({
   city: yup.array().min(1, "You must select a area"),
@@ -18,6 +19,12 @@ const schema = yup.object().shape({
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const CarLocation = () => {
+<<<<<<< HEAD
+=======
+  const location = useSelector((state) => state.location);
+  console.log(location);
+
+>>>>>>> 204cc3a (store and slices with their actions are ready)
   const { handleSubmit, register, reset, control, watch, formState } = useForm({
     mode: "all",
     resolver: yupResolver(schema),

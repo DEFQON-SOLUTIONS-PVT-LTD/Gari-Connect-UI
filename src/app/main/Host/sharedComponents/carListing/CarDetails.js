@@ -10,6 +10,10 @@ import { Controller, useForm } from "react-hook-form";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
+<<<<<<< HEAD
+=======
+import { useSelector } from "react-redux";
+>>>>>>> 204cc3a (store and slices with their actions are ready)
 
 const schema = yup.object().shape({
   make: yup.array().min(1, "Please select a make."),
@@ -49,6 +53,9 @@ const top100Films = [
 ];
 
 const CarDetails = () => {
+  const carDetails = useSelector((state) => state);
+  console.log(carDetails);
+
   const { handleSubmit, register, reset, control, watch, formState } = useForm({
     mode: "all",
     resolver: yupResolver(schema),

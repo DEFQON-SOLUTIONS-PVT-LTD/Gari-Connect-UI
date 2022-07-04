@@ -10,6 +10,10 @@ import { Controller, useForm } from "react-hook-form";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
+<<<<<<< HEAD
+=======
+import { useSelector } from "react-redux";
+>>>>>>> 204cc3a (store and slices with their actions are ready)
 
 // const defaultFeaturesFlags =  {   bluetooth:falsae      }
 
@@ -37,6 +41,9 @@ const top100Films = [
 ];
 
 const Features = () => {
+  const _features = useSelector((state) => state.features);
+  console.log(_features);
+
   const { handleSubmit, register, reset, control, watch, formState } = useForm({
     mode: "all",
     resolver: yupResolver(schema),

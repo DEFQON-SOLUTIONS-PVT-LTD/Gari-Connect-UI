@@ -5,6 +5,7 @@ import { styled } from "@mui/material/styles";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 const schema = yup.object().shape({
   Monday: yup.boolean().oneOf([true], "You must turn it on."),
@@ -17,6 +18,7 @@ const schema = yup.object().shape({
 });
 
 const Availability = () => {
+<<<<<<< HEAD
   const { handleSubmit, register, reset, control, watch, formState } = useForm({
     mode: "all",
     resolver: yupResolver(schema),
@@ -24,6 +26,18 @@ const Availability = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
+=======
+  const availabilities = useSelector((state) => state.availabilities);
+  console.log(availabilities);
+
+  const { handleSubmit, register, reset, control, watch, formState } = useForm({
+    mode: "all",
+    resolver: yupResolver(schema),
+  });
+
+  const { isValid, dirtyFields, errors, touchedFields } = formState;
+
+>>>>>>> 204cc3a (store and slices with their actions are ready)
   const data = watch();
 
   const AntSwitch = styled(Switch)(({ theme }) => ({
