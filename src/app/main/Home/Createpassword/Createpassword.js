@@ -36,7 +36,8 @@ function strongPasswordMethod() {
 };
 
 const schema = yup.object().shape({
-  password: yup.string().required().min(10, 'Password is too short - should be 10 chars minimum.').strongPassword(),
+  password: yup.string().required().matches(/(\d)(\d)/, 'Must contain two numbers')
+    .min(10, 'Password is too short - should be 10 chars minimum.').strongPassword(),
   // password: yup
   //   .string()
   //   .required('Please enter your password.')
@@ -69,7 +70,7 @@ function Createpassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const uid = userid.userId;
+  const uid = userid.userId.toString();
 
   useEffect(() => {
     setValue('password', '', { shouldDirty: true, shouldValidate: true });
@@ -81,9 +82,8 @@ function Createpassword() {
     model.userId = uid;
     dispatch(createPassword(model))
       .then((result) => {
-        if (result)
-          console.log(result);
-        // history.push('/SignIn');
+        if (result.meta.requestStatus === 'fulfilled')
+          history.push('/SignIn');
       });
   }
 
@@ -285,9 +285,7 @@ function Createpassword() {
                   <Button
                     type="submit"
                     disabled={_.isEmpty(dirtyFields) || !isValid}
-                    className="w-full"
-                    // component={Link}
-                    // to="Personaldetails"
+                    className="w-full text-white"
                     style={{
                       height: "44px",
                       background: "#D22A8F",

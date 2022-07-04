@@ -1,6 +1,6 @@
 import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Typography, Icon, FormHelperText } from "@mui/material";
+import { Typography, Icon, FormHelperText, InputAdornment } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -28,13 +28,21 @@ const schema = yup.object().shape({
     .required("You must enter a email"),
   phoneno: yup
     .string()
-    .required("You must enter a Phone Number")
-    .min(13, "The Phone Number must be at least 13 digits")
-    .max(13, "The Phone Number should be max 13 digits"),
-  address: yup.string().required("You must enter an address"),
-  cityId: yup.string().required("You must select a city"),
-  gender: yup.string().required("You must select a value"),
-  photo: yup.mixed(),
+    .required('You must enter a Phone Number')
+    .min(10, 'The Phone Number must be at least 10 digits')
+    .max(10, 'The Phone Number should be max 10 digits'),
+  address: yup
+    .string()
+    .required('You must enter an address'),
+  cityId: yup
+    .string()
+    .required('You must select a city'),
+  gender: yup
+    .string()
+    .required('You must select a value'),
+  photo: yup.mixed()
+    .nullable()
+    .required('Required Field')
 });
 
 const defaultValues = {
@@ -119,23 +127,12 @@ function Signup() {
   // const dispatch = useDispatch();
   const authRegister = useSelector(({ auth }) => auth.register);
 
-  const [baseImage, setBaseImage] = useState("");
+  const [baseImage, setBaseImage] = useState("assets/images/profile/placeholderProfile.png");
 
-  const onlyNumbers = (e) => {
-    e.target.value = e.target.value.replace(/[^0-9 +]/g, "");
-  };
+  const onlyNumbers = (e) => { e.target.value = e.target.value.replace(/\D|^0+/g, '') };
 
-  const {
-    control,
-    formState,
-    handleSubmit,
-    reset,
-    setError,
-    setValue,
-    trigger,
-    register,
-  } = useForm({
-    mode: "onChange",
+  const { control, formState, handleSubmit, reset, watch, setError, setValue, trigger, register } = useForm({
+    mode: 'onChange',
     defaultValues,
     resolver: yupResolver(schema),
   });
@@ -174,16 +171,22 @@ function Signup() {
 
   function onSubmit(model) {
     model.photo = baseImage;
-    dispatch(submitRegister(model)).then((result) => {
-      if (result) {
-        setError("errorName", {
-          type: "manual",
-          message: result.payload[0].message,
-        });
-      } else {
-        history.push("/Verifyaccount");
-      }
-    });
+    model.phoneno = "+92" + model.phoneno
+    dispatch(submitRegister(model))
+      .then((result) => {
+        if (result) {
+          setError(
+            "errorName",
+            {
+              type: "manual",
+              message: result.payload[0].message
+            }
+          )
+        }
+        else {
+          history.push('/Verifyaccount');
+        }
+      })
   }
 
   return (
@@ -263,27 +266,27 @@ function Signup() {
                   onClick={facebookComponentClicked}
                   callback={responseFacebook}
                   textButton="Sign in with Facebook"
-                  // icon={
-                  //   <div style={{ marginTop: "6px" }}>
-                  //     <Button
-                  //       style={{
-                  //         border: "1px solid #D0D5DD",
-                  //         fontSize: "16px",
-                  //         height: "44px",
-                  //         borderRadius: "8px",
-                  //       }}
-                  //       className="w-full"
-                  //     >
-                  //       {" "}
-                  //       <img
-                  //         width="25px"
-                  //         style={{ marginRight: "5px" }}
-                  //         src="assets/images/GariConnect/Vector.png"
-                  //         alt="logo"
-                  //       ></img>{" "}
-                  //     </Button>
-                  //   </div>
-                  // }
+                // icon={
+                //   <div style={{ marginTop: "6px" }}>
+                //     <Button
+                //       style={{
+                //         border: "1px solid #D0D5DD",
+                //         fontSize: "16px",
+                //         height: "44px",
+                //         borderRadius: "8px",
+                //       }}
+                //       className="w-full"
+                //     >
+                //       {" "}
+                //       <img
+                //         width="25px"
+                //         style={{ marginRight: "5px" }}
+                //         src="assets/images/GariConnect/Vector.png"
+                //         alt="logo"
+                //       ></img>{" "}
+                //     </Button>
+                //   </div>
+                // }
                 />
               </div>
 
@@ -448,9 +451,10 @@ function Signup() {
                   control={control}
                   render={({ field }) => (
                     <TextField
-                      placeholder="+92 | 3524584205"
+                      placeholder="3524584205"
                       inputProps={{
                         maxLength: 13,
+                        maxLength: 10
                       }}
                       fullWidth
                       {...field}
@@ -461,6 +465,11 @@ function Signup() {
                       onInput={(e) => onlyNumbers(e)}
                       InputProps={{
                         className: "rounded-lg mt-8",
+                        startAdornment:
+                          <InputAdornment position="start">
+                            <Typography className="text-black border-r-1 pr-8 border-black">+92</Typography>
+                          </InputAdornment>,
+                        className: 'rounded-lg mt-8'
                       }}
                       variant="outlined"
                     />
@@ -594,16 +603,7 @@ function Signup() {
                   />
 
                   <div className="flex items-center mt-12">
-                    <img
-                      style={{
-                        backgroundImage:
-                          "url('assets/images/profile/placeholderProfile.png')",
-                        borderRadius: "50%",
-                        height: "60px",
-                        width: "60px",
-                      }}
-                      src={baseImage}
-                    />
+                    <img style={{ borderRadius: '50%', height: '60px', width: '60px' }} src={baseImage} />
                     <label
                       htmlFor="photo"
                       className="ml-12 font-medium text-sm cursor-pointer"
@@ -621,9 +621,7 @@ function Signup() {
                 <div style={{ marginTop: "20px" }}>
                   <Button
                     type="submit"
-                    disabled={
-                      _.isEmpty(dirtyFields) || (!isValid && !baseImage)
-                    }
+                    disabled={_.isEmpty(dirtyFields) || !isValid}
                     style={{
                       height: "44px",
                       background: "#D22A8F",
@@ -646,7 +644,8 @@ function Signup() {
                 >
                   Already have an account?
                   <a
-                    href="/Signin"
+                    onClick={() => history.push("/Signin")}
+                    className="cursor-pointer"
                     style={{
                       fontSize: "14px",
                       fontWeight: "500",

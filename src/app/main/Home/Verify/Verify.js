@@ -32,9 +32,7 @@ function OTP() {
   const history = useHistory();
   const dispatch = useDispatch();
   const otp = useSelector(({ auth }) => auth.forget);
-  const otpStatus = useSelector(({ auth }) => auth.verify);
-  console.log(otp.data.customer.data.otp_code);
-  console.log(otp.data.customer.data.otp_expiry);
+
   const { control, setValue, formState, handleSubmit, reset, trigger, setError } = useForm({
     mode: 'onChange',
     defaultValues,
@@ -54,7 +52,6 @@ function OTP() {
     dispatch(verifyOtpData(model))
       .then((result) => {
         if (result.error) {
-          console.log(result.error.message)
           setError(
             "otp_code",
             {
@@ -192,6 +189,24 @@ function OTP() {
               </div>
             </form>
 
+            {/* <div className="flex items-center justify-center sm:mt-20 mt-24">
+              <div className="flex items-center">
+                <p
+                  className="mx-10"
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    textAlign: "center",
+                  }}
+                >
+                  Didn't receive code?
+                </p>
+                <div className="w-auto">
+                  <Countdown renderer={renderer} date={new Date(otpTime).getTime()} />
+                </div>
+              </div>
+            </div> */}
+
             <div className="flex items-center justify-center sm:mt-20 mt-24">
               <div className="flex items-center">
                 <p
@@ -208,6 +223,34 @@ function OTP() {
                   <Countdown renderer={renderer} date={new Date(otpTime).getTime()} />
                 </div>
               </div>
+            </div>
+
+            <div className="flex items-center justify-center sm:mt-14">
+              <Typography
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  textAlign: "center",
+                  color: "#344054",
+                  textDecoration: "none",
+                }}
+              >
+                Or try
+              </Typography>
+
+              <Typography
+                className="cursor-pointer"
+                onClick={() => history.push('/OtpOption')}
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  color: "#D22A8F",
+                  textAlign: "center",
+                  paddingLeft: "4px"
+                }}
+              >
+                another options
+              </Typography>
             </div>
           </CardContent>
         </Card>

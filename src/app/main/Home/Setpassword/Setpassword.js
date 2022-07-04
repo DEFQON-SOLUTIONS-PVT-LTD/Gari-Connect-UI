@@ -36,7 +36,8 @@ function strongPasswordMethod() {
 };
 
 const schema = yup.object().shape({
-  password: yup.string().required().min(10, 'Password is too short - should be 10 chars minimum.').strongPassword(),
+  password: yup.string().required().matches(/(\d)(\d)/, 'Must contain two numbers').strongPassword()
+    .min(10, 'Password is too short - should be 10 chars minimum.'),
   // password: yup
   //   .string()
   //   .required('Please enter your password.')

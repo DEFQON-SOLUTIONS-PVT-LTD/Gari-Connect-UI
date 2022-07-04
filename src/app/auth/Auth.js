@@ -16,9 +16,9 @@ class Auth extends Component {
 
   componentDidMount() {
     this.setState({ waitAuthCheck: false });
-    // setTimeout(() => {
-    //   this.setState({ waitAuthCheck: false });
-    // }, 6400);
+    setTimeout(() => {
+      this.setState({ waitAuthCheck: false });
+    }, 6400);
 
     // return Promise.all([
     //   // Comment the lines which you do not use

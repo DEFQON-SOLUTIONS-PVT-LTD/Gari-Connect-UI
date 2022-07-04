@@ -16,13 +16,14 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import _ from '@lodash';
+import { InputAdornment } from "@mui/material";
 
 const schema = yup.object().shape({
   phone_no: yup
     .string()
     .required('You must enter a Phone Number')
-    .min(13, 'The Phone Number must be at least 13 digits')
-    .max(13, 'The Phone Number should be max 13 digits'),
+    .min(10, 'The Phone Number must be at least 10 digits')
+    .max(10, 'The Phone Number should be max 10 digits'),
 });
 
 const defaultValues = {
@@ -38,7 +39,7 @@ function forgetpassword() {
     resolver: yupResolver(schema),
   });
 
-  const onlyNumbers = (e) => { e.target.value = e.target.value.replace(/[^0-9 +]/g, '') };
+  const onlyNumbers = (e) => { e.target.value = e.target.value.replace(/\D|^0+/g, '') };
 
   const { isValid, dirtyFields, errors } = formState;
 
@@ -47,6 +48,7 @@ function forgetpassword() {
   }, [reset, setValue, trigger]);
 
   function onSubmit(model) {
+    model.phone_no = "+92" + model.phone_no
     dispatch(sendOtp(model))
       .then((result) => {
         if (result.error) {
@@ -129,9 +131,14 @@ function forgetpassword() {
                   <TextField
                     {...field}
                     InputProps={{
-                      className: "mb-16 rounded-lg mt-6 h-[44px]"
+                      startAdornment:
+                        <InputAdornment position="start">
+                          <Typography className="text-black border-r-1 pr-8 border-black">+92</Typography>
+                        </InputAdornment>,
+                      className: "rounded-lg mt-6 h-[44px]"
                     }}
-                    placeholder="+92 | 3524584205"
+                    inputProps={{ maxLength: 10 }}
+                    placeholder="3524584205"
                     onInput={(e) => onlyNumbers(e)}
                     error={!!errors.phone_no}
                     required
@@ -150,7 +157,7 @@ function forgetpassword() {
                   height: "44px",
                   fontSize: "16px",
                 }}
-                className="w-full mt-[12px] text-white rounded-lg"
+                className="mt-16 w-full mt-[12px] text-white rounded-lg"
               >
                 Submit
               </Button>

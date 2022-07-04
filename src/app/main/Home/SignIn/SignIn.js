@@ -20,12 +20,12 @@ const schema = yup.object().shape({
   phoneno: yup
     .string()
     .required('You must enter a Phone Number')
-    .min(13, 'The Phone Number must be at least 13 digits')
-    .max(13, 'The Phone Number should be max 13 digits'),
+    .min(10, 'The Phone Number must be at least 10 digits')
+    .max(10, 'The Phone Number should be max 10 digits'),
   password: yup
     .string()
     .required('Please enter your password.')
-    .min(8, 'Password is too short - should be 8 chars minimum.'),
+    .min(10, 'Password is too short - should be 10 chars minimum.'),
 });
 
 const defaultValues = {
@@ -43,7 +43,7 @@ function SignIn() {
     resolver: yupResolver(schema),
   });
 
-  const onlyNumbers = (e) => { e.target.value = e.target.value.replace(/[^0-9 +]/g, '') };
+  const onlyNumbers = (e) => { e.target.value = e.target.value.replace(/\D|^0+/g, '') };
 
   const { isValid, dirtyFields, errors } = formState;
 
@@ -51,8 +51,8 @@ function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    setValue('phoneno', '+923341802271', { shouldDirty: true, shouldValidate: true });
-    setValue('password', 'Test@123', { shouldDirty: true, shouldValidate: true });
+    setValue('phoneno', '', { shouldDirty: true, shouldValidate: true });
+    setValue('password', '', { shouldDirty: true, shouldValidate: true });
   }, [reset, setValue, trigger]);
 
   // useEffect(() => {
@@ -80,6 +80,7 @@ function SignIn() {
   // }, [setError]);
 
   function onSubmit(model) {
+    model.phoneno = "+92" + model.phoneno
     dispatch(submitLogin(model))
       .then((result) => {
         if (result) {
@@ -209,18 +210,18 @@ function SignIn() {
                     <TextField
                       InputProps={{
                         className: "mt-6 h-48 rounded-lg",
-                        // startAdornment:
-                        //   <InputAdornment position="start">
-                        //     <Typography className="text-black">+92 |</Typography>
-                        //   </InputAdornment>,
+                        startAdornment:
+                          <InputAdornment position="start">
+                            <Typography className="text-black border-r-1 pr-8 border-black">+92</Typography>
+                          </InputAdornment>
                       }}
                       inputProps={{
-                        maxLength: 13
+                        maxLength: 10
                       }}
                       value={initialValue}
                       onChange={(e) => setInitialValue(e.target.value)}
                       onInput={(e) => onlyNumbers(e)}
-                      placeholder="+92 | 3524584205"
+                      placeholder="3524584205"
                       fullWidth
                       {...field}
                       type="text"
@@ -309,14 +310,18 @@ function SignIn() {
                   marginTop: "24px",
                 }}
               >
-                Didn't have an acount?<a href="/Signup" style={{
+                Didn't have an acount?<a onClick={() => history.push("/Signup")} style={{
                   fontSize: "14px",
                   fontWeight: "500",
                   color: "#D22A8F",
                   textAlign: "center",
                   marginTop: "24px",
                   textDecoration: "none",
-                }}>Sign up</a>
+                }}
+                  className="cursor-pointer"
+                >
+                  Sign up
+                </a>
               </p>
             </div>
           </CardContent>
