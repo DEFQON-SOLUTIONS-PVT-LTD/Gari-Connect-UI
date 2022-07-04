@@ -160,7 +160,7 @@ function Attachments() {
                       defaultChecked
                     />
                   }
-                  label="Keep my documents for future booking"
+                  label="Keep my documents for future bookings"
                 />
               </div>
                 <Button
@@ -174,7 +174,7 @@ function Attachments() {
                     borderRadius: "8px",
                   }}
                 >
-                  Continue to bookings
+                  Continue to booking
                 </Button>
         </div>
       </div>

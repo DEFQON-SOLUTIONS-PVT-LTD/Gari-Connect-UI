@@ -111,7 +111,7 @@ function SignIn() {
         style={{ marginTop: "36px" }}
       >
         <Card
-          className="xs:w-1/3 sm:w-1/3 md:w-1/3 w-full"
+          className="xs:w-1/3 sm:w-2/3 md:w-1/3 w-full"
           style={{
             border: "1px solid rgba(195, 203, 205, 0.42)",
             marginTop: "150px",

@@ -274,7 +274,7 @@ export default function ListSteppers() {
           </Typography>
         </div>
       </div>
-      <Stack sx={{ minWidth: "100%" }}>
+      <Stack sx={{ maxWidth: "1700px" }} style={{ overflow: "scroll" }}>
         <Stepper
           className="mt-40"
           alternativeLabel
@@ -300,7 +300,7 @@ export default function ListSteppers() {
             <div>
               <div className="flex flex-row justify-center">
                 <Card
-                  className="w-4/6 px-5"
+                  className="sm:w-4/6 w-full px-5"
                   style={{
                     marginTop: "40px",
                     border: "1px solid rgba(195, 203, 205, 0.42)",

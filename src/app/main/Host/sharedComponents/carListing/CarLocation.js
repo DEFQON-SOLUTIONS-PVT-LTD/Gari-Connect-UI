@@ -8,8 +8,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 
-const schema = yup.object().shape({ 
-  city: yup.array().min(1,"You must select a area"),
+const schema = yup.object().shape({
+  city: yup.array().min(1, "You must select a area"),
   area: yup.string().required("You must select a area"),
   address: yup.string().required("You must select an address"),
   zip: yup.string().required("You must enter an zip code"),
@@ -18,7 +18,6 @@ const schema = yup.object().shape({
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const CarLocation = () => {
-
   const { handleSubmit, register, reset, control, watch, formState } = useForm({
     mode: "all",
     resolver: yupResolver(schema),
@@ -58,23 +57,22 @@ const CarLocation = () => {
         </div>
 
         <div>
-         
-            <Typography
-              style={{
-                fontSize: "14px",
-                fontWeight: "500px",
-                color: "#344054",
-              }}
-            >
-              City
-            </Typography>
-            <Controller
+          <Typography
+            style={{
+              fontSize: "14px",
+              fontWeight: "500px",
+              color: "#344054",
+            }}
+          >
+            City
+          </Typography>
+          <Controller
             name="city"
             control={control}
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
-              multiple
+                multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
@@ -87,11 +85,11 @@ const CarLocation = () => {
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
-                  error={!!errors.city}
-                  helperText={errors?.city?.message}
-                  onBlur={onBlur}
-                  inputRef={ref}
-                  className="w-full"
+                    error={!!errors.city}
+                    helperText={errors?.city?.message}
+                    onBlur={onBlur}
+                    inputRef={ref}
+                    className="w-full"
                     {...params}
                     size="medium"
                     placeholder="Lahore"
@@ -105,31 +103,30 @@ const CarLocation = () => {
               />
             )}
           />
-         
-          
-            <Typography
-              style={{
-                marginTop: "14px",
-                fontSize: "14px",
-                fontWeight: "500px",
-                color: "#344054",
-              }}
-            >
-              Area
-            </Typography>
-            <Controller
-             name="area"
-             control={control}
+
+          <Typography
+            style={{
+              marginTop: "14px",
+              fontSize: "14px",
+              fontWeight: "500px",
+              color: "#344054",
+            }}
+          >
+            Area
+          </Typography>
+          <Controller
+            name="area"
+            control={control}
             render={({ field }) => (
               <TextField
                 className="rounded-lg mb-11 w-full"
                 placeholder="Canal view"
                 style={{ marginTop: "6px", height: "44px" }}
                 {...field}
-                      type="text"
-                      error={!!errors.area}
-                      required
-                      helperText={errors?.area?.message}
+                type="text"
+                error={!!errors.area}
+                required
+                helperText={errors?.area?.message}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -138,19 +135,18 @@ const CarLocation = () => {
               />
             )}
           />
-         
-          
-            <Typography
-              style={{
-                marginTop: "14px",
-                fontSize: "14px",
-                fontWeight: "500px",
-                color: "#344054",
-              }}
-            >
-              Street address
-            </Typography>
-            <Controller
+
+          <Typography
+            style={{
+              marginTop: "14px",
+              fontSize: "14px",
+              fontWeight: "500px",
+              color: "#344054",
+            }}
+          >
+            Street address
+          </Typography>
+          <Controller
             name="address"
             control={control}
             render={({ field }) => (
@@ -171,20 +167,18 @@ const CarLocation = () => {
               />
             )}
           />
-         
 
-          
-            <Typography
-              style={{
-                marginTop: "14px",
-                fontSize: "14px",
-                fontWeight: "500px",
-                color: "#344054",
-              }}
-            >
-              Zip code
-            </Typography>
-            <Controller
+          <Typography
+            style={{
+              marginTop: "14px",
+              fontSize: "14px",
+              fontWeight: "500px",
+              color: "#344054",
+            }}
+          >
+            Zip code
+          </Typography>
+          <Controller
             name="zip"
             control={control}
             render={({ field }) => (
@@ -205,7 +199,6 @@ const CarLocation = () => {
               />
             )}
           />
-         
         </div>
       </div>
     </div>
@@ -242,5 +235,4 @@ const top100Films = [
     label: "The Lord of the Rings: The Two Towers",
     year: 2002,
   },
- 
 ];

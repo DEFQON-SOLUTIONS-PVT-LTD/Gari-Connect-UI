@@ -7,11 +7,29 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Rating from "@mui/material/Rating";
+import RecieptPaymentDetails from "./RecieptPaymentDetails";
 
 const Payment = () => {
   const [value, setValue] = React.useState(4);
+  const [showdetailsstatus, setstatus] = useState(false);
+
+
+    const showdetails = () => {
+        setstatus(true);
+
+
+
+    }
+    const childToParent = (childdata) => {
+        setstatus(childdata);
+    }
   return (
     <>
+     {showdetailsstatus &&
+                <RecieptPaymentDetails childToParent={childToParent} />
+
+
+            }
       <div className="grid grid-cols-4 gap-4">
         <div className="col-span-4">
           <TableContainer>
@@ -229,6 +247,7 @@ const Payment = () => {
 
                   <TableCell className=" font-normal">
                     <Typography
+                    onClick={showdetails}
                       className="text-12 cursor-pointer"
                       style={{ color: "#D22A8F" }}
                     >
@@ -337,6 +356,7 @@ const Payment = () => {
 
                   <TableCell className=" font-normal">
                     <Typography
+                    onClick={showdetails}
                       className="text-12 cursor-pointer"
                       style={{ color: "#D22A8F" }}
                     >
@@ -444,6 +464,7 @@ const Payment = () => {
                   </TableCell>
                   <TableCell className=" font-normal ">
                     <Typography
+                    onClick={showdetails}
                       className="text-12 cursor-pointer"
                       style={{ color: "#D22A8F" }}
                     >

@@ -36,12 +36,11 @@ export default function Carddetail() {
         <div className="sm:flex justify-center mt-24">
           <div>
             <img
-              style={{ maxHeight: "94%" }}
               src="assets/images/logos/Carddetail1.svg"
               alt="logo"
             />
           </div>
-          <div className="flex flex-col justify-center sm:ml-20 ml-0">
+          <div className="flex flex-col justify-center sm:ml-20 ml-0 sm:mt-0 mt-28 space-y-10">
             <img
               width="100%"
               src="assets/images/logos/Carddetail2.svg"
@@ -53,28 +52,28 @@ export default function Carddetail() {
               alt="logo"
             />
           </div>
-          <div className="flex flex-col justify-center sm:ml-20 mb-20">
+          <div className="flex flex-col justify-center sm:ml-20 space-y-10 sm:mt-0 mt-10">
             <img
               width="100%"
               src="assets/images/logos/Carddetail3.svg"
               alt="logo"
             />
             <div className="relative">
-              <img
-                width="100%"
-                src="assets/images/logos/Carddetail5.svg"
-                alt="logo"
-                className="opacity-50"
-              />
+            <img
+              width="100%"
+              src="assets/images/logos/Carddetail4.svg"
+              alt="logo"
+              className="opacity-50"
+            />
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-8 px-8">
                 <Button className="opacity-100 text-white">View more</Button>
               </div>
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-2">
-          <div className="col-span-1 sm:ml-8 mx-8 md:ml-96 lg:ml-256">
-            <div className="grid grid-cols-3 mt-28">
+        <div className="grid lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 mt-28">
+          <div className="col-span-1 sm:ml-8 mx-8 md:ml-96 lg:ml-288">
+            <div className="grid grid-cols-3">
               <Typography className="font-normal text-2xl col-span-2">
                 Toyota Corolla Altis-2020
               </Typography>
@@ -99,7 +98,7 @@ export default function Carddetail() {
                 est,total 15000*
               </Typography>
             </div>
-            <div className="grid lg:grid-cols-4 md:grid-cols-4 mt-12">
+            <div className="grid lg:grid-cols-4 md:grid-cols-4  mt-12">
               <div className="col-span-3">
                 <div className="flex">
                   <Rating

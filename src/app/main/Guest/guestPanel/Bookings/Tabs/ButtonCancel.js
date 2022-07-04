@@ -8,7 +8,6 @@ import {
   Slide,
 } from "@mui/material";
 
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
 });
@@ -44,7 +43,10 @@ export default function ButtonCancel() {
           <img src="/assets/images/icons/Featuredicon.svg" alt="logo" />
         </DialogTitle>
         <DialogContent>
-          <Typography className="text-18 font-medium text-center mb-10"  id="alert-dialog-slide-description">
+          <Typography
+            className="text-18 font-medium text-center mb-10"
+            id="alert-dialog-slide-description"
+          >
             Cancel booking
           </Typography>
           <Typography className="text-13 font-normal text-gray-500 text-center mb-24 space-x-4">

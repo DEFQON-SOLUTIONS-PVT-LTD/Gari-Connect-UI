@@ -32,9 +32,12 @@ backdrop-filter: blur(207px); */
    color: #000000;
 }
 .headbutton{
-    width: 147px;
-    height: 44px;
-     border-radius:8px;
+    width: 111px;
+    height: 36px;
+     border-radius:4px;
+     background-color: #D22A8F;
+
+    font-size: 12px;
 }
 .signinheading{
     font-size: 24px;

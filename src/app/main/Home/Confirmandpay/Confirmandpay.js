@@ -160,7 +160,7 @@ export default function Confirmandpay() {
         <RecieptPaymentDetails childToParent={childToParent} />
       )}
       <div>
-        <div className="mt-32">
+        <div className="mt-32 sm:mr-0 mr-36">
           <div className="flex flex-row  px-24 py-24 sm:ml-28 md:ml-28 lg:ml-96">
             <ArrowBackIcon size="large" className="mr-20 sm:ml-44 ml-0" />
             <Typography className="text-2xl font-normal font-Gilroy-Medium">
@@ -328,7 +328,7 @@ export default function Confirmandpay() {
                     name="customized-radios"
                   >
                     <div className="sm:flex sm:space-x-10">
-                      <Card style={{width:"142px",height:""}}>
+                      <Card style={{width:"142px"}}>
                         <CardContent>
                       <div className="flex">
                         <FormControlLabel
@@ -343,7 +343,7 @@ export default function Confirmandpay() {
                       </div> 
                       </CardContent>
                       </Card>
-                      <Card style={{width:"142px"}}>
+                      <Card className="sm:mt-0 mt-10" style={{width:"142px"}}>
                         <CardContent>
                  <div className="flex">
                         <FormControlLabel
@@ -358,7 +358,7 @@ export default function Confirmandpay() {
                       </div>
                       </CardContent>
                       </Card>
-                      <Card style={{width:"142px"}}>
+                      <Card className="sm:mt-0 mt-10" style={{width:"142px"}}>
                         <CardContent>
                       <div className="flex">
                         <FormControlLabel
@@ -486,7 +486,7 @@ export default function Confirmandpay() {
                         </div>
 
                         <div className="flex flex-col">
-                          <div className="flex flex-row items-center mb-4">
+                          <div className="sm:flex flex-row items-center mb-4">
                             <Rating
                               className="text-16"
                               name="simple-controlled"

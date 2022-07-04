@@ -114,7 +114,7 @@ export default function GuestPanel() {
             </div>
 
             <div className="flex flex-row col-span-1">
-              <Card className="rounded-md w-full">
+              <Card className="rounded-md w-full sm:ml-0 ml-28">
                 <CardContent>
                   <div className="flex flex-row items-center space-x-10">
                     <img src="assets/images/profile/HassanAli.png" alt="" />
@@ -228,7 +228,7 @@ export default function GuestPanel() {
             <div className="flex flex-col col-span-1">
               <div className="flex flex-col mb-14">
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <Card className="rounded-6 border">
+                  <Card className="rounded-6 border sm:ml-0 ml-28">
                     <CalendarPicker
                       date={date}
                       onChange={(newDate) => setDate(newDate)}
@@ -237,7 +237,7 @@ export default function GuestPanel() {
                   </Card>
                 </LocalizationProvider>
               </div>
-              <div className="flex flex-col space-y-12">
+              <div className="flex flex-col space-y-12 sm:ml-0 ml-28">
                 <Typography className="text-lg font-medium">
                   Upcoming bookings
                 </Typography>
@@ -300,8 +300,9 @@ export default function GuestPanel() {
           </div>
         </Box>
       </div>
-
+<div className="mt-40">
       <Footer />
+      </div>
     </div>
   );
 }

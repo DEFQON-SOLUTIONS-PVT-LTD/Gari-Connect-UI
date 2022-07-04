@@ -17,7 +17,7 @@ import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import DoDisturbOutlinedIcon from "@mui/icons-material/DoDisturbOutlined";
 import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
-import Drawer from "../../../Guest/Drawer"
+import Drawer from "../../../Guest/Drawer";
 
 const Dashboard = () => {
   const [value, setValue] = React.useState(4);
@@ -117,7 +117,7 @@ const Dashboard = () => {
 
         <div className="flex flex-col mt-20 border rounded-md col-span-3">
           <Card className="rounded-md">
-            <div className="flex flex-row justify-between items-center pl-28 pr-10 py-8">
+            <div className="sm:flex flex-row justify-between items-center pl-28 pr-10 py-8">
               <Typography className="flex flex-row items-center text-lg font-medium">
                 New booking requests
                 <span

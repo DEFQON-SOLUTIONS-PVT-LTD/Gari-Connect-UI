@@ -7,6 +7,8 @@ import GuestAccount from '../GuestSetting/Tabs/GuestAccount';
 import { makeStyles } from '@mui/styles';
 import Password from './Tabs/GuestPassword&Security';
 import PaymentsBilling from './Tabs/GuestPayments&Billing';
+import IconButton from "@mui/material/IconButton";
+import { Link } from 'react-router-dom';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -67,7 +69,9 @@ function GuestSetting() {
 
             <div className="">
                 <div className="flex flex-row items-center mx-auto w-5/6 py-24">
+                    <IconButton component={Link} to="/GuestPanel">
                     <ArrowBackIcon size="large" className="mr-20" />
+                    </IconButton>
                     <Typography className="text-2xl font-normal font-Gilroy-Medium">Settings</Typography>
                 </div>
 

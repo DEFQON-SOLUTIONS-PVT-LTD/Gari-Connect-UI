@@ -175,7 +175,7 @@ export default function SwipeableTemporaryDrawer() {
     <Box
       className="md:w-400 lg:w-512"
       role="presentation"
-      onClick={toggleDrawer(anchor, true)}
+      onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <nav className="flex justify-between items-center ml-24 py-16">
@@ -192,7 +192,7 @@ export default function SwipeableTemporaryDrawer() {
           className="py-20 ml-24"
         />
         <div>
-          <div className="flex space-x-8 ">
+          <div className="sm:flex space-x-8 ">
             <Stack spacing={1}>
               <Rating name="half-rating" max={4} defaultValue={4} />
             </Stack>

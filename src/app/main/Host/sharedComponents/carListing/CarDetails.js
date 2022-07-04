@@ -7,25 +7,24 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
-import Select from '@mui/material/Select';  
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-
-
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import FormHelperText from "@mui/material/FormHelperText";
 
 const schema = yup.object().shape({
-  make: yup.array().min(1,"Please select a make."),
-  category: yup.array().min(1,"Please select a category."),
-  model: yup.array().min(1,"Please select a model."),
+  make: yup.array().min(1, "Please select a make."),
+  category: yup.array().min(1, "Please select a category."),
+  model: yup.array().min(1, "Please select a model."),
   chassis: yup.string().required("Please enter chassis number."),
   plate: yup.string().required("You must enter a value"),
   description: yup.string().required("Please enter description"),
-  transmission: yup.string().required('You must select a value').oneOf(['Auto', 'Manual'], 'Select Auto or Manual.'),
-  type: yup.string().required('You must select a type'),
-  eco: yup.string().required('You must select an ECO'),
+  transmission: yup
+    .string()
+    .required("You must select a value")
+    .oneOf(["Auto", "Manual"], "Select Auto or Manual."),
+  type: yup.string().required("You must select a type"),
+  eco: yup.string().required("You must select an ECO"),
 });
-
-
 
 const top100Films = [
   { label: "The Great Dictator", year: 1940 },
@@ -57,7 +56,6 @@ const CarDetails = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
-
   const data = watch();
   return (
     <div>
@@ -78,7 +76,7 @@ const CarDetails = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
-              multiple
+                multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
@@ -91,7 +89,7 @@ const CarDetails = () => {
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
-                  error={!!errors.make}
+                    error={!!errors.make}
                     helperText={errors?.make?.message}
                     onBlur={onBlur}
                     inputRef={ref}
@@ -108,7 +106,6 @@ const CarDetails = () => {
               />
             )}
           />
-
         </FormControl>
         <FormControl fullWidth variant="outlined">
           <Typography
@@ -126,7 +123,7 @@ const CarDetails = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
-              multiple
+                multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
@@ -139,7 +136,7 @@ const CarDetails = () => {
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
-                  error={!!errors.category}
+                    error={!!errors.category}
                     helperText={errors?.category?.message}
                     onBlur={onBlur}
                     inputRef={ref}
@@ -175,7 +172,7 @@ const CarDetails = () => {
             defaultValue={[]}
             render={({ field: { onChange, value, onBlur, ref } }) => (
               <Autocomplete
-              multiple
+                multiple
                 popupIcon={<KeyboardArrowDownIcon />}
                 className="mt-6"
                 disablePortal
@@ -188,7 +185,7 @@ const CarDetails = () => {
                 sx={{ height: 44 }}
                 renderInput={(params) => (
                   <TextField
-                  error={!!errors.model}
+                    error={!!errors.model}
                     helperText={errors?.model?.message}
                     onBlur={onBlur}
                     inputRef={ref}
@@ -235,8 +232,6 @@ const CarDetails = () => {
                 }}
               />
             )}
-           
-          
           />
         </FormControl>
       </div>
@@ -270,8 +265,6 @@ const CarDetails = () => {
                 }}
               />
             )}
-           
-          
           />
         </FormControl>
         <FormControl fullWidth variant="outlined">
@@ -285,16 +278,21 @@ const CarDetails = () => {
             Transmission
           </Typography>
           <Controller
-          name="transmission"
+            name="transmission"
             render={({ field }) => (
               <FormControl error={!!errors.transmission} required fullWidth>
-                <Select className="mt-6 rounded-8 h-52 w-full"
-                IconComponent={() => (
-                  <KeyboardArrowDownIcon
-                    className="mr-10"
-                    style={{ color: "rgba(16, 24, 40, 1)" }}
-                  />
-                )} {...field} variant="outlined" fullWidth>
+                <Select
+                  className="mt-6 rounded-8 h-52 w-full"
+                  IconComponent={() => (
+                    <KeyboardArrowDownIcon
+                      className="mr-10"
+                      style={{ color: "rgba(16, 24, 40, 1)" }}
+                    />
+                  )}
+                  {...field}
+                  variant="outlined"
+                  fullWidth
+                >
                   <MenuItem value="Auto">Auto</MenuItem>
                   <MenuItem value="Manual">Manual</MenuItem>
                 </Select>
@@ -317,16 +315,20 @@ const CarDetails = () => {
             Type
           </Typography>
           <Controller
-          
             render={({ field }) => (
               <FormControl error={!!errors.type} required fullWidth>
-                <Select className="mt-6 rounded-8 h-52 w-full"
-                IconComponent={() => (
-                  <KeyboardArrowDownIcon
-                    className="mr-10"
-                    style={{ color: "rgba(16, 24, 40, 1)" }}
-                  />
-                )} {...field} variant="outlined" fullWidth>
+                <Select
+                  className="mt-6 rounded-8 h-52 w-full"
+                  IconComponent={() => (
+                    <KeyboardArrowDownIcon
+                      className="mr-10"
+                      style={{ color: "rgba(16, 24, 40, 1)" }}
+                    />
+                  )}
+                  {...field}
+                  variant="outlined"
+                  fullWidth
+                >
                   <MenuItem value="10">Sedan </MenuItem>
                   <MenuItem value="20">SVS</MenuItem>
                 </Select>
@@ -348,16 +350,20 @@ const CarDetails = () => {
             ECO friendly
           </Typography>
           <Controller
-          
             render={({ field }) => (
               <FormControl error={!!errors.eco} required fullWidth>
-                <Select className="mt-6 rounded-8 h-52 w-full"
-                IconComponent={() => (
-                  <KeyboardArrowDownIcon
-                    className="mr-10"
-                    style={{ color: "rgba(16, 24, 40, 1)" }}
-                  />
-                )} {...field} variant="outlined" fullWidth>
+                <Select
+                  className="mt-6 rounded-8 h-52 w-full"
+                  IconComponent={() => (
+                    <KeyboardArrowDownIcon
+                      className="mr-10"
+                      style={{ color: "rgba(16, 24, 40, 1)" }}
+                    />
+                  )}
+                  {...field}
+                  variant="outlined"
+                  fullWidth
+                >
                   <MenuItem value="10">Electric</MenuItem>
                   <MenuItem value="20">Manual</MenuItem>
                 </Select>
@@ -381,18 +387,18 @@ const CarDetails = () => {
             Description
           </Typography>
           <Controller
-           name="description"
-           control={control}
+            name="description"
+            control={control}
             render={({ field }) => (
               <TextField
                 multiline
                 rows={4}
                 placeholder="Writr description here.."
                 {...field}
-                      type="text"
-                      error={!!errors.description}
-                      required
-                      helperText={errors?.description?.message}
+                type="text"
+                error={!!errors.description}
+                required
+                helperText={errors?.description?.message}
                 style={{
                   marginTop: "6px",
                   height: "44px",
@@ -407,7 +413,7 @@ const CarDetails = () => {
             )}
           />
         </FormControl>
-         </div>
+      </div>
     </div>
   );
 };
