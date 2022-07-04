@@ -7,9 +7,10 @@ import TextField from "@mui/material/TextField";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
-import Select from '@mui/material/Select';  
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import FormHelperText from "@mui/material/FormHelperText";
+import { useSelector } from "react-redux";
 
 // const defaultFeaturesFlags =  {   bluetooth:falsae      }
 
@@ -37,6 +38,9 @@ const top100Films = [
 ];
 
 const Features = () => {
+  const _features = useSelector((state) => state.features);
+  console.log(_features);
+
   const { handleSubmit, register, reset, control, watch, formState } = useForm({
     mode: "all",
     resolver: yupResolver(schema),
@@ -45,50 +49,60 @@ const Features = () => {
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
   const features = {
-    blueTooth:{
-      id:1,
-      availability:false},
-      keylessEntry:{
-        id:2,
-        availability:false},
-        appleCar:{
-          id:3,
-          availability:false},
-          USB:{
-            id:4,
-            availability:false},
-            backupCamera:{
-              id:5,
-              availability:false},
-              auxInput:{
-                id:6,
-                availability:false},
-                tollPass:{
-                  id:7,
-                  availability:false},
-    heatedSeat:{
-        id:8,
-        availability:false},
-        sunRoof:{
-          id:9,
-          availability:false},
-          wheelDriver:{
-            id:10,
-            availability:false},
-            GPS:{
-              id:11,
-              availability:false},
-              auxInput2:{
-                id:12,
-                availability:false},
+    blueTooth: {
+      id: 1,
+      availability: false,
+    },
+    keylessEntry: {
+      id: 2,
+      availability: false,
+    },
+    appleCar: {
+      id: 3,
+      availability: false,
+    },
+    USB: {
+      id: 4,
+      availability: false,
+    },
+    backupCamera: {
+      id: 5,
+      availability: false,
+    },
+    auxInput: {
+      id: 6,
+      availability: false,
+    },
+    tollPass: {
+      id: 7,
+      availability: false,
+    },
+    heatedSeat: {
+      id: 8,
+      availability: false,
+    },
+    sunRoof: {
+      id: 9,
+      availability: false,
+    },
+    wheelDriver: {
+      id: 10,
+      availability: false,
+    },
+    GPS: {
+      id: 11,
+      availability: false,
+    },
+    auxInput2: {
+      id: 12,
+      availability: false,
+    },
   };
 
   const [flags, setFlags] = useState(features);
-   
-  const handleCardClick = (key, value  , identity  ) => {
-    
-    setFlags({ ...flags, [key]:  {  id: identity ,  availability :  !value }});
-    
+
+  const handleCardClick = (key, value, identity) => {
+    setFlags({ ...flags, [key]: { id: identity, availability: !value } });
   };
   return (
     <div>
@@ -107,16 +121,21 @@ const Features = () => {
             Fuel type
           </Typography>
           <Controller
-          name="fuel"
+            name="fuel"
             render={({ field }) => (
               <FormControl error={!!errors.fuel} required fullWidth>
-                <Select className="mt-6 rounded-8 h-52 w-full"
-                IconComponent={() => (
-                  <KeyboardArrowDownIcon
-                    className="mr-10"
-                    style={{ color: "rgba(16, 24, 40, 1)" }}
-                  />
-                )} {...field} variant="outlined" fullWidth>
+                <Select
+                  className="mt-6 rounded-8 h-52 w-full"
+                  IconComponent={() => (
+                    <KeyboardArrowDownIcon
+                      className="mr-10"
+                      style={{ color: "rgba(16, 24, 40, 1)" }}
+                    />
+                  )}
+                  {...field}
+                  variant="outlined"
+                  fullWidth
+                >
                   <MenuItem value="Auto">Auto</MenuItem>
                   <MenuItem value="Manual">Manual</MenuItem>
                 </Select>
@@ -170,16 +189,21 @@ const Features = () => {
             Doors
           </Typography>
           <Controller
-          name="door"
+            name="door"
             render={({ field }) => (
               <FormControl error={!!errors.door} required fullWidth>
-                <Select className="mt-6 rounded-8 h-52 w-full"
-                IconComponent={() => (
-                  <KeyboardArrowDownIcon
-                    className="mr-10"
-                    style={{ color: "rgba(16, 24, 40, 1)" }}
-                  />
-                )} {...field} variant="outlined" fullWidth>
+                <Select
+                  className="mt-6 rounded-8 h-52 w-full"
+                  IconComponent={() => (
+                    <KeyboardArrowDownIcon
+                      className="mr-10"
+                      style={{ color: "rgba(16, 24, 40, 1)" }}
+                    />
+                  )}
+                  {...field}
+                  variant="outlined"
+                  fullWidth
+                >
                   <MenuItem value="Auto">Auto</MenuItem>
                   <MenuItem value="Manual">Manual</MenuItem>
                 </Select>
@@ -228,13 +252,18 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.blueTooth.availability ? "#FDF4F9" : "#FFFFFF",
+            backgroundColor: flags.blueTooth.availability
+              ? "#FDF4F9"
+              : "#FFFFFF",
           }}
         >
           <CardActionArea
             onClick={() => {
-              handleCardClick(Object.keys(features)[0], flags.blueTooth.availability   , flags.blueTooth.id    );
-              
+              handleCardClick(
+                Object.keys(features)[0],
+                flags.blueTooth.availability,
+                flags.blueTooth.id
+              );
             }}
           >
             {flags.blueTooth.availability ? (
@@ -273,14 +302,19 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.keylessEntry.availability ? "#FDF4F9" : "#FFFFFF",
+            backgroundColor: flags.keylessEntry.availability
+              ? "#FDF4F9"
+              : "#FFFFFF",
           }}
         >
           <CardActionArea
-              onClick={() => {
-                handleCardClick(Object.keys(features)[1], flags.keylessEntry.availability   , flags.keylessEntry.id    );
-                
-              }}
+            onClick={() => {
+              handleCardClick(
+                Object.keys(features)[1],
+                flags.keylessEntry.availability,
+                flags.keylessEntry.id
+              );
+            }}
           >
             {flags.keylessEntry.availability ? (
               <img
@@ -315,13 +349,18 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.appleCar.availability ? "#FDF4F9" : "#FFFFFF",
+            backgroundColor: flags.appleCar.availability
+              ? "#FDF4F9"
+              : "#FFFFFF",
           }}
         >
           <CardActionArea
-             onClick={() => {
-              handleCardClick(Object.keys(features)[2], flags.appleCar.availability   , flags.appleCar.id    );
-              
+            onClick={() => {
+              handleCardClick(
+                Object.keys(features)[2],
+                flags.appleCar.availability,
+                flags.appleCar.id
+              );
             }}
           >
             {flags.appleCar.availability ? (
@@ -360,9 +399,12 @@ const Features = () => {
           }}
         >
           <CardActionArea
-             onClick={() => {
-              handleCardClick(Object.keys(features)[3], flags.USB.availability   , flags.USB.id    );
-              
+            onClick={() => {
+              handleCardClick(
+                Object.keys(features)[3],
+                flags.USB.availability,
+                flags.USB.id
+              );
             }}
           >
             {flags.USB.availability ? (
@@ -397,13 +439,18 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.backupCamera.availability ? "#FDF4F9" : "#FFFFFF",
+            backgroundColor: flags.backupCamera.availability
+              ? "#FDF4F9"
+              : "#FFFFFF",
           }}
         >
           <CardActionArea
-             onClick={() => {
-              handleCardClick(Object.keys(features)[4], flags.backupCamera.availability   , flags.backupCamera.id    );
-              
+            onClick={() => {
+              handleCardClick(
+                Object.keys(features)[4],
+                flags.backupCamera.availability,
+                flags.backupCamera.id
+              );
             }}
           >
             {flags.backupCamera.availability ? (
@@ -437,13 +484,18 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.auxInput.availability ? "#FDF4F9" : "#FFFFFF",
+            backgroundColor: flags.auxInput.availability
+              ? "#FDF4F9"
+              : "#FFFFFF",
           }}
         >
           <CardActionArea
-             onClick={() => {
-              handleCardClick(Object.keys(features)[5], flags.auxInput.availability   , flags.auxInput.id    );
-              
+            onClick={() => {
+              handleCardClick(
+                Object.keys(features)[5],
+                flags.auxInput.availability,
+                flags.auxInput.id
+              );
             }}
           >
             {flags.auxInput.availability ? (
@@ -479,13 +531,18 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.tollPass.availability ? "#FDF4F9" : "#FFFFFF",
+            backgroundColor: flags.tollPass.availability
+              ? "#FDF4F9"
+              : "#FFFFFF",
           }}
         >
           <CardActionArea
-             onClick={() => {
-              handleCardClick(Object.keys(features)[6], flags.tollPass.availability   , flags.tollPass.id    );
-              
+            onClick={() => {
+              handleCardClick(
+                Object.keys(features)[6],
+                flags.tollPass.availability,
+                flags.tollPass.id
+              );
             }}
           >
             {flags.tollPass.availability ? (
@@ -519,13 +576,18 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.heatedSeat.availability ? "#FDF4F9" : "#FFFFFF",
+            backgroundColor: flags.heatedSeat.availability
+              ? "#FDF4F9"
+              : "#FFFFFF",
           }}
         >
           <CardActionArea
-             onClick={() => {
-              handleCardClick(Object.keys(features)[7], flags.heatedSeat.availability   , flags.heatedSeat.id    );
-              
+            onClick={() => {
+              handleCardClick(
+                Object.keys(features)[7],
+                flags.heatedSeat.availability,
+                flags.heatedSeat.id
+              );
             }}
           >
             {flags.heatedSeat.availability ? (
@@ -563,9 +625,12 @@ const Features = () => {
           }}
         >
           <CardActionArea
-             onClick={() => {
-              handleCardClick(Object.keys(features)[8], flags.sunRoof.availability   , flags.sunRoof.id    );
-              
+            onClick={() => {
+              handleCardClick(
+                Object.keys(features)[8],
+                flags.sunRoof.availability,
+                flags.sunRoof.id
+              );
             }}
           >
             {flags.sunRoof.availability ? (
@@ -599,14 +664,19 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.wheelDriver.availability ? "#FDF4F9" : "#FFFFFF",
+            backgroundColor: flags.wheelDriver.availability
+              ? "#FDF4F9"
+              : "#FFFFFF",
           }}
         >
           <CardActionArea
-           onClick={() => {
-            handleCardClick(Object.keys(features)[9], flags.wheelDriver.availability   , flags.wheelDriver.id    );
-            
-          }}
+            onClick={() => {
+              handleCardClick(
+                Object.keys(features)[9],
+                flags.wheelDriver.availability,
+                flags.wheelDriver.id
+              );
+            }}
           >
             {flags.wheelDriver.availability ? (
               <img
@@ -644,8 +714,11 @@ const Features = () => {
         >
           <CardActionArea
             onClick={() => {
-              handleCardClick(Object.keys(features)[10], flags.GPS.availability   , flags.GPS.id    );
-              
+              handleCardClick(
+                Object.keys(features)[10],
+                flags.GPS.availability,
+                flags.GPS.id
+              );
             }}
           >
             {flags.GPS.availability ? (
@@ -679,14 +752,19 @@ const Features = () => {
             maxWidth: "164px",
             maxHeight: "164px",
             border: "1px solid rgba(195, 203, 205, 0.42)",
-            backgroundColor: flags.auxInput2.availability ? "#FDF4F9" : "#FFFFFF",
+            backgroundColor: flags.auxInput2.availability
+              ? "#FDF4F9"
+              : "#FFFFFF",
           }}
         >
           <CardActionArea
-              onClick={() => {
-                handleCardClick(Object.keys(features)[11], flags.auxInput2.availability   , flags.auxInput2.id    );
-                
-              }}
+            onClick={() => {
+              handleCardClick(
+                Object.keys(features)[11],
+                flags.auxInput2.availability,
+                flags.auxInput2.id
+              );
+            }}
           >
             {flags.auxInput2.availability ? (
               <img

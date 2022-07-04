@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 const schema = yup.object().shape({
   price: yup.string().required("You must enter a value"),
@@ -78,21 +79,14 @@ function BpRadio(props) {
   );
 }
 const AddPrice = () => {
+  const price = useSelector((state) => state.price);
+  console.log(price);
+
   const [withDriverFlag, setWithDriverFlag] = useState(true);
 
-
   const withDriverFlagHandle = () => {
-
-
-    setWithDriverFlag(!withDriverFlag)
-
-
-  }
-
-
-
-
-
+    setWithDriverFlag(!withDriverFlag);
+  };
 
   const { handleSubmit, register, reset, control, watch, formState } = useForm({
     mode: "all",
@@ -160,8 +154,8 @@ const AddPrice = () => {
                 </Typography>
               </div>
               <div>
-                <RadioGroup onChange={withDriverFlagHandle}
-
+                <RadioGroup
+                  onChange={withDriverFlagHandle}
                   defaultValue="male"
                   aria-labelledby="demo-customized-radios"
                   name="customized-radios"
@@ -169,8 +163,6 @@ const AddPrice = () => {
                   <div className="flex space-x-12">
                     <div className="flex">
                       <FormControlLabel
-
-
                         value="male"
                         control={<BpRadio />}
                         label=""
@@ -181,7 +173,6 @@ const AddPrice = () => {
                     </div>
                     <div className="flex">
                       <FormControlLabel
-
                         value="female"
                         control={<BpRadio />}
                         label=""
@@ -196,84 +187,83 @@ const AddPrice = () => {
             </div>
           </div>
 
-          {withDriverFlag && (<div>
-            <Typography
-              className="text-sm font-medium mt-36"
-              style={{
-                color: "#344054",
-              }}
-            >
-              Add driver price
-            </Typography>
-            <Controller
-              name="driverPrice"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  className="rounded-lg mb-11 w-full"
-                  placeholder="Add driver price"
-                  style={{ marginTop: "6px", height: "44px" }}
-                  {...field}
-                  type="number"
-                  error={!!errors.driverPrice}
-                  required
-                  helperText={errors?.driverPrice?.message}
-                  sx={{
-                    "& fieldset": {
-                      borderRadius: "8px",
-                    },
-                  }}
-                />
-              )}
-            />
-            <div className="w-full">
-              <div className="sm:flex flex-row justify-between mt-32">
-                <div>
-                  <Typography
-                    className="text-sm font-medium mt-7"
-                    style={{ color: "#101828" }}
-                  >
-                    Providing Pickup and drop off
-                  </Typography>
+          {withDriverFlag && (
+            <div>
+              <Typography
+                className="text-sm font-medium mt-36"
+                style={{
+                  color: "#344054",
+                }}
+              >
+                Add driver price
+              </Typography>
+              <Controller
+                name="driverPrice"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    className="rounded-lg mb-11 w-full"
+                    placeholder="Add driver price"
+                    style={{ marginTop: "6px", height: "44px" }}
+                    {...field}
+                    type="number"
+                    error={!!errors.driverPrice}
+                    required
+                    helperText={errors?.driverPrice?.message}
+                    sx={{
+                      "& fieldset": {
+                        borderRadius: "8px",
+                      },
+                    }}
+                  />
+                )}
+              />
+              <div className="w-full">
+                <div className="sm:flex flex-row justify-between mt-32">
+                  <div>
+                    <Typography
+                      className="text-sm font-medium mt-7"
+                      style={{ color: "#101828" }}
+                    >
+                      Providing Pickup and drop off
+                    </Typography>
+                  </div>
                 </div>
               </div>
+              <Typography
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "500px",
+                  color: "#344054",
+                  marginTop: "35px",
+                }}
+              >
+                Add additional price
+              </Typography>
+              <Controller
+                name="additionalPrice"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    className="rounded-lg mb-11 w-full"
+                    placeholder="Add price"
+                    style={{ marginTop: "6px", height: "44px" }}
+                    {...field}
+                    type="number"
+                    error={!!errors.additionalPrice}
+                    required
+                    helperText={errors?.additionalPrice?.message}
+                    sx={{
+                      "& fieldset": {
+                        borderRadius: "8px",
+                      },
+                    }}
+                  />
+                )}
+              />
             </div>
-            <Typography
-              style={{
-                fontSize: "14px",
-                fontWeight: "500px",
-                color: "#344054",
-                marginTop: "35px",
-              }}
-            >
-              Add additional price
-            </Typography>
-            <Controller
-              name="additionalPrice"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  className="rounded-lg mb-11 w-full"
-                  placeholder="Add price"
-                  style={{ marginTop: "6px", height: "44px" }}
-                  {...field}
-                  type="number"
-                  error={!!errors.additionalPrice}
-                  required
-                  helperText={errors?.additionalPrice?.message}
-                  sx={{
-                    "& fieldset": {
-                      borderRadius: "8px",
-                    },
-                  }}
-                />
-              )}
-            />
-          </div>)}
-
-
+          )}
         </div>
-
       </div>
       <div
         className="mt-64 col-span-1"

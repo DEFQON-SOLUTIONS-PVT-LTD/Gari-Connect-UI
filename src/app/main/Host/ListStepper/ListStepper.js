@@ -28,6 +28,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Controller, useForm } from "react-hook-form";
+import { Provider } from "react-redux";
+import store from "./store/index";
 
 function getSteps() {
   return [
@@ -54,7 +56,9 @@ function getStepContent(steps) {
           >
             Car details
           </Typography>
-          <Cardetail />
+          <Provider store={store}>
+            <Cardetail />
+          </Provider>
         </div>
       );
     case 1:
@@ -68,7 +72,9 @@ function getStepContent(steps) {
           >
             Car location
           </Typography>
-          <CarLocation />
+          <Provider store={store}>
+            <CarLocation />
+          </Provider>
         </div>
       );
     case 2:
@@ -82,7 +88,9 @@ function getStepContent(steps) {
           >
             Features
           </Typography>{" "}
-          <Features />
+          <Provider store={store}>
+            <Features />
+          </Provider>
         </div>
       );
     case 3:
@@ -96,7 +104,9 @@ function getStepContent(steps) {
           >
             Guidelines
           </Typography>
-          <Guidelines />
+          <Provider store={store}>
+            <Guidelines />
+          </Provider>
         </div>
       );
     case 4:
@@ -110,7 +120,9 @@ function getStepContent(steps) {
           >
             Set availability
           </Typography>
-          <Availability />
+          <Provider store={store}>
+            <Availability />
+          </Provider>
         </div>
       );
     case 5:
@@ -124,7 +136,9 @@ function getStepContent(steps) {
           >
             Add image
           </Typography>
-          <AddImages />
+          <Provider store={store}>
+            <AddImages />
+          </Provider>
         </div>
       );
     case 6:
@@ -138,7 +152,9 @@ function getStepContent(steps) {
           >
             Add price
           </Typography>
-          <AddPrice />
+          <Provider store={store}>
+            <AddPrice />
+          </Provider>
         </div>
       );
   }

@@ -1,7 +1,8 @@
-import { combineReducers } from '@reduxjs/toolkit';
-import auth from 'app/auth/store';
-import fuse from './fuse';
-import i18n from './i18nSlice';
+import { combineReducers } from "@reduxjs/toolkit";
+import auth from "app/auth/store";
+import { debounce } from "lodash";
+import fuse from "./fuse";
+import i18n from "./i18nSlice";
 
 const createReducer = (asyncReducers) => (state, action) => {
   const combinedReducer = combineReducers({
@@ -14,7 +15,7 @@ const createReducer = (asyncReducers) => (state, action) => {
   /*
 	Reset the redux store when user logged out
 	 */
-  if (action.type === 'auth/user/userLoggedOut') {
+  if (action.type === "auth/user/userLoggedOut") {
     state = undefined;
   }
 
