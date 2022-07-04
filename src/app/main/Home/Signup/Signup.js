@@ -11,7 +11,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { submitRegister } from 'app/auth/store/registerSlice';
+import { submitRegister } from "app/auth/store/registerSlice";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,55 +19,114 @@ import * as yup from "yup";
 import _ from "@lodash";
 
 const schema = yup.object().shape({
-  firstname: yup
-    .string()
-    .required('You must enter your First Name.'),
-  lastname: yup
-    .string()
-    .required('You must enter a Last Name'),
+  firstname: yup.string().required("You must enter your First Name."),
+  lastname: yup.string().required("You must enter a Last Name"),
   email: yup
     .string()
     .email("You must enter a valid email")
     .required("You must enter a email"),
   phoneno: yup
     .string()
-    .required('You must enter a Phone Number')
-    .min(13, 'The Phone Number must be at least 13 digits')
-    .max(13, 'The Phone Number should be max 13 digits'),
-  address: yup
-    .string()
-    .required('You must enter an address'),
-  cityId: yup
-    .string()
-    .required('You must select a city'),
-  gender: yup
-    .string()
-    .required('You must select a value'),
-  photo: yup.mixed()
+    .required("You must enter a Phone Number")
+    .min(13, "The Phone Number must be at least 13 digits")
+    .max(13, "The Phone Number should be max 13 digits"),
+  address: yup.string().required("You must enter an address"),
+  cityId: yup.string().required("You must select a city"),
+  gender: yup.string().required("You must select a value"),
+  photo: yup.mixed(),
 });
 
 const defaultValues = {
-  firstname: '',
-  lastname: '',
-  phoneno: '',
-  email: '',
-  address: '',
-  cityId: '',
-  gender: '',
-  photo: ''
+  firstname: "",
+  lastname: "",
+  phoneno: "",
+  email: "",
+  address: "",
+  cityId: "",
+  gender: "",
+  photo: "",
 };
 
 function Signup() {
-  const history = useHistory();
   const dispatch = useDispatch();
+
+  function handleCallbackResponse(response) {
+    console.log(response);
+
+    const decodeToken = jwt_decode(response.credential);
+
+    const userInfo = {
+      firstname: "numsdan",
+      lastname: "tareiq",
+      phoneno: "+923184353073",
+      email: "dgfni@gamil.com",
+      address: "195-a,mfdgiry",
+      cityId: "3",
+      gender: "male",
+      photo: "./app/files/user/profile/1655186895385-profile.png",
+    };
+
+    // const userInfo = {
+    //   firtname: decodeToken.given_name,
+    //   lastname: decodeToken.family_name,
+    //   // token: decodeToken,
+    //   email: decodeToken.email,
+    //   phoneno: "+923883507841",
+    //   address: "3",
+    //   cityId: "3",
+    //   gender: "male",
+    //   photo: decodeToken.picture,
+    //   // isGoogleUser: 1,
+    //   // isFacebook: 0,
+    // };
+    dispatch(signinwithgoogle(userInfo));
+
+    console.log(userInfo);
+  }
+
+  useEffect(() => {
+    /* global google   */
+    // debugger;
+    google.accounts.id.initialize({
+      client_id:
+        "494582675629-1ek72ovnqqtj1tchln5c9qtkdksnsaqh.apps.googleusercontent.com",
+      callback: handleCallbackResponse,
+    });
+
+    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+      theme: "outline",
+      size: "large",
+      width: "500px",
+      border: "1px solid #D0D5DD",
+      fontSize: "16px",
+      height: "44px",
+      borderRadius: "8px",
+    });
+
+    google.accounts.id.prompt();
+  }, []);
+
+  const history = useHistory();
+  // const dispatch = useDispatch();
   const authRegister = useSelector(({ auth }) => auth.register);
 
   const [baseImage, setBaseImage] = useState("");
 
-  const onlyNumbers = (e) => { e.target.value = e.target.value.replace(/[^0-9 +]/g, '') };
+  const onlyNumbers = (e) => {
+    e.target.value = e.target.value.replace(/[^0-9 +]/g, "");
+  };
 
-  const { control, formState, handleSubmit, reset, setError, setValue, trigger, register } = useForm({
-    mode: 'onChange',
+  const {
+    control,
+    formState,
+    handleSubmit,
+    reset,
+    setError,
+    setValue,
+    trigger,
+    register,
+  } = useForm({
+    mode: "onChange",
     defaultValues,
     resolver: yupResolver(schema),
   });
@@ -106,21 +165,16 @@ function Signup() {
 
   function onSubmit(model) {
     model.photo = baseImage;
-    dispatch(submitRegister(model))
-      .then((result) => {
-        if (result) {
-          setError(
-            "errorName",
-            {
-              type: "manual",
-              message: result.payload[0].message
-            }
-          )
-        }
-        else {
-          history.push('/Verifyaccount');
-        }
-      })
+    dispatch(submitRegister(model)).then((result) => {
+      if (result) {
+        setError("errorName", {
+          type: "manual",
+          message: result.payload[0].message,
+        });
+      } else {
+        history.push("/Verifyaccount");
+      }
+    });
   }
 
   return (
@@ -160,6 +214,11 @@ function Signup() {
               <hr style={{ width: "100%" }} />
             </div>
             <CardContent>
+              <div
+                id="signInDiv"
+                // className="hidden"
+                onClick={handleCallbackResponse}
+              ></div>
               <div style={{ marginTop: "26px" }}>
                 <Button
                   style={{
@@ -227,7 +286,10 @@ function Signup() {
                 />
               </div>
 
-              <form className="flex flex-col justify-center w-full" onSubmit={handleSubmit(onSubmit)}>
+              <form
+                className="flex flex-col justify-center w-full"
+                onSubmit={handleSubmit(onSubmit)}
+              >
                 <div className="flex space-x-10">
                   <div className="w-full">
                     <Typography
@@ -253,7 +315,7 @@ function Signup() {
                           error={!!errors.firstname}
                           helperText={errors?.firstname?.message}
                           InputProps={{
-                            className: 'rounded-lg mt-8'
+                            className: "rounded-lg mt-8",
                           }}
                           variant="outlined"
                         />
@@ -285,7 +347,7 @@ function Signup() {
                           error={!!errors.lastname}
                           helperText={errors?.lastname?.message}
                           InputProps={{
-                            className: 'rounded-lg mt-8'
+                            className: "rounded-lg mt-8",
                           }}
                           variant="outlined"
                         />
@@ -316,7 +378,7 @@ function Signup() {
                       error={!!errors.email}
                       helperText={errors?.email?.message}
                       InputProps={{
-                        className: 'rounded-lg mt-8'
+                        className: "rounded-lg mt-8",
                       }}
                       variant="outlined"
                     />
@@ -340,7 +402,7 @@ function Signup() {
                     <TextField
                       placeholder="+92 | 3524584205"
                       inputProps={{
-                        maxLength: 13
+                        maxLength: 13,
                       }}
                       fullWidth
                       {...field}
@@ -350,7 +412,7 @@ function Signup() {
                       helperText={errors?.phoneno?.message}
                       onInput={(e) => onlyNumbers(e)}
                       InputProps={{
-                        className: 'rounded-lg mt-8'
+                        className: "rounded-lg mt-8",
                       }}
                       variant="outlined"
                     />
@@ -380,7 +442,7 @@ function Signup() {
                       error={!!errors.address}
                       helperText={errors?.address?.message}
                       InputProps={{
-                        className: 'rounded-lg mt-8'
+                        className: "rounded-lg mt-8",
                       }}
                       variant="outlined"
                     />
@@ -401,7 +463,7 @@ function Signup() {
                   <Controller
                     name="cityId"
                     control={control}
-                    rules={{ required: 'City' }}
+                    rules={{ required: "City" }}
                     render={({ field: { onChange, value } }) => (
                       <Select
                         className="mt-8 mb-16"
@@ -441,7 +503,7 @@ function Signup() {
                   <Controller
                     name="gender"
                     control={control}
-                    rules={{ required: 'Gender' }}
+                    rules={{ required: "Gender" }}
                     render={({ field: { onChange, value } }) => (
                       <Select
                         className="mt-8 mb-16"
@@ -484,7 +546,16 @@ function Signup() {
                   />
 
                   <div className="flex items-center mt-12">
-                    <img style={{ backgroundImage: "url('assets/images/profile/placeholderProfile.png')", borderRadius: '50%', height: '60px', width: '60px' }} src={baseImage} />
+                    <img
+                      style={{
+                        backgroundImage:
+                          "url('assets/images/profile/placeholderProfile.png')",
+                        borderRadius: "50%",
+                        height: "60px",
+                        width: "60px",
+                      }}
+                      src={baseImage}
+                    />
                     <label
                       htmlFor="photo"
                       className="ml-12 font-medium text-sm cursor-pointer"
@@ -496,11 +567,15 @@ function Signup() {
                 </div>
                 {errors.photo && <p>{errors.photo.message}</p>}
 
-                <FormHelperText className="text-red">{errors?.errorName?.message}</FormHelperText>
+                <FormHelperText className="text-red">
+                  {errors?.errorName?.message}
+                </FormHelperText>
                 <div style={{ marginTop: "20px" }}>
                   <Button
                     type="submit"
-                    disabled={_.isEmpty(dirtyFields) || !isValid && !baseImage}
+                    disabled={
+                      _.isEmpty(dirtyFields) || (!isValid && !baseImage)
+                    }
                     style={{
                       height: "44px",
                       background: "#D22A8F",
@@ -540,7 +615,7 @@ function Signup() {
             </CardContent>
           </Card>
         </div>
-      </div >
+      </div>
       <div className="flex flex-row justify-center mt-60">
         <Typography
           className="absolute bottom-0 text-16 font-normal pb-10"
@@ -549,7 +624,7 @@ function Signup() {
           © 2022 GariConnect. All rights reserved.
         </Typography>
       </div>
-    </div >
+    </div>
   );
 }
 
