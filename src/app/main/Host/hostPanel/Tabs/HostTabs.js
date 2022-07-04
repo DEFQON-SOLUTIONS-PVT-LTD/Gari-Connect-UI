@@ -284,12 +284,12 @@ export default function HostTabs() {
                   Upcoming bookings
                 </Typography>
 
-                <Card className="rounded-md border pl-8 pb-8">
+                <Card
+                  className="rounded-md border pl-8 pb-8"
+                  style={{ backgroundColor: "rgba(48, 192, 125, 0.08)" }}
+                >
                   <div className="flex flex-row space-x-32">
-                    <div
-                      className="p-12 rounded-b-md"
-                      style={{ backgroundColor: "rgba(48, 192, 125, 0.08)" }}
-                    >
+                    <div className="p-12 rounded-b-md">
                       <Typography className="text-xl font-semibold">
                         26
                       </Typography>
@@ -312,12 +312,12 @@ export default function HostTabs() {
                   </div>
                 </Card>
 
-                <Card className="rounded-md border pl-8 pb-8">
+                <Card
+                  className="rounded-md border pl-8 pb-8"
+                  style={{ backgroundColor: "rgba(255, 199, 0, 0.06)" }}
+                >
                   <div className="flex flex-row space-x-32">
-                    <div
-                      className="p-12 rounded-b-md"
-                      style={{ backgroundColor: "rgba(255, 199, 0, 0.06)" }}
-                    >
+                    <div className="p-12 rounded-b-md">
                       <Typography className="text-xl font-semibold">
                         26
                       </Typography>
