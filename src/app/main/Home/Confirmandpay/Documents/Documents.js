@@ -1,9 +1,6 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -148,7 +145,7 @@ function Attachments() {
                     className="text-sm font-medium"
                     style={{ color: "#D22A8F" }}
                   >
-                    Attach CNIC
+                    Attach license
                   </Typography>
                 </div>
               </div>

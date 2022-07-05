@@ -17,6 +17,7 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import TripDateRange from "../../Host/sharedComponents/TripDateRange";
 import Signin from "../Carddetail/Signin";
+import Report from "./Report";
 
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -718,12 +719,9 @@ export default function Carddetail() {
               <div>
                 <hr className="mt-20" />
               </div>
-              <Typography
-                className="text-sm font-normal flex justify-center mt-20"
-                style={{ color: "#F04438" }}
-              >
-                Report listing
-              </Typography>
+              <div className="flex justify-center mt-20">
+              <Report/>
+              </div>
             </div>
           </div>
         </div>

@@ -6,10 +6,8 @@ import SetpasswordConfig from "./Setpassword/SetpasswordConfig";
 import SignupConfig from "./Signup/SignupConfig";
 import VerifyaccountConfig from "./Verifyaccount/VerifyaccountConfig";
 import CreatepasswordConfig from "./Createpassword/CreatepasswordConfig";
-import PickanddropConfig from "./Pickanddrop/PickanddropConfig";
 import OptionConfig from "./Option/OptionConfig";
 import OtpOptionConfig from "./otpOption/OtpOptionConfig";
-import DocumentsConfig from "./Documents/DocumentsConfig";
 import PaymentConfig from "./Payment/PaymentConfig";
 import CarddetailConfig from "./Carddetail/CarddetailConfig";
 import ComingsoonConfig from "./Comingsoon/ComingsoonConfig";
@@ -27,10 +25,8 @@ const homeConfigs = [
     SignupConfig,
     VerifyaccountConfig,
     CreatepasswordConfig,
-    PickanddropConfig,
     OptionConfig,
     OtpOptionConfig,
-    DocumentsConfig,
     PaymentConfig,
     CarddetailConfig,
     ComingsoonConfig,
