@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { createAsyncThunk } from "@reduxjs/toolkit";
-// import axios from "axios";
 
 const initialState = {
   make: "nomi",
@@ -13,14 +11,6 @@ const initialState = {
   ecoFriendly: "",
   description: "",
 };
-
-// const getCarModel = createAsyncThunk(  'cardDetails/getCarModels'  ,   ()=>{
-//     return
-//             axios
-//             .get('https://jsonplaceholder.typicode.com/todos/1')
-//             .then(response => response.data.map(data =>user.)
-
-// }      )
 
 const carDetailsSlice = createSlice({
   name: "carDetails",

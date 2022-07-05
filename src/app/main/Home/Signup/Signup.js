@@ -60,7 +60,8 @@ function Signup() {
   };
 
   function handleCallbackResponse(response) {
-    console.log(response);
+    debugger;
+    console.log(response.credential);
 
     const decodeToken = jwt_decode(response.credential);
 
@@ -226,8 +227,8 @@ function Signup() {
               <div
                 style={{ marginLeft: "140px", width: "230px" }}
                 id="signInDiv"
-                // className="hidden"
                 onClick={handleCallbackResponse}
+                // className="hidden"
               ></div>
               {/* <div style={{ marginTop: "26px" }}>
                 <Button
