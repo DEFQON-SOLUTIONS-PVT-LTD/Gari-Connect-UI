@@ -8,6 +8,8 @@ import Account from "./Tabs/Account";
 import { makeStyles } from "@mui/styles";
 import PasswordSecurity from "./Tabs/PasswordSecurity";
 import PaymentsBilling from "./Tabs/PaymentsBilling";
+import {Link} from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -68,7 +70,9 @@ function settings() {
 
       <div className="">
         <div className="flex flex-row items-center mx-auto w-5/6 py-24">
-          <ArrowBackIcon size="large" className="mr-20" />
+          <IconButton component={Link} to="/HostTabs">
+          <ArrowBackIcon size="large" className="mr-20"/>
+          </IconButton>
           <Typography className="text-2xl font-normal font-Gilroy-Medium">
             Settings
           </Typography>
