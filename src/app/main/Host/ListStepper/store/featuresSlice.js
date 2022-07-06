@@ -3,11 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 
 const initialState = {
-  feulType: "",
-  kmpl: "",
-  doors: "",
-  seats: "",
-  features: [],
+  mandatoryFeatures: {
+    fueltype: "1",
+    kmpl: "28",
+    doors: "4",
+    seats: "5",
+  },
+
+  featuresList: [],
 };
 
 const featuresSlice = createSlice({
@@ -17,14 +20,23 @@ const featuresSlice = createSlice({
 
   reducers: {
     addFeatures: (state, action) => {
-      state.feulType = action.payload.feulType;
-      state.kmpl = action.payload.kmpl;
-      state.doors = action.payload.doors;
-      state.seats = action.payload.seats;
-      state.features = action.payload.features;
+      state.featuresList.push(action.payload);
+    },
+    addFeulType: (state, action) => {
+      state.mandatoryFeatures.fueltype = action.payload;
+    },
+    addKmpl: (state, action) => {
+      state.mandatoryFeatures.kmpl = action.payload;
+    },
+    addDoors: (state, action) => {
+      state.mandatoryFeatures.doors = action.payload;
+    },
+    addSeats: (state, action) => {
+      state.mandatoryFeatures.seats = action.payload;
     },
   },
 });
 
-export const { addfeatures } = featuresSlice.actions;
+export const { addFeatures, addDoors, addFeulType, addKmpl, addSeats } =
+  featuresSlice.actions;
 export default featuresSlice.reducer;

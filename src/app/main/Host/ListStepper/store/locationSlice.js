@@ -3,9 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 
 const initialState = {
-  latitude: "546265",
-  longitude: "25656",
-  address: "195 military",
+  latitude: "",
+  longitude: "",
+  address: "",
+  city: "",
+  area: "",
 };
 
 const locationSlice = createSlice({
@@ -14,13 +16,24 @@ const locationSlice = createSlice({
   initialState,
 
   reducers: {
-    addLocation: (state, action) => {
-      state.latitude = action.payload.latitude;
-      state.longitude = action.payload.longitude;
-      state.address = action.payload.address;
+    addAddress: (state, action) => {
+      state.address = action.payload;
+    },
+    addLatitude: (state, action) => {
+      state.latitude = action.payload;
+    },
+    addLongitude: (state, action) => {
+      state.longitude = action.payload;
+    },
+    addCity: (state, action) => {
+      state.city = action.payload;
+    },
+    addArea: (state, action) => {
+      state.area = action.payload;
     },
   },
 });
 
-export const { addLocation } = locationSlice.actions;
+export const { addAddress, addArea, addCity, addLatitude, addLongitude } =
+  locationSlice.actions;
 export default locationSlice.reducer;

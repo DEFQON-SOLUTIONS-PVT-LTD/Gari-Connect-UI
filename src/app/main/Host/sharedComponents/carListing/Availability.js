@@ -18,7 +18,7 @@ const schema = yup.object().shape({
 });
 
 const Availability = () => {
-  const availabilities = useSelector((state) => state.availabilities);
+  const availabilities = useSelector((state) => state.setAvailability);
   console.log(availabilities);
 
   const { handleSubmit, register, reset, control, watch, formState } = useForm({

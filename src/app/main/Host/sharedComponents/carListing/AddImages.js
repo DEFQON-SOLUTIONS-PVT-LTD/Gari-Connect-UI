@@ -3,7 +3,7 @@ import MultiImageInput from "react-multiple-image-input";
 import { useSelector } from "react-redux";
 
 const AddImages = () => {
-  const _images = useSelector((state) => state.images);
+  const _images = useSelector((state) => state.vehicleimages);
   console.log(_images);
   const crop = {
     unit: "%",

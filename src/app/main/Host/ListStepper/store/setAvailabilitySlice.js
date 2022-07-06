@@ -3,20 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 
 const initialState = {
-  availabilities: [],
+  days: [],
 };
 
 const availabilitiesSlice = createSlice({
-  name: "availabilities",
+  name: "setAvailability",
 
   initialState,
 
   reducers: {
-    addAvailabilities: (state, action) => {
-      state.availabilities = action.payload.availabilities;
+    addDayId: (state, action) => {
+      state.days.push(action.payload);
     },
   },
 });
 
-export const { addavailabilities } = availabilitiesSlice.actions;
+export const { addDayId } = availabilitiesSlice.actions;
 export default availabilitiesSlice.reducer;

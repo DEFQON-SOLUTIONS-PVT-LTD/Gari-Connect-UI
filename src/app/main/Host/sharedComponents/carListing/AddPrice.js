@@ -8,7 +8,15 @@ import TextField from "@mui/material/TextField";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addAdditional_Price,
+  addPickAndDrop,
+  addPrice,
+  addPricePerDay,
+  addPrice_inc_driver,
+  addWith_driver,
+} from "./../../ListStepper/store/setPricesSlice";
 
 const schema = yup.object().shape({
   price: yup.string().required("You must enter a value"),
@@ -79,12 +87,18 @@ function BpRadio(props) {
   );
 }
 const AddPrice = () => {
-  const price = useSelector((state) => state.price);
-  console.log(price);
+  // debugger;
+  const dispatch = useDispatch();
+
+  const price = useSelector((state) => state.setPrice);
+  console.log(price.with_driver);
 
   const [withDriverFlag, setWithDriverFlag] = useState(true);
 
   const withDriverFlagHandle = () => {
+    dispatch(addWith_driver(!withDriverFlag));
+
+    dispatch(addPickAndDrop(!withDriverFlag));
     setWithDriverFlag(!withDriverFlag);
   };
 

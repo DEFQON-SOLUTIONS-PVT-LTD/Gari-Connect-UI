@@ -1,20 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
-import carDetails from "./carDetailsSlice";
+import carDetail from "./carDetailsSlice";
 import location from "./locationSlice";
 import features from "./featuresSlice";
 import guidelines from "./guidelinesSice";
-import availabilities from "./setAvailabilitySlice";
-import images from "./addImageSlices";
-import price from "./setPricesSlice";
+import setAvailability from "./setAvailabilitySlice";
+import vehicleimages from "./addImageSlices";
+import setPrice from "./setPricesSlice";
 
 export default configureStore({
   reducer: {
-    carDetails,
+    carDetail,
     location,
     features,
     guidelines,
-    availabilities,
-    images,
-    price,
+    setAvailability,
+    vehicleimages,
+    setPrice,
   },
 });

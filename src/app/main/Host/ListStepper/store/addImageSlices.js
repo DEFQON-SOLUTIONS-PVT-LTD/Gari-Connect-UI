@@ -13,7 +13,7 @@ const imagesSlice = createSlice({
 
   reducers: {
     addImages: (state, action) => {
-      state.images = action.payload.images;
+      state.images.push(action.payload);
     },
   },
 });

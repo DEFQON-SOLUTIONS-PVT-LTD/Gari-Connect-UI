@@ -2,9 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // import { createAsyncThunk } from "@reduxjs/toolkit";
 // import axios from "axios";
 
-const initialState = {
-  guidelines: [],
-};
+const initialState = [];
 
 const guidelinesSlice = createSlice({
   name: "guidelines",
@@ -13,7 +11,7 @@ const guidelinesSlice = createSlice({
 
   reducers: {
     addGuidelines: (state, action) => {
-      state.guidelines = action.payload.guidelines;
+      state.guidelines.push(action.payload);
     },
   },
 });

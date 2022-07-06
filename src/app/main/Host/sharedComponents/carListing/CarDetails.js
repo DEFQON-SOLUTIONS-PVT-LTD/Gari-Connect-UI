@@ -50,7 +50,7 @@ const top100Films = [
 ];
 
 const CarDetails = () => {
-  const carDetails = useSelector((state) => state);
+  const carDetails = useSelector((state) => state.carDetail);
   console.log(carDetails);
 
   const { handleSubmit, register, reset, control, watch, formState } = useForm({

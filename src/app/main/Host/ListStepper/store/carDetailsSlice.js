@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 
 const initialState = {
-  make: "nomi",
-  category: "",
-  model: "",
-  chasisNumber: "",
-  plateNumber: "",
-  Transmission: "",
-  type: "",
-  ecoFriendly: "",
+  makeId: "nomi",
+  categoryId: "",
+  modelId: "",
+  chassis_number: "",
+  plate_number: "",
+  transmissionId: "",
+  vehicle_type_id: "",
+  eco_friendly_Id: "",
   description: "",
 };
 
@@ -28,19 +28,45 @@ const carDetailsSlice = createSlice({
   initialState,
 
   reducers: {
-    addCarDetails: (state, action) => {
-      state.make = action.payload.make;
-      state.category = action.payload.category;
-      state.model = action.payload.model;
-      state.chasisNumber = action.payload.chasisNumber;
-      state.plateNumber = action.payload.plateNumber;
-      state.Transmission = action.payload.Transmission;
-      state.type = action.payload.type;
-      state.ecoFriendly = action.payload.ecoFriendly;
-      state.description = action.payload.description;
+    addMakeId: (state, action) => {
+      state.make = action.payload;
+    },
+    addCategoryId: (state, action) => {
+      state.categoryId = action.payload;
+    },
+    addModelId: (state, action) => {
+      state.modelId = action.payload;
+    },
+    addChassisNumber: (state, action) => {
+      state.chassis_number = action.payload;
+    },
+    addPlateNumber: (state, action) => {
+      state.plate_number = action.payload;
+    },
+    addTransmissionId: (state, action) => {
+      state.transmissionId = action.payload;
+    },
+    addVehicleTypeId: (state, action) => {
+      state.vehicle_type_id = action.payload;
+    },
+    addEcoFriendlyId: (state, action) => {
+      state.eco_friendly_Id = action.payload;
+    },
+    addDescription: (state, action) => {
+      state.description = action.payload;
     },
   },
 });
 
-export const { addCarDetails } = carDetailsSlice.actions;
+export const {
+  addCategoryId,
+  addDescription,
+  addChassisNumber,
+  addEcoFriendlyId,
+  addMakeId,
+  addModelId,
+  addPlateNumber,
+  addTransmissionId,
+  addVehicleTypeId,
+} = carDetailsSlice.actions;
 export default carDetailsSlice.reducer;
