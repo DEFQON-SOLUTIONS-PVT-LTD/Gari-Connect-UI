@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
@@ -108,6 +108,22 @@ const AddPrice = () => {
   });
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
+
+  const onSubmit = (data) => {
+    console.log("adnan", data);
+
+    const finalPrice =
+      ((parseInt(data.price) +
+        parseInt(data.additionalPrice) +
+        parseInt(data.driverPrice)) /
+        100) *
+      90;
+    debugger;
+    dispatch(addAdditional_Price(data.additionalPrice));
+    dispatch(addPrice_inc_driver(data.driverPrice));
+    dispatch(addPricePerDay(data.price));
+    dispatch(addPrice(finalPrice));
+  };
 
   const data = watch();
   return (
@@ -313,6 +329,7 @@ const AddPrice = () => {
           </Typography>
         </div>
       </div>
+      <Button onClick={handleSubmit(onSubmit)}> NEW NEXT</Button>
     </div>
   );
 };

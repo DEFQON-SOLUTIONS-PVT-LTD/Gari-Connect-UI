@@ -55,6 +55,9 @@ const carDetailsSlice = createSlice({
     addDescription: (state, action) => {
       state.description = action.payload;
     },
+    addCar: (state, action) => {
+      state = action.payload;
+    },
   },
 });
 
@@ -68,5 +71,6 @@ export const {
   addPlateNumber,
   addTransmissionId,
   addVehicleTypeId,
+  addCar,
 } = carDetailsSlice.actions;
 export default carDetailsSlice.reducer;
