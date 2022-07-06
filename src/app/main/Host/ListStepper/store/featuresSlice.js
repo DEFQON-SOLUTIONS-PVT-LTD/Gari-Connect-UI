@@ -4,14 +4,19 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   mandatoryFeatures: {
-    fueltype: "1",
-    kmpl: "28",
-    doors: "4",
-    seats: "5",
+    fueltype: "",
+    kmpl: "",
+    doors: "",
+    seats: "",
   },
 
-  featuresList: [],
+  featuresList: {
+
+
+
+  },
 };
+
 
 const featuresSlice = createSlice({
   name: "features",
@@ -21,6 +26,9 @@ const featuresSlice = createSlice({
   reducers: {
     addFeatures: (state, action) => {
       state.featuresList.push(action.payload);
+      const changeIt = [...new Set(state.featuresList)]
+      changeIt.map((item) => { state.featuresList.push(item) })
+
     },
     addFeulType: (state, action) => {
       state.mandatoryFeatures.fueltype = action.payload;

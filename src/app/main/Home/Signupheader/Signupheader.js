@@ -10,7 +10,7 @@ import "styles/garistyle.css";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const preventDefault = (event) => event.preventDefault();
 
@@ -26,39 +26,37 @@ export default function Signupheader() {
   return (
     <AppBar className="Header">
       <Toolbar className="flex flex-row justify-between fullWidth">
-          <div className="flex">
-          <a href="/Home/LandingPage">
-           <img
-             className="headimage"
+        <div className="flex">
+          <img
+            className="headimage"
             src="assets/images/GariConnect/Gari Logo.png"
             alt="logo"
-           />
-           </a>
-          </div>
-          <div>
-          <div className="flex mt-5 text-sm font-normal space-x-10">  
+          />
+        </div>
+        <div>
+          <div className="flex mt-5 text-sm font-normal space-x-10">
             <Typography
               style={{
                 color: "#667085",
-                
+
               }}
             >
               Not registered yet?
             </Typography>
             <Typography
-            component={Link}
-            to="/signup"
+              component={Link}
+              to="/signup"
               style={{
                 fontSize: "14px",
                 fontWeight: "500px",
                 color: "#D22A8F",
-                textDecoration:"none"
+                textDecoration: "none"
               }}
             >
               Sign up
             </Typography>
           </div>
-          </div>
+        </div>
       </Toolbar>
     </AppBar>
   );

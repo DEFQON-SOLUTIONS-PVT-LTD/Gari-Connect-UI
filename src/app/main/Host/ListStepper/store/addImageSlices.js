@@ -14,9 +14,10 @@ const imagesSlice = createSlice({
   reducers: {
     addImages: (state, action) => {
       state.images.push(action.payload);
+      console.log('slice', state)
     },
   },
 });
 
-export const { addimages } = imagesSlice.actions;
+export const { addImages } = imagesSlice.actions;
 export default imagesSlice.reducer;

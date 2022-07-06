@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, CardActionArea } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addGuidelines } from "../../ListStepper/store/guidelinesSice"
 
 const Guidelines = () => {
+  const dispatch = useDispatch();
+
   const _guidelines = useSelector((state) => state.guidelines);
   console.log(_guidelines);
   const features = {
@@ -60,6 +63,10 @@ const Guidelines = () => {
 
   const handleCardClick = (key, value, identity) => {
     setFlags({ ...flags, [key]: { id: identity, availability: !value } });
+
+
+
+    dispatch(addGuidelines({ guidelineId: identity.toString() }))
   };
   return (
     <div>

@@ -5,7 +5,8 @@ import { styled } from "@mui/material/styles";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addDayId } from './../../ListStepper/store/setAvailabilitySlice'
 
 const schema = yup.object().shape({
   Monday: yup.boolean().oneOf([true], "You must turn it on."),
@@ -18,6 +19,9 @@ const schema = yup.object().shape({
 });
 
 const Availability = () => {
+
+  const dispatch = useDispatch();
+
   const availabilities = useSelector((state) => state.setAvailability);
   console.log(availabilities);
 
@@ -75,6 +79,13 @@ const Availability = () => {
     },
   }));
 
+
+
+  // const handleChange = (event) => {
+  //   // setChecked(event.target.checked);
+  //   console.log(event.target)
+  // };
+
   return (
     <div>
       <div className="flex flex-row justify-between mt-24">
@@ -89,6 +100,12 @@ const Availability = () => {
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
                 defaultChecked
+                onChange={(event) => {
+
+                  if (event.target.checked)
+                    dispatch(addDayId("1"))
+
+                }}
                 inputProps={{ "aria-label": "ant design" }}
               />
             )}
@@ -108,6 +125,12 @@ const Availability = () => {
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
                 defaultChecked
+                onChange={(event) => {
+
+                  if (event.target.checked)
+                    dispatch(addDayId({ dayId: "2" }))
+
+                }}
                 inputProps={{ "aria-label": "ant design" }}
               />
             )}
@@ -127,6 +150,12 @@ const Availability = () => {
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
                 defaultChecked
+                onChange={(event) => {
+
+                  if (event.target.checked)
+                    dispatch(addDayId({ dayId: "3" }))
+
+                }}
                 inputProps={{ "aria-label": "ant design" }}
               />
             )}
@@ -146,6 +175,12 @@ const Availability = () => {
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
                 defaultChecked
+                onChange={(event) => {
+
+                  if (event.target.checked)
+                    dispatch(addDayId({ dayId: "4" }))
+
+                }}
                 inputProps={{ "aria-label": "ant design" }}
               />
             )}
@@ -165,6 +200,12 @@ const Availability = () => {
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
                 defaultChecked
+                onChange={(event) => {
+
+                  if (event.target.checked)
+                    dispatch(addDayId({ dayId: "5" }))
+
+                }}
                 inputProps={{ "aria-label": "ant design" }}
               />
             )}
@@ -184,6 +225,12 @@ const Availability = () => {
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
                 defaultChecked
+                onChange={(event) => {
+
+                  if (event.target.checked)
+                    dispatch(addDayId({ dayId: "6" }))
+
+                }}
                 inputProps={{ "aria-label": "ant design" }}
               />
             )}
@@ -203,6 +250,12 @@ const Availability = () => {
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
                 defaultChecked
+                onChange={(event) => {
+
+                  if (event.target.checked)
+                    dispatch(addDayId({ dayId: "7" }))
+
+                }}
                 inputProps={{ "aria-label": "ant design" }}
               />
             )}

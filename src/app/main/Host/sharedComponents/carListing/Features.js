@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
-import { Card, CardContent, CardActionArea } from "@mui/material";
+import { Card, CardContent, CardActionArea, Button } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import TextField from "@mui/material/TextField";
@@ -10,7 +10,8 @@ import { Controller, useForm } from "react-hook-form";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addFeatures, addDoors, addFeulType, addKmpl, addSeats } from './../../ListStepper/store/featuresSlice'
 
 // const defaultFeaturesFlags =  {   bluetooth:falsae      }
 
@@ -38,6 +39,10 @@ const top100Films = [
 ];
 
 const Features = () => {
+
+  const dispatch = useDispatch();
+
+
   const _features = useSelector((state) => state.features);
   console.log(_features);
 
@@ -103,7 +108,30 @@ const Features = () => {
 
   const handleCardClick = (key, value, identity) => {
     setFlags({ ...flags, [key]: { id: identity, availability: !value } });
+    // if (!value)
+    dispatch(addFeatures(identity.toString()))
+
   };
+
+  const onSubmit = (data) => {
+
+    const sendingData = {
+      fueltype: data.fuel,
+      kmpl: data.kmpl,
+      doors: data.door,
+      seats: data.seats,
+    }
+
+
+
+    // console.log('feature ka data', data)
+    dispatch(addSeats(data.seats))
+    dispatch(addKmpl(data.kmpl))
+    dispatch(addFeulType(data.fuel))
+    dispatch(addDoors(data.door))
+  }
+
+
   return (
     <div>
       <Typography className="font-semibold text-sm mt-10">
@@ -160,6 +188,7 @@ const Features = () => {
             control={control}
             render={({ field }) => (
               <TextField
+                // defaultValue= { uniqueName.mandatoryFeatures.kmpl}
                 className="rounded-lg mb-11 "
                 placeholder="28"
                 {...field}
@@ -792,6 +821,7 @@ const Features = () => {
           </CardActionArea>
         </Card>
       </div>
+      <Button onClick={handleSubmit(onSubmit)}  >  SUBMIT BUTTON </Button>
     </div>
   );
 };
