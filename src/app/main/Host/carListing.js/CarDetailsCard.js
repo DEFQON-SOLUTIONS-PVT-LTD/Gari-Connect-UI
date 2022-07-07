@@ -11,9 +11,12 @@ import Favorite from "@mui/icons-material/Favorite";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const CarDetailsCard = () => {
+const CarDetailsCard = ({carslistingdata}) => {
   const [value, setValue] = React.useState(4);
 
+
+  const imageUrl = carslistingdata.image;
+  
   return (
     <div className="flex flex-wrap -m-3">
       <div className="w-full  flex flex-col p-3">
@@ -25,9 +28,10 @@ const CarDetailsCard = () => {
             <CardMedia
               className="px-6 pt-6"
               component="img"
-              height="293"
+              height="200"
               width="172"
-              image="/assets/images/GariConnect/cardimage.png"
+              image={imageUrl}
+              // '/assets/images/GariConnect/cardimage.png'
               alt="logo"
             />
           </CardActionArea>
@@ -36,7 +40,7 @@ const CarDetailsCard = () => {
               <div className="bg-white py-2 px-4 rounded-sm flex flex-row space-x-6 mt-12">
                 <Rating
                   name="simple-controlled"
-                  value={value}
+                  value={carslistingdata.rating}
                   onChange={(event, newValue) => {
                     setValue(newValue);
                   }}
@@ -45,7 +49,7 @@ const CarDetailsCard = () => {
                 />
                 <Typography className="font-normal">4.0</Typography>
                 <Typography className="font-normal" color="text.secondary">
-                  15 Trips
+                  {carslistingdata.total_trips} Trips
                 </Typography>
               </div>
               {/* <div className='ml-76 mt-14'>
@@ -58,6 +62,7 @@ const CarDetailsCard = () => {
                   {...label}
                   icon={<FavoriteBorder />}
                   checkedIcon={<Favorite />}
+                
                   sx={{
                     color: "#667085",
                     "&.Mui-checked": {
@@ -74,14 +79,14 @@ const CarDetailsCard = () => {
                   gutterBottom
                   variant=""
                 >
-                  Honda Afb 8895- 19
+                  {carslistingdata.vehiclename}
                 </Typography>
                 <Typography
                   className="text-sm font-normal mr-auto mb-12"
                   variant=""
                   color="text.secondary"
                 >
-                  Gulberg 3, Lahore
+                 {carslistingdata.location}
                 </Typography>
               </div>
               <div className="flex flex-col">
@@ -92,8 +97,9 @@ const CarDetailsCard = () => {
               </div>
             </div>
             <Divider className="" />
-            <div className="flex flex-row justify-between">
-              <div className="flex flex-col">
+            <div className="flex">
+              {(carslistingdata.iswithdriver)&&
+              <div >
                 {/* <Typography className="text-sm font-normal" gutterBottom variant="" color="text.secondary">
                                     Rate per day
                                 </Typography> */}
@@ -105,17 +111,20 @@ const CarDetailsCard = () => {
                   {/* <span className="text-sm font-normal text-gray-500 underline">PKR 3500 est.total</span> */}
                 </Typography>
               </div>
-              <div className="flex flex-col">
+               }
+              <div className="ml-auto">
                 {/* <Typography className="text-sm font-normal" color="text.secondary">Total earnings</Typography> */}
                 <Typography variant="" className="mt-10 pl-56">
-                  <span className="text-base font-semibold">1200</span>{" "}
+                  <span className="text-base font-semibold">{carslistingdata.vehicleprice}</span>{" "}
                   <span className="text-sm font-normal text-gray-500">PKR</span>
                 </Typography>
+                {/* {(carslistingdata.iswithdriver)&& */}
                 <Typography className="mt-10">
                   <span className="text-sm font-normal text-gray-500 underline">
-                    PKR 3500 est.total
+                    PKR {carslistingdata.totalprice} est.total
                   </span>
                 </Typography>
+                {/* } */}
               </div>
             </div>
           </CardContent>
