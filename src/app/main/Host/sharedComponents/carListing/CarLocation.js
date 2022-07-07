@@ -1,6 +1,5 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import GoogleMapReact from "google-map-react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
@@ -8,6 +7,17 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import Icon from '@mui/material/Icon';
+import Tooltip from '@mui/material/Tooltip';
+import GoogleMap from 'google-map-react';
+
+function Marker({ text }) {
+  return (
+    <Tooltip title={text} placement="top">
+      <Icon className="text-red">place</Icon>
+    </Tooltip>
+  );
+}
 
 const schema = yup.object().shape({
   city: yup.array().min(1, "You must select a area"),
@@ -44,19 +54,21 @@ const CarLocation = () => {
       <div className="grid md:grid-cols-2 grid-cols-1 sm:grid-cols-2 gap-16">
         <div className="mt-12">
           <div style={{ height: "45vh", width: "100%" }}>
-            <GoogleMapReact
+            <GoogleMap
               bootstrapURLKeys={{
-                key: "AIzaSyAGQbucY82Bx3X6CJCItNb-2dyHi1Ovuyk",
+                key: "AIzaSyAQtQ-9XrfpmGt9rMTXB2RLhB_C2ZbZi7c",
               }}
               defaultCenter={defaultProps.center}
               defaultZoom={defaultProps.zoom}
+              yesIWantToUseGoogleMapApiInternals={true}
             >
-              <AnyReactComponent
+              <Marker text="Marker Text" lat="59.955413" lng="30.337844" />
+              {/* <AnyReactComponent
                 lat={59.955413}
                 lng={30.337844}
                 text="My Marker"
-              />
-            </GoogleMapReact>
+              /> */}
+            </GoogleMap>
           </div>
         </div>
 

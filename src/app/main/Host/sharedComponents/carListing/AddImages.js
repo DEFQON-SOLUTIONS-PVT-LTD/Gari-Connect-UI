@@ -1,9 +1,9 @@
-import { Button, Card, Typography } from "@mui/material";
+import { Button, Card, Typography, Checkbox } from "@mui/material";
 import React, { useState } from "react";
 import ImageUploading from "react-images-uploading";
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from "react-redux";
-import { addImages } from "../../ListStepper/store/addImageSlices";
+import { addImages, removeImages } from "../../ListStepper/store/addImageSlices";
 
 const AddImages = () => {
   const dispatch = useDispatch();
@@ -20,11 +20,8 @@ const AddImages = () => {
 
     dispatch(addImages({
       mainimage: (imageList[imageList.length - 1]).data_url,
-      setCover: true,
+      setCover: false,
     }))
-
-
-
   };
   console.log(images);
 
@@ -50,14 +47,18 @@ const AddImages = () => {
           <div className="flex flex-row w-auto">
             {imageList.map((image, index) => (
               <div key={index} className="image-item">
-                {/* <CloseIcon onClick={() => onImageRemove(index)} className="text-16 p-2 text-right font-normal bg-white rounded-full" /> */}
+                <CloseIcon onClick={() => {
+                  dispatch(removeImages(index))
+                  return (onImageRemove(index))
+                }} className="text-16 p-2 text-right font-normal bg-white rounded-full" />
                 <img className="rounded-8 mr-10" style={{ width: '228px', height: '160px' }} src={image.data_url} alt="" />
               </div>
             ))}
 
             <Card
               className="cursor-pointer rounded-lg p-24 shadow-none border"
-              style={isDragging ? { color: "red" } : null}
+              style={isDragging ? { color: "red", width: '250px', height: '160px' } : null}
+              // style={{  }}
               onClick={onImageUpload}
               {...dragProps}
             >
