@@ -39,9 +39,10 @@ export default function Star (){
             }}
             type="button"
             onClick={priceClick}
-            endIcon={<KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)"}}/>}
+            // endIcon={}
           >
             Rating
+            <KeyboardArrowDownIcon style={{color:"rgba(0, 0, 0, 1)",marginLeft:"60px"}}/>
           </Button>
           {price ? (
             <Box className="mt-28" sx={styles}>

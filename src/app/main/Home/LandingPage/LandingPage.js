@@ -12,8 +12,7 @@ import Rating from "@mui/material/Rating";
 import IconButton from "@mui/material/IconButton";
 import Footer from "../Footer/Footer";
 import SearchBar from "../../Host/sharedComponents/SearchBar";
-import CarCarousel from '../carousel/CarCarousel';
-
+// import CarCarousel from "../carousel/CarCarousel";
 
 function LandingPage() {
   const [value, setValue] = React.useState(2);
@@ -21,31 +20,44 @@ function LandingPage() {
     <div className="App">
       <div>
         <Header style={{ position: "absolute" }} />
-
       </div>
 
-      <div className="a">
-        <div className="sm:flex justify-between  sm:ml-76 ml-36">
-          <div>
-            <h1 style={{ fontSize: "64px", fontWeight: "600", color: "#000000" }}>
+      <div>
+        <div className="grid sm:grid-cols-3 grid-cols-1 sm:ml-76 ml-36">
+          <div className="sm:col-span-1 mt-200">
+            <Typography className="text-72 font-600 text-black">
               Easy savari,<br></br>manzil asaan.
-            </h1>
+            </Typography>
             <Typography
               className="font-normal text-lg"
               style={{ color: "#667085" }}
             >
-              Renting a car bring you freedom, we will help<br></br>you to find best
-              car at great price.
+              We connect people with the vehicles they need and love – 24 hours
+              a day, seven days a week – via any connected device at guaranteed
+              best rates!
             </Typography>
           </div>
-
-          <img width="815" src="assets/images/logos/landingcar.svg" alt="logo" />
-
+          <div
+            className="sm:col-span-2 sm:ml-360"
+            style={{
+              backgroundImage: "url('/assets/images/backgrounds/bghome.jpg')",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <div>
+              <img
+                className="mt-200"
+                width="815"
+                src="assets/images/logos/landingcar.svg"
+                alt="logo"
+              />
+            </div>
+          </div>
         </div>
         <div className="flex justify-center">
           <SearchBar />
         </div>
-        <div className="sm:flex sm:ml-76 ml-36" style={{ marginTop: "200px" }}>
+        <div className="sm:flex sm:ml-76 ml-36 mt-200">
           <img
             width="700"
             height="600px"
@@ -53,7 +65,16 @@ function LandingPage() {
             alt="logo"
           />
           <div className="mt-20 sm:ml-96">
-            <h4 style={{ fontWeight: "400px", fontSize: "12px", color: "#D22A8F", marginBottom: "10px" }}>Start Booking</h4>
+            <h4
+              style={{
+                fontWeight: "400px",
+                fontSize: "12px",
+                color: "#D22A8F",
+                marginBottom: "10px",
+              }}
+            >
+              Start Booking
+            </h4>
             <Typography className="text-3xl font-semibold">
               Get affordable,reliable car<br></br>in minute.
             </Typography>
@@ -67,7 +88,14 @@ function LandingPage() {
                 Variety
               </Typography>
             </div>
-            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5", marginTop: "5px" }}>
+            <p
+              style={{
+                marginLeft: "50px",
+                color: "#000000",
+                opacity: "0.5",
+                marginTop: "5px",
+              }}
+            >
               Take yor pick from wide range of models
             </p>
             <div className="flex" style={{ marginTop: "50px" }}>
@@ -80,7 +108,14 @@ function LandingPage() {
                 Verified Cars
               </Typography>
             </div>
-            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5", marginTop: "5px" }}>
+            <p
+              style={{
+                marginLeft: "50px",
+                color: "#000000",
+                opacity: "0.5",
+                marginTop: "5px",
+              }}
+            >
               Rent from our list of votted owner without hassle
             </p>
             <div className="flex" style={{ marginTop: "50px" }}>
@@ -93,7 +128,14 @@ function LandingPage() {
                 24/7 Support
               </Typography>
             </div>
-            <p style={{ marginLeft: "50px", color: "#000000", opacity: "0.5", marginTop: "5px" }}>
+            <p
+              style={{
+                marginLeft: "50px",
+                color: "#000000",
+                opacity: "0.5",
+                marginTop: "5px",
+              }}
+            >
               Support teams ready to help you any time of the day
             </p>
             <Button

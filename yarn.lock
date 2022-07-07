@@ -13088,6 +13088,11 @@
     "@babel/runtime" "^7.14.5"
     "html-parse-stringify" "^3.0.1"
 
+"react-image-gallery@^1.2.8":
+  "integrity" "sha512-7KbWcWChUMHRGyJHA/eH3injWF9/2WTlQXjV6fym1DqwrINSVIh1hLiqmujh/XANstW+osqSu5WFKKPy2F2gbA=="
+  "resolved" "https://registry.npmjs.org/react-image-gallery/-/react-image-gallery-1.2.8.tgz"
+  "version" "1.2.8"
+
 "react-images-uploading@^3.1.6":
   "integrity" "sha512-CHaTZh2CN7Plip11D02muxcRGnFXfqsJ1c+2hoUcVbbHQLjTOafkX3iIo0aipu6r+c4EFRwikycOCnOw3NeiPw=="
   "resolved" "https://registry.npmjs.org/react-images-uploading/-/react-images-uploading-3.1.6.tgz"

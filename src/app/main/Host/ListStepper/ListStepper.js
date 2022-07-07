@@ -19,6 +19,7 @@ import Guidelines from "../sharedComponents/carListing/Guidelines";
 import Availability from "../sharedComponents/carListing/Availability";
 import AddImages from "../sharedComponents/carListing/AddImages";
 import AddPrice from "../sharedComponents/carListing/AddPrice";
+import Idealexample from "./Idealexample";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { CardActions } from "@mui/material";

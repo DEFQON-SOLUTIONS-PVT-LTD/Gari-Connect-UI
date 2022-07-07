@@ -108,14 +108,15 @@ const Navbarfilters = () => {
                   color: "#667085",
                 }}
                 type="button"
-                onClick={priceClick}
-                endIcon={
-                  <KeyboardArrowDownIcon
-                    style={{ color: "rgba(0, 0, 0, 1)" }}
-                  />
-                }
+                 onClick={priceClick}
+                // endIcon={
+                  
+                // }
               >
                 Price
+                <KeyboardArrowDownIcon
+                    style={{ color: "rgba(0, 0, 0, 1)",marginLeft:"60px" }}
+                  />
               </Button>
               {price ? (
                 <Box sx={styles}>

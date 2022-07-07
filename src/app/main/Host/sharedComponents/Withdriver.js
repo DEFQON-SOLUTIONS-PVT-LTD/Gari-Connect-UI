@@ -102,11 +102,12 @@ export default function Star() {
           }}
           type="button"
           onClick={priceClick}
-          endIcon={
-            <KeyboardArrowDownIcon style={{ color: "rgba(0, 0, 0, 1)" }} />
-          }
+          // endIcon={
+            
+          // }
         >
           With driver
+          <KeyboardArrowDownIcon style={{ color: "rgba(0, 0, 0, 1)",marginLeft:"20px" }}/>
         </Button>
         {price ? (
           <Box className="mt-28" sx={styles}>

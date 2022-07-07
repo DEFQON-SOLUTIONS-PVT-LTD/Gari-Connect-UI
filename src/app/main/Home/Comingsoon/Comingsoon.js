@@ -1,15 +1,6 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import Switch from "@mui/material/Switch";
-import { alpha, styled } from "@mui/material/styles";
-import { pink } from "@mui/material/colors";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import Hostheader from "../Hostheader/Hostheader";
-import Footer from "../Footer/Footer";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { motion } from 'framer-motion';
 
