@@ -11,12 +11,56 @@ const initialState = {
   },
 
   featuresList: {
-
-
-
+    blueTooth: {
+      id: 1,
+      availability: false,
+    },
+    keylessEntry: {
+      id: 2,
+      availability: false,
+    },
+    appleCar: {
+      id: 3,
+      availability: false,
+    },
+    USB: {
+      id: 4,
+      availability: false,
+    },
+    backupCamera: {
+      id: 5,
+      availability: false,
+    },
+    auxInput: {
+      id: 6,
+      availability: false,
+    },
+    tollPass: {
+      id: 7,
+      availability: false,
+    },
+    heatedSeat: {
+      id: 8,
+      availability: false,
+    },
+    sunRoof: {
+      id: 9,
+      availability: false,
+    },
+    wheelDriver: {
+      id: 10,
+      availability: false,
+    },
+    GPS: {
+      id: 11,
+      availability: false,
+    },
+    auxInput2: {
+      id: 12,
+      availability: false,
+    },
   },
 };
-
 
 const featuresSlice = createSlice({
   name: "features",
@@ -25,10 +69,7 @@ const featuresSlice = createSlice({
 
   reducers: {
     addFeatures: (state, action) => {
-      state.featuresList.push(action.payload);
-      const changeIt = [...new Set(state.featuresList)]
-      changeIt.map((item) => { state.featuresList.push(item) })
-
+      state.featuresList = action.payload;
     },
     addFeulType: (state, action) => {
       state.mandatoryFeatures.fueltype = action.payload;

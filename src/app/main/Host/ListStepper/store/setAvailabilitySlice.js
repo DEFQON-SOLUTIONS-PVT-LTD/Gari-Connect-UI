@@ -3,19 +3,37 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 
 const initialState = {
-  days: [],
+  days: {
+    monday: {
+      dayId: "1",
+      availability: false,
+    },
+    tuesday: {
+      dayId: "2",
+      availability: false,
+    },
+    wednesday: {
+      dayId: "3",
+      availability: false,
+    },
+    thursday: {
+      dayId: "4",
+      availability: false,
+    },
+    friday: {
+      dayId: "5",
+      availability: false,
+    },
+    saturday: {
+      dayId: "6",
+      availability: false,
+    },
+    sunday: {
+      dayId: "7",
+      availability: false,
+    },
+  },
 };
-
-
-const daysId = {
-  monday: "1",
-  tuesday: "2",
-  wednesday: "3",
-  thursday: "4",
-  friday: "5",
-  saturday: "6",
-  sunday: "7",
-}
 
 const availabilitiesSlice = createSlice({
   name: "setAvailability",
@@ -24,8 +42,8 @@ const availabilitiesSlice = createSlice({
 
   reducers: {
     addDayId: (state, action) => {
-      state.days.push(action.payload);
-      state.days = [...new Set(state.days)]
+      state.days = action.payload;
+      // debugger;
     },
   },
 });

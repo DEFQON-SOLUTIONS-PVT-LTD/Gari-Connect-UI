@@ -3,15 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 
 const initialState = {
-  makeId: "nomi",
-  categoryId: "",
-  modelId: "",
-  chassis_number: "",
-  plate_number: "",
-  transmissionId: "",
-  vehicle_type_id: "",
-  eco_friendly_Id: "",
-  description: "",
+  data: {
+    makeId: "",
+    categoryId: "",
+    modelId: "",
+    chassis_number: "",
+    plate_number: "",
+    transmissionId: "",
+    vehicle_type_id: "",
+    eco_friendly_Id: "",
+    description: "",
+  },
 };
 
 // const getCarModel = createAsyncThunk(  'cardDetails/getCarModels'  ,   ()=>{
@@ -29,34 +31,35 @@ const carDetailsSlice = createSlice({
 
   reducers: {
     addMakeId: (state, action) => {
-      state.make = action.payload;
+      state.data.make = action.payload;
     },
     addCategoryId: (state, action) => {
-      state.categoryId = action.payload;
+      state.data.categoryId = action.payload;
     },
     addModelId: (state, action) => {
       state.modelId = action.payload;
     },
     addChassisNumber: (state, action) => {
-      state.chassis_number = action.payload;
+      state.data.chassis_number = action.payload;
     },
     addPlateNumber: (state, action) => {
-      state.plate_number = action.payload;
+      state.data.plate_number = action.payload;
     },
     addTransmissionId: (state, action) => {
-      state.transmissionId = action.payload;
+      state.data.transmissionId = action.payload;
     },
     addVehicleTypeId: (state, action) => {
-      state.vehicle_type_id = action.payload;
+      state.data.vehicle_type_id = action.payload;
     },
     addEcoFriendlyId: (state, action) => {
-      state.eco_friendly_Id = action.payload;
+      state.data.eco_friendly_Id = action.payload;
     },
     addDescription: (state, action) => {
-      state.description = action.payload;
+      state.data.description = action.payload;
     },
     addCar: (state, action) => {
-      state = action.payload;
+      state.data = action.payload;
+      // debugger;
     },
   },
 });

@@ -2,71 +2,22 @@ import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, CardActionArea } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { addGuidelines } from "../../ListStepper/store/guidelinesSice"
+import { addGuidelines } from "../../ListStepper/store/guidelinesSice";
 
 const Guidelines = () => {
   const dispatch = useDispatch();
 
   const _guidelines = useSelector((state) => state.guidelines);
   console.log(_guidelines);
-  const features = {
-    blueTooth: {
-      id: 1,
-      availability: false,
-    },
-    keylessEntry: {
-      id: 2,
-      availability: false,
-    },
-    appleCar: {
-      id: 3,
-      availability: false,
-    },
-    USB: {
-      id: 4,
-      availability: false,
-    },
-    backupCamera: {
-      id: 5,
-      availability: false,
-    },
-    auxInput: {
-      id: 6,
-      availability: false,
-    },
-    tollPass: {
-      id: 7,
-      availability: false,
-    },
-    heatedSeat: {
-      id: 8,
-      availability: false,
-    },
-    sunRoof: {
-      id: 9,
-      availability: false,
-    },
-    wheelDriver: {
-      id: 10,
-      availability: false,
-    },
-    GPS: {
-      id: 11,
-      availability: false,
-    },
-    auxInput2: {
-      id: 12,
-      availability: false,
-    },
-  };
+  const features = useSelector((state) => state.guidelines.guidelines);
   const [flags, setFlags] = useState(features);
 
   const handleCardClick = (key, value, identity) => {
     setFlags({ ...flags, [key]: { id: identity, availability: !value } });
 
-
-
-    dispatch(addGuidelines({ guidelineId: identity.toString() }))
+    dispatch(
+      addGuidelines({ ...flags, [key]: { id: identity, availability: !value } })
+    );
   };
   return (
     <div>

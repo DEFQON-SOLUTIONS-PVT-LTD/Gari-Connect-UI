@@ -11,7 +11,13 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import { useSelector, useDispatch } from "react-redux";
-import { addFeatures, addDoors, addFeulType, addKmpl, addSeats } from './../../ListStepper/store/featuresSlice'
+import {
+  addFeatures,
+  addDoors,
+  addFeulType,
+  addKmpl,
+  addSeats,
+} from "./../../ListStepper/store/featuresSlice";
 
 // const defaultFeaturesFlags =  {   bluetooth:falsae      }
 
@@ -39,9 +45,7 @@ const top100Films = [
 ];
 
 const Features = () => {
-
   const dispatch = useDispatch();
-
 
   const _features = useSelector((state) => state.features);
   console.log(_features);
@@ -53,84 +57,32 @@ const Features = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
-  const features = {
-    blueTooth: {
-      id: 1,
-      availability: false,
-    },
-    keylessEntry: {
-      id: 2,
-      availability: false,
-    },
-    appleCar: {
-      id: 3,
-      availability: false,
-    },
-    USB: {
-      id: 4,
-      availability: false,
-    },
-    backupCamera: {
-      id: 5,
-      availability: false,
-    },
-    auxInput: {
-      id: 6,
-      availability: false,
-    },
-    tollPass: {
-      id: 7,
-      availability: false,
-    },
-    heatedSeat: {
-      id: 8,
-      availability: false,
-    },
-    sunRoof: {
-      id: 9,
-      availability: false,
-    },
-    wheelDriver: {
-      id: 10,
-      availability: false,
-    },
-    GPS: {
-      id: 11,
-      availability: false,
-    },
-    auxInput2: {
-      id: 12,
-      availability: false,
-    },
-  };
+  const features = useSelector((state) => state.features.featuresList);
 
   const [flags, setFlags] = useState(features);
 
   const handleCardClick = (key, value, identity) => {
     setFlags({ ...flags, [key]: { id: identity, availability: !value } });
     // if (!value)
-    dispatch(addFeatures(identity.toString()))
-
+    dispatch(
+      addFeatures({ ...flags, [key]: { id: identity, availability: !value } })
+    );
   };
 
   const onSubmit = (data) => {
-
     const sendingData = {
       fueltype: data.fuel,
       kmpl: data.kmpl,
       doors: data.door,
       seats: data.seats,
-    }
-
-
+    };
 
     // console.log('feature ka data', data)
-    dispatch(addSeats(data.seats))
-    dispatch(addKmpl(data.kmpl))
-    dispatch(addFeulType(data.fuel))
-    dispatch(addDoors(data.door))
-  }
-
+    dispatch(addSeats(data.seats));
+    dispatch(addKmpl(data.kmpl));
+    dispatch(addFeulType(data.fuel));
+    dispatch(addDoors(data.door));
+  };
 
   return (
     <div>
@@ -821,7 +773,7 @@ const Features = () => {
           </CardActionArea>
         </Card>
       </div>
-      <Button onClick={handleSubmit(onSubmit)}  >  SUBMIT BUTTON </Button>
+      <Button onClick={handleSubmit(onSubmit)}> SUBMIT BUTTON </Button>
     </div>
   );
 };

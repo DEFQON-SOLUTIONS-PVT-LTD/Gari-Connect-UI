@@ -55,6 +55,11 @@ const top100Films = [
 
 var allMakesOptions = [];
 var allModelOptions = [];
+var allCategoriesOptions = [
+  { label: "mini", categoryId: "1" },
+  { label: "go", categoryId: "7" },
+  { label: "premium", categoryId: "8" },
+];
 
 const CarDetails = () => {
   const dispatch = useDispatch();
@@ -86,21 +91,21 @@ const CarDetails = () => {
 
   const onSubmit = (data) => {
     console.log("onsubmit chal gia", data);
-    console.log(getValues("make"));
+    // console.log(getValues("make"));
 
     const car = {
       modelId: data.make.makeId,
-      categoryId: data.category[0].year,
-      chassis_number: "SV30-0169266",
-      plate_number: "5656LIX2009",
-      transmissionId: "1",
-      eco_friendly_Id: "2",
-      description:
-        "Test description for vehicle. Test description for vehicle. Test description for vehicle. Test description for vehicle.",
-      vehicle_type_id: "3",
+      categoryId: data.category.categoryId,
+      chassis_number: data.chassis,
+      plate_number: data.plate,
+      transmissionId: data.transmission,
+      eco_friendly_Id: data.eco,
+      description: data.description,
+      vehicle_type_id: data.type,
+      makeId: data.make.makeId,
     };
 
-    dispatch(addCar());
+    dispatch(addCar(car));
   };
 
   const handleMakeChange = (e) => {
@@ -196,12 +201,11 @@ const CarDetails = () => {
               defaultValue={[]}
               render={({ field: { onChange, value, onBlur, ref } }) => (
                 <Autocomplete
-                  multiple
                   popupIcon={<KeyboardArrowDownIcon />}
                   className="mt-6"
                   disablePortal
                   id="combo-box-demo"
-                  options={top100Films}
+                  options={allCategoriesOptions}
                   value={value}
                   onChange={(event, newValue) => {
                     onChange(newValue);

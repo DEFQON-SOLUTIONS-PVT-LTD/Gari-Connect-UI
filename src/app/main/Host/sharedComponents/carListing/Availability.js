@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
-import { addDayId } from './../../ListStepper/store/setAvailabilitySlice'
+import { addDayId } from "./../../ListStepper/store/setAvailabilitySlice";
 
 const schema = yup.object().shape({
   Monday: yup.boolean().oneOf([true], "You must turn it on."),
@@ -19,11 +19,11 @@ const schema = yup.object().shape({
 });
 
 const Availability = () => {
-
   const dispatch = useDispatch();
 
   const availabilities = useSelector((state) => state.setAvailability);
   console.log(availabilities);
+  console.log(" ye dai ye  ", availabilities.days.monday.availability);
 
   const { handleSubmit, register, reset, control, watch, formState } = useForm({
     mode: "all",
@@ -79,13 +79,6 @@ const Availability = () => {
     },
   }));
 
-
-
-  // const handleChange = (event) => {
-  //   // setChecked(event.target.checked);
-  //   console.log(event.target)
-  // };
-
   return (
     <div>
       <div className="flex flex-row justify-between mt-24">
@@ -99,12 +92,23 @@ const Availability = () => {
             control={control}
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
-                defaultChecked
+                checked={availabilities.days.monday.availability}
                 onChange={(event) => {
-
-                  if (event.target.checked)
-                    dispatch(addDayId("1"))
-
+                  if (event.target.checked) {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        monday: { dayId: "1", availability: true },
+                      })
+                    );
+                  } else {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        monday: { dayId: "1", availability: false },
+                      })
+                    );
+                  }
                 }}
                 inputProps={{ "aria-label": "ant design" }}
               />
@@ -124,12 +128,23 @@ const Availability = () => {
             control={control}
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
-                defaultChecked
+                checked={availabilities.days.tuesday.availability}
                 onChange={(event) => {
-
-                  if (event.target.checked)
-                    dispatch(addDayId({ dayId: "2" }))
-
+                  if (event.target.checked) {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        tuesday: { dayId: "2", availability: true },
+                      })
+                    );
+                  } else {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        tuesday: { dayId: "2", availability: false },
+                      })
+                    );
+                  }
                 }}
                 inputProps={{ "aria-label": "ant design" }}
               />
@@ -149,12 +164,23 @@ const Availability = () => {
             control={control}
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
-                defaultChecked
+                checked={availabilities.days.wednesday.availability}
                 onChange={(event) => {
-
-                  if (event.target.checked)
-                    dispatch(addDayId({ dayId: "3" }))
-
+                  if (event.target.checked) {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        wednesday: { dayId: "3", availability: true },
+                      })
+                    );
+                  } else {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        wednesday: { dayId: "3", availability: false },
+                      })
+                    );
+                  }
                 }}
                 inputProps={{ "aria-label": "ant design" }}
               />
@@ -174,12 +200,23 @@ const Availability = () => {
             control={control}
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
-                defaultChecked
+                checked={availabilities.days.thursday.availability}
                 onChange={(event) => {
-
-                  if (event.target.checked)
-                    dispatch(addDayId({ dayId: "4" }))
-
+                  if (event.target.checked) {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        thursday: { dayId: "4", availability: true },
+                      })
+                    );
+                  } else {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        thursday: { dayId: "4", availability: false },
+                      })
+                    );
+                  }
                 }}
                 inputProps={{ "aria-label": "ant design" }}
               />
@@ -199,12 +236,23 @@ const Availability = () => {
             control={control}
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
-                defaultChecked
+                checked={availabilities.days.friday.availability}
                 onChange={(event) => {
-
-                  if (event.target.checked)
-                    dispatch(addDayId({ dayId: "5" }))
-
+                  if (event.target.checked) {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        friday: { dayId: "5", availability: true },
+                      })
+                    );
+                  } else {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        friday: { dayId: "5", availability: false },
+                      })
+                    );
+                  }
                 }}
                 inputProps={{ "aria-label": "ant design" }}
               />
@@ -224,12 +272,23 @@ const Availability = () => {
             control={control}
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
-                defaultChecked
+                checked={availabilities.days.saturday.availability}
                 onChange={(event) => {
-
-                  if (event.target.checked)
-                    dispatch(addDayId({ dayId: "6" }))
-
+                  if (event.target.checked) {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        saturday: { dayId: "6", availability: true },
+                      })
+                    );
+                  } else {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        saturday: { dayId: "6", availability: false },
+                      })
+                    );
+                  }
                 }}
                 inputProps={{ "aria-label": "ant design" }}
               />
@@ -249,12 +308,23 @@ const Availability = () => {
             control={control}
             render={({ field: { onChange, value, ref, onBlur } }) => (
               <AntSwitch
-                defaultChecked
+                checked={availabilities.days.sunday.availability}
                 onChange={(event) => {
-
-                  if (event.target.checked)
-                    dispatch(addDayId({ dayId: "7" }))
-
+                  if (event.target.checked) {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        sunday: { dayId: "7", availability: true },
+                      })
+                    );
+                  } else {
+                    dispatch(
+                      addDayId({
+                        ...availabilities.days,
+                        sunday: { dayId: "7", availability: false },
+                      })
+                    );
+                  }
                 }}
                 inputProps={{ "aria-label": "ant design" }}
               />
