@@ -9,6 +9,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 import {
   addAdditional_Price,
   addPickAndDrop,
@@ -106,10 +107,11 @@ const AddPrice = () => {
     setWithDriverFlag(!withDriverFlag);
   };
 
-  const { handleSubmit, register, reset, control, watch, formState, setValue } = useForm({
-    mode: "all",
-    resolver: yupResolver(schema),
-  });
+  const { handleSubmit, register, reset, control, watch, formState, setValue } =
+    useForm({
+      mode: "all",
+      resolver: yupResolver(schema),
+    });
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
@@ -134,82 +136,84 @@ const AddPrice = () => {
     dispatch(addPrice_inc_driver(data.driverPrice));
     dispatch(addPricePerDay(data.price));
     dispatch(addPrice(finalPrice));
-
-
-
-
-
   };
 
-
   const onfinalSubmit = () => {
-
-    const finalFeatureList = []
+    const finalFeatureList = [];
     Object.keys(stepperData.guidelines.guidelines).map((key, index) => {
-      if (stepperData.features.featuresList[key].availability == true) finalFeatureList.push({ featureId: stepperData.features.featuresList[key].id })
-    })
+      if (stepperData.features.featuresList[key].availability == true)
+        finalFeatureList.push({
+          featureId: stepperData.features.featuresList[key].id,
+        });
+    });
 
-    const finalGuidelines = []
+    const finalGuidelines = [];
     Object.keys(stepperData.guidelines.guidelines).map((key, index) => {
-      if (stepperData.guidelines.guidelines[key].availability == true) finalGuidelines.push({ guidelineId: stepperData.guidelines.guidelines[key].id })
-    })
+      if (stepperData.guidelines.guidelines[key].availability == true)
+        finalGuidelines.push({
+          guidelineId: stepperData.guidelines.guidelines[key].id,
+        });
+    });
 
-    const finalDayIds = []
+    const finalDayIds = [];
 
     Object.keys(stepperData.setAvailability.days).map((key, index) => {
-      if (stepperData.setAvailability.days[key].availability == true) finalDayIds.push({ dayId: stepperData.setAvailability.days[key].dayId })
-    })
-
-
+      if (stepperData.setAvailability.days[key].availability == true)
+        finalDayIds.push({
+          dayId: stepperData.setAvailability.days[key].dayId,
+        });
+    });
 
     const finalSubmit = {
       carDetail: {
-        modelId: stepperData.carDetail.data.modelId,
+        modelId: stepperData.carDetail.data.modelId.toString(),
         categoryId: stepperData.carDetail.data.categoryId,
         chassis_number: stepperData.carDetail.data.chassis_number,
         plate_number: stepperData.carDetail.data.plate_number,
         transmissionId: stepperData.carDetail.data.transmissionId,
         eco_friendly_Id: stepperData.carDetail.data.eco_friendly_Id,
         description: stepperData.carDetail.data.description,
-        vehicle_type_id: stepperData.carDetail.data.vehicle_type_id
+        vehicle_type_id: stepperData.carDetail.data.vehicle_type_id,
       },
       location: {
         latitude: stepperData.location.latitude,
         longitude: stepperData.location.longitude,
-        address: stepperData.location.address
+        address: stepperData.location.address,
       },
       features: {
         mandatoryFeatures: {
           fueltype: stepperData.features.mandatoryFeatures.fueltype,
           kmpl: stepperData.features.mandatoryFeatures.kmpl,
           doors: stepperData.features.mandatoryFeatures.doors,
-          seats: stepperData.features.mandatoryFeatures.seats
+          seats: stepperData.features.mandatoryFeatures.seats,
         },
-        featuresList: finalFeatureList
+        featuresList: finalFeatureList,
       },
       guidelines: finalGuidelines,
       setAvailability: {
-        days: finalDayIds
+        days: finalDayIds,
       },
       vehicleimages: {
-        images: stepperData.vehicleimages.images
+        images: stepperData.vehicleimages.images,
       },
       setPrice: {
-        price: stepperData.setPrice.pricePerDay,
+        price: stepperData.setPrice.price,
         price_inc_driver: stepperData.setPrice.price_inc_driver,
         with_driver: stepperData.setPrice.with_driver,
         pickAndDrop: stepperData.setPrice.pickAndDrop,
         additional_Price: stepperData.setPrice.additional_Price,
-        created_by: "1"
-      }
-    }
-    // debugger
-    console.log(finalSubmit)
+        created_by: "1",
+      },
+    };
 
+    console.log(finalSubmit);
 
-
-  }
-
+    axios
+      .post("http://api.gariconnect.com:8080/api/vehicle/create", finalSubmit)
+      .then((res) => {
+        console.log(res);
+      });
+  };
 
   const data = watch();
   return (

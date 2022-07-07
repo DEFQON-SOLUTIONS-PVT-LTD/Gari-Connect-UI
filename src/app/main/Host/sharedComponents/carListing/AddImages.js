@@ -1,9 +1,12 @@
 import { Button, Card, Typography, Checkbox } from "@mui/material";
 import React, { useState } from "react";
 import ImageUploading from "react-images-uploading";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
-import { addImages, removeImages } from "../../ListStepper/store/addImageSlices";
+import {
+  addImages,
+  removeImages,
+} from "../../ListStepper/store/addImageSlices";
 
 const AddImages = () => {
   const dispatch = useDispatch();
@@ -18,10 +21,12 @@ const AddImages = () => {
 
     setImages(imageList);
 
-    dispatch(addImages({
-      mainimage: (imageList[imageList.length - 1]).data_url,
-      setCover: false,
-    }))
+    dispatch(
+      addImages({
+        mainimage: imageList[imageList.length - 1].data_url,
+        setCover: "false",
+      })
+    );
   };
   console.log(images);
 
@@ -41,30 +46,53 @@ const AddImages = () => {
           onImageUpdate,
           onImageRemove,
           isDragging,
-          dragProps
+          dragProps,
         }) => (
           // write your building UI
           <div className="flex flex-row w-auto">
             {imageList.map((image, index) => (
               <div key={index} className="image-item">
-                <CloseIcon onClick={() => {
-                  dispatch(removeImages(index))
-                  return (onImageRemove(index))
-                }} className="text-16 p-2 text-right font-normal bg-white rounded-full" />
-                <img className="rounded-8 mr-10" style={{ width: '228px', height: '160px' }} src={image.data_url} alt="" />
+                <CloseIcon
+                  onClick={() => {
+                    dispatch(removeImages(index));
+                    return onImageRemove(index);
+                  }}
+                  className="text-16 p-2 text-right font-normal bg-white rounded-full"
+                />
+                <img
+                  className="rounded-8 mr-10"
+                  style={{ width: "228px", height: "160px" }}
+                  src={image.data_url}
+                  alt=""
+                />
               </div>
             ))}
 
             <Card
               className="cursor-pointer rounded-lg p-24 shadow-none border"
-              style={isDragging ? { color: "red", width: '250px', height: '160px' } : null}
+              style={
+                isDragging
+                  ? { color: "red", width: "250px", height: "160px" }
+                  : null
+              }
               // style={{  }}
               onClick={onImageUpload}
               {...dragProps}
             >
-              <img className="mx-auto mb-16" src="assets/images/icons/uploadImageicon.svg" alt="" />
-              <Typography className="text-12 space-x-6"><span className="font-500" style={{ color: '#D22A8F' }}>Click to upload</span><span className="text-grey-500">or drag and drop</span></Typography>
-              <Typography className="text-10" color="text.secondary">SVG, PNG, JPG or GIF (max. 800x400px)</Typography>
+              <img
+                className="mx-auto mb-16"
+                src="assets/images/icons/uploadImageicon.svg"
+                alt=""
+              />
+              <Typography className="text-12 space-x-6">
+                <span className="font-500" style={{ color: "#D22A8F" }}>
+                  Click to upload
+                </span>
+                <span className="text-grey-500">or drag and drop</span>
+              </Typography>
+              <Typography className="text-10" color="text.secondary">
+                SVG, PNG, JPG or GIF (max. 800x400px)
+              </Typography>
             </Card>
             {/* &nbsp;
             <button onClick={onImageRemoveAll}>Remove all images</button> */}

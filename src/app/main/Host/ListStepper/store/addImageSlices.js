@@ -14,13 +14,11 @@ const imagesSlice = createSlice({
   reducers: {
     addImages: (state, action) => {
       state.images.push(action.payload);
-      state.images[0].setCover = true;
+      state.images[0].setCover = "true";
     },
     removeImages: (state, action) => {
       state.images.pop(action.payload);
-    }
-
-
+    },
   },
 });
 

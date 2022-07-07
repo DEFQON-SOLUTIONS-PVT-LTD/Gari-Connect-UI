@@ -65,7 +65,10 @@ const Features = () => {
     setFlags({ ...flags, [key]: { id: identity, availability: !value } });
     // if (!value)
     dispatch(
-      addFeatures({ ...flags, [key]: { id: identity, availability: !value } })
+      addFeatures({
+        ...flags,
+        [key]: { id: identity.toString(), availability: !value },
+      })
     );
   };
 
@@ -116,8 +119,8 @@ const Features = () => {
                   variant="outlined"
                   fullWidth
                 >
-                  <MenuItem value="Auto">Auto</MenuItem>
-                  <MenuItem value="Manual">Manual</MenuItem>
+                  <MenuItem value="1">Auto</MenuItem>
+                  <MenuItem value="2">Manual</MenuItem>
                 </Select>
                 <FormHelperText>{errors?.fuel?.message}</FormHelperText>
               </FormControl>
@@ -185,8 +188,8 @@ const Features = () => {
                   variant="outlined"
                   fullWidth
                 >
-                  <MenuItem value="Auto">Auto</MenuItem>
-                  <MenuItem value="Manual">Manual</MenuItem>
+                  <MenuItem value="1">Auto</MenuItem>
+                  <MenuItem value="2">Manual</MenuItem>
                 </Select>
                 <FormHelperText>{errors?.door?.message}</FormHelperText>
               </FormControl>

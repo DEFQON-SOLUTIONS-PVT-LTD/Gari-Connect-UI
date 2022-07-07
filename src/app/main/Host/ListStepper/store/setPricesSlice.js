@@ -35,7 +35,6 @@ const priceSlice = createSlice({
     },
     addAdditional_Price: (state, action) => {
       state.additional_Price = action.payload;
-      debugger
     },
     addWith_driver: (state, action) => {
       state.with_driver = action.payload;

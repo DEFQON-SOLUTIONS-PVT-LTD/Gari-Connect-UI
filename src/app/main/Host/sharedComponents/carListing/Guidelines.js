@@ -16,7 +16,10 @@ const Guidelines = () => {
     setFlags({ ...flags, [key]: { id: identity, availability: !value } });
 
     dispatch(
-      addGuidelines({ ...flags, [key]: { id: identity, availability: !value } })
+      addGuidelines({
+        ...flags,
+        [key]: { id: identity.toString(), availability: !value },
+      })
     );
   };
   return (
