@@ -11,12 +11,12 @@ import Favorite from "@mui/icons-material/Favorite";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const CarDetailsCard = ({carslistingdata}) => {
+const CarDetailsCard = ({ carslistingdata }) => {
   const [value, setValue] = React.useState(4);
 
 
   const imageUrl = carslistingdata.image;
-  
+
   return (
     <div className="flex flex-wrap -m-3">
       <div className="w-full  flex flex-col p-3">
@@ -28,8 +28,7 @@ const CarDetailsCard = ({carslistingdata}) => {
             <CardMedia
               className="px-6 pt-6"
               component="img"
-              height="200"
-              width="172"
+              style={{ height: 180 }}
               image={imageUrl}
               // '/assets/images/GariConnect/cardimage.png'
               alt="logo"
@@ -62,7 +61,7 @@ const CarDetailsCard = ({carslistingdata}) => {
                   {...label}
                   icon={<FavoriteBorder />}
                   checkedIcon={<Favorite />}
-                
+
                   sx={{
                     color: "#667085",
                     "&.Mui-checked": {
@@ -86,7 +85,7 @@ const CarDetailsCard = ({carslistingdata}) => {
                   variant=""
                   color="text.secondary"
                 >
-                 {carslistingdata.location}
+                  {carslistingdata.location}
                 </Typography>
               </div>
               <div className="flex flex-col">
@@ -98,20 +97,20 @@ const CarDetailsCard = ({carslistingdata}) => {
             </div>
             <Divider className="" />
             <div className="flex">
-              {(carslistingdata.iswithdriver)&&
-              <div >
-                {/* <Typography className="text-sm font-normal" gutterBottom variant="" color="text.secondary">
+              {(carslistingdata.iswithdriver) &&
+                <div >
+                  {/* <Typography className="text-sm font-normal" gutterBottom variant="" color="text.secondary">
                                     Rate per day
                                 </Typography> */}
-                <Typography
-                  className="mr-auto rounded-16 p-8 mt-20"
-                  style={{ backgroundColor: "#30C07D14", color: "#30C07D" }}
-                >
-                  <span>With Driver</span>
-                  {/* <span className="text-sm font-normal text-gray-500 underline">PKR 3500 est.total</span> */}
-                </Typography>
-              </div>
-               }
+                  <Typography
+                    className="mr-auto rounded-16 p-8 mt-20"
+                    style={{ backgroundColor: "#30C07D14", color: "#30C07D" }}
+                  >
+                    <span>With Driver</span>
+                    {/* <span className="text-sm font-normal text-gray-500 underline">PKR 3500 est.total</span> */}
+                  </Typography>
+                </div>
+              }
               <div className="ml-auto">
                 {/* <Typography className="text-sm font-normal" color="text.secondary">Total earnings</Typography> */}
                 <Typography variant="" className="mt-10 pl-56">
