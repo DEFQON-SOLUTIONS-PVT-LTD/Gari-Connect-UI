@@ -1,30 +1,65 @@
-import * as React from "react";
+import  React, {useEffect} from "react";
 import { Link } from "react-router-dom";
+import withReducer from 'app/store/withReducer';
 import { Typography } from "@mui/material";
 import Navbarfilters from "./Navbarfilters";
 import CarDetailsCard from "./CarDetailsCard";
 import Footer from "app/main/Home/Footer/Footer";
 import Navbar from "../Navbar/Navbar";
+import reducer from './store';
+import { getContacts } from "./store/CarsListingSlice";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { useState } from "react";
+
+
+
 
 const CarsListing = () => {
+  const dispatch = useDispatch();
+  const [mydata, setmydata] = useState([]);
+  const [mycount, setcount] = useState("");
+  
+
+  useEffect(() => {
+    axios.get('http://api.gariconnect.com:8080/api/vehicle/vehicleSearch').then((data) => {
+      console.log("PK: ", data.data.results.query);
+      setmydata( data.data.results.query);
+      setcount(data.data.results.count);
+    });
+   
+     
+  }, []);
+
+   
+ 
+
+ 
   return (
     <>
       <Navbar />
 
       <Navbarfilters />
-
+     
       <Typography
         className="md:ml-96 ml-36 mt-28 text-17 font-600"
         style={{ color: "black" }}
       >
-        3650 results found
+        {mycount} results found
       </Typography>
       <div style={{width:'89%'}} className='mx-auto'>
         <div className="grid lg:grid-cols-4  md:grid-cols-3 sm:grid-cols-2 mt-24 gap-y-28">
+        {
+        mydata.map((datas, index) => (
           <div className="flex col-span-1">
-            <CarDetailsCard />
-          </div>
-          <div className="flex col-span-1">
+          <CarDetailsCard  key={datas.vehicleid} index = {index} carslistingdata = {datas}  />
+        </div>
+        ))
+      }
+       
+     
+
+          {/* <div className="flex col-span-1">
             <CarDetailsCard />
           </div>
           <div className="flex col-span-1">
@@ -45,7 +80,7 @@ const CarsListing = () => {
           </div>
           <div className="flex col-span-1">
             <CarDetailsCard />
-          </div>
+          </div> */}
         </div>
       </div>
 <div className="mt-88">
@@ -183,4 +218,4 @@ const top100Films = [
   { title: "Monty Python and the Holy Grail", year: 1975 },
 ];
 
-export default CarsListing;
+export default withReducer('CarsListing', reducer)(CarsListing);
