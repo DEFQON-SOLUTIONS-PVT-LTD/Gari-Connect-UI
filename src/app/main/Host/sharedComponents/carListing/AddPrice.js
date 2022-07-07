@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, Box, Button } from "@mui/material";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -90,8 +90,12 @@ const AddPrice = () => {
   // debugger;
   const dispatch = useDispatch();
 
-  const price = useSelector((state) => state.setPrice);
-  console.log(price.with_driver);
+  const setPriceData = useSelector((state) => state.setPrice);
+  // console.log(setPriceData.pricePerDay);
+  // console.log(setPriceData.price_inc_driver);
+  // console.log(setPriceData.additional_Price);
+
+  const stepperData = useSelector((state) => state);
 
   const [withDriverFlag, setWithDriverFlag] = useState(true);
 
@@ -102,12 +106,18 @@ const AddPrice = () => {
     setWithDriverFlag(!withDriverFlag);
   };
 
-  const { handleSubmit, register, reset, control, watch, formState } = useForm({
+  const { handleSubmit, register, reset, control, watch, formState, setValue } = useForm({
     mode: "all",
     resolver: yupResolver(schema),
   });
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
+
+  // useEffect(() => {
+  //   setValue('price', setPriceData.pricePerDay)
+  //   setValue('driverPrice', setPriceData.price_inc_driver)
+  //   setValue('price', setPriceData.additionalPrice)
+  // }, [setValue])
 
   const onSubmit = (data) => {
     console.log("adnan", data);
@@ -118,12 +128,88 @@ const AddPrice = () => {
         parseInt(data.driverPrice)) /
         100) *
       90;
-    debugger;
+    // debugger;
+
     dispatch(addAdditional_Price(data.additionalPrice));
     dispatch(addPrice_inc_driver(data.driverPrice));
     dispatch(addPricePerDay(data.price));
     dispatch(addPrice(finalPrice));
+
+
+
+
+
   };
+
+
+  const onfinalSubmit = () => {
+
+    const finalFeatureList = []
+    Object.keys(stepperData.guidelines.guidelines).map((key, index) => {
+      if (stepperData.features.featuresList[key].availability == true) finalFeatureList.push({ featureId: stepperData.features.featuresList[key].id })
+    })
+
+    const finalGuidelines = []
+    Object.keys(stepperData.guidelines.guidelines).map((key, index) => {
+      if (stepperData.guidelines.guidelines[key].availability == true) finalGuidelines.push({ guidelineId: stepperData.guidelines.guidelines[key].id })
+    })
+
+    const finalDayIds = []
+
+    Object.keys(stepperData.setAvailability.days).map((key, index) => {
+      if (stepperData.setAvailability.days[key].availability == true) finalDayIds.push({ dayId: stepperData.setAvailability.days[key].dayId })
+    })
+
+
+
+    const finalSubmit = {
+      carDetail: {
+        modelId: stepperData.carDetail.data.modelId,
+        categoryId: stepperData.carDetail.data.categoryId,
+        chassis_number: stepperData.carDetail.data.chassis_number,
+        plate_number: stepperData.carDetail.data.plate_number,
+        transmissionId: stepperData.carDetail.data.transmissionId,
+        eco_friendly_Id: stepperData.carDetail.data.eco_friendly_Id,
+        description: stepperData.carDetail.data.description,
+        vehicle_type_id: stepperData.carDetail.data.vehicle_type_id
+      },
+      location: {
+        latitude: stepperData.location.latitude,
+        longitude: stepperData.location.longitude,
+        address: stepperData.location.address
+      },
+      features: {
+        mandatoryFeatures: {
+          fueltype: stepperData.features.mandatoryFeatures.fueltype,
+          kmpl: stepperData.features.mandatoryFeatures.kmpl,
+          doors: stepperData.features.mandatoryFeatures.doors,
+          seats: stepperData.features.mandatoryFeatures.seats
+        },
+        featuresList: finalFeatureList
+      },
+      guidelines: finalGuidelines,
+      setAvailability: {
+        days: finalDayIds
+      },
+      vehicleimages: {
+        images: stepperData.vehicleimages.images
+      },
+      setPrice: {
+        price: stepperData.setPrice.pricePerDay,
+        price_inc_driver: stepperData.setPrice.price_inc_driver,
+        with_driver: stepperData.setPrice.with_driver,
+        pickAndDrop: stepperData.setPrice.pickAndDrop,
+        additional_Price: stepperData.setPrice.additional_Price,
+        created_by: "1"
+      }
+    }
+    // debugger
+    console.log(finalSubmit)
+
+
+
+  }
+
 
   const data = watch();
   return (
@@ -330,6 +416,7 @@ const AddPrice = () => {
         </div>
       </div>
       <Button onClick={handleSubmit(onSubmit)}> NEW NEXT</Button>
+      <Button onClick={handleSubmit(onfinalSubmit)}> SUBMIT</Button>
     </div>
   );
 };

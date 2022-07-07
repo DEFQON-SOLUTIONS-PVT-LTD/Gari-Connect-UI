@@ -18,7 +18,6 @@ const imagesSlice = createSlice({
     },
     removeImages: (state, action) => {
       state.images.pop(action.payload);
-      debugger
     }
 
 
