@@ -369,8 +369,8 @@ const CarDetails = () => {
                     variant="outlined"
                     fullWidth
                   >
-                    <MenuItem value="Auto">Auto</MenuItem>
-                    <MenuItem value="Manual">Manual</MenuItem>
+                    <MenuItem value="1">Auto</MenuItem>
+                    <MenuItem value="2">Manual</MenuItem>
                   </Select>
                   <FormHelperText>
                     {errors?.transmission?.message}
@@ -407,8 +407,8 @@ const CarDetails = () => {
                     variant="outlined"
                     fullWidth
                   >
-                    <MenuItem value="10">Sedan </MenuItem>
-                    <MenuItem value="20">SVS</MenuItem>
+                    <MenuItem value="1">Sedan </MenuItem>
+                    <MenuItem value="2">SVS</MenuItem>
                   </Select>
                   <FormHelperText>{errors?.type?.message}</FormHelperText>
                 </FormControl>
@@ -442,8 +442,8 @@ const CarDetails = () => {
                     variant="outlined"
                     fullWidth
                   >
-                    <MenuItem value="10">Electric</MenuItem>
-                    <MenuItem value="20">Manual</MenuItem>
+                    <MenuItem value="1">Electric</MenuItem>
+                    <MenuItem value="2">Manual</MenuItem>
                   </Select>
                   <FormHelperText>{errors?.eco?.message}</FormHelperText>
                 </FormControl>
