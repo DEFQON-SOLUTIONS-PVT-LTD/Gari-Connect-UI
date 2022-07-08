@@ -62,7 +62,10 @@ const Features = () => {
   const [flags, setFlags] = useState(features);
 
   const handleCardClick = (key, value, identity) => {
-    setFlags({ ...flags, [key]: { id: identity.toString(), availability: !value } });
+    setFlags({
+      ...flags,
+      [key]: { id: identity.toString(), availability: !value },
+    });
     // if (!value)
     dispatch(
       addFeatures({
@@ -776,7 +779,16 @@ const Features = () => {
           </CardActionArea>
         </Card>
       </div>
-      <Button onClick={handleSubmit(onSubmit)}> SUBMIT BUTTON </Button>
+      <div className="mt-96">
+        <Button
+          className="w-72 h-44 rounded-lg text-white"
+          style={{ backgroundColor: "#D22A8F" }}
+          onClick={handleSubmit(onSubmit)}
+        >
+          {" "}
+          Submit{" "}
+        </Button>
+      </div>
     </div>
   );
 };

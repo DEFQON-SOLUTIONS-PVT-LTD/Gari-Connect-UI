@@ -419,8 +419,23 @@ const AddPrice = () => {
           </Typography>
         </div>
       </div>
-      <Button onClick={handleSubmit(onSubmit)}> NEW NEXT</Button>
-      <Button onClick={handleSubmit(onfinalSubmit)}> SUBMIT</Button>
+      <div className="mt-96 flex space-x-10">
+        <Button
+          className="w-72 h-44 rounded-lg text-white"
+          style={{ backgroundColor: "#D22A8F" }}
+          onClick={handleSubmit(onSubmit)}
+        >
+          {" "}
+         Submit
+        </Button>
+        <Button
+          className="w-72 h-44 rounded-lg text-white"
+          style={{ backgroundColor: "#D22A8F" }}
+          onClick={handleSubmit(onfinalSubmit)}
+        >
+          Save
+        </Button>
+      </div>
     </div>
   );
 };

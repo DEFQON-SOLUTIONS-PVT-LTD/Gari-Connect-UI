@@ -493,7 +493,15 @@ const CarDetails = () => {
           </FormControl>
         </div>
       </div>
-      <Button onClick={handleSubmit(onSubmit)}>NEW NEXT</Button>
+      <div className="mt-96">
+        <Button
+          className="w-72 h-44 rounded-lg text-white"
+          style={{ backgroundColor: "#D22A8F" }}
+          onClick={handleSubmit(onSubmit)}
+        >
+          Submit
+        </Button>
+      </div>
     </div>
   );
 };

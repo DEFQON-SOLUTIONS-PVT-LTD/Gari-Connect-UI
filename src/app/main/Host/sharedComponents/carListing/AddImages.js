@@ -53,11 +53,12 @@ const AddImages = () => {
             {imageList.map((image, index) => (
               <div key={index} className="image-item">
                 <CloseIcon
+                style={{backgroundColor:"#D22A8F",color:"#FFFFFF"}}
                   onClick={() => {
                     dispatch(removeImages(index));
                     return onImageRemove(index);
                   }}
-                  className="text-16 p-2 text-right font-normal bg-white rounded-full"
+                  className="cursor-pointer text-16 font-medium rounded-full ml-216"
                 />
                 <img
                   className="rounded-8 mr-10"
