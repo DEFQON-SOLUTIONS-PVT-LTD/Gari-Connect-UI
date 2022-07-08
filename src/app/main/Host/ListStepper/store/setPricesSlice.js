@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 
 const initialState = {
-  pricePerDay: 0,
-  price_inc_driver: 0,
-  additional_Price: 0,
-  with_driver: true,
-  pickAndDrop: true,
-  price: 0,
+  pricePerDay: '',
+  price_inc_driver: '',
+  additional_Price: '',
+  with_driver: 'true',
+  pickAndDrop: 'true',
+  price: '0',
 };
 
 // "price": "8000000",

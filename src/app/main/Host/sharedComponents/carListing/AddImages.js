@@ -53,7 +53,7 @@ const AddImages = () => {
             {imageList.map((image, index) => (
               <div key={index} className="image-item">
                 <CloseIcon
-                style={{backgroundColor:"#D22A8F",color:"#FFFFFF"}}
+                  style={{ backgroundColor: "#D22A8F", color: "#FFFFFF" }}
                   onClick={() => {
                     dispatch(removeImages(index));
                     return onImageRemove(index);
@@ -100,6 +100,15 @@ const AddImages = () => {
           </div>
         )}
       </ImageUploading>
+
+      <div>
+        <Button
+          className="h-44 rounded-lg text-white mt-40"
+          style={{ backgroundColor: "#D22A8F" }}
+        >
+          Save Info
+        </Button>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
-import { Card, CardContent, CardActionArea } from "@mui/material";
+import { Card, Button, CardContent, CardActionArea } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { addGuidelines } from "../../ListStepper/store/guidelinesSice";
 
@@ -13,7 +13,7 @@ const Guidelines = () => {
   const [flags, setFlags] = useState(features);
 
   const handleCardClick = (key, value, identity) => {
-    setFlags({ ...flags, [key]: { id: identity, availability: !value } });
+    setFlags({ ...flags, [key]: { id: identity.toString(), availability: !value } });
 
     dispatch(
       addGuidelines({
@@ -570,6 +570,14 @@ const Guidelines = () => {
             </CardContent>
           </CardActionArea>
         </Card>
+      </div>
+      <div>
+        <Button
+          className="h-44 rounded-lg text-white mt-40"
+          style={{ backgroundColor: "#D22A8F" }}
+        >
+          Save Info
+        </Button>
       </div>
     </div>
   );

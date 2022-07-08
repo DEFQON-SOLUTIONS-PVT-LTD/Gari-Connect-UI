@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 import Switch from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
 import * as yup from "yup";
@@ -333,6 +333,15 @@ const Availability = () => {
         </div>
       </div>
       <hr className="w-full mt-20" />
+
+      <div>
+        <Button
+          className="h-44 rounded-lg text-white mt-40"
+          style={{ backgroundColor: "#D22A8F" }}
+        >
+          Save Info
+        </Button>
+      </div>
     </div>
   );
 };

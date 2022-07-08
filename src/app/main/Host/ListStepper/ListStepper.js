@@ -345,7 +345,11 @@ export default function ListSteppers() {
                         className="w-72 h-44 rounded-lg text-white"
                         style={{ backgroundColor: "#D22A8F" }}
                       >
-                        Next
+                        {
+                          activeStep === steps.length - 1
+                            ? 'Finish'
+                            : 'Next'
+                        }
                       </Button>
                       <Dialog
                         open={open}

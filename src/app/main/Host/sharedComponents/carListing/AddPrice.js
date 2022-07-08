@@ -92,9 +92,9 @@ const AddPrice = () => {
   const dispatch = useDispatch();
 
   const setPriceData = useSelector((state) => state.setPrice);
-  // console.log(setPriceData.pricePerDay);
-  // console.log(setPriceData.price_inc_driver);
-  // console.log(setPriceData.additional_Price);
+  console.log(setPriceData.pricePerDay);
+  console.log(setPriceData.price_inc_driver);
+  console.log(setPriceData.additional_Price);
 
   const stepperData = useSelector((state) => state);
 
@@ -115,11 +115,11 @@ const AddPrice = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
-  // useEffect(() => {
-  //   setValue('price', setPriceData.pricePerDay)
-  //   setValue('driverPrice', setPriceData.price_inc_driver)
-  //   setValue('price', setPriceData.additionalPrice)
-  // }, [setValue])
+  useEffect(() => {
+    setValue('price', setPriceData.pricePerDay)
+    setValue('driverPrice', setPriceData.price_inc_driver)
+    setValue('additionalPrice', setPriceData.additional_Price)
+  }, [])
 
   const onSubmit = (data) => {
     console.log("adnan", data);
@@ -136,9 +136,8 @@ const AddPrice = () => {
     dispatch(addPrice_inc_driver(data.driverPrice));
     dispatch(addPricePerDay(data.price));
     dispatch(addPrice(finalPrice));
-  };
 
-  const onfinalSubmit = () => {
+    // const onfinalSubmit = () => {
     const finalFeatureList = [];
     Object.keys(stepperData.guidelines.guidelines).map((key, index) => {
       if (stepperData.features.featuresList[key].availability == true)
@@ -213,9 +212,10 @@ const AddPrice = () => {
       .then((res) => {
         console.log(res);
       });
+    // };
   };
 
-  const data = watch();
+
   return (
     <div className="grid lg:grid-cols-2  gap-x-68">
       <div className="col-span-1">
@@ -421,20 +421,19 @@ const AddPrice = () => {
       </div>
       <div className="mt-96 flex space-x-10">
         <Button
-          className="w-72 h-44 rounded-lg text-white"
+          className="h-44 rounded-lg text-white"
           style={{ backgroundColor: "#D22A8F" }}
           onClick={handleSubmit(onSubmit)}
         >
-          {" "}
-         Submit
+          Save Info
         </Button>
-        <Button
+        {/* <Button
           className="w-72 h-44 rounded-lg text-white"
           style={{ backgroundColor: "#D22A8F" }}
           onClick={handleSubmit(onfinalSubmit)}
         >
           Save
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
