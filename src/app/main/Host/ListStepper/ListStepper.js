@@ -30,6 +30,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Controller, useForm } from "react-hook-form";
 import { Provider } from "react-redux";
+import { Link, useHistory } from 'react-router-dom';
 import store from "./store/index";
 
 function getSteps() {
@@ -211,6 +212,8 @@ const ColorlibStepIconRoot = styled("div")(({ theme, ownerState }) => ({
 }));
 
 function ColorlibStepIcon(props) {
+
+  const history = useHistory();
   const { active, completed, className } = props;
 
   const icons = {};
@@ -383,8 +386,9 @@ export default function ListSteppers() {
                         </DialogContent>
                         <DialogActions className="mb-24">
                           <Button
+                            component={Link}
+                            to="/HostTabs"
                             className="rounded-lg"
-                            onClick={handleClose}
                             style={{
                               width: "170px",
                               height: "44px",
@@ -394,19 +398,21 @@ export default function ListSteppers() {
                           >
                             Go to dashboard
                           </Button>
-                          <Button
-                            className="rounded-lg"
-                            onClick={handleClose}
-                            autoFocus
-                            style={{
-                              width: "170px",
-                              height: "44px",
-                              background: "#D22A8F",
-                              color: "#FFFFFF",
-                            }}
-                          >
-                            List another car
-                          </Button>
+                          <a style={{ textDecoration: 'none' }} href="/ListStepper">
+                            <Button
+                              onClick={handleClose}
+                              className="rounded-lg"
+                              autoFocus
+                              style={{
+                                width: "170px",
+                                height: "44px",
+                                background: "#D22A8F",
+                                color: "#FFFFFF",
+                              }}
+                            >
+                              List another car
+                            </Button>
+                          </a>
                         </DialogActions>
                       </Dialog>
                     </CardActions>

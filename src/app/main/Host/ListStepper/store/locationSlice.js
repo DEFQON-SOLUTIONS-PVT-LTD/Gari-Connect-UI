@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 
 const initialState = {
-  latitude: "31.571944",
-  longitude: "74.312113",
-  address: "al hafeez heights",
+  latitude: "",
+  longitude: "",
+  address: "",
   city: "",
   area: "",
 };

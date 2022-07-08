@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   pricePerDay: '',
-  price_inc_driver: '',
+  price_inc_driver: 0,
   additional_Price: '',
   with_driver: 'true',
   pickAndDrop: 'true',

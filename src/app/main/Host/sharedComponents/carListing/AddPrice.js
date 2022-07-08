@@ -91,13 +91,15 @@ const AddPrice = () => {
   // debugger;
   const dispatch = useDispatch();
 
-  const setPriceData = useSelector((state) => state.setPrice);
-  console.log(setPriceData.pricePerDay);
-  console.log(setPriceData.price_inc_driver);
-  console.log(setPriceData.additional_Price);
+  // const setPriceData = useSelector((state) => state.setPrice);
+  // console.log(setPriceData.pricePerDay);
+  // console.log(setPriceData.price_inc_driver);
+  // console.log(setPriceData.additional_Price);
 
   const stepperData = useSelector((state) => state);
 
+  const [priceData, setPriceData] = useState(0);
+  const [cutprice, setCutPrice] = useState(0);
   const [withDriverFlag, setWithDriverFlag] = useState(true);
 
   const withDriverFlagHandle = () => {
@@ -115,11 +117,11 @@ const AddPrice = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
-  useEffect(() => {
-    setValue('price', setPriceData.pricePerDay)
-    setValue('driverPrice', setPriceData.price_inc_driver)
-    setValue('additionalPrice', setPriceData.additional_Price)
-  }, [])
+  // useEffect(() => {
+  //   setValue('price', setPriceData.pricePerDay)
+  //   setValue('driverPrice', setPriceData.price_inc_driver)
+  //   setValue('additionalPrice', setPriceData.additional_Price)
+  // }, [])
 
   const onSubmit = (data) => {
     console.log("adnan", data);
@@ -130,14 +132,18 @@ const AddPrice = () => {
         parseInt(data.driverPrice)) /
         100) *
       90;
+
+    setPriceData(parseInt(data.price) + parseInt(data.additionalPrice) + parseInt(data.driverPrice))
+    setCutPrice(finalPrice)
     // debugger;
 
     dispatch(addAdditional_Price(data.additionalPrice));
     dispatch(addPrice_inc_driver(data.driverPrice));
     dispatch(addPricePerDay(data.price));
     dispatch(addPrice(finalPrice));
+  };
 
-    // const onfinalSubmit = () => {
+  const onfinalSubmit = () => {
     const finalFeatureList = [];
     Object.keys(stepperData.guidelines.guidelines).map((key, index) => {
       if (stepperData.features.featuresList[key].availability == true)
@@ -212,7 +218,6 @@ const AddPrice = () => {
       .then((res) => {
         console.log(res);
       });
-    // };
   };
 
 
@@ -404,7 +409,7 @@ const AddPrice = () => {
             style={{ color: "#D22A8F" }}
             className="font-semibold text-6xl"
           >
-            5400
+            {priceData}
             <b className="text-2xl font-semibold" style={{ color: "#667085" }}>
               PKR
             </b>
@@ -415,7 +420,7 @@ const AddPrice = () => {
           />
           <Typography style={{ color: "#667085" }} className="mt-16">
             GariConnect will charge 10% of the total price and you will get
-            approx <b style={{ color: "#101828" }}>PKR 4860</b>
+            approx <b style={{ color: "#101828" }}>PKR {cutprice}</b>
           </Typography>
         </div>
       </div>
@@ -427,13 +432,13 @@ const AddPrice = () => {
         >
           Save Info
         </Button>
-        {/* <Button
+        <Button
           className="w-72 h-44 rounded-lg text-white"
           style={{ backgroundColor: "#D22A8F" }}
           onClick={handleSubmit(onfinalSubmit)}
         >
           Save
-        </Button> */}
+        </Button>
       </div>
     </div>
   );
