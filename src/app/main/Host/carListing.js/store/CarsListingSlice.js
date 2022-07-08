@@ -1,32 +1,32 @@
 import {
-    createAsyncThunk,
-    createEntityAdapter,
-    createSelector,
-    createSlice,
-  } from '@reduxjs/toolkit';
-  import axios from 'axios';
-  
-  
-  export const getContacts = createAsyncThunk(
-    'CarsListing/providers/getContacts',
-    async (params, { getState }) => {
-      const response = await axios.get('http://api.gariconnect.com:8080/api/vehicle/all');
-      const data = await response.data;
-      return data;
-    }
-  );
-  
-  const providersAdapter = createEntityAdapter({
-      selectId: (state) => console.log('OKK: ', state)
-  });
+  createAsyncThunk,
+  createEntityAdapter,
+  createSelector,
+  createSlice,
+} from '@reduxjs/toolkit';
+import axios from 'axios';
 
-  export const { selectAll: selectContacts, selectById: selectContactsById } =
+
+export const getContacts = createAsyncThunk(
+  'CarsListing/providers/getContacts',
+  async (params, { getState }) => {
+    const response = await axios.get('https://api.gariconnect.com/api/vehicle/all');
+    const data = await response.data;
+    return data;
+  }
+);
+
+const providersAdapter = createEntityAdapter({
+  selectId: (state) => console.log('OKK: ', state)
+});
+
+export const { selectAll: selectContacts, selectById: selectContactsById } =
   providersAdapter.getSelectors((state) => state.CarsListing.cars);
- 
-  const CarsListingSlice = createSlice({
-    name: 'CarsListing/cars',
-   initialState: providersAdapter.getInitialState({
-   
+
+const CarsListingSlice = createSlice({
+  name: 'CarsListing/cars',
+  initialState: providersAdapter.getInitialState({
+
   }),
   reducers: {
   },

@@ -208,7 +208,7 @@ const AddPrice = () => {
     console.log(finalSubmit);
 
     axios
-      .post("http://api.gariconnect.com:8080/api/vehicle/create", finalSubmit)
+      .post("https://api.gariconnect.com/api/vehicle/create", finalSubmit)
       .then((res) => {
         console.log(res);
       });

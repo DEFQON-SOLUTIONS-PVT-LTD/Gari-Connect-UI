@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const sendOtp = createAsyncThunk('auth/forget/sendOtp',
     async (phone, { dispatch, getState }) => {
-        const response = await axios.post('http://api.gariconnect.com:8080/api/auth/forgotpassword', phone);
+        const response = await axios.post('https://api.gariconnect.com/api/auth/forgotpassword', phone);
         const data = await response.data;
 
         return data;
@@ -11,7 +11,7 @@ export const sendOtp = createAsyncThunk('auth/forget/sendOtp',
 
 export const otpViaCall = createAsyncThunk('auth/forget/otpViaCall',
     async (phone, { dispatch, getState }) => {
-        const response = await axios.post('http://api.gariconnect.com:8080/api/auth/makecall', phone);
+        const response = await axios.post('https://api.gariconnect.com/api/auth/makecall', phone);
         const data = await response.data;
 
         return data;
@@ -19,7 +19,7 @@ export const otpViaCall = createAsyncThunk('auth/forget/otpViaCall',
 
 export const otpViaWhatsapp = createAsyncThunk('auth/forget/otpViaWhatsapp',
     async (phone, { dispatch, getState }) => {
-        const response = await axios.post('http://api.gariconnect.com:8080/api/auth/whatsapp', phone);
+        const response = await axios.post('https://api.gariconnect.com/api/auth/whatsapp', phone);
         const data = await response.data;
 
         return data;
