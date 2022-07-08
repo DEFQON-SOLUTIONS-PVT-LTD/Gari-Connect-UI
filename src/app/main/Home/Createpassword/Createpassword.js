@@ -38,10 +38,6 @@ function strongPasswordMethod() {
 const schema = yup.object().shape({
   password: yup.string().required().matches(/(\d)(\d)/, 'Must contain two numbers')
     .min(10, 'Password is too short - should be 10 chars minimum.').strongPassword(),
-  // password: yup
-  //   .string()
-  //   .required('Please enter your password.')
-  //   .min(10, 'Password is too short - should be 10 chars minimum.'),
   password_confirmation: yup
     .string()
     .required('Please enter your password.')
@@ -73,9 +69,9 @@ function Createpassword() {
   const uid = userid.userId.toString();
 
   useEffect(() => {
-    setValue('password', '', { shouldDirty: true, shouldValidate: true });
-    setValue('password_confirmation', '', { shouldDirty: true, shouldValidate: true });
-    setValue('userId', '', { shouldDirty: true, shouldValidate: true });
+    // setValue('password', '', { shouldDirty: true, shouldValidate: true });
+    // setValue('password_confirmation', '', { shouldDirty: true, shouldValidate: true });
+    // setValue('userId', '', { shouldDirty: true, shouldValidate: true });
   }, [reset, setValue, trigger]);
 
   function onSubmit(model) {

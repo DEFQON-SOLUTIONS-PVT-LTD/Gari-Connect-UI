@@ -111,7 +111,7 @@ export default function Header() {
               </Menu>
             </li>
             {logStatus.success === true ? (
-              <li className="nav-item mr-32 mt-10 flex space-x-6 sm:mb-0 mb-16 sm:mx-0 mx-auto">
+              <li className="nav-item mr-32 flex space-x-6 sm:mb-0 mb-16 sm:mx-0 mx-auto">
                 <Button component={Link} to="/SignIn" style={{ color: "black", fontSize: "14px", fontWeight: "500px", textDecoration: "none" }}>
                   Log out
                 </Button>

@@ -43,9 +43,9 @@ function forgetpassword() {
 
   const { isValid, dirtyFields, errors } = formState;
 
-  useEffect(() => {
-    setValue('phone_no', '', { shouldDirty: true, shouldValidate: true });
-  }, [reset, setValue, trigger]);
+  // useEffect(() => {
+  //   setValue('phone_no', '', { shouldDirty: true, shouldValidate: true });
+  // }, [reset, setValue, trigger]);
 
   function onSubmit(model) {
     model.phone_no = "+92" + model.phone_no

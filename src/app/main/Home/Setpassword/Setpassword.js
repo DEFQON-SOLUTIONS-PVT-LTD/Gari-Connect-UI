@@ -73,8 +73,8 @@ function Setpassword() {
   const phoneNum = allData.data.customer.data.phone_no;
 
   useEffect(() => {
-    setValue('password', '', { shouldDirty: true, shouldValidate: true });
-    setValue('password_confirmation', '', { shouldDirty: true, shouldValidate: true });
+    // setValue('password', '', { shouldDirty: true, shouldValidate: true });
+    // setValue('password_confirmation', '', { shouldDirty: true, shouldValidate: true });
     setValue('phone_no', phoneNum, { shouldDirty: true, shouldValidate: true });
   }, [reset, setValue, trigger]);
 

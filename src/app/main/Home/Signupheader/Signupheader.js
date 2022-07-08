@@ -27,11 +27,13 @@ export default function Signupheader() {
     <AppBar className="Header">
       <Toolbar className="flex flex-row justify-between fullWidth">
         <div className="flex">
-          <img
-            className="headimage"
-            src="assets/images/GariConnect/Gari Logo.png"
-            alt="logo"
-          />
+          <a href="/Home/LandingPage">
+            <img
+              className="headimage"
+              src="assets/images/GariConnect/Gari Logo.png"
+              alt="logo"
+            />
+          </a>
         </div>
         <div>
           <div className="flex mt-5 text-sm font-normal space-x-10">

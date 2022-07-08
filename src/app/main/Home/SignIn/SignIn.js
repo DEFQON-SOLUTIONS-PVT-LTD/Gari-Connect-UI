@@ -2,6 +2,7 @@ import React from "react";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import { FormHelperText } from '@mui/material';
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -36,7 +37,7 @@ const defaultValues = {
 function SignIn() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const login = useSelector(({ auth }) => auth.login);
+  // const login = useSelector(({ auth }) => auth.login);
   const { control, setValue, formState, handleSubmit, reset, trigger, setError } = useForm({
     mode: 'onChange',
     defaultValues,
@@ -47,13 +48,12 @@ function SignIn() {
 
   const { isValid, dirtyFields, errors } = formState;
 
-  const [initialValue, setInitialValue] = useState();
   const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-    setValue('phoneno', '', { shouldDirty: true, shouldValidate: true });
-    setValue('password', '', { shouldDirty: true, shouldValidate: true });
-  }, [reset, setValue, trigger]);
+  // useEffect(() => {
+  //   setValue('phoneno', '3024728713', { shouldDirty: true, shouldValidate: true });
+  //   setValue('password', 'Password@123', { shouldDirty: true, shouldValidate: true });
+  // }, [reset, setValue, trigger]);
 
   // useEffect(() => {
   //   [
@@ -84,20 +84,13 @@ function SignIn() {
     dispatch(submitLogin(model))
       .then((result) => {
         if (result) {
-          [
+          setError(
+            "errorName",
             {
               type: "manual",
-              name: "phoneno",
               message: result.payload[0].message
-            },
-            {
-              type: "manual",
-              name: "password",
-              message: result.payload[1].message
             }
-          ].forEach(({ name, type, message }) =>
-            setError(name, { type, message })
-          );
+          )
         } else {
           history.push('/Home/LandingPage');
         }
@@ -208,6 +201,7 @@ function SignIn() {
                   control={control}
                   render={({ field }) => (
                     <TextField
+                      {...field}
                       InputProps={{
                         className: "mt-6 h-48 rounded-lg",
                         startAdornment:
@@ -218,17 +212,13 @@ function SignIn() {
                       inputProps={{
                         maxLength: 10
                       }}
-                      value={initialValue}
-                      onChange={(e) => setInitialValue(e.target.value)}
                       onInput={(e) => onlyNumbers(e)}
                       placeholder="3524584205"
-                      fullWidth
-                      {...field}
-                      type="text"
                       error={!!errors.phoneno}
                       required
                       helperText={errors?.phoneno?.message}
                       variant="outlined"
+                      fullWidth
                     />
                   )}
                 />
@@ -246,6 +236,7 @@ function SignIn() {
                       className="mb-16"
                       type="password"
                       error={!!errors.password}
+                      required
                       helperText={errors?.password?.message}
                       variant="outlined"
                       InputProps={{
@@ -261,10 +252,13 @@ function SignIn() {
                           </InputAdornment>
                         ),
                       }}
-                      required
                     />
                   )}
                 />
+
+                <FormHelperText className="text-red">
+                  {errors?.errorName?.message}
+                </FormHelperText>
 
                 <div
                   className="flex flex-row justify-between items-center"
