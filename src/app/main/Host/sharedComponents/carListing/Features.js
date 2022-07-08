@@ -62,7 +62,7 @@ const Features = () => {
   const [flags, setFlags] = useState(features);
 
   const handleCardClick = (key, value, identity) => {
-    setFlags({ ...flags, [key]: { id: identity, availability: !value } });
+    setFlags({ ...flags, [key]: { id: identity.toString(), availability: !value } });
     // if (!value)
     dispatch(
       addFeatures({
