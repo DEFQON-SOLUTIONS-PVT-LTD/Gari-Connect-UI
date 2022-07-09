@@ -1,5 +1,5 @@
 import { Button, Card, Typography, Checkbox } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ImageUploading from "react-images-uploading";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,8 +10,7 @@ import {
 
 const AddImages = () => {
   const dispatch = useDispatch();
-  const _images = useSelector((state) => state.vehicleimages);
-  // console.log(_images);
+  const imageFiLe = useSelector((state) => state);
 
   const [images, setImages] = React.useState([]);
   const maxNumber = 5;
@@ -29,6 +28,13 @@ const AddImages = () => {
     );
   };
   console.log(images);
+
+  console.log(imageFiLe.vehicleimages.images);
+
+
+  // useEffect(() => {
+  //   setValue(images, location.address)
+  // }, [])
 
   return (
     <div>

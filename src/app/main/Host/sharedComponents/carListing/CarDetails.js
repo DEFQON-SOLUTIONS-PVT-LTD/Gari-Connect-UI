@@ -31,28 +31,6 @@ const schema = yup.object().shape({
   eco: yup.string().required("You must select an ECO"),
 });
 
-const top100Films = [
-  { label: "The Great Dictator", year: 1940 },
-  { label: "Cinema Paradiso", year: 1988 },
-  { label: "The Lives of Others", year: 2006 },
-  { label: "Grave of the Fireflies", year: 1988 },
-  { label: "Paths of Glory", year: 1957 },
-  { label: "Django Unchained", year: 2012 },
-  { label: "The Shining", year: 1980 },
-  { label: "WALL·E", year: 2008 },
-  { label: "American Beauty", year: 1999 },
-  { label: "The Dark Knight Rises", year: 2012 },
-  { label: "Princess Mononoke", year: 1997 },
-  { label: "Aliens", year: 1986 },
-  { label: "Oldboy", year: 2003 },
-  { label: "Once Upon a Time in America", year: 1984 },
-  { label: "Witness for the Prosecution", year: 1957 },
-  { label: "Das Boot", year: 1981 },
-  { label: "Citizen Kane", year: 1941 },
-  { label: "North by Northwest", year: 1959 },
-  { label: "Vertigo", year: 1958 },
-];
-
 var allMakesOptions = [];
 var allModelOptions = [];
 var allCategoriesOptions = [
@@ -81,13 +59,37 @@ const CarDetails = () => {
     watch,
     formState,
     getValues,
+    setValue
   } = useForm({
     mode: "all",
     // resolver: yupResolver(schema),
   });
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
-  const data = watch();
+
+  const carData = useSelector((state) => state.carDetail);
+  console.log(carData.data.makeId);
+  console.log(carData.data.categoryId);
+  console.log(carData.data.modelId);
+  console.log(carData.data.plate_number);
+  console.log(carData.data.chassis_number);
+  console.log(carData.data.transmissionId);
+  console.log(carData.data.vehicle_type_id);
+  console.log(carData.data.eco_friendly_Id);
+  console.log(carData.data.description);
+
+  useEffect(() => {
+    setValue('price', carData.data.makeId)
+    setValue('price', carData.data.categoryId)
+    setValue('price', carData.data.modelId)
+    setValue('plate', carData.data.plate_number)
+    setValue('chassis', carData.data.chassis_number)
+    setValue('price', carData.data.transmissionId)
+    setValue('price', carData.data.vehicle_type_id)
+    setValue('price', carData.data.eco_friendly_Id)
+    setValue('description', carData.data.description)
+  }, [])
+
 
   const onSubmit = (data) => {
     console.log("onsubmit chal gia", data);

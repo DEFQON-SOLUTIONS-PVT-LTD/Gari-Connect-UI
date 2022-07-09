@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -35,12 +35,28 @@ const CarLocation = () => {
   const [latVal, setLatVal] = useState(31.5139698);
   const [lngVal, setLngVal] = useState(74.3433629);
   const [zoomVal, setZoomVal] = useState(14);
+
+
+  const location = useSelector((state) => state.location);
+  console.log(location.address)
+
+  const { handleSubmit, setValue, register, reset, control, watch, formState } = useForm({
+    mode: 'all',
+    resolver: yupResolver(schema),
+  });
+
+  const { isValid, dirtyFields, errors, touchedFields } = formState;
+
   const defaultProps = {
     center: {
       lat: latVal,
       lng: lngVal,
     },
   };
+
+  useEffect(() => {
+    setValue('area', location.address)
+  }, [])
 
   function onSubmit() {
 
@@ -54,22 +70,11 @@ const CarLocation = () => {
           defaultProps.center.lng = lng;
         });
 
-      dispatch(addAddress(addressPlace.label))
-      dispatch(addLatitude(latVal))
-      dispatch(addLongitude(lngVal))
+      dispatch(addAddress(addressPlace.label.toString()))
+      dispatch(addLatitude(latVal.toString()))
+      dispatch(addLongitude(lngVal.toString()))
     }
   }
-
-  const location = useSelector((state) => state.location);
-
-  const { handleSubmit, register, reset, control, watch, formState } = useForm({
-    mode: 'all',
-    resolver: yupResolver(schema),
-  });
-
-  const { isValid, dirtyFields, errors, touchedFields } = formState;
-
-  const data = watch();
 
   return (
     <div>

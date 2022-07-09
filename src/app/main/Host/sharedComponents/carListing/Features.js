@@ -19,9 +19,6 @@ import {
   addSeats,
 } from "./../../ListStepper/store/featuresSlice";
 
-// const defaultFeaturesFlags =  {   bluetooth:falsae      }
-
-// --------------------------------------------------------------
 
 const schema = yup.object().shape({
   door: yup.string().required("Please select the doors"),
@@ -43,7 +40,7 @@ const Features = () => {
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
   useEffect(() => {
-    setValue('door.value', featuresData.doors)
+    setValue('door', featuresData.doors)
     setValue('fuel', featuresData.fueltype)
     setValue('kmpl', featuresData.kmpl)
     setValue('seats', featuresData.seats)
