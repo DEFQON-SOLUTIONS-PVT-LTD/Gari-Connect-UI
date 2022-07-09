@@ -88,15 +88,12 @@ function BpRadio(props) {
   );
 }
 const AddPrice = () => {
-  // debugger;
   const dispatch = useDispatch();
-
-  // const setPriceData = useSelector((state) => state.setPrice);
-  // console.log(setPriceData.pricePerDay);
-  // console.log(setPriceData.price_inc_driver);
-  // console.log(setPriceData.additional_Price);
-
   const stepperData = useSelector((state) => state);
+
+  const [priceVal, setPriceVal] = useState(0);
+  const [driverVal, setDriverVal] = useState(0);
+  const [addVal, setAddVal] = useState(0);
 
   const [priceData, setPriceData] = useState(0);
   const [cutprice, setCutPrice] = useState(0);
@@ -117,11 +114,6 @@ const AddPrice = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
-  // useEffect(() => {
-  //   setValue('price', setPriceData.pricePerDay)
-  //   setValue('driverPrice', setPriceData.price_inc_driver)
-  //   setValue('additionalPrice', setPriceData.additional_Price)
-  // }, [])
 
   const onSubmit = (data) => {
     console.log("adnan", data);
@@ -220,6 +212,22 @@ const AddPrice = () => {
       });
   };
 
+  const handleChange = (val) => {
+    setPriceVal(val.target.value);
+  }
+
+  const handleDriverChange = (val) => {
+    setDriverVal(val.target.value);
+  }
+
+  const handleAddChange = (val) => {
+    setAddVal(val.target.value);
+  }
+
+  useEffect(() => {
+    setPriceData(parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal));
+    setCutPrice((((parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal)) / 100) * 90).toFixed(1));
+  }, [cutprice, priceData, priceVal, driverVal, addVal]);
 
   return (
     <div className="grid lg:grid-cols-2  gap-x-68">
@@ -248,6 +256,10 @@ const AddPrice = () => {
                 error={!!errors.price}
                 required
                 helperText={errors?.price?.message}
+                onChange={(e) => {
+                  handleChange(e);
+                  field.onChange(e.target.value);
+                }}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -335,6 +347,10 @@ const AddPrice = () => {
                     error={!!errors.driverPrice}
                     required
                     helperText={errors?.driverPrice?.message}
+                    onChange={(e) => {
+                      handleDriverChange(e);
+                      field.onChange(e.target.value);
+                    }}
                     sx={{
                       "& fieldset": {
                         borderRadius: "8px",
@@ -378,6 +394,10 @@ const AddPrice = () => {
                     error={!!errors.additionalPrice}
                     required
                     helperText={errors?.additionalPrice?.message}
+                    onChange={(e) => {
+                      handleAddChange(e);
+                      field.onChange(e.target.value);
+                    }}
                     sx={{
                       "& fieldset": {
                         borderRadius: "8px",
