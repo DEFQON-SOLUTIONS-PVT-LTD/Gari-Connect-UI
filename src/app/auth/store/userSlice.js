@@ -19,7 +19,7 @@ export const signinwithgoogle = createAsyncThunk(
   "signin/google/post",
   async (data, { dispatch, getState }) => {
     const res = await axios.post(
-      "https://api.gariconnect.com/api/user/create",
+      "https://api.gariconnect.com:8080/api/user/create",
       data
     );
     console.log("response", res);

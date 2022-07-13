@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const passReset = createAsyncThunk('auth/resetPassword/passReset',
     async (params, { dispatch, getState }) => {
-        const response = await axios.put('https://api.gariconnect.com/api/auth/resetpassword', params);
+        const response = await axios.put('https://api.gariconnect.com:8080/api/auth/resetpassword', params);
         const data = await response.data;
 
         return data;
@@ -11,7 +11,7 @@ export const passReset = createAsyncThunk('auth/resetPassword/passReset',
 
 export const createPassword = createAsyncThunk('auth/resetPassword/createPassword',
     async (params, { dispatch, getState }) => {
-        const response = await axios.put('https://api.gariconnect.com/api/user/createPassword', params);
+        const response = await axios.put('https://api.gariconnect.com:8080/api/user/createPassword', params);
         const data = await response.data;
 
         return data;

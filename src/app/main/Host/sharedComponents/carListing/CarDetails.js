@@ -43,7 +43,7 @@ const CarDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get("https://api.gariconnect.com/api/make/all").then((data) => {
+    axios.get("https://api.gariconnect.com:8080/api/make/all").then((data) => {
       data.data.makes.map((make) => {
         allMakesOptions.push({ makeId: make.makeId, label: make.makeName });
         console.log(allMakesOptions);
@@ -125,7 +125,7 @@ const CarDetails = () => {
 
     axios
       .get(
-        "https://api.gariconnect.com/api/model/getbymakeId/" + makeid.makeId
+        "https://api.gariconnect.com:8080/api/model/getbymakeId/" + makeid.makeId
       )
       .then((res) => {
         res.data.result.map((item) => {

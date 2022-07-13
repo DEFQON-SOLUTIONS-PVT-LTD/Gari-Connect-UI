@@ -22,7 +22,7 @@ const CarsListing = () => {
 
 
   useEffect(() => {
-    axios.get('https://api.gariconnect.com/api/vehicle/vehicleSearch').then((data) => {
+    axios.get('https://api.gariconnect.com:8080/api/vehicle/vehicleSearch').then((data) => {
       console.log("PK: ", data.data.results.query);
       setmydata(data.data.results.query);
       setcount(data.data.results.count);

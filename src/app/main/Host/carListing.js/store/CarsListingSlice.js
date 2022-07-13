@@ -10,7 +10,7 @@ import axios from 'axios';
 export const getContacts = createAsyncThunk(
   'CarsListing/providers/getContacts',
   async (params, { getState }) => {
-    const response = await axios.get('https://api.gariconnect.com/api/vehicle/all');
+    const response = await axios.get('https://api.gariconnect.com:8080/api/vehicle/all');
     const data = await response.data;
     return data;
   }
