@@ -195,7 +195,7 @@ export default function SwipeableTemporaryDrawer() {
     <Box
       className="md:w-400 lg:w-512"
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
+      onClick={toggleDrawer(anchor, true)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <nav className="flex justify-between items-center ml-24 py-16">
