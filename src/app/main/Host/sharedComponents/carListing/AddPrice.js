@@ -115,25 +115,25 @@ const AddPrice = () => {
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
 
-  const onSubmit = (data) => {
-    console.log("adnan", data);
+  // const onSubmit = (data) => {
+  //   console.log("adnan", data);
 
-    const finalPrice =
-      ((parseInt(data.price) +
-        parseInt(data.additionalPrice) +
-        parseInt(data.driverPrice)) /
-        100) *
-      90;
+  //   const finalPrice =
+  //     ((parseInt(data.price) +
+  //       parseInt(data.additionalPrice) +
+  //       parseInt(data.driverPrice)) /
+  //       100) *
+  //     90;
 
-    setPriceData(parseInt(data.price) + parseInt(data.additionalPrice) + parseInt(data.driverPrice))
-    setCutPrice(finalPrice)
-    // debugger;
+  //   setPriceData(parseInt(data.price) + parseInt(data.additionalPrice) + parseInt(data.driverPrice))
+  //   setCutPrice(finalPrice)
+  //   debugger;
 
-    dispatch(addAdditional_Price(data.additionalPrice));
-    dispatch(addPrice_inc_driver(data.driverPrice));
-    dispatch(addPricePerDay(data.price));
-    dispatch(addPrice(finalPrice));
-  };
+  //   dispatch(addAdditional_Price(data.additionalPrice));
+  //   dispatch(addPrice_inc_driver(data.driverPrice));
+  //   dispatch(addPricePerDay(data.price));
+  //   dispatch(addPrice(finalPrice));
+  // };
 
   const onfinalSubmit = () => {
     const finalFeatureList = [];
@@ -194,7 +194,7 @@ const AddPrice = () => {
         images: stepperData.vehicleimages.images,
       },
       setPrice: {
-        price: stepperData.setPrice.price,
+        price: stepperData.setPrice.pricePerDay,
         price_inc_driver: stepperData.setPrice.price_inc_driver,
         with_driver: stepperData.setPrice.with_driver,
         pickAndDrop: stepperData.setPrice.pickAndDrop,
@@ -214,14 +214,17 @@ const AddPrice = () => {
 
   const handleChange = (val) => {
     setPriceVal(val.target.value);
+    dispatch(addPricePerDay(val.target.value))
   }
 
   const handleDriverChange = (val) => {
     setDriverVal(val.target.value);
+    dispatch(addPrice_inc_driver(val.target.value))
   }
 
   const handleAddChange = (val) => {
     setAddVal(val.target.value);
+    dispatch(addAdditional_Price(val.target.value));
   }
 
   useEffect(() => {
@@ -256,6 +259,7 @@ const AddPrice = () => {
                 error={!!errors.price}
                 required
                 helperText={errors?.price?.message}
+                value={priceVal}
                 onChange={(e) => {
                   handleChange(e);
                   field.onChange(e.target.value);
@@ -347,6 +351,7 @@ const AddPrice = () => {
                     error={!!errors.driverPrice}
                     required
                     helperText={errors?.driverPrice?.message}
+                    value={driverVal}
                     onChange={(e) => {
                       handleDriverChange(e);
                       field.onChange(e.target.value);
@@ -394,6 +399,7 @@ const AddPrice = () => {
                     error={!!errors.additionalPrice}
                     required
                     helperText={errors?.additionalPrice?.message}
+                    value={addVal}
                     onChange={(e) => {
                       handleAddChange(e);
                       field.onChange(e.target.value);
@@ -445,13 +451,13 @@ const AddPrice = () => {
         </div>
       </div>
       <div className="mt-96 flex space-x-10">
-        <Button
+        {/* <Button
           className="h-44 rounded-lg text-white"
           style={{ backgroundColor: "#D22A8F" }}
           onClick={handleSubmit(onSubmit)}
         >
           Save Info
-        </Button>
+        </Button> */}
         <Button
           className="w-72 h-44 rounded-lg text-white"
           style={{ backgroundColor: "#D22A8F" }}
