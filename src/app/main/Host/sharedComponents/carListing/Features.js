@@ -101,12 +101,12 @@ const Features = () => {
               <FormControl error={!!errors.fuel} required fullWidth>
                 <Select
                   className="mt-6 rounded-8 h-52 w-full"
-                  IconComponent={() => (
-                    <KeyboardArrowDownIcon
-                      className="mr-10"
-                      style={{ color: "rgba(16, 24, 40, 1)" }}
-                    />
-                  )}
+                  // IconComponent={() => (
+                  //   <KeyboardArrowDownIcon
+                  //     className="mr-10"
+                  //     style={{ color: "rgba(16, 24, 40, 1)" }}
+                  //   />
+                  // )}
                   {...field}
                   variant="outlined"
                   fullWidth
@@ -170,12 +170,12 @@ const Features = () => {
               <FormControl error={!!errors.door} required fullWidth>
                 <Select
                   className="mt-6 rounded-8 h-52 w-full"
-                  IconComponent={() => (
-                    <KeyboardArrowDownIcon
-                      className="mr-10"
-                      style={{ color: "rgba(16, 24, 40, 1)" }}
-                    />
-                  )}
+                  // IconComponent={() => (
+                  //   <KeyboardArrowDownIcon
+                  //     className="mr-10"
+                  //     style={{ color: "rgba(16, 24, 40, 1)" }}
+                  //   />
+                  // )}
                   {...field}
                   variant="outlined"
                   fullWidth

@@ -14,14 +14,13 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const CarDetailsCard = ({ carslistingdata }) => {
   const [value, setValue] = React.useState(4);
 
-
   const imageUrl = carslistingdata.image;
 
   return (
     <div className="flex flex-wrap -m-3">
       <div className="w-full  flex flex-col p-3">
         <Card
-          sx={{ maxWidth: 307, height: 387 }}
+          sx={{ maxWidth: 307, height: 395 }}
           className="text-center rounded"
         >
           <CardActionArea component={Link} to="/carddetail">
@@ -36,7 +35,7 @@ const CarDetailsCard = ({ carslistingdata }) => {
           </CardActionArea>
           <CardContent>
             <div className="flex flex-row items-center -mt-31 mb-2">
-              <div className="bg-white py-2 px-4 rounded-sm flex flex-row space-x-6 mt-12">
+              <div className="bg-white py-2  rounded-sm flex flex-row space-x-6 mt-12">
                 <Rating
                   name="simple-controlled"
                   value={carslistingdata.rating}
@@ -61,7 +60,6 @@ const CarDetailsCard = ({ carslistingdata }) => {
                   {...label}
                   icon={<FavoriteBorder />}
                   checkedIcon={<Favorite />}
-
                   sx={{
                     color: "#667085",
                     "&.Mui-checked": {
@@ -71,34 +69,34 @@ const CarDetailsCard = ({ carslistingdata }) => {
                 />
               </div>
             </div>
-            <div className="flex flex-row justify-between">
-              <div className="flex flex-col">
-                <Typography
-                  className="text-base font-semibold"
-                  gutterBottom
-                  variant=""
-                >
-                  {carslistingdata.vehiclename}
-                </Typography>
-                <Typography
-                  className="text-sm font-normal mr-auto mb-12"
-                  variant=""
-                  color="text.secondary"
-                >
-                  {carslistingdata.location}
-                </Typography>
-              </div>
-              <div className="flex flex-col">
-                {/* <MoreHorizIcon className="ml-auto" /> */}
-                {/* <Typography className="text-sm font-normal mt-auto" variant="" color="text.secondary">
+
+            <div className="flex flex-col">
+              <Typography
+                className="text-base font-semibold max-w-128 truncate"
+                gutterBottom
+                variant=""
+              >
+                {carslistingdata.vehiclename}
+              </Typography>
+              <Typography
+                className="text-sm font-normal mr-auto mb-12 max-w-200 truncate"
+                variant=""
+                color="text.secondary"
+              >
+                {carslistingdata.location}
+              </Typography>
+            </div>
+            <div className="flex flex-col">
+              {/* <MoreHorizIcon className="ml-auto" /> */}
+              {/* <Typography className="text-sm font-normal mt-auto" variant="" color="text.secondary">
                                     25 trips
                                 </Typography> */}
-              </div>
             </div>
+
             <Divider className="" />
             <div className="flex">
-              {(carslistingdata.iswithdriver) &&
-                <div >
+              {carslistingdata.iswithdriver && (
+                <div>
                   {/* <Typography className="text-sm font-normal" gutterBottom variant="" color="text.secondary">
                                     Rate per day
                                 </Typography> */}
@@ -110,11 +108,13 @@ const CarDetailsCard = ({ carslistingdata }) => {
                     {/* <span className="text-sm font-normal text-gray-500 underline">PKR 3500 est.total</span> */}
                   </Typography>
                 </div>
-              }
+              )}
               <div className="ml-auto">
                 {/* <Typography className="text-sm font-normal" color="text.secondary">Total earnings</Typography> */}
-                <Typography variant="" className="mt-10 pl-56">
-                  <span className="text-base font-semibold">{carslistingdata.vehicleprice}</span>{" "}
+                <Typography className="pt-10 pl-56">
+                  <span className="text-base font-semibold">
+                    {carslistingdata.vehicleprice}
+                  </span>{" "}
                   <span className="text-sm font-normal text-gray-500">PKR</span>
                 </Typography>
                 {/* {(carslistingdata.iswithdriver)&& */}

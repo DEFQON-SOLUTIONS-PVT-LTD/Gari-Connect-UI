@@ -15,30 +15,32 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
-import moment from 'moment';
-
-
+import moment from "moment";
 
 const SearchBar = () => {
   const [value, setValue] = React.useState(["20,April", "21,May"]);
   // newValue={setValue}
 
-
   return (
     <>
       <div>
-        <ul className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20" style={{ marginLeft:"10%"}}>
+        <ul
+          className="flex flex-col lg:flex-row list-none h-full md:mt-auto mt-20"
+          style={{ marginLeft: "10%" }}
+        >
           <div className=" border rounded-full w-auto md:w-10/12">
             <div className="grid  sm:grid-cols-2 grid-cols-1 gap-4 h-full sm:w-full w-11/12">
               <div className="flex items-center ml-16">
-                <FmdGoodOutlinedIcon />
-                <Typography className="mx-6">Location</Typography>
+                <FmdGoodOutlinedIcon style={{ color: "#98A2B3" }} />
+                <Typography className="mx-6" style={{ color: "#98A2B3" }}>
+                  Location
+                </Typography>
                 <Stack spacing={2}>
                   <Autocomplete
                     freeSolo
                     id="free-solo-2-demo"
                     disableClearable
-                    sx={{ width: 200 }}
+                    sx={{ width: 500 }}
                     options={top100Films.map((option) => option.title)}
                     renderInput={(params) => (
                       <TextField
@@ -46,7 +48,6 @@ const SearchBar = () => {
                         variant="standard"
                         InputProps={{
                           ...params.InputProps,
-
                           disableUnderline: true,
                           type: "search",
                         }}
@@ -57,8 +58,8 @@ const SearchBar = () => {
               </div>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DateRangePicker
-                selected={new Date()}
-                maxDate={moment().toDate()}
+                  selected={new Date()}
+                  maxDate={moment().toDate()}
                   startText=""
                   endText=""
                   value={value}
@@ -84,13 +85,21 @@ const SearchBar = () => {
                               disableUnderline: true,
                               endAdornment: (
                                 <InputAdornment position="end">
-                                  <KeyboardArrowDownIcon/>
+                                  <KeyboardArrowDownIcon />
                                 </InputAdornment>
                               ),
                               startAdornment: (
                                 <InputAdornment position="start">
-                                  <CalendarTodayOutlinedIcon className="ml-5"/>
-                                  <Typography className="ml-5">From</Typography>
+                                  <CalendarTodayOutlinedIcon
+                                    className="ml-5"
+                                    style={{ color: "#98A2B3" }}
+                                  />
+                                  <Typography
+                                    className="ml-5"
+                                    style={{ color: "#98A2B3" }}
+                                  >
+                                    From
+                                  </Typography>
                                 </InputAdornment>
                               ),
                             }}
@@ -114,13 +123,21 @@ const SearchBar = () => {
                               disableUnderline: true,
                               endAdornment: (
                                 <InputAdornment position="end">
-                                  <KeyboardArrowDownIcon/>
+                                  <KeyboardArrowDownIcon />
                                 </InputAdornment>
                               ),
                               startAdornment: (
                                 <InputAdornment position="start">
-                                  <CalendarTodayOutlinedIcon className="ml-8" />
-                                  <Typography className="ml-5">Until</Typography>
+                                  <CalendarTodayOutlinedIcon
+                                    className="ml-8"
+                                    style={{ color: "#98A2B3" }}
+                                  />
+                                  <Typography
+                                    className="ml-5"
+                                    style={{ color: "#98A2B3" }}
+                                  >
+                                    Until
+                                  </Typography>
                                 </InputAdornment>
                               ),
                             }}
@@ -142,7 +159,6 @@ const SearchBar = () => {
                     </React.Fragment>
                   )}
                 />
-                
               </LocalizationProvider>
             </div>
           </div>
