@@ -14,18 +14,20 @@ const AddImages = () => {
 
   const [images, setImages] = React.useState([]);
   const maxNumber = 5;
-  const onChange = (imageList, addUpdateIndex) => {
+  const onChange = (imageList, onImageUpload, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
 
     setImages(imageList);
 
-    dispatch(
-      addImages({
-        mainimage: imageList[imageList.length - 1].data_url,
-        setCover: "false",
-      })
-    );
+    if (onImageUpload) {
+      dispatch(
+        addImages({
+          mainimage: imageList[imageList.length - 1].data_url,
+          setCover: "false",
+        })
+      );
+    }
   };
   console.log(images);
 
