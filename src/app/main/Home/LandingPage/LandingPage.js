@@ -25,12 +25,12 @@ function LandingPage() {
       <div>
         <div className="grid sm:grid-cols-3 grid-cols-1 sm:ml-76 ml-36">
           <div className="sm:col-span-1 mt-200">
-            <Typography className="text-72 font-600 text-black">
+            <Typography style={{color:"#000000"}} className="text-72 font-600">
               Easy savari,<br></br>manzil asaan.
             </Typography>
             <Typography
-              className="font-normal text-lg"
-              style={{ color: "#667085" }}
+              className="font-500 text-xl tracking-normal"
+              style={{ color: "#667085"}}
             >
               We connect people with the vehicles they need and love – 24 hours
               a day, seven days a week – via any connected device at guaranteed
@@ -41,7 +41,7 @@ function LandingPage() {
             className="sm:col-span-2 sm:ml-360"
             style={{
               backgroundImage: "url('/assets/images/backgrounds/bghome.jpg')",
-              backgroundRepeat: "no-repeat",
+              backgroundRepeat: "repeat-y",
             }}
           >
             <div>
@@ -54,7 +54,7 @@ function LandingPage() {
             </div>
           </div>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-60">
           <SearchBar />
         </div>
         <div className="sm:flex sm:ml-76 ml-36 mt-200">

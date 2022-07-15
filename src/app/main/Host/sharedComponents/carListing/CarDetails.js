@@ -59,7 +59,7 @@ const CarDetails = () => {
     watch,
     formState,
     getValues,
-    setValue
+    setValue,
   } = useForm({
     mode: "all",
     // resolver: yupResolver(schema),
@@ -67,28 +67,28 @@ const CarDetails = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
-  const carData = useSelector((state) => state.carDetail);
-  console.log(carData.data.makeId);
-  console.log(carData.data.categoryId);
-  console.log(carData.data.modelId);
-  console.log(carData.data.plate_number);
-  console.log(carData.data.chassis_number);
-  console.log(carData.data.transmissionId);
-  console.log(carData.data.vehicle_type_id);
-  console.log(carData.data.eco_friendly_Id);
-  console.log(carData.data.description);
+  // const carData = useSelector((state) => state.carDetail);
+  // console.log(carData.data.makeId);
+  // console.log(carData.data.categoryId);
+  // console.log(carData.data.modelId);
+  // console.log(carData.data.plate_number);
+  // console.log(carData.data.chassis_number);
+  // console.log(carData.data.transmissionId);
+  // console.log(carData.data.vehicle_type_id);
+  // console.log(carData.data.eco_friendly_Id);
+  // console.log(carData.data.description);
 
-  useEffect(() => {
-    setValue('price', carData.data.makeId)
-    setValue('price', carData.data.categoryId)
-    setValue('price', carData.data.modelId)
-    setValue('plate', carData.data.plate_number)
-    setValue('chassis', carData.data.chassis_number)
-    setValue('price', carData.data.transmissionId)
-    setValue('price', carData.data.vehicle_type_id)
-    setValue('price', carData.data.eco_friendly_Id)
-    setValue('description', carData.data.description)
-  }, [])
+  // useEffect(() => {
+  //   setValue('price', carData.data.makeId)
+  //   setValue('price', carData.data.categoryId)
+  //   setValue('price', carData.data.modelId)
+  //   setValue('plate', carData.data.plate_number)
+  //   setValue('chassis', carData.data.chassis_number)
+  //   setValue('price', carData.data.transmissionId)
+  //   setValue('price', carData.data.vehicle_type_id)
+  //   setValue('price', carData.data.eco_friendly_Id)
+  //   setValue('description', carData.data.description)
+  // }, [])
 
 
   const onSubmit = (data) => {
@@ -125,7 +125,8 @@ const CarDetails = () => {
 
     axios
       .get(
-        "https://api.gariconnect.com:8080/api/model/getbymakeId/" + makeid.makeId
+        "https://api.gariconnect.com:8080/api/model/getbymakeId/" +
+        makeid.makeId
       )
       .then((res) => {
         res.data.result.map((item) => {
@@ -155,7 +156,11 @@ const CarDetails = () => {
               onChange={handleMakeChange}
               render={({ field: { onChange, value, onBlur, ref } }) => (
                 <Autocomplete
-                  popupIcon={<KeyboardArrowDownIcon />}
+                  popupIcon={
+                    <KeyboardArrowDownIcon
+                      style={{ color: "rgba(16, 24, 40, 1)" }}
+                    />
+                  }
                   className="mt-6"
                   disablePortal
                   id="combo-box-demo"
@@ -203,7 +208,11 @@ const CarDetails = () => {
               defaultValue={[]}
               render={({ field: { onChange, value, onBlur, ref } }) => (
                 <Autocomplete
-                  popupIcon={<KeyboardArrowDownIcon />}
+                  popupIcon={
+                    <KeyboardArrowDownIcon
+                      style={{ color: "rgba(16, 24, 40, 1)" }}
+                    />
+                  }
                   className="mt-6"
                   disablePortal
                   id="combo-box-demo"
@@ -251,7 +260,11 @@ const CarDetails = () => {
               defaultValue={[]}
               render={({ field: { onChange, value, onBlur, ref } }) => (
                 <Autocomplete
-                  popupIcon={<KeyboardArrowDownIcon />}
+                  popupIcon={
+                    <KeyboardArrowDownIcon
+                      style={{ color: "rgba(16, 24, 40, 1)" }}
+                    />
+                  }
                   className="mt-6"
                   disablePortal
                   id="combo-box-demo"
@@ -361,12 +374,12 @@ const CarDetails = () => {
                 <FormControl error={!!errors.transmission} required fullWidth>
                   <Select
                     className="mt-6 rounded-8 h-52 w-full"
-                    IconComponent={() => (
-                      <KeyboardArrowDownIcon
-                        className="mr-10"
-                        style={{ color: "rgba(16, 24, 40, 1)" }}
-                      />
-                    )}
+                    // IconComponent={() => (
+                    //   <KeyboardArrowDownIcon
+                    //     className="mr-10"
+                    //     style={{ color: "rgba(16, 24, 40, 1)" }}
+                    //   />
+                    // )}
                     {...field}
                     variant="outlined"
                     fullWidth
@@ -398,13 +411,13 @@ const CarDetails = () => {
               render={({ field }) => (
                 <FormControl error={!!errors.type} required fullWidth>
                   <Select
-                    className="mt-6 rounded-8 h-52 w-full"
-                    IconComponent={() => (
-                      <KeyboardArrowDownIcon
-                        className="mr-10"
-                        style={{ color: "rgba(16, 24, 40, 1)" }}
-                      />
-                    )}
+                    className="mt-6 rounded-8 h-52"
+                    // IconComponent={() => (
+                    //   <KeyboardArrowDownIcon
+                    //     className="mr-10"
+                    //     style={{ color: "rgba(16, 24, 40, 1)" }}
+                    //   />
+                    // )}
                     {...field}
                     variant="outlined"
                     fullWidth
@@ -434,15 +447,16 @@ const CarDetails = () => {
                 <FormControl error={!!errors.eco} required fullWidth>
                   <Select
                     className="mt-6 rounded-8 h-52 w-full"
-                    IconComponent={() => (
-                      <KeyboardArrowDownIcon
-                        className="mr-10"
-                        style={{ color: "rgba(16, 24, 40, 1)" }}
-                      />
-                    )}
+                    // IconComponent={() => (
+                    //   <KeyboardArrowDownIcon
+                    //     className="mr-10"
+                    //     style={{ color: "rgba(16, 24, 40, 1)" }}
+                    //   />
+                    // )}
                     {...field}
                     variant="outlined"
                     fullWidth
+
                   >
                     <MenuItem value="1">Electric</MenuItem>
                     <MenuItem value="2">Manual</MenuItem>

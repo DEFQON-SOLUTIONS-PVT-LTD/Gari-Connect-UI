@@ -1,86 +1,86 @@
-import Fab from '@mui/material/Fab';
-import { styled } from '@mui/material/styles';
-import Icon from '@mui/material/Icon';
-import Typography from '@mui/material/Typography';
-import withReducer from 'app/store/withReducer';
-import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import CalendarHeader from './CalendarHeader';
-import EventDialog from './EventDialog';
-import reducer from './store';
+import Fab from "@mui/material/Fab";
+import { styled } from "@mui/material/styles";
+import Icon from "@mui/material/Icon";
+import Typography from "@mui/material/Typography";
+import withReducer from "app/store/withReducer";
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import CalendarHeader from "./CalendarHeader";
+import EventDialog from "./EventDialog";
+import reducer from "./store";
 import {
   selectEvents,
   openNewEventDialog,
   openEditEventDialog,
   updateEvent,
   getEvents,
-} from './store/eventsSlice';
+} from "./store/eventsSlice";
 
-const Root = styled('div')(({ theme }) => ({
-  '& a': {
+const Root = styled("div")(({ theme }) => ({
+  "& a": {
     color: `${theme.palette.text.primary}!important`,
-    textDecoration: 'none!important',
+    textDecoration: "none!important",
   },
-  '&  .fc-media-screen': {
-    minHeight: '100%',
+  "&  .fc-media-screen": {
+    minHeight: "100%",
   },
-  '& .fc-scrollgrid, & .fc-theme-standard td, & .fc-theme-standard th': {
+  "& .fc-scrollgrid, & .fc-theme-standard td, & .fc-theme-standard th": {
     borderColor: `${theme.palette.divider}!important`,
   },
-  '&  .fc-scrollgrid-section > td': {
+  "&  .fc-scrollgrid-section > td": {
     border: 0,
   },
-  '& .fc-daygrid-day': {
-    '&:last-child': {
+  "& .fc-daygrid-day": {
+    "&:last-child": {
       borderRight: 0,
     },
   },
-  '& .fc-col-header-cell': {
-    borderWidth: '0 0 1px 0',
-    padding: '16px 0',
-    backgroundColor: '#F9FAFB',
-    '& .fc-col-header-cell-cushion': {
+  "& .fc-col-header-cell": {
+    borderWidth: "0 0 1px 0",
+    padding: "16px 0",
+    backgroundColor: "#F9FAFB",
+    "& .fc-col-header-cell-cushion": {
       color: theme.palette.text.secondary,
       fontWeight: 500,
     },
   },
-  '& .fc-view ': {
-    borderBottomLeftRadius: '8px',
-    borderBottomRightRadius: '8px',
-    overflow: 'hidden',
+  "& .fc-view ": {
+    borderBottomLeftRadius: "8px",
+    borderBottomRightRadius: "8px",
+    overflow: "hidden",
     border: `1px solid ${theme.palette.divider}`,
-    '& > .fc-scrollgrid': {
+    "& > .fc-scrollgrid": {
       border: 0,
     },
   },
-  '& .fc-daygrid-day-number': {
+  "& .fc-daygrid-day-number": {
     color: theme.palette.text.secondary,
     fontWeight: 500,
-    fontSize: 20
+    fontSize: 20,
   },
-  '& .fc-event': {
+  "& .fc-event": {
     // backgroundColor: `${theme.palette.primary.dark}!important`,
-    backgroundColor: '#FBECF5',
+    backgroundColor: "#FBECF5",
     // color: `${theme.palette.primary.contrastText}!important`,
-    borderTop: '3px solid #D22A8F',
+    borderTop: "3px solid #D22A8F",
     borderBottom: 0,
     borderLeft: 0,
     borderRight: 0,
-    height: '48px',
-    padding: '0 6px',
+    height: "48px",
+    padding: "0 6px",
   },
-  '& .fc .fc-daygrid-day.fc-day-today': {
-    backgroundColor: '#fff',
-    backgroundColor: 'var(--fc-today-bg-color, #fff)',
+  "& .fc .fc-daygrid-day.fc-day-today": {
+    backgroundColor: "#fff",
+    backgroundColor: "var(--fc-today-bg-color, #fff)",
   },
-  '& .fc-h-event .fc-event-main': {
-    color: '#000',
-    color: 'var(--fc-event-text-color, #000)',
+  "& .fc-h-event .fc-event-main": {
+    color: "#000",
+    color: "var(--fc-event-text-color, #000)",
   },
 }));
 
@@ -108,7 +108,8 @@ function CalendarApp(props) {
   };
 
   const handleEventDrop = (eventDropInfo) => {
-    const { id, title, allDay, start, end, extendedProps } = eventDropInfo.event;
+    const { id, title, allDay, start, end, extendedProps } =
+      eventDropInfo.event;
     dispatch(
       updateEvent({
         id,
@@ -138,11 +139,11 @@ function CalendarApp(props) {
     setCurrentDate(rangeInfo);
   };
 
-  const handleEventAdd = (addInfo) => { };
+  const handleEventAdd = (addInfo) => {};
 
-  const handleEventChange = (changeInfo) => { };
+  const handleEventChange = (changeInfo) => {};
 
-  const handleEventRemove = (removeInfo) => { };
+  const handleEventRemove = (removeInfo) => {};
 
   return (
     <Root className="flex flex-col flex-auto relative bg-white">
@@ -185,10 +186,14 @@ function CalendarApp(props) {
 function renderEventContent(eventInfo) {
   return (
     <div className="flex items-center">
-      <Typography className="text-12 font-semibold">{eventInfo.timeText}</Typography>
-      <Typography className="text-12 px-4 truncate">{eventInfo.event.title}</Typography>
+      <Typography className="text-12 font-semibold">
+        {eventInfo.timeText}
+      </Typography>
+      <Typography className="text-12 px-4 truncate">
+        {eventInfo.event.title}
+      </Typography>
     </div>
   );
 }
 
-export default withReducer('calendarApp', reducer)(CalendarApp);
+export default withReducer("calendarApp", reducer)(CalendarApp);

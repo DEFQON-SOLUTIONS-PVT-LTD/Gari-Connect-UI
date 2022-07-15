@@ -30,7 +30,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Controller, useForm } from "react-hook-form";
 import { Provider } from "react-redux";
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
 import store from "./store/index";
 
 function getSteps() {
@@ -212,7 +212,6 @@ const ColorlibStepIconRoot = styled("div")(({ theme, ownerState }) => ({
 }));
 
 function ColorlibStepIcon(props) {
-
   const history = useHistory();
   const { active, completed, className } = props;
 
@@ -294,9 +293,9 @@ export default function ListSteppers() {
           </Typography>
         </div>
       </div>
-      <Stack sx={{ maxWidth: "1700px" }} style={{ overflow: "scroll" }}>
+      <Stack style={{ overflow: "scroll" }}>
         <Stepper
-          className="mt-40"
+          className="sm:mx-auto sm:w-3/5 w-1/4 mt-40"
           alternativeLabel
           activeStep={activeStep}
           connector={<ColorlibConnector />}
@@ -348,11 +347,7 @@ export default function ListSteppers() {
                         className="w-72 h-44 rounded-lg text-white"
                         style={{ backgroundColor: "#D22A8F" }}
                       >
-                        {
-                          activeStep === steps.length - 1
-                            ? 'Finish'
-                            : 'Next'
-                        }
+                        {activeStep === steps.length - 1 ? "Finish" : "Next"}
                       </Button>
                       <Dialog
                         open={open}
@@ -398,7 +393,10 @@ export default function ListSteppers() {
                           >
                             Go to dashboard
                           </Button>
-                          <a style={{ textDecoration: 'none' }} href="/ListStepper">
+                          <a
+                            style={{ textDecoration: "none" }}
+                            href="/ListStepper"
+                          >
                             <Button
                               onClick={handleClose}
                               className="rounded-lg"
