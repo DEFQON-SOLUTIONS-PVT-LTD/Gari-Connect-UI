@@ -67,28 +67,29 @@ const CarDetails = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
-  const carData = useSelector((state) => state.carDetail);
-  console.log(carData.data.makeId);
-  console.log(carData.data.categoryId);
-  console.log(carData.data.modelId);
-  console.log(carData.data.plate_number);
-  console.log(carData.data.chassis_number);
-  console.log(carData.data.transmissionId);
-  console.log(carData.data.vehicle_type_id);
-  console.log(carData.data.eco_friendly_Id);
-  console.log(carData.data.description);
+  // const carData = useSelector((state) => state.carDetail);
+  // console.log(carData.data.makeId);
+  // console.log(carData.data.categoryId);
+  // console.log(carData.data.modelId);
+  // console.log(carData.data.plate_number);
+  // console.log(carData.data.chassis_number);
+  // console.log(carData.data.transmissionId);
+  // console.log(carData.data.vehicle_type_id);
+  // console.log(carData.data.eco_friendly_Id);
+  // console.log(carData.data.description);
 
-  useEffect(() => {
-    setValue("price", carData.data.makeId);
-    setValue("price", carData.data.categoryId);
-    setValue("price", carData.data.modelId);
-    setValue("plate", carData.data.plate_number);
-    setValue("chassis", carData.data.chassis_number);
-    setValue("price", carData.data.transmissionId);
-    setValue("price", carData.data.vehicle_type_id);
-    setValue("price", carData.data.eco_friendly_Id);
-    setValue("description", carData.data.description);
-  }, []);
+  // useEffect(() => {
+  //   setValue('price', carData.data.makeId)
+  //   setValue('price', carData.data.categoryId)
+  //   setValue('price', carData.data.modelId)
+  //   setValue('plate', carData.data.plate_number)
+  //   setValue('chassis', carData.data.chassis_number)
+  //   setValue('price', carData.data.transmissionId)
+  //   setValue('price', carData.data.vehicle_type_id)
+  //   setValue('price', carData.data.eco_friendly_Id)
+  //   setValue('description', carData.data.description)
+  // }, [])
+
 
   const onSubmit = (data) => {
     console.log("onsubmit chal gia", data);
@@ -125,7 +126,7 @@ const CarDetails = () => {
     axios
       .get(
         "https://api.gariconnect.com:8080/api/model/getbymakeId/" +
-          makeid.makeId
+        makeid.makeId
       )
       .then((res) => {
         res.data.result.map((item) => {
@@ -455,7 +456,7 @@ const CarDetails = () => {
                     {...field}
                     variant="outlined"
                     fullWidth
-                    
+
                   >
                     <MenuItem value="1">Electric</MenuItem>
                     <MenuItem value="2">Manual</MenuItem>

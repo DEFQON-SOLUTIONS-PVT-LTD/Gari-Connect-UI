@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import _ from "@lodash";
 import FacebookLogin from "react-facebook-login";
+import jwtDecode from 'jwt-decode';
 
 const schema = yup.object().shape({
   firstname: yup.string().required("You must enter your First Name."),
@@ -58,6 +59,7 @@ const defaultValues = {
 
 function Signup() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const responseFacebook = (response) => {
     console.log(response);
@@ -70,18 +72,24 @@ function Signup() {
   function handleCallbackResponse(response) {
     console.log(response);
 
-    const decodeToken = jwt_decode(response.credential);
+    const userObj = jwtDecode(response.credential);
 
-    const userInfo = {
-      firstname: "numsdan",
-      lastname: "tareiq",
-      phoneno: "+923184353073",
-      email: "dgfni@gamil.com",
-      address: "195-a,mfdgiry",
-      cityId: "3",
-      gender: "male",
-      photo: "./app/files/user/profile/1655186895385-profile.png",
-    };
+    console.log(userObj)
+
+    if (userObj !== null) {
+      history.push('/Home/Landingpage')
+    }
+
+    // const userInfo = {
+    //   firstname: "numsdan",
+    //   lastname: "tareiq",
+    //   phoneno: "+923184353073",
+    //   email: "dgfni@gamil.com",
+    //   address: "195-a,mfdgiry",
+    //   cityId: "3",
+    //   gender: "male",
+    //   photo: "./app/files/user/profile/1655186895385-profile.png",
+    // };
 
     // const userInfo = {
     //   firtname: decodeToken.given_name,
@@ -96,9 +104,9 @@ function Signup() {
     //   // isGoogleUser: 1,
     //   // isFacebook: 0,
     // };
-    dispatch(signinwithgoogle(userInfo));
+    // dispatch(signinwithgoogle(userInfo));
 
-    console.log(userInfo);
+    // console.log(userInfo);
   }
 
   useEffect(() => {
@@ -106,7 +114,7 @@ function Signup() {
     // debugger;
     google.accounts.id.initialize({
       client_id:
-        "494582675629-1ek72ovnqqtj1tchln5c9qtkdksnsaqh.apps.googleusercontent.com",
+        "48820445384-p5k79rpbr9j905urkpm0bhdu6trjj25u.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
 
@@ -123,7 +131,6 @@ function Signup() {
     google.accounts.id.prompt();
   }, []);
 
-  const history = useHistory();
   // const dispatch = useDispatch();
   const authRegister = useSelector(({ auth }) => auth.register);
 
