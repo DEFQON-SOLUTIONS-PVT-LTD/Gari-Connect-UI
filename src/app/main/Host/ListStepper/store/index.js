@@ -6,15 +6,14 @@ import guidelines from "./guidelinesSice";
 import setAvailability from "./setAvailabilitySlice";
 import vehicleimages from "./addImageSlices";
 import setPrice from "./setPricesSlice";
+import { combineReducers } from "@reduxjs/toolkit";
 
-export default configureStore({
-  reducer: {
-    carDetail,
-    location,
-    features,
-    guidelines,
-    setAvailability,
-    vehicleimages,
-    setPrice,
-  },
+export default combineReducers({
+  carDetail,
+  location,
+  features,
+  guidelines,
+  setAvailability,
+  vehicleimages,
+  setPrice,
 });

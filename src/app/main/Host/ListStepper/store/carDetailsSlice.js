@@ -31,13 +31,13 @@ const carDetailsSlice = createSlice({
 
   reducers: {
     addMakeId: (state, action) => {
-      state.data.make = action.payload;
+      state.data.makeId = action.payload;
     },
     addCategoryId: (state, action) => {
       state.data.categoryId = action.payload;
     },
     addModelId: (state, action) => {
-      state.modelId = action.payload;
+      state.data.modelId = action.payload;
     },
     addChassisNumber: (state, action) => {
       state.data.chassis_number = action.payload;

@@ -10,7 +10,7 @@ import {
 
 const AddImages = () => {
   const dispatch = useDispatch();
-  const imageFiLe = useSelector((state) => state);
+  const imageFiLe = useSelector((state) => state.ListStepperReducer);
 
   const [images, setImages] = React.useState([]);
   const maxNumber = 5;
@@ -32,7 +32,6 @@ const AddImages = () => {
   console.log(images);
 
   console.log(imageFiLe.vehicleimages.images);
-
 
   // useEffect(() => {
   //   setValue(images, location.address)
@@ -110,12 +109,12 @@ const AddImages = () => {
       </ImageUploading>
 
       <div>
-        <Button
+        {/* <Button
           className="h-44 rounded-lg text-white mt-40"
           style={{ backgroundColor: "#D22A8F" }}
         >
           Save Info
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

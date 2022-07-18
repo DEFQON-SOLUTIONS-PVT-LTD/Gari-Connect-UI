@@ -89,7 +89,7 @@ function BpRadio(props) {
 }
 const AddPrice = () => {
   const dispatch = useDispatch();
-  const stepperData = useSelector((state) => state);
+  const stepperData = useSelector((state) => state.ListStepperReducer);
 
   const [priceVal, setPriceVal] = useState(0);
   const [driverVal, setDriverVal] = useState(0);
@@ -113,7 +113,6 @@ const AddPrice = () => {
     });
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
-
 
   // const onSubmit = (data) => {
   //   console.log("adnan", data);
@@ -214,22 +213,27 @@ const AddPrice = () => {
 
   const handleChange = (val) => {
     setPriceVal(val.target.value);
-    dispatch(addPricePerDay(val.target.value))
-  }
+    dispatch(addPricePerDay(val.target.value));
+  };
 
   const handleDriverChange = (val) => {
     setDriverVal(val.target.value);
-    dispatch(addPrice_inc_driver(val.target.value))
-  }
+    dispatch(addPrice_inc_driver(val.target.value));
+  };
 
   const handleAddChange = (val) => {
     setAddVal(val.target.value);
     dispatch(addAdditional_Price(val.target.value));
-  }
+  };
 
   useEffect(() => {
     setPriceData(parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal));
-    setCutPrice((((parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal)) / 100) * 90).toFixed(1));
+    setCutPrice(
+      (
+        ((parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal)) / 100) *
+        90
+      ).toFixed(1)
+    );
   }, [cutprice, priceData, priceVal, driverVal, addVal]);
 
   return (
@@ -458,13 +462,13 @@ const AddPrice = () => {
         >
           Save Info
         </Button> */}
-        <Button
+        {/* <Button
           className="w-72 h-44 rounded-lg text-white"
           style={{ backgroundColor: "#D22A8F" }}
           onClick={handleSubmit(onfinalSubmit)}
         >
           Save
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

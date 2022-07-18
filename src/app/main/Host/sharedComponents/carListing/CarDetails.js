@@ -14,7 +14,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
-import { addCar } from "./../../ListStepper/store/carDetailsSlice";
+import {
+  addCar,
+  addCategoryId,
+  addDescription,
+  addChassisNumber,
+  addEcoFriendlyId,
+  addMakeId,
+  addModelId,
+  addPlateNumber,
+  addTransmissionId,
+  addVehicleTypeId,
+} from "./../../ListStepper/store/carDetailsSlice";
 
 const schema = yup.object().shape({
   make: yup.array().min(1, "Please select a make."),
@@ -40,6 +51,9 @@ var allCategoriesOptions = [
 ];
 
 const CarDetails = () => {
+  const carKaState = useSelector((state) => state);
+  // debugger;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -90,7 +104,6 @@ const CarDetails = () => {
   //   setValue('description', carData.data.description)
   // }, [])
 
-
   const onSubmit = (data) => {
     console.log("onsubmit chal gia", data);
     // console.log(getValues("make"));
@@ -126,7 +139,7 @@ const CarDetails = () => {
     axios
       .get(
         "https://api.gariconnect.com:8080/api/model/getbymakeId/" +
-        makeid.makeId
+          makeid.makeId
       )
       .then((res) => {
         res.data.result.map((item) => {
@@ -167,9 +180,11 @@ const CarDetails = () => {
                   value={value}
                   options={allMakesOptions}
                   onChange={(event, newValue) => {
-                    console.log("chal gia onChange", event);
+                    console.log("chal gia onChange", newValue);
+
                     onChange(newValue);
                     getModelByMakeId();
+                    dispatch(addMakeId(newValue.makeId));
                   }}
                   sx={{ height: 44 }}
                   renderInput={(params) => (
@@ -219,6 +234,7 @@ const CarDetails = () => {
                   options={allCategoriesOptions}
                   value={value}
                   onChange={(event, newValue) => {
+                    dispatch(addCategoryId(newValue.categoryId));
                     onChange(newValue);
                   }}
                   sx={{ height: 44 }}
@@ -271,6 +287,7 @@ const CarDetails = () => {
                   options={allModelOptions}
                   value={value}
                   onChange={(event, newValue) => {
+                    dispatch(addModelId(newValue.modelId));
                     onChange(newValue);
                   }}
                   sx={{ height: 44 }}
@@ -316,6 +333,10 @@ const CarDetails = () => {
                   required
                   {...field}
                   helperText={errors?.chassis?.message}
+                  onChange={(e) => {
+                    dispatch(addChassisNumber(e.target.value));
+                    field.onChange(e.target.value);
+                  }}
                   sx={{
                     "& fieldset": {
                       borderRadius: "8px",
@@ -349,6 +370,10 @@ const CarDetails = () => {
                   required
                   {...field}
                   helperText={errors?.plate?.message}
+                  onChange={(e) => {
+                    dispatch(addPlateNumber(e.target.value));
+                    field.onChange(e.target.value);
+                  }}
                   sx={{
                     "& fieldset": {
                       borderRadius: "8px",
@@ -382,6 +407,10 @@ const CarDetails = () => {
                     // )}
                     {...field}
                     variant="outlined"
+                    onChange={(e) => {
+                      dispatch(addTransmissionId(e.target.value));
+                      field.onChange(e.target.value);
+                    }}
                     fullWidth
                   >
                     <MenuItem value="1">Auto</MenuItem>
@@ -420,6 +449,10 @@ const CarDetails = () => {
                     // )}
                     {...field}
                     variant="outlined"
+                    onChange={(e) => {
+                      dispatch(addVehicleTypeId(e.target.value));
+                      field.onChange(e.target.value);
+                    }}
                     fullWidth
                   >
                     <MenuItem value="1">Sedan </MenuItem>
@@ -455,8 +488,11 @@ const CarDetails = () => {
                     // )}
                     {...field}
                     variant="outlined"
+                    onChange={(e) => {
+                      dispatch(addEcoFriendlyId(e.target.value));
+                      field.onChange(e.target.value);
+                    }}
                     fullWidth
-
                   >
                     <MenuItem value="1">Electric</MenuItem>
                     <MenuItem value="2">Manual</MenuItem>
@@ -493,6 +529,10 @@ const CarDetails = () => {
                   error={!!errors.description}
                   required
                   helperText={errors?.description?.message}
+                  onChange={(e) => {
+                    dispatch(addDescription(e.target.value));
+                    field.onChange(e.target.value);
+                  }}
                   style={{
                     marginTop: "6px",
                     height: "44px",
@@ -510,13 +550,13 @@ const CarDetails = () => {
         </div>
       </div>
       <div className="mt-96">
-        <Button
+        {/* <Button
           className="h-44 rounded-lg text-white"
           style={{ backgroundColor: "#D22A8F" }}
           onClick={handleSubmit(onSubmit)}
         >
           Save Info
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

@@ -29,9 +29,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Controller, useForm } from "react-hook-form";
-import { Provider } from "react-redux";
+import { Provider, useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import store from "./store/index";
+import axios from "axios";
 
 function getSteps() {
   return [
@@ -58,9 +59,9 @@ function getStepContent(steps) {
           >
             Car details
           </Typography>
-          <Provider store={store}>
-            <Cardetail />
-          </Provider>
+          {/* <Provider store={store}> */}
+          <Cardetail />
+          {/* </Provider> */}
         </div>
       );
     case 1:
@@ -74,9 +75,9 @@ function getStepContent(steps) {
           >
             Car location
           </Typography>
-          <Provider store={store}>
-            <CarLocation />
-          </Provider>
+          {/* <Provider store={store}> */}
+          <CarLocation />
+          {/* </Provider> */}
         </div>
       );
     case 2:
@@ -90,9 +91,9 @@ function getStepContent(steps) {
           >
             Features
           </Typography>{" "}
-          <Provider store={store}>
-            <Features />
-          </Provider>
+          {/* <Provider store={store}> */}
+          <Features />
+          {/* </Provider> */}
         </div>
       );
     case 3:
@@ -106,9 +107,9 @@ function getStepContent(steps) {
           >
             Guidelines
           </Typography>
-          <Provider store={store}>
-            <Guidelines />
-          </Provider>
+          {/* <Provider store={store}> */}
+          <Guidelines />
+          {/* </Provider> */}
         </div>
       );
     case 4:
@@ -122,9 +123,9 @@ function getStepContent(steps) {
           >
             Set availability
           </Typography>
-          <Provider store={store}>
-            <Availability />
-          </Provider>
+          {/* <Provider store={store}> */}
+          <Availability />
+          {/* </Provider> */}
         </div>
       );
     case 5:
@@ -138,9 +139,9 @@ function getStepContent(steps) {
           >
             Add image
           </Typography>
-          <Provider store={store}>
-            <AddImages />
-          </Provider>
+          {/* <Provider store={store}> */}
+          <AddImages />
+          {/* </Provider> */}
         </div>
       );
     case 6:
@@ -154,9 +155,9 @@ function getStepContent(steps) {
           >
             Add price
           </Typography>
-          <Provider store={store}>
-            <AddPrice />
-          </Provider>
+          {/* <Provider store={store}> */}
+          <AddPrice />
+          {/* </Provider> */}
         </div>
       );
   }
@@ -246,6 +247,90 @@ ColorlibStepIcon.propTypes = {
 };
 
 export default function ListSteppers() {
+  const carKaState = useSelector((state) => state);
+  // debugger;
+  const stepperData = useSelector((state) => state.ListStepperReducer);
+  const onfinalSubmit = () => {
+    const finalFeatureList = [];
+    Object.keys(stepperData.guidelines.guidelines).map((key, index) => {
+      if (stepperData.features.featuresList[key].availability == true)
+        finalFeatureList.push({
+          featureId: stepperData.features.featuresList[key].id,
+        });
+    });
+
+    const finalGuidelines = [];
+    Object.keys(stepperData.guidelines.guidelines).map((key, index) => {
+      if (stepperData.guidelines.guidelines[key].availability == true)
+        finalGuidelines.push({
+          guidelineId: stepperData.guidelines.guidelines[key].id,
+        });
+    });
+
+    const finalDayIds = [];
+
+    Object.keys(stepperData.setAvailability.days).map((key, index) => {
+      if (stepperData.setAvailability.days[key].availability == true)
+        finalDayIds.push({
+          dayId: stepperData.setAvailability.days[key].dayId,
+        });
+    });
+
+    const finalSubmit = {
+      carDetail: {
+        modelId: stepperData.carDetail.data.modelId.toString(),
+        categoryId: stepperData.carDetail.data.categoryId,
+        chassis_number: stepperData.carDetail.data.chassis_number,
+        plate_number: stepperData.carDetail.data.plate_number,
+        transmissionId: stepperData.carDetail.data.transmissionId,
+        eco_friendly_Id: stepperData.carDetail.data.eco_friendly_Id,
+        description: stepperData.carDetail.data.description,
+        vehicle_type_id: stepperData.carDetail.data.vehicle_type_id,
+      },
+      location: {
+        latitude: stepperData.location.latitude,
+        longitude: stepperData.location.longitude,
+        address: stepperData.location.address,
+      },
+      features: {
+        mandatoryFeatures: {
+          fueltype: stepperData.features.mandatoryFeatures.fueltype,
+          kmpl: stepperData.features.mandatoryFeatures.kmpl,
+          doors: stepperData.features.mandatoryFeatures.doors,
+          seats: stepperData.features.mandatoryFeatures.seats,
+        },
+        featuresList: finalFeatureList,
+      },
+      guidelines: finalGuidelines,
+      setAvailability: {
+        days: finalDayIds,
+      },
+      vehicleimages: {
+        images: stepperData.vehicleimages.images,
+      },
+      setPrice: {
+        price: stepperData.setPrice.pricePerDay,
+        price_inc_driver: stepperData.setPrice.price_inc_driver,
+        with_driver: stepperData.setPrice.with_driver,
+        pickAndDrop: stepperData.setPrice.pickAndDrop,
+        additional_Price: stepperData.setPrice.additional_Price,
+        created_by: "1",
+      },
+    };
+
+    console.log(finalSubmit);
+
+    axios
+      .post("https://api.gariconnect.com:8080/api/vehicle/create", finalSubmit)
+      .then((res) => {
+        console.log(res);
+
+        if (res.status == 200) {
+          setOpen(true);
+        }
+      });
+  };
+
   const { handleSubmit, register, reset, control, watch, formState } = useForm({
     mode: "all",
   });
@@ -265,6 +350,8 @@ export default function ListSteppers() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
+    onfinalSubmit();
+
     setOpen(true);
   };
 
@@ -273,6 +360,7 @@ export default function ListSteppers() {
   };
 
   return (
+    // <Provider store={store}>
     <div>
       <Hostheader />
       <div className="flex justify-center">
@@ -341,7 +429,7 @@ export default function ListSteppers() {
                         // disabled={_.isEmpty(dirtyFields) || !isValid}
                         onClick={
                           activeStep === steps.length - 1
-                            ? handleClickOpen
+                            ? onfinalSubmit
                             : handleNext
                         }
                         className="w-72 h-44 rounded-lg text-white"
@@ -425,5 +513,6 @@ export default function ListSteppers() {
         <Footer />
       </div>
     </div>
+    // </Provider>
   );
 }

@@ -72,6 +72,7 @@ const featuresSlice = createSlice({
       state.featuresList = action.payload;
     },
     addFeulType: (state, action) => {
+      // debugger;
       state.mandatoryFeatures.fueltype = action.payload;
     },
     addKmpl: (state, action) => {

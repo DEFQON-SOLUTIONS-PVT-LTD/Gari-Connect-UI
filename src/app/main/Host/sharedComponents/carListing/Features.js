@@ -19,7 +19,6 @@ import {
   addSeats,
 } from "./../../ListStepper/store/featuresSlice";
 
-
 const schema = yup.object().shape({
   door: yup.string().required("Please select the doors"),
   fuel: yup.string().required("You must select fuel type"),
@@ -30,23 +29,28 @@ const schema = yup.object().shape({
 const Features = () => {
   const dispatch = useDispatch();
 
-  const featuresData = useSelector((state) => state.features.mandatoryFeatures);
+  const featuresData = useSelector(
+    (state) => state.ListStepperReducer.features.mandatoryFeatures
+  );
 
-  const { handleSubmit, register, reset, control, watch, formState, setValue } = useForm({
-    mode: "all",
-    resolver: yupResolver(schema),
-  });
+  const { handleSubmit, register, reset, control, watch, formState, setValue } =
+    useForm({
+      mode: "all",
+      resolver: yupResolver(schema),
+    });
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
   useEffect(() => {
-    setValue('door', featuresData.doors)
-    setValue('fuel', featuresData.fueltype)
-    setValue('kmpl', featuresData.kmpl)
-    setValue('seats', featuresData.seats)
-  }, [])
+    setValue("door", featuresData.doors);
+    setValue("fuel", featuresData.fueltype);
+    setValue("kmpl", featuresData.kmpl);
+    setValue("seats", featuresData.seats);
+  }, []);
 
-  const features = useSelector((state) => state.features.featuresList);
+  const features = useSelector(
+    (state) => state.ListStepperReducer.features.featuresList
+  );
 
   const [flags, setFlags] = useState(features);
 
@@ -110,6 +114,10 @@ const Features = () => {
                   {...field}
                   variant="outlined"
                   fullWidth
+                  onChange={(e) => {
+                    dispatch(addFeulType(e.target.value));
+                    field.onChange(e.target.value);
+                  }}
                 >
                   <MenuItem value="1">Auto</MenuItem>
                   <MenuItem value="2">Manual</MenuItem>
@@ -136,6 +144,7 @@ const Features = () => {
             render={({ field }) => (
               <TextField
                 // defaultValue= { uniqueName.mandatoryFeatures.kmpl}
+
                 className="rounded-lg mb-11 "
                 placeholder="28"
                 {...field}
@@ -143,6 +152,11 @@ const Features = () => {
                 required
                 helperText={errors?.kmpl?.message}
                 style={{ marginTop: "6px", height: "44px" }}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  dispatch(addKmpl(e.target.value));
+                  field.onChange(e.target.value);
+                }}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -179,6 +193,10 @@ const Features = () => {
                   {...field}
                   variant="outlined"
                   fullWidth
+                  onChange={(e) => {
+                    dispatch(addDoors(e.target.value));
+                    field.onChange(e.target.value);
+                  }}
                 >
                   <MenuItem value="1">1</MenuItem>
                   <MenuItem value="2">2</MenuItem>
@@ -213,6 +231,10 @@ const Features = () => {
                 required
                 helperText={errors?.seats?.message}
                 style={{ marginTop: "6px", height: "44px" }}
+                onChange={(e) => {
+                  dispatch(addSeats(e.target.value));
+                  field.onChange(e.target.value);
+                }}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -771,13 +793,13 @@ const Features = () => {
         </Card>
       </div>
       <div className="mt-96">
-        <Button
+        {/* <Button
           className="h-44 rounded-lg text-white"
           style={{ backgroundColor: "#D22A8F" }}
           onClick={handleSubmit(onSubmit)}
         >
           Save Info
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

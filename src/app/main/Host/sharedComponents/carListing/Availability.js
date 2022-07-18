@@ -21,7 +21,9 @@ const schema = yup.object().shape({
 const Availability = () => {
   const dispatch = useDispatch();
 
-  const availabilities = useSelector((state) => state.setAvailability);
+  const availabilities = useSelector(
+    (state) => state.ListStepperReducer.setAvailability
+  );
   console.log(availabilities);
   console.log(" ye dai ye  ", availabilities.days.monday.availability);
 
@@ -335,12 +337,12 @@ const Availability = () => {
       <hr className="w-full mt-20" />
 
       <div>
-        <Button
+        {/* <Button
           className="h-44 rounded-lg text-white mt-40"
           style={{ backgroundColor: "#D22A8F" }}
         >
           Save Info
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

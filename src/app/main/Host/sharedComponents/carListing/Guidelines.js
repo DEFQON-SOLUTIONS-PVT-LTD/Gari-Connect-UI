@@ -7,13 +7,20 @@ import { addGuidelines } from "../../ListStepper/store/guidelinesSice";
 const Guidelines = () => {
   const dispatch = useDispatch();
 
-  const _guidelines = useSelector((state) => state.guidelines);
+  const _guidelines = useSelector(
+    (state) => state.ListStepperReducer.guidelines
+  );
   console.log(_guidelines);
-  const features = useSelector((state) => state.guidelines.guidelines);
+  const features = useSelector(
+    (state) => state.ListStepperReducer.guidelines.guidelines
+  );
   const [flags, setFlags] = useState(features);
 
   const handleCardClick = (key, value, identity) => {
-    setFlags({ ...flags, [key]: { id: identity.toString(), availability: !value } });
+    setFlags({
+      ...flags,
+      [key]: { id: identity.toString(), availability: !value },
+    });
 
     dispatch(
       addGuidelines({
@@ -572,12 +579,12 @@ const Guidelines = () => {
         </Card>
       </div>
       <div>
-        <Button
+        {/* <Button
           className="h-44 rounded-lg text-white mt-40"
           style={{ backgroundColor: "#D22A8F" }}
         >
           Save Info
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
