@@ -17,6 +17,7 @@ import {
   addPricePerDay,
   addPrice_inc_driver,
   addWith_driver,
+  addCutPrice,
 } from "./../../ListStepper/store/setPricesSlice";
 
 const schema = yup.object().shape({
@@ -88,8 +89,10 @@ function BpRadio(props) {
   );
 }
 const AddPrice = () => {
+  // debugger;
   const dispatch = useDispatch();
-  const stepperData = useSelector((state) => state.ListStepperReducer);
+  const priceSlice = useSelector((state) => state.ListStepperReducer.setPrice);
+  // debugger;
 
   const [priceVal, setPriceVal] = useState(0);
   const [driverVal, setDriverVal] = useState(0);
@@ -228,13 +231,32 @@ const AddPrice = () => {
 
   useEffect(() => {
     setPriceData(parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal));
+    dispatch(
+      addPrice(parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal))
+    );
     setCutPrice(
       (
         ((parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal)) / 100) *
         90
       ).toFixed(1)
     );
+
+    dispatch(
+      addCutPrice(
+        (
+          ((parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal)) /
+            100) *
+          90
+        ).toFixed(1)
+      )
+    );
   }, [cutprice, priceData, priceVal, driverVal, addVal]);
+
+  useEffect(() => {
+    setValue("price", priceSlice.pricePerDay);
+    setValue("driverPrice", priceSlice.price_inc_driver);
+    setValue("additionalPrice", priceSlice.additional_Price);
+  });
 
   return (
     <div className="grid lg:grid-cols-2  gap-x-68">
@@ -255,6 +277,7 @@ const AddPrice = () => {
             control={control}
             render={({ field }) => (
               <TextField
+                // value={priceSlice.pricePerDay}
                 className="rounded-lg mb-11 sm:w-full w-4/5"
                 placeholder="Select a car make"
                 style={{ marginTop: "6px", height: "44px" }}
@@ -263,7 +286,6 @@ const AddPrice = () => {
                 error={!!errors.price}
                 required
                 helperText={errors?.price?.message}
-                value={priceVal}
                 onChange={(e) => {
                   handleChange(e);
                   field.onChange(e.target.value);
@@ -355,7 +377,7 @@ const AddPrice = () => {
                     error={!!errors.driverPrice}
                     required
                     helperText={errors?.driverPrice?.message}
-                    value={driverVal}
+                    // value={driverVal}
                     onChange={(e) => {
                       handleDriverChange(e);
                       field.onChange(e.target.value);
@@ -403,7 +425,7 @@ const AddPrice = () => {
                     error={!!errors.additionalPrice}
                     required
                     helperText={errors?.additionalPrice?.message}
-                    value={addVal}
+                    // value={addVal}
                     onChange={(e) => {
                       handleAddChange(e);
                       field.onChange(e.target.value);
@@ -439,7 +461,7 @@ const AddPrice = () => {
             style={{ color: "#D22A8F" }}
             className="font-semibold text-6xl"
           >
-            {priceData}
+            {priceSlice.price}
             <b className="text-2xl font-semibold" style={{ color: "#667085" }}>
               PKR
             </b>
@@ -450,7 +472,7 @@ const AddPrice = () => {
           />
           <Typography style={{ color: "#667085" }} className="mt-16">
             GariConnect will charge 10% of the total price and you will get
-            approx <b style={{ color: "#101828" }}>PKR {cutprice}</b>
+            approx <b style={{ color: "#101828" }}>PKR {priceSlice.cutPrice}</b>
           </Typography>
         </div>
       </div>
