@@ -9,8 +9,12 @@ import { Controller, useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addAddress,
+  addCity,
+  addArea,
   addLatitude,
   addLongitude,
+  addStreetAddress,
+  addZipCode
 } from "../../ListStepper/store/locationSlice";
 import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
@@ -36,8 +40,6 @@ const schema = yup.object().shape({
 });
 
 const CarLocation = () => {
-  console.log("location chala");
-
   const dispatch = useDispatch();
 
   const [addressPlace, setAddressPlace] = useState(null);
@@ -46,25 +48,7 @@ const CarLocation = () => {
   const [zoomVal, setZoomVal] = useState(14);
   // debugger;
   const location = useSelector((state) => state.ListStepperReducer.location);
-  console.log(location.address);
-
-  if (addressPlace !== null) {
-    // debugger;
-    geocodeByAddress(addressPlace.label)
-      .then((results) => getLatLng(results[0]))
-      .then(({ lat, lng }) => {
-        setLatVal(lat);
-        defaultProps.center.lat = lat;
-        setLngVal(lng);
-        defaultProps.center.lng = lng;
-      });
-
-    const detailAddress = addressPlace.label.toString();
-
-    dispatch(addAddress(addressPlace.label.toString()));
-    dispatch(addLatitude(latVal.toString()));
-    dispatch(addLongitude(lngVal.toString()));
-  }
+  // console.log(location.address);
 
   const { handleSubmit, setValue, register, reset, control, watch, formState } =
     useForm({
@@ -81,28 +65,37 @@ const CarLocation = () => {
     },
   };
 
-  useEffect(() => {
-    console.log("useEffect chala");
-    setValue("area", location.address);
-  }, []);
+  if (addressPlace !== null) {
+    // debugger;
+    geocodeByAddress(addressPlace.label)
+      .then((results) => getLatLng(results[0]))
+      .then(({ lat, lng }) => {
+        setLatVal(lat);
+        defaultProps.center.lat = lat;
+        setLngVal(lng);
+        defaultProps.center.lng = lng;
+      });
+    console.log(addressPlace)
 
-  function onSubmit() {
-    if (addressPlace !== null) {
-      debugger;
-      geocodeByAddress(addressPlace.label)
-        .then((results) => getLatLng(results[0]))
-        .then(({ lat, lng }) => {
-          setLatVal(lat);
-          defaultProps.center.lat = lat;
-          setLngVal(lng);
-          defaultProps.center.lng = lng;
-        });
+    const detailAddress = addressPlace.label.toString();
 
-      dispatch(addAddress(addressPlace.label.toString()));
-      dispatch(addLatitude(latVal.toString()));
-      dispatch(addLongitude(lngVal.toString()));
-    }
+    dispatch(addAddress(addressPlace.label.toString()));
+    dispatch(addLatitude(latVal.toString()));
+    dispatch(addLongitude(lngVal.toString()));
+
+    const terms = addressPlace.value.terms
+    console.log(terms[terms.length - 2].value);
+
+    dispatch(addCity(terms[terms.length - 2].value))
+    dispatch(addArea(terms[terms.length - 3].value))
   }
+
+  useEffect(() => {
+    setValue('city', location.city)
+    setValue('area', location.area)
+    setValue('stAddress', location.streetAddress)
+    setValue('zip', location.zipCode)
+  })
 
   return (
     <div>
@@ -143,37 +136,21 @@ const CarLocation = () => {
           <Controller
             name="city"
             control={control}
-            defaultValue={[]}
-            render={({ field: { onChange, value, onBlur, ref } }) => (
-              <Autocomplete
-                multiple
-                popupIcon={<KeyboardArrowDownIcon />}
-                className="mt-6"
-                disablePortal
-                id="combo-box-demo"
-                options={top100Films}
-                value={value}
-                onChange={(event, newValue) => {
-                  onChange(newValue);
+            render={({ field }) => (
+              <TextField
+                className="rounded-lg mb-11 w-full"
+                placeholder="Canal view"
+                style={{ marginTop: "6px", height: "44px" }}
+                {...field}
+                type="text"
+                error={!!errors.city}
+                required
+                helperText={errors?.city?.message}
+                sx={{
+                  "& fieldset": {
+                    borderRadius: "8px",
+                  },
                 }}
-                sx={{ height: 44 }}
-                renderInput={(params) => (
-                  <TextField
-                    error={!!errors.city}
-                    helperText={errors?.city?.message}
-                    onBlur={onBlur}
-                    inputRef={ref}
-                    className="w-full"
-                    {...params}
-                    size="medium"
-                    placeholder="Lahore"
-                    sx={{
-                      "& fieldset": {
-                        borderRadius: "8px",
-                      },
-                    }}
-                  />
-                )}
               />
             )}
           />
@@ -221,7 +198,7 @@ const CarLocation = () => {
             Street address
           </Typography>
           <Controller
-            name="address"
+            name="stAddress"
             control={control}
             render={({ field }) => (
               <TextField
@@ -229,10 +206,13 @@ const CarLocation = () => {
                 placeholder="25 A,Street 26, Canal view"
                 style={{ marginTop: "6px", height: "44px" }}
                 {...field}
+                onChange={(e) => {
+                  dispatch(addStreetAddress(e.target.value))
+                }}
                 type="text"
-                error={!!errors.address}
+                error={!!errors.stAddress}
                 required
-                helperText={errors?.address?.message}
+                helperText={errors?.stAddress?.message}
                 sx={{
                   "& fieldset": {
                     borderRadius: "8px",
@@ -263,6 +243,9 @@ const CarLocation = () => {
                 type="numbers"
                 error={!!errors.zip}
                 {...field}
+                onChange={(e) => {
+                  dispatch(addZipCode(e.target.value))
+                }}
                 required
                 helperText={errors?.zip?.message}
                 sx={{

@@ -101,6 +101,7 @@ const Features = () => {
           </Typography>
           <Controller
             name="fuel"
+            defaultValue={featuresData.fuel || ""}
             render={({ field }) => (
               <FormControl error={!!errors.fuel} required fullWidth>
                 <Select
@@ -180,6 +181,7 @@ const Features = () => {
           </Typography>
           <Controller
             name="door"
+            defaultValue={featuresData.doors || ""}
             render={({ field }) => (
               <FormControl error={!!errors.door} required fullWidth>
                 <Select

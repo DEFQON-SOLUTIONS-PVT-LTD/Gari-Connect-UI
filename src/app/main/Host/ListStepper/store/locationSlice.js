@@ -8,6 +8,8 @@ const initialState = {
   address: "",
   city: "",
   area: "",
+  streetAddress: "",
+  zipCode: ""
 };
 
 const locationSlice = createSlice({
@@ -31,9 +33,15 @@ const locationSlice = createSlice({
     addArea: (state, action) => {
       state.area = action.payload;
     },
+    addStreetAddress: (state, action) => {
+      state.streetAddress = action.payload;
+    },
+    addZipCode: (state, action) => {
+      state.zipCode = action.payload;
+    },
   },
 });
 
-export const { addAddress, addArea, addCity, addLatitude, addLongitude } =
+export const { addAddress, addArea, addCity, addLatitude, addLongitude, addStreetAddress, addZipCode } =
   locationSlice.actions;
 export default locationSlice.reducer;
