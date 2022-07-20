@@ -5,8 +5,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   data: {
     makeId: "",
+    makeLabel: "",
     categoryId: "",
+    categoryLabel: "",
     modelId: "",
+    modelLabel: "",
     chassis_number: "",
     plate_number: "",
     transmissionId: "",
@@ -33,11 +36,20 @@ const carDetailsSlice = createSlice({
     addMakeId: (state, action) => {
       state.data.makeId = action.payload;
     },
+    addMakeLabel: (state, action) => {
+      state.data.makeLabel = action.payload;
+    },
     addCategoryId: (state, action) => {
       state.data.categoryId = action.payload;
     },
+    addCategoryLabel: (state, action) => {
+      state.data.categoryLabel = action.payload;
+    },
     addModelId: (state, action) => {
       state.data.modelId = action.payload;
+    },
+    addModelLabel: (state, action) => {
+      state.data.modelLabel = action.payload;
     },
     addChassisNumber: (state, action) => {
       state.data.chassis_number = action.payload;
@@ -75,5 +87,8 @@ export const {
   addTransmissionId,
   addVehicleTypeId,
   addCar,
+  addMakeLabel,
+  addCategoryLabel,
+  addModelLabel,
 } = carDetailsSlice.actions;
 export default carDetailsSlice.reducer;

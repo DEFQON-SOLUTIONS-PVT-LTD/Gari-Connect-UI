@@ -25,6 +25,9 @@ import {
   addPlateNumber,
   addTransmissionId,
   addVehicleTypeId,
+  addMakeLabel,
+  addCategoryLabel,
+  addModelLabel,
 } from "./../../ListStepper/store/carDetailsSlice";
 
 const schema = yup.object().shape({
@@ -81,28 +84,13 @@ const CarDetails = () => {
 
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
-  // const carData = useSelector((state) => state.carDetail);
-  // console.log(carData.data.makeId);
-  // console.log(carData.data.categoryId);
-  // console.log(carData.data.modelId);
-  // console.log(carData.data.plate_number);
-  // console.log(carData.data.chassis_number);
-  // console.log(carData.data.transmissionId);
-  // console.log(carData.data.vehicle_type_id);
-  // console.log(carData.data.eco_friendly_Id);
-  // console.log(carData.data.description);
+  const carData = useSelector((state) => state.ListStepperReducer.carDetail);
 
-  // useEffect(() => {
-  //   setValue('price', carData.data.makeId)
-  //   setValue('price', carData.data.categoryId)
-  //   setValue('price', carData.data.modelId)
-  //   setValue('plate', carData.data.plate_number)
-  //   setValue('chassis', carData.data.chassis_number)
-  //   setValue('price', carData.data.transmissionId)
-  //   setValue('price', carData.data.vehicle_type_id)
-  //   setValue('price', carData.data.eco_friendly_Id)
-  //   setValue('description', carData.data.description)
-  // }, [])
+  useEffect(() => {
+    setValue('plate', carData.data.plate_number)
+    setValue('chassis', carData.data.chassis_number)
+    setValue('description', carData.data.description)
+  }, [])
 
   const onSubmit = (data) => {
     console.log("onsubmit chal gia", data);
@@ -139,7 +127,7 @@ const CarDetails = () => {
     axios
       .get(
         "https://api.gariconnect.com:8080/api/model/getbymakeId/" +
-          makeid.makeId
+        makeid.makeId
       )
       .then((res) => {
         res.data.result.map((item) => {
@@ -165,7 +153,7 @@ const CarDetails = () => {
             <Controller
               name="make"
               control={control}
-              defaultValue={[]}
+              defaultValue={carData.data.makeLabel || []}
               onChange={handleMakeChange}
               render={({ field: { onChange, value, onBlur, ref } }) => (
                 <Autocomplete
@@ -185,6 +173,7 @@ const CarDetails = () => {
                     onChange(newValue);
                     getModelByMakeId();
                     dispatch(addMakeId(newValue.makeId));
+                    dispatch(addMakeLabel(newValue.label));
                   }}
                   sx={{ height: 44 }}
                   renderInput={(params) => (
@@ -220,7 +209,7 @@ const CarDetails = () => {
             <Controller
               name="category"
               control={control}
-              defaultValue={[]}
+              defaultValue={carData.data.categoryLabel || []}
               render={({ field: { onChange, value, onBlur, ref } }) => (
                 <Autocomplete
                   popupIcon={
@@ -235,6 +224,7 @@ const CarDetails = () => {
                   value={value}
                   onChange={(event, newValue) => {
                     dispatch(addCategoryId(newValue.categoryId));
+                    dispatch(addCategoryLabel(newValue.label));
                     onChange(newValue);
                   }}
                   sx={{ height: 44 }}
@@ -273,7 +263,7 @@ const CarDetails = () => {
             <Controller
               name="model"
               control={control}
-              defaultValue={[]}
+              defaultValue={carData.data.modelLabel || []}
               render={({ field: { onChange, value, onBlur, ref } }) => (
                 <Autocomplete
                   popupIcon={
@@ -287,7 +277,9 @@ const CarDetails = () => {
                   options={allModelOptions}
                   value={value}
                   onChange={(event, newValue) => {
+                    console.log(newValue);
                     dispatch(addModelId(newValue.modelId));
+                    dispatch(addModelLabel(newValue.label));
                     onChange(newValue);
                   }}
                   sx={{ height: 44 }}
@@ -395,6 +387,7 @@ const CarDetails = () => {
             </Typography>
             <Controller
               name="transmission"
+              defaultValue={carData.data.transmissionId || []}
               render={({ field }) => (
                 <FormControl error={!!errors.transmission} required fullWidth>
                   <Select
@@ -437,6 +430,7 @@ const CarDetails = () => {
               Type
             </Typography>
             <Controller
+              defaultValue={carData.data.vehicle_type_id || []}
               render={({ field }) => (
                 <FormControl error={!!errors.type} required fullWidth>
                   <Select
@@ -476,6 +470,7 @@ const CarDetails = () => {
               ECO friendly
             </Typography>
             <Controller
+              defaultValue={carData.data.eco_friendly_Id || []}
               render={({ field }) => (
                 <FormControl error={!!errors.eco} required fullWidth>
                   <Select

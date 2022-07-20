@@ -291,6 +291,10 @@ export default function ListSteppers() {
         latitude: stepperData.location.latitude,
         longitude: stepperData.location.longitude,
         address: stepperData.location.address,
+        city: stepperData.location.city,
+        area: stepperData.location.area,
+        streetAddress: stepperData.location.streetAddress,
+        zip_code: stepperData.location.zipCode,
       },
       features: {
         mandatoryFeatures: {
