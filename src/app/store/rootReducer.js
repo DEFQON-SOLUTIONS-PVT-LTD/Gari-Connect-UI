@@ -4,6 +4,7 @@ import { debounce } from "lodash";
 import fuse from "./fuse";
 import i18n from "./i18nSlice";
 import ListStepperReducer from "./../main/Host/ListStepper/store/index";
+import bookAcarReducer from "./../../app/main/Host/carListing.js/store/index";
 
 const createReducer = (asyncReducers) => (state, action) => {
   const combinedReducer = combineReducers({
@@ -11,6 +12,7 @@ const createReducer = (asyncReducers) => (state, action) => {
     fuse,
     i18n,
     ListStepperReducer,
+    bookAcarReducer,
     ...asyncReducers,
   });
 

@@ -1,10 +1,12 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import CarsListingSlice from "./CarsListingSlice";
+import allCarsSlice from "./allCarsSlice";
+import allCarsDetailSlice from "./carDetailSlice";
+import filterCarsSlice from "./filterCarsSlice";
 
-const reducer =  combineReducers({
-    reducer: {
-       CarsListingSlice
-    }
+export default combineReducers({
+  CarsListingSlice,
+  allCarsSlice,
+  allCarsDetailSlice,
+  filterCarsSlice,
 });
-
-export default reducer;

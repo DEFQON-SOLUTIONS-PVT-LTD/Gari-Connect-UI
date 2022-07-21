@@ -8,11 +8,25 @@ import { Link } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
+import axios from "axios";
+import { addCarsDetail } from "./store/carDetailSlice";
+import { useDispatch, use } from "react-redux";
+import second from "react-hook-form";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const CarDetailsCard = ({ carslistingdata }) => {
+const CarDetailsCard = ({ carslistingdata, updateFilteredCars }) => {
+  const dispatch = useDispatch();
   const [value, setValue] = React.useState(4);
+
+  const handleApiCall = () => {
+    axios
+      .get("https://api.gariconnect.com:8080/api/vehicle/vehicleDetails/182")
+      .then((res) => {
+        console.log("car ki detail ki api ki maa ko salam", res.data);
+        dispatch(addCarsDetail(res.data.result));
+      });
+  };
 
   const imageUrl = carslistingdata.image;
 
@@ -22,8 +36,11 @@ const CarDetailsCard = ({ carslistingdata }) => {
         <Card
           sx={{ maxWidth: 307, height: 395 }}
           className="text-center rounded"
+          onClick={handleApiCall}
+          component={Link}
+          to="/carddetail"
         >
-          <CardActionArea component={Link} to="/carddetail">
+          <CardActionArea>
             <CardMedia
               className="px-6 pt-6"
               component="img"
