@@ -31,7 +31,13 @@ const CarsListing = () => {
 
   // }, []);
 
+  let makefilteredcars = [];
+
   const updateFilteredCars = () => {};
+
+  useEffect(() => {
+    updateFilteredCars({});
+  });
 
   return (
     <>
