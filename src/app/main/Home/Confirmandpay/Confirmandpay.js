@@ -21,16 +21,18 @@ import Edit from "./Edit/Edit";
 import Otp from "./Otp/Otp";
 import Insurance from "./Insurance/Insurance";
 import Payment from "./Payment/Payment";
-
+import {useSelector} from "react-redux";
 
 
 export default function Confirmandpay() {
+  const carInfo = useSelector((state) => state.bookAcarReducer.allCarsDetailSlice.data)
+
   const [expanded, setExpanded] = React.useState(false);
 
   const confirmChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-  const [value, setValue] = React.useState(4);
+  const rating = carInfo.vehicleDetail[0].rating
 
   return (
     <div>
@@ -168,7 +170,7 @@ export default function Confirmandpay() {
                           <img
                             width="180"
                             className="mr-12"
-                            src="assets/images/logos/HondaAfb.svg"
+                            src={carInfo.VehicleImg[0].image}
                             alt=""
                           />
                         </div>
@@ -178,34 +180,31 @@ export default function Confirmandpay() {
                             <Rating
                               className="text-16"
                               name="simple-controlled"
-                              value={value}
-                              onChange={(event, newValue) => {
-                                setValue(newValue);
-                              }}
+                              value={rating}
                               max={4}
                             />
                             <Typography
                               className="text-sm font-normal ml-8"
                               color="text.black"
                             >
-                              4.0
+                            {rating}
                             </Typography>
                             <Typography
                               className="text-sm pl-8"
                               style={{ color: "#667085" }}
                             >
-                              15 trips
+                              {carInfo.vehicleDetail[0].total_trips} trips
                             </Typography>
                           </div>
                           <Typography className="text-16 font-600 font-Manrope">
-                            Honda Afb 8895-19
+                          {carInfo.vehicleDetail[0].vehicle_name}
                           </Typography>
 
                           <Typography
                             className="text-12"
                             color="text.secondary"
                           >
-                            Gulberg 3
+                            {carInfo.vehicleDetail[0].location}
                           </Typography>
                         </div>
                       </div>
@@ -255,7 +254,7 @@ export default function Confirmandpay() {
                     <Typography className="text-base" color="text.secondary">
                       Trip price
                     </Typography>
-                    <Typography className="text-base">Rs 4000/day</Typography>
+                    <Typography className="text-base">Rs {carInfo.vehicleDetail[0].vehicleprice}/day</Typography>
                   </div>
                   <div className="flex flex-row justify-between items-center mt-20 mr-14">
                     <Typography className="text-base" color="text.secondary">
