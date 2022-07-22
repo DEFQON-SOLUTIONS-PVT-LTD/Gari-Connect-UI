@@ -155,7 +155,6 @@ export default function Confirmandpay() {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Payment/>
-                    <Otp />
                   </AccordionDetails>
                 </Accordion>
               </div>
@@ -300,6 +299,7 @@ export default function Confirmandpay() {
                       Rs 8200/-
                     </Typography>
                   </div>
+                  <Otp />
                 </CardContent>
               </Card>
             </div>

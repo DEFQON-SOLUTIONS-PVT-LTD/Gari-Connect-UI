@@ -9,6 +9,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 import Radio from "@mui/material/Radio";
+import { Button} from "@mui/material";
 
 const BpIcon = styled("span")(({ theme }) => ({
   borderRadius: "50%",
@@ -203,6 +204,16 @@ export default function Payment() {
           />
         </FormControl>
       </div>
+      <Button
+        variant="contained"
+        className="rounded-4 text-white w-full mt-16 h-44"
+        style={{
+          backgroundColor: "#D22A8F",
+          color: "#FFFFFF",
+        }}
+      >
+        Continue to booking
+      </Button>
     </div>
   );
 }

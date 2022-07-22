@@ -47,7 +47,7 @@ export default function OTP() {
           color: "#FFFFFF",
         }}
       >
-        Book car for Rs 8200
+        Book now
       </Button>
       <Dialog
         style={{ borderRadius: "12px", height: "auto" }}
@@ -77,7 +77,7 @@ export default function OTP() {
                 marginTop: "10px",
               }}
             >
-              Please enter 6 digit code send on your phone 034******59
+              Please enter 4 digit code send on your phone 034******59
             </p>
           </div>
           <div className="w-full mt-20 ">
