@@ -49,10 +49,16 @@ const SearchBar = () => {
         address: "DHA Phase 5, Lahore, Pakistan",
         startdate: "2022-04-20",
         enddate: "2022-04-24",
+        withdriver: "false",
+        makeId: 0,
+        modelId: 0,
+        rating: 0,
+        pricerange1: 0,
+        pricerange2: 0,
       },
     }).then((res) => {
-      console.log("api ks response", res.data.VehicleByLocation);
-      dispatch(addCars(res.data.VehicleByLocation));
+      console.log("api ks response", res.data);
+      dispatch(addCars(res.data.Vehiclefilter.filterdata));
 
       history.push("/cars-listing");
     });

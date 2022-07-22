@@ -21,18 +21,43 @@ import Edit from "./Edit/Edit";
 import Otp from "./Otp/Otp";
 import Insurance from "./Insurance/Insurance";
 import Payment from "./Payment/Payment";
-import {useSelector} from "react-redux";
-
+import { useSelector } from "react-redux";
+import axios from "axios";
+// import second from 'axios'
 
 export default function Confirmandpay() {
-  const carInfo = useSelector((state) => state.bookAcarReducer.allCarsDetailSlice.data)
+  console.log(localStorage.getItem("jwt_access_token"));
+  const carInfo = useSelector(
+    (state) => state.bookAcarReducer.allCarsDetailSlice.data
+  );
 
   const [expanded, setExpanded] = React.useState(false);
 
   const confirmChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-  const rating = carInfo.vehicleDetail[0].rating
+  const rating = carInfo.vehicleDetail[0].rating;
+
+  const handleConfirmBooking = () => {
+    // Request.Headers.Add(
+    //   "authorization",
+    //   localStorage.getItem("jwt_access_token")
+    // );
+    axios({
+      method: "post",
+      url: "https://api.gariconnect.com:8080/api/bookings/create",
+      data: {
+        userId: 5,
+        vehicleId: 190,
+        statusId: "1",
+        is_active: "true",
+        trip_startDate: "2022-04-20",
+        trip_endDate: "2022-04-24",
+      },
+    }).then((res) => {
+      console.log("mubarak hoo", res.data);
+    });
+  };
 
   return (
     <div>
@@ -151,7 +176,7 @@ export default function Confirmandpay() {
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Payment/>
+                    <Payment />
                     <Otp />
                   </AccordionDetails>
                 </Accordion>
@@ -187,7 +212,7 @@ export default function Confirmandpay() {
                               className="text-sm font-normal ml-8"
                               color="text.black"
                             >
-                            {rating}
+                              {rating}
                             </Typography>
                             <Typography
                               className="text-sm pl-8"
@@ -197,7 +222,7 @@ export default function Confirmandpay() {
                             </Typography>
                           </div>
                           <Typography className="text-16 font-600 font-Manrope">
-                          {carInfo.vehicleDetail[0].vehicle_name}
+                            {carInfo.vehicleDetail[0].vehicle_name}
                           </Typography>
 
                           <Typography
@@ -254,7 +279,9 @@ export default function Confirmandpay() {
                     <Typography className="text-base" color="text.secondary">
                       Trip price
                     </Typography>
-                    <Typography className="text-base">Rs {carInfo.vehicleDetail[0].vehicleprice}/day</Typography>
+                    <Typography className="text-base">
+                      Rs {carInfo.vehicleDetail[0].vehicleprice}/day
+                    </Typography>
                   </div>
                   <div className="flex flex-row justify-between items-center mt-20 mr-14">
                     <Typography className="text-base" color="text.secondary">
@@ -300,6 +327,7 @@ export default function Confirmandpay() {
                       variant="contained"
                       className="rounded-4 text-white w-full"
                       style={{ backgroundColor: "#D22A8F" }}
+                      onClick={handleConfirmBooking}
                     >
                       Pay now
                     </Button>
