@@ -17,7 +17,7 @@ const AddImages = ({ checkFormData }) => {
   const dispatch = useDispatch();
   const imageFiLe = useSelector((state) => state.ListStepperReducer);
 
-  const [images, setImages] = React.useState([]);
+  const [images, setImages] = React.useState(imageFiLe.vehicleimages.images);
   const maxNumber = 5;
   const onChange = (imageList, onImageUpload, addUpdateIndex) => {
     // data for submit

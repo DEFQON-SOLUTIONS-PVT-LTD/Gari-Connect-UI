@@ -242,29 +242,34 @@ const AddPrice = ({ checkFormData }) => {
   };
 
   useEffect(() => {
-    setPriceData(parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal));
+
+    { priceSlice.pricePerDay == "" ? "0" : priceSlice.pricePerDay }
+    const realPrice = Math.round((parseInt(priceSlice.pricePerDay == "" ? "0" : priceSlice.pricePerDay) + parseInt(priceSlice.price_inc_driver == "" ? "0" : priceSlice.price_inc_driver) + parseInt(priceSlice.additional_Price == "" ? "0" : priceSlice.additional_Price))).toString();
+    const realCutPRice = Math.round((
+      ((parseInt(priceSlice.pricePerDay == "" ? "0" : priceSlice.pricePerDay) + parseInt(priceSlice.price_inc_driver == "" ? "0" : priceSlice.price_inc_driver) + parseInt(priceSlice.additional_Price == "" ? "0" : priceSlice.additional_Price)) / 100) *
+      90
+    )).toString();
+    // debugger
+    setPriceData(realPrice);
     dispatch(
-      addPrice(parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal))
+      addPrice(realPrice)
     );
     setCutPrice(
-      (
-        ((parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal)) / 100) *
-        90
-      ).toFixed(1)
+      realCutPRice
     );
 
     dispatch(
       addCutPrice(
-        (
-          ((parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal)) /
-            100) *
-          90
-        ).toFixed(1)
+        realCutPRice
       )
     );
   }, [cutprice, priceData, priceVal, driverVal, addVal]);
 
   useEffect(() => {
+    if (!withDriverFlag) {
+      dispatch(addPrice(priceSlice.pricePerDay))
+      dispatch(addCutPrice((priceSlice.pricePerDay / 100) * 90))
+    }
     setValue("price", priceSlice.pricePerDay);
     setValue("driverPrice", priceSlice.price_inc_driver);
     setValue("additionalPrice", priceSlice.additional_Price);
@@ -473,7 +478,7 @@ const AddPrice = ({ checkFormData }) => {
             style={{ color: "#D22A8F" }}
             className="font-semibold text-6xl"
           >
-            {priceSlice.price}
+            {priceSlice.price.toString() === "NaN" ? 0 : priceSlice.price.toString()}
             <b className="text-2xl font-semibold" style={{ color: "#667085" }}>
               PKR
             </b>
@@ -484,7 +489,7 @@ const AddPrice = ({ checkFormData }) => {
           />
           <Typography style={{ color: "#667085" }} className="mt-16">
             GariConnect will charge 10% of the total price and you will get
-            approx <b style={{ color: "#101828" }}>PKR {priceSlice.cutPrice}</b>
+            approx <b style={{ color: "#101828" }}>PKR {priceSlice.cutPrice.toString() === "NaN" ? 0 : priceSlice.cutPrice.toString()}</b>
           </Typography>
         </div>
       </div>
