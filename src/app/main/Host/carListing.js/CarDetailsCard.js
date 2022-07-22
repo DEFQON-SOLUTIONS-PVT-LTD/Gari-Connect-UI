@@ -4,19 +4,20 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Rating from "@mui/material/Rating";
 import { CardActionArea } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import axios from "axios";
 import { addCarsDetail } from "./store/carDetailSlice";
-import { useDispatch, use } from "react-redux";
+import { useDispatch } from "react-redux";
 import second from "react-hook-form";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const CarDetailsCard = ({ carslistingdata, updateFilteredCars }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [value, setValue] = React.useState(4);
 
   const handleApiCall = () => {
@@ -25,6 +26,7 @@ const CarDetailsCard = ({ carslistingdata, updateFilteredCars }) => {
       .then((res) => {
         console.log("car ki detail ki api ki maa ko salam", res.data);
         dispatch(addCarsDetail(res.data.result));
+        history.push('/carddetail');
       });
   };
 
@@ -37,8 +39,8 @@ const CarDetailsCard = ({ carslistingdata, updateFilteredCars }) => {
           sx={{ maxWidth: 307, height: 395 }}
           className="text-center rounded"
           onClick={handleApiCall}
-          component={Link}
-          to="/carddetail"
+          // component={Link}
+          // to="/carddetail"
         >
           <CardActionArea>
             <CardMedia
