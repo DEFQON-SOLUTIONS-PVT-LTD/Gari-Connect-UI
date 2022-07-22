@@ -328,7 +328,6 @@ export default function Confirmandpay() {
                       Rs 8200/-
                     </Typography>
                   </div>
-                  <Otp />
 
                   <div className="flex flex-row justify-end space-x-10 mt-44 mb-10">
                     <Button

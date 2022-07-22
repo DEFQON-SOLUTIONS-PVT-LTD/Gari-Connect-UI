@@ -225,7 +225,7 @@ export default function ListSteppers() {
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
   const data = watch();
-  const [activeStep, setActiveStep] = React.useState(6);
+  const [activeStep, setActiveStep] = React.useState(0);
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
