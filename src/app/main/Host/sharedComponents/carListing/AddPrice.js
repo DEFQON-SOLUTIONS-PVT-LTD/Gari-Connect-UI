@@ -88,7 +88,11 @@ function BpRadio(props) {
     />
   );
 }
-const AddPrice = () => {
+const AddPrice = ({ checkFormData }) => {
+
+  useEffect(() => {
+    checkFormData('Price')
+  })
   // debugger;
   const dispatch = useDispatch();
   const priceSlice = useSelector((state) => state.ListStepperReducer.setPrice);
@@ -103,7 +107,12 @@ const AddPrice = () => {
   const [withDriverFlag, setWithDriverFlag] = useState(true);
 
   const withDriverFlagHandle = () => {
+    if (!withDriverFlag === false) {
+      dispatch(addPrice_inc_driver(0))
+      dispatch(addAdditional_Price(0))
+    }
     dispatch(addWith_driver(!withDriverFlag));
+    console.log(!withDriverFlag)
 
     dispatch(addPickAndDrop(!withDriverFlag));
     setWithDriverFlag(!withDriverFlag);
@@ -215,16 +224,19 @@ const AddPrice = () => {
   };
 
   const handleChange = (val) => {
+    checkFormData('Price')
     setPriceVal(val.target.value);
     dispatch(addPricePerDay(val.target.value));
   };
 
   const handleDriverChange = (val) => {
+    checkFormData('Price')
     setDriverVal(val.target.value);
     dispatch(addPrice_inc_driver(val.target.value));
   };
 
   const handleAddChange = (val) => {
+    checkFormData('Price')
     setAddVal(val.target.value);
     dispatch(addAdditional_Price(val.target.value));
   };

@@ -39,7 +39,7 @@ const schema = yup.object().shape({
   // zip: yup.string().required('You must enter an zip code'),
 });
 
-const CarLocation = () => {
+const CarLocation = ({ checkFormData }) => {
   const dispatch = useDispatch();
 
   const [addressPlace, setAddressPlace] = useState(null);
@@ -142,6 +142,7 @@ const CarLocation = () => {
                 placeholder="Canal view"
                 style={{ marginTop: "6px", height: "44px" }}
                 {...field}
+                onChange={checkFormData('CarLocation')}
                 type="text"
                 error={!!errors.city}
                 required
@@ -175,6 +176,7 @@ const CarLocation = () => {
                 style={{ marginTop: "6px", height: "44px" }}
                 {...field}
                 type="text"
+                onChange={checkFormData('CarLocation')}
                 error={!!errors.area}
                 required
                 helperText={errors?.area?.message}
@@ -208,6 +210,7 @@ const CarLocation = () => {
                 {...field}
                 onChange={(e) => {
                   dispatch(addStreetAddress(e.target.value))
+                  checkFormData('CarLocation')
                 }}
                 type="text"
                 error={!!errors.stAddress}
@@ -245,6 +248,7 @@ const CarLocation = () => {
                 {...field}
                 onChange={(e) => {
                   dispatch(addZipCode(e.target.value))
+                  checkFormData('CarLocation')
                 }}
                 required
                 helperText={errors?.zip?.message}

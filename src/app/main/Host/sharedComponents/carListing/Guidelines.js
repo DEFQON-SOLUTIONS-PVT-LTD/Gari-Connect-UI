@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import { Card, Button, CardContent, CardActionArea } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { addGuidelines } from "../../ListStepper/store/guidelinesSice";
 
-const Guidelines = () => {
+const Guidelines = ({ checkFormData }) => {
+
+  useEffect(() => {
+    checkFormData('Guidelines')
+  })
+
   const dispatch = useDispatch();
 
   const _guidelines = useSelector(
@@ -28,6 +33,7 @@ const Guidelines = () => {
         [key]: { id: identity.toString(), availability: !value },
       })
     );
+    checkFormData('Guidelines')
   };
   return (
     <div>
