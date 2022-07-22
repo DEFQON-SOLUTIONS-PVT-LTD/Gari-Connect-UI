@@ -14,12 +14,49 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import IconButton from "@mui/material/IconButton";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import moment from "moment";
+import { useDispatch, use } from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
+import { addCars } from "./../carListing.js/store/allCarsSlice";
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [value, setValue] = React.useState(["20,April", "21,May"]);
   // newValue={setValue}
+
+  useEffect(() => {
+    // console.log("nomi");
+    // axios
+    //   .get("https://api.gariconnect.com:8080/api/vehicle/vehicleSearch", {
+    //     latitude: "31.5139698",
+    //     longitude: "74.3433629",
+    //     address: "DHA Phase 5, Lahore, Pakistan",
+    //     startdate: "2022-04-20",
+    //     enddate: "2022-04-24",
+    //   })
+  });
+
+  const searchButtonHandle = () => {
+    axios({
+      method: "post",
+      url: "https://api.gariconnect.com:8080/api/vehicle/vehicleSearch",
+      data: {
+        latitude: "31.5139698",
+        longitude: "74.3433629",
+        address: "DHA Phase 5, Lahore, Pakistan",
+        startdate: "2022-04-20",
+        enddate: "2022-04-24",
+      },
+    }).then((res) => {
+      console.log("api ks response", res.data.VehicleByLocation);
+      dispatch(addCars(res.data.VehicleByLocation));
+
+      history.push("/cars-listing");
+    });
+  };
 
   return (
     <>
@@ -149,8 +186,9 @@ const SearchBar = () => {
                               color: "rgba(255, 255, 255, 1)",
                               backgroundColor: "#D22A8F",
                             }}
-                            component={Link}
-                            to="/cars-listing"
+                            onClick={searchButtonHandle}
+                            // component={Link}
+                            // to="/cars-listing"
                           >
                             <SearchSharpIcon />
                           </IconButton>

@@ -13,11 +13,25 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Star from "../sharedComponents/Star";
 import Withdriver from "../sharedComponents/Withdriver";
+import { Controller, useForm } from "react-hook-form";
 
 function valuetext(value) {
   return `${value}°C`;
 }
 const Navbarfilters = () => {
+  const {
+    handleSubmit,
+    register,
+    reset,
+    control,
+    watch,
+    formState,
+    getValues,
+  } = useForm({
+    mode: "all",
+    // resolver: yupResolver(schema),
+  });
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -53,11 +67,16 @@ const Navbarfilters = () => {
     height: 178,
   };
 
+  const onSubmit = (model) => {
+    console.log(model);
+  };
+
   return (
     <>
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-20 shadow-lg bg-white mb-3 md:flex-row flex-col ">
         <div className="flex md:ml-96 md:space-x-12 md:flex-row  flex-col md:space-y-0 space-y-14 ml-55 md:w-md lg:w-2xl">
           {/* <div className="flex justify-between lg:w-auto lg:static lg:block lg:justify-start ml-96"> */}
+
           <Autocomplete
             popupIcon={
               <KeyboardArrowDownIcon style={{ color: "rgba(0, 0, 0, 1)" }} />
@@ -83,6 +102,10 @@ const Navbarfilters = () => {
             popupIcon={
               <KeyboardArrowDownIcon style={{ color: "rgba(0, 0, 0, 1)" }} />
             }
+            onChange={(e, value) => {
+              console.log(e.target.value);
+              debugger;
+            }}
             disablePortal
             id="combo-box-demo"
             options={top100Films}
@@ -108,16 +131,15 @@ const Navbarfilters = () => {
                   color: "#667085",
                 }}
                 type="button"
-                 onClick={priceClick}
-                // endIcon={
-                  
-                // }
+                onClick={priceClick}
+              // endIcon={
+
+              // }
               >
                 Price
                 <KeyboardArrowDownIcon
-                                    className="sm:ml-68 ml-80"
-                    style={{ color: "rgba(0, 0, 0, 1)"}}
-                  />
+                  style={{ color: "rgba(0, 0, 0, 1)", marginLeft: "60px" }}
+                />
               </Button>
               {price ? (
                 <Box sx={styles}>
@@ -182,6 +204,7 @@ const Navbarfilters = () => {
           <Withdriver />
           {/* <Drawer/> */}
           <Button
+            type="submit"
             className="w-96 h-52"
             style={{
               backgroundColor: "#D22A8F",
