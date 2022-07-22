@@ -15,7 +15,9 @@ import second from "react-hook-form";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const CarDetailsCard = ({ carslistingdata, updateFilteredCars }) => {
+const CarDetailsCard = ({ carslistingdata }) => {
+  // debugger;
+  console.log(carslistingdata);
   const dispatch = useDispatch();
   const history = useHistory();
   const [value, setValue] = React.useState(4);
@@ -24,9 +26,9 @@ const CarDetailsCard = ({ carslistingdata, updateFilteredCars }) => {
     axios
       .get("https://api.gariconnect.com:8080/api/vehicle/vehicleDetails/182")
       .then((res) => {
-        console.log("car ki detail ki api ki maa ko salam", res.data);
+        console.log("car ki detail ki api ", res.data);
         dispatch(addCarsDetail(res.data.result));
-        history.push('/carddetail');
+        history.push("/carddetail");
       });
   };
 

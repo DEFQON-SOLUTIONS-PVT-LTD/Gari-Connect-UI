@@ -209,6 +209,7 @@ export const updateUserData = (user) => async (dispatch, getState) => {
 };
 
 const initialState = {
+  token: "",
   role: [], // guest
   data: {
     displayName: "John Doe",
@@ -224,12 +225,15 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => action.payload,
     userLoggedOut: (state, action) => initialState,
+    setToken: (state, action) => {
+      state.token = action.payload;
+    },
   },
   extraReducers: {
     [signinwithgoogle.fulfilled]: (state, action) => action.payload,
   },
 });
 
-export const { setUser, userLoggedOut } = userSlice.actions;
+export const { setUser, userLoggedOut, setToken } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -15,9 +15,8 @@ import { addCars } from "./store/allCarsSlice";
 
 const CarsListing = () => {
   const dispatch = useDispatch();
-  const cars = useSelector(
-    (state) => state.bookAcarReducer.allCarsSlice.data.data
-  );
+  const cars = useSelector((state) => state.bookAcarReducer.allCarsSlice.data);
+  // debugger;
   // const mydata = useSelector((state) => state);
   // const [mydata, setmydata] = useState([]);
   // const [mycount, setcount] = useState("");
@@ -53,17 +52,19 @@ const CarsListing = () => {
       </Typography>
       <div style={{ width: "89%" }} className="mx-auto">
         <div className="grid lg:grid-cols-4  md:grid-cols-3 sm:grid-cols-2 mt-24 gap-y-28">
-          {cars
-            ? cars.map((datas, index) => (
-                <div className="flex col-span-1">
-                  <CarDetailsCard
-                    key={datas.vehicleid}
-                    index={index}
-                    carslistingdata={datas}
-                  />
-                </div>
-              ))
-            : null}
+          {cars ? (
+            cars.map((datas, index) => (
+              <div className="flex col-span-1">
+                <CarDetailsCard
+                  key={datas.vehicleid}
+                  index={index}
+                  carslistingdata={datas}
+                />
+              </div>
+            ))
+          ) : (
+            <h1>NOMI</h1>
+          )}
 
           {/* <div className="flex col-span-1">
             <CarDetailsCard />
