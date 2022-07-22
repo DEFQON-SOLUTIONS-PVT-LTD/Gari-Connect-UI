@@ -12,51 +12,51 @@ const initialState = {
 
   featuresList: {
     blueTooth: {
-      id: 1,
-      availability: false,
-    },
-    keylessEntry: {
-      id: 2,
-      availability: false,
-    },
-    appleCar: {
-      id: 3,
-      availability: false,
-    },
-    USB: {
-      id: 4,
-      availability: false,
-    },
-    backupCamera: {
-      id: 5,
-      availability: false,
-    },
-    auxInput: {
-      id: 6,
-      availability: false,
-    },
-    tollPass: {
-      id: 7,
-      availability: false,
-    },
-    heatedSeat: {
-      id: 8,
-      availability: false,
-    },
-    sunRoof: {
       id: 9,
       availability: false,
     },
-    wheelDriver: {
+    keylessEntry: {
       id: 10,
       availability: false,
     },
-    GPS: {
+    appleCar: {
       id: 11,
       availability: false,
     },
-    auxInput2: {
+    USB: {
       id: 12,
+      availability: false,
+    },
+    backupCamera: {
+      id: 13,
+      availability: false,
+    },
+    auxInput: {
+      id: 14,
+      availability: false,
+    },
+    tollPass: {
+      id: 15,
+      availability: false,
+    },
+    heatedSeat: {
+      id: 16,
+      availability: false,
+    },
+    sunRoof: {
+      id: 17,
+      availability: false,
+    },
+    wheelDriver: {
+      id: 18,
+      availability: false,
+    },
+    GPS: {
+      id: 19,
+      availability: false,
+    },
+    auxInput2: {
+      id: 14,
       availability: false,
     },
   },

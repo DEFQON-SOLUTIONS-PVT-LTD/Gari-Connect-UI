@@ -18,17 +18,24 @@ import Favorite from "@mui/icons-material/Favorite";
 import TripDateRange from "../../Host/sharedComponents/TripDateRange";
 import Signin from "../Carddetail/Signin";
 import Report from "./Report";
+import GoogleMap from 'google-map-react';
+import { useSelector } from "react-redux";
 
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Carddetail() {
-  const [value, setValue] = React.useState(4);
+  const carInfo = useSelector((state) => state.bookAcarReducer.allCarsDetailSlice.data)
+  console.log(carInfo);
+
+  const [value, setValue] = React.useState();
   const [checked, setChecked] = React.useState(true);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
+
+  const rating = carInfo.vehicleDetail[0].rating
 
   return (
     <div>
@@ -37,35 +44,36 @@ export default function Carddetail() {
         <div className="sm:flex justify-center mt-24">
           <div>
             <img
-              src="assets/images/logos/Carddetail1.svg"
+              style={{ height: '100%', width: '100%' }}
+              src={carInfo.VehicleImg[0].image}
               alt="logo"
             />
           </div>
           <div className="flex flex-col justify-center sm:ml-20 ml-0 sm:mt-0 mt-28 space-y-10">
             <img
               width="100%"
-              src="assets/images/logos/Carddetail2.svg"
+              src={carInfo.VehicleImg[0].image}
               alt="logo"
             />
             <img
               width="100%"
-              src="assets/images/logos/Carddetail4.svg"
+              src={carInfo.VehicleImg[0].image}
               alt="logo"
             />
           </div>
           <div className="flex flex-col justify-center sm:ml-20 space-y-10 sm:mt-0 mt-10">
             <img
               width="100%"
-              src="assets/images/logos/Carddetail3.svg"
+              src={carInfo.VehicleImg[0].image}
               alt="logo"
             />
             <div className="relative">
-            <img
-              width="100%"
-              src="assets/images/logos/Carddetail4.svg"
-              alt="logo"
-              className="opacity-50"
-            />
+              <img
+                width="100%"
+                src={carInfo.VehicleImg[0].image}
+                alt="logo"
+                className="opacity-50"
+              />
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-8 px-8">
                 <Button className="opacity-100 text-white">View more</Button>
               </div>
@@ -76,10 +84,10 @@ export default function Carddetail() {
           <div className="col-span-1 sm:ml-8 mx-8 md:ml-96 lg:ml-288">
             <div className="grid grid-cols-3">
               <Typography className="font-normal text-2xl col-span-2">
-                Toyota Corolla Altis-2020
+                {carInfo.vehicleDetail[0].vehicle_name}
               </Typography>
               <Typography className="font-normal text-2xl col-span-1">
-                PKR 5000
+                PKR {carInfo.vehicleDetail[0].vehicleprice}
                 <b className="font-normal text-sm" style={{ color: "#667085" }}>
                   per day
                 </b>
@@ -90,7 +98,7 @@ export default function Carddetail() {
                 className="font-normal text-sm col-span-3"
                 style={{ color: "#667085" }}
               >
-                Gulberg 3, Lahore
+                {carInfo.vehicleDetail[0].location}
               </Typography>
               <Typography
                 className="font-normal text-sm col-span-1"
@@ -104,20 +112,17 @@ export default function Carddetail() {
                 <div className="flex">
                   <Rating
                     name="simple-controlled"
-                    value={value}
+                    value={rating}
                     max={4}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                    }}
                     size="medium"
                   />
                   <Typography className="text-sm font-normal ml-6">
-                    <b>4.0</b>
+                    <b>{rating}</b>
                     <b
                       className="text-sm font-normal ml-6"
                       style={{ color: "#667085" }}
                     >
-                      (15 Trips)
+                      ({carInfo.vehicleDetail[0].total_trips} Trips)
                     </b>
                   </Typography>
                 </div>
@@ -147,13 +152,13 @@ export default function Carddetail() {
                 <div className="flex">
                   <img src="assets/images/logos/Petrol.svg" alt="logo" />
                   <Typography className="ml-10 text-xs font-medium">
-                    Petrol
+                    {carInfo.Mandatory_feature[0].fueltype}
                   </Typography>
                 </div>
                 <div className="flex mt-24">
                   <img src="assets/images/logos/seats.svg" alt="logo" />
                   <Typography className="ml-10 text-xs font-medium">
-                    4 Seats
+                    {carInfo.Mandatory_feature[0].seats} Seats
                   </Typography>
                 </div>
               </div>
@@ -161,13 +166,13 @@ export default function Carddetail() {
                 <div className="flex">
                   <img src="assets/images/logos/Petrolgalon.svg" alt="logo" />
                   <Typography className="ml-10 text-xs font-medium">
-                    30 mpg
+                    {carInfo.Mandatory_feature[0].kmpl} mpg
                   </Typography>
                 </div>
                 <div className="flex mt-24">
                   <img src="assets/images/logos/Door.svg" alt="logo" />
                   <Typography className="ml-10 text-xs font-medium">
-                    4 doors
+                    {carInfo.Mandatory_feature[0].doors} doors
                   </Typography>
                 </div>
               </div>
@@ -179,12 +184,7 @@ export default function Carddetail() {
                   Descripton
                 </Typography>
                 <Typography style={{ color: "#667085" }}>
-                  Extremely comfortable and sporty at the same time: You can go
-                  wrong with an AMG. You will not regret renting this amazing
-                  car. Great drive around the city and throught the coast.
-                  Extremely comfortable and sporty at the same time: You can go
-                  wrong with an AMG.You will not regret renting this amazing
-                  car.Great drive around the city and through the coast.
+                  {carInfo.vehicleDetail[0].description}
                   <b style={{ color: "#D22A8F" }}>Read more</b>
                 </Typography>
               </div>
@@ -195,17 +195,20 @@ export default function Carddetail() {
                 </Typography>
                 <div className="flex flex-row space-x-136">
                   <div>
-                    <div className="flex space-x-4 mt-16">
-                      <img
-                        width="18px"
-                        src="assets/images/logos/keylessentry.svg"
-                        alt="logo"
-                      />
-                      <Typography className="font-medium text-xs">
-                        Keylessentry
-                      </Typography>
-                    </div>
-                    <div className="flex space-x-4 mt-28">
+                    {carInfo.features.map((i) => {
+                      return (
+                        <div key={i} className="flex space-x-4 mt-16">
+                          <img
+                            width="18px"
+                            src={i.featureimg}
+                            alt="logo"
+                          />
+                          <Typography className="font-medium text-xs">
+                            {i.featurename}
+                          </Typography>
+                        </div>)
+                    })}
+                    {/* <div className="flex space-x-4 mt-28">
                       <img
                         width="18px"
                         src="assets/images/logos/fapplecarplay.svg"
@@ -296,7 +299,7 @@ export default function Carddetail() {
                       <Typography className="font-medium text-xs">
                         USBcharge
                       </Typography>
-                    </div>
+                    </div> */}
 
                   </div>
                 </div>
@@ -311,17 +314,20 @@ export default function Carddetail() {
               </div>
               <div className="flex flex-row space-x-136">
                 <div>
-                  <div className="flex space-x-4 mt-16">
-                    <img
-                      width="18px"
-                      src="assets/images/logos/keylessentry.svg"
-                      alt="logo"
-                    />
-                    <Typography className="font-medium text-xs">
-                      Keylessentry
-                    </Typography>
-                  </div>
-                  <div className="flex space-x-4 mt-28">
+                  {carInfo.guideline.map((i) => {
+                    return (
+                      <div key={i} className="flex space-x-4 mt-16">
+                        <img
+                          width="18px"
+                          src={i.guidelineimg}
+                          alt="logo"
+                        />
+                        <Typography className="font-medium text-xs">
+                          {i.guidelinename}
+                        </Typography>
+                      </div>)
+                  })}
+                  {/* <div className="flex space-x-4 mt-28">
                     <img
                       width="18px"
                       src="assets/images/logos/fapplecarplay.svg"
@@ -382,11 +388,11 @@ export default function Carddetail() {
                     <Typography className="font-medium text-xs">
                       Bluetooth
                     </Typography>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
-            <div className="w-full mt-32">
+            {/* <div className="w-full mt-32">
               <hr />
               <div className="flex mt-8">
                 <Typography className="text-base font-semibold mt-8">
@@ -567,9 +573,9 @@ export default function Carddetail() {
               <Typography className="font-normal text-sm">
                 thank you for every thing i appreciate you!
               </Typography>
-            </div>
+            </div> */}
           </div>
-          <div className="col-span-1 sm:max-w-8/12 md:w-7/12 lg:w-6/12 sm:ml-128 mx-8 sm:mt-0 mt-20">
+          <div className="col-span-1 sm:max-w-8/12 md:w-8/12 lg:w-6/12 sm:ml-128 mx-8 sm:mt-0 mt-20">
             <div>
               <Card style={{ height: "auto", border: "1px solid rgba(195, 203, 205, 0.42)" }}>
                 <Typography className="text-lg font-semibold ml-10 mt-10">
@@ -637,7 +643,7 @@ export default function Carddetail() {
                       <div>
                         <div className="ml-8">
                           <Typography className="font-semibold text-base mt-12">
-                            Hassan Ali{" "}
+                            {carInfo.host[0].hostname}
                             <b
                               className="text-xs font-normal"
                               style={{ color: "#667085" }}
@@ -649,11 +655,8 @@ export default function Carddetail() {
                         <div className="flex ml-8">
                           <Rating
                             name="simple-controlled"
-                            value={value}
+                            value={rating}
                             max={4}
-                            onChange={(event, newValue) => {
-                              setValue(newValue);
-                            }}
                             size="medium"
                           />
                           <Typography className="text-sm font-normal ml-8">
@@ -670,7 +673,7 @@ export default function Carddetail() {
                             className="font-normal text-xs"
                             style={{ color: "#667085" }}
                           >
-                            487 trips- Joined Sep 2020
+                            {carInfo.host[0].total_trips} trips- Joined {carInfo.host[0].joiningdate}
                           </Typography>
                         </div>
                       </div>
@@ -720,19 +723,23 @@ export default function Carddetail() {
                 <hr className="mt-20" />
               </div>
               <div className="flex justify-center mt-20">
-              <Report/>
+                <Report />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div>
-        <img
-          style={{ marginTop: "152px" }}
-          className="w-full"
-          src="assets/images/logos/Detailmap.svg"
-          alt="logo"
-        />
+      <div className="mt-160">
+        <div className="w-full h-640">
+          <GoogleMap
+            bootstrapURLKeys={{
+              key: process.env.REACT_APP_MAP_KEY
+            }}
+            defaultZoom={12}
+            defaultCenter={[-34.397, 150.64]}
+          >
+          </GoogleMap>
+        </div>
       </div>
       <div>
         <Footer />

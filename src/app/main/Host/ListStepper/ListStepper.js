@@ -33,6 +33,7 @@ import { Provider, useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import store from "./store/index";
 import axios from "axios";
+import { setTodosSearchText } from "app/main/Admin/apps/todo/store/todosSlice";
 
 function getSteps() {
   return [
@@ -44,123 +45,6 @@ function getSteps() {
     "Add image",
     "Set prices",
   ];
-}
-
-function getStepContent(steps) {
-  switch (steps) {
-    case 0:
-      return (
-        <div>
-          <Typography
-            className="font-semibold text-lg"
-            style={{
-              color: "#101828",
-            }}
-          >
-            Car details
-          </Typography>
-          {/* <Provider store={store}> */}
-          <Cardetail />
-          {/* </Provider> */}
-        </div>
-      );
-    case 1:
-      return (
-        <div>
-          <Typography
-            className="font-semibold text-lg"
-            style={{
-              color: "#101828",
-            }}
-          >
-            Car location
-          </Typography>
-          {/* <Provider store={store}> */}
-          <CarLocation />
-          {/* </Provider> */}
-        </div>
-      );
-    case 2:
-      return (
-        <div>
-          <Typography
-            className="font-semibold text-lg"
-            style={{
-              color: "#101828",
-            }}
-          >
-            Features
-          </Typography>{" "}
-          {/* <Provider store={store}> */}
-          <Features />
-          {/* </Provider> */}
-        </div>
-      );
-    case 3:
-      return (
-        <div>
-          <Typography
-            className="font-semibold text-lg"
-            style={{
-              color: "#101828",
-            }}
-          >
-            Guidelines
-          </Typography>
-          {/* <Provider store={store}> */}
-          <Guidelines />
-          {/* </Provider> */}
-        </div>
-      );
-    case 4:
-      return (
-        <div>
-          <Typography
-            className="font-semibold text-lg"
-            style={{
-              color: "#101828",
-            }}
-          >
-            Set availability
-          </Typography>
-          {/* <Provider store={store}> */}
-          <Availability />
-          {/* </Provider> */}
-        </div>
-      );
-    case 5:
-      return (
-        <div>
-          <Typography
-            className="font-semibold text-lg"
-            style={{
-              color: "#101828",
-            }}
-          >
-            Add image
-          </Typography>
-          {/* <Provider store={store}> */}
-          <AddImages />
-          {/* </Provider> */}
-        </div>
-      );
-    case 6:
-      return (
-        <div>
-          <Typography
-            className="font-semibold text-lg"
-            style={{
-              color: "#101828",
-            }}
-          >
-            Add price
-          </Typography>
-          {/* <Provider store={store}> */}
-          <AddPrice />
-          {/* </Provider> */}
-        </div>
-      );
-  }
 }
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
@@ -341,7 +225,7 @@ export default function ListSteppers() {
   const { isValid, dirtyFields, errors, touchedFields } = formState;
 
   const data = watch();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(6);
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -350,6 +234,175 @@ export default function ListSteppers() {
   };
 
   const steps = getSteps();
+
+  const [validate, setValidate] = React.useState('')
+  console.log('Data--->', validate)
+
+
+  const checkDisability = () => {
+
+    switch (validate) {
+      case "CarDetails":
+        if (stepperData.carDetail.data.makeId && stepperData.carDetail.data.categoryId && stepperData.carDetail.data.modelId && stepperData.carDetail.data.chassis_number && stepperData.carDetail.data.plate_number && stepperData.carDetail.data.transmissionId && stepperData.carDetail.data.vehicle_type_id && stepperData.carDetail.data.eco_friendly_Id && stepperData.carDetail.data.description) {
+          return true
+        }
+        break;
+      case "CarLocation":
+        if (stepperData.location.city && stepperData.location.area && stepperData.location.streetAddress && stepperData.location.zipCode) {
+          return true
+        }
+        break;
+      case "Features":
+        if ((stepperData.features.mandatoryFeatures.fueltype && stepperData.features.mandatoryFeatures.kmpl && stepperData.features.mandatoryFeatures.doors && stepperData.features.mandatoryFeatures.seats)
+          && (stepperData.features.featuresList.blueTooth.availability || stepperData.features.featuresList.keylessEntry.availability || stepperData.features.featuresList.appleCar.availability || stepperData.features.featuresList.USB.availability || stepperData.features.featuresList.backupCamera.availability || stepperData.features.featuresList.auxInput.availability || stepperData.features.featuresList.heatedSeat.availability || stepperData.features.featuresList.sunRoof.availability || stepperData.features.featuresList.wheelDriver.availability || stepperData.features.featuresList.GPS.availability || stepperData.features.featuresList.auxInput2.availability)) {
+          return true
+        }
+        break;
+      case "Guidelines":
+        if (stepperData.guidelines.guidelines.blueTooth.availability || stepperData.guidelines.guidelines.keylessEntry.availability || stepperData.guidelines.guidelines.appleCar.availability || stepperData.guidelines.guidelines.USB.availability || stepperData.guidelines.guidelines.backupCamera.availability || stepperData.guidelines.guidelines.auxInput.availability || stepperData.guidelines.guidelines.heatedSeat.availability || stepperData.guidelines.guidelines.sunRoof.availability || stepperData.guidelines.guidelines.wheelDriver.availability || stepperData.guidelines.guidelines.GPS.availability || stepperData.guidelines.guidelines.auxInput2.availability) {
+          return true
+        }
+        break;
+      case "Availability":
+        if (stepperData.setAvailability.days.monday.availability || stepperData.setAvailability.days.tuesday.availability || stepperData.setAvailability.days.wednesday.availability || stepperData.setAvailability.days.thursday.availability || stepperData.setAvailability.days.friday.availability || stepperData.setAvailability.days.saturday.availability || stepperData.setAvailability.days.sunday.availability) {
+          return true
+        }
+        break;
+      case "Images":
+        if (stepperData.vehicleimages.images.length > 0) {
+          return true
+        }
+        break;
+      case "Price":
+        if (stepperData.setPrice.pricePerDay && (stepperData.setPrice.with_driver ? (stepperData.setPrice.price_inc_driver && stepperData.setPrice.additional_Price) : true)) {
+          return true
+        }
+        break;
+    }
+    return false
+  }
+
+  function checkFormData(n) {
+    setValidate(n)
+  }
+
+
+  function getStepContent(steps) {
+    switch (steps) {
+      case 0:
+        return (
+          <div>
+            <Typography
+              className="font-semibold text-lg"
+              style={{
+                color: "#101828",
+              }}
+            >
+              Car details
+            </Typography>
+            {/* <Provider store={store}> */}
+            <Cardetail checkFormData={checkFormData} />
+            {/* </Provider> */}
+          </div>
+        );
+      case 1:
+        return (
+          <div>
+            <Typography
+              className="font-semibold text-lg"
+              style={{
+                color: "#101828",
+              }}
+            >
+              Car location
+            </Typography>
+            {/* <Provider store={store}> */}
+            <CarLocation checkFormData={checkFormData} />
+            {/* </Provider> */}
+          </div>
+        );
+      case 2:
+        return (
+          <div>
+            <Typography
+              className="font-semibold text-lg"
+              style={{
+                color: "#101828",
+              }}
+            >
+              Features
+            </Typography>{" "}
+            {/* <Provider store={store}> */}
+            <Features checkFormData={checkFormData} />
+            {/* </Provider> */}
+          </div>
+        );
+      case 3:
+        return (
+          <div>
+            <Typography
+              className="font-semibold text-lg"
+              style={{
+                color: "#101828",
+              }}
+            >
+              Guidelines
+            </Typography>
+            {/* <Provider store={store}> */}
+            <Guidelines checkFormData={checkFormData} />
+            {/* </Provider> */}
+          </div>
+        );
+      case 4:
+        return (
+          <div>
+            <Typography
+              className="font-semibold text-lg"
+              style={{
+                color: "#101828",
+              }}
+            >
+              Set availability
+            </Typography>
+            {/* <Provider store={store}> */}
+            <Availability checkFormData={checkFormData} />
+            {/* </Provider> */}
+          </div>
+        );
+      case 5:
+        return (
+          <div>
+            <Typography
+              className="font-semibold text-lg"
+              style={{
+                color: "#101828",
+              }}
+            >
+              Add image
+            </Typography>
+            {/* <Provider store={store}> */}
+            <AddImages checkFormData={checkFormData} />
+            {/* </Provider> */}
+          </div>
+        );
+      case 6:
+        return (
+          <div>
+            <Typography
+              className="font-semibold text-lg"
+              style={{
+                color: "#101828",
+              }}
+            >
+              Add price
+            </Typography>
+            {/* <Provider store={store}> */}
+            <AddPrice checkFormData={checkFormData} />
+            {/* </Provider> */}
+          </div>
+        );
+    }
+  }
 
   const [open, setOpen] = React.useState(false);
 
@@ -430,7 +483,7 @@ export default function ListSteppers() {
                       </Button>
                       <Button
                         type="submit"
-                        // disabled={_.isEmpty(dirtyFields) || !isValid}
+                        disabled={checkDisability() ? false : true}
                         onClick={
                           activeStep === steps.length - 1
                             ? onfinalSubmit

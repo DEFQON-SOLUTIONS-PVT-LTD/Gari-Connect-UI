@@ -88,7 +88,11 @@ function BpRadio(props) {
     />
   );
 }
-const AddPrice = () => {
+const AddPrice = ({ checkFormData }) => {
+
+  useEffect(() => {
+    checkFormData('Price')
+  })
   // debugger;
   const dispatch = useDispatch();
   const priceSlice = useSelector((state) => state.ListStepperReducer.setPrice);
@@ -103,7 +107,12 @@ const AddPrice = () => {
   const [withDriverFlag, setWithDriverFlag] = useState(true);
 
   const withDriverFlagHandle = () => {
+    if (!withDriverFlag === false) {
+      dispatch(addPrice_inc_driver(0))
+      dispatch(addAdditional_Price(0))
+    }
     dispatch(addWith_driver(!withDriverFlag));
+    console.log(!withDriverFlag)
 
     dispatch(addPickAndDrop(!withDriverFlag));
     setWithDriverFlag(!withDriverFlag);
@@ -215,44 +224,52 @@ const AddPrice = () => {
   };
 
   const handleChange = (val) => {
+    checkFormData('Price')
     setPriceVal(val.target.value);
     dispatch(addPricePerDay(val.target.value));
   };
 
   const handleDriverChange = (val) => {
+    checkFormData('Price')
     setDriverVal(val.target.value);
     dispatch(addPrice_inc_driver(val.target.value));
   };
 
   const handleAddChange = (val) => {
+    checkFormData('Price')
     setAddVal(val.target.value);
     dispatch(addAdditional_Price(val.target.value));
   };
 
   useEffect(() => {
-    setPriceData(parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal));
+
+    { priceSlice.pricePerDay == "" ? "0" : priceSlice.pricePerDay }
+    const realPrice = Math.round((parseInt(priceSlice.pricePerDay == "" ? "0" : priceSlice.pricePerDay) + parseInt(priceSlice.price_inc_driver == "" ? "0" : priceSlice.price_inc_driver) + parseInt(priceSlice.additional_Price == "" ? "0" : priceSlice.additional_Price))).toString();
+    const realCutPRice = Math.round((
+      ((parseInt(priceSlice.pricePerDay == "" ? "0" : priceSlice.pricePerDay) + parseInt(priceSlice.price_inc_driver == "" ? "0" : priceSlice.price_inc_driver) + parseInt(priceSlice.additional_Price == "" ? "0" : priceSlice.additional_Price)) / 100) *
+      90
+    )).toString();
+    // debugger
+    setPriceData(realPrice);
     dispatch(
-      addPrice(parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal))
+      addPrice(realPrice)
     );
     setCutPrice(
-      (
-        ((parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal)) / 100) *
-        90
-      ).toFixed(1)
+      realCutPRice
     );
 
     dispatch(
       addCutPrice(
-        (
-          ((parseInt(priceVal) + parseInt(driverVal) + parseInt(addVal)) /
-            100) *
-          90
-        ).toFixed(1)
+        realCutPRice
       )
     );
   }, [cutprice, priceData, priceVal, driverVal, addVal]);
 
   useEffect(() => {
+    if (!withDriverFlag) {
+      dispatch(addPrice(priceSlice.pricePerDay))
+      dispatch(addCutPrice((priceSlice.pricePerDay / 100) * 90))
+    }
     setValue("price", priceSlice.pricePerDay);
     setValue("driverPrice", priceSlice.price_inc_driver);
     setValue("additionalPrice", priceSlice.additional_Price);
@@ -461,7 +478,7 @@ const AddPrice = () => {
             style={{ color: "#D22A8F" }}
             className="font-semibold text-6xl"
           >
-            {priceSlice.price}
+            {priceSlice.price.toString() === "NaN" ? 0 : priceSlice.price.toString()}
             <b className="text-2xl font-semibold" style={{ color: "#667085" }}>
               PKR
             </b>
@@ -472,7 +489,7 @@ const AddPrice = () => {
           />
           <Typography style={{ color: "#667085" }} className="mt-16">
             GariConnect will charge 10% of the total price and you will get
-            approx <b style={{ color: "#101828" }}>PKR {priceSlice.cutPrice}</b>
+            approx <b style={{ color: "#101828" }}>PKR {priceSlice.cutPrice.toString() === "NaN" ? 0 : priceSlice.cutPrice.toString()}</b>
           </Typography>
         </div>
       </div>

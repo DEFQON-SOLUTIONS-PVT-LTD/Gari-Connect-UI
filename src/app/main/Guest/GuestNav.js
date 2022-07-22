@@ -297,21 +297,21 @@ const GuestNav = () => {
                 >
                   <MenuItem
                     component={Link}
-                    to="/Profile"
+                    to="/GuestProfile"
                     onClick={handleClose2}
                   >
                     Profile
                   </MenuItem>
                   <MenuItem
                     component={Link}
-                    to="/Settings"
+                    to="/GuestSetting"
                     onClick={handleClose2}
                   >
                     Settings
                   </MenuItem>
                   <MenuItem
                     component={Link}
-                    to="/Support"
+                    to="/GuestSupport"
                     onClick={handleClose2}
                   >
                     Help & support

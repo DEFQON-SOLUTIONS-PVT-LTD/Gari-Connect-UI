@@ -5,47 +5,47 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   guidelines: {
     blueTooth: {
-      id: 1,
-      availability: false,
-    },
-    keylessEntry: {
-      id: 2,
-      availability: false,
-    },
-    appleCar: {
-      id: 3,
-      availability: false,
-    },
-    USB: {
-      id: 4,
-      availability: false,
-    },
-    backupCamera: {
-      id: 5,
-      availability: false,
-    },
-    auxInput: {
-      id: 6,
-      availability: false,
-    },
-    tollPass: {
       id: 7,
       availability: false,
     },
-    heatedSeat: {
+    keylessEntry: {
       id: 8,
       availability: false,
     },
-    sunRoof: {
+    appleCar: {
       id: 9,
       availability: false,
     },
-    wheelDriver: {
+    USB: {
       id: 10,
       availability: false,
     },
-    GPS: {
+    backupCamera: {
       id: 11,
+      availability: false,
+    },
+    auxInput: {
+      id: 12,
+      availability: false,
+    },
+    tollPass: {
+      id: 13,
+      availability: false,
+    },
+    heatedSeat: {
+      id: 14,
+      availability: false,
+    },
+    sunRoof: {
+      id: 15,
+      availability: false,
+    },
+    wheelDriver: {
+      id: 16,
+      availability: false,
+    },
+    GPS: {
+      id: 17,
       availability: false,
     },
     auxInput2: {

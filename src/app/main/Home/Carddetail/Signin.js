@@ -12,9 +12,10 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Checkbox from "@mui/material/Checkbox";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 
 export default function Signin() {
+  const history = useHistory();
   const [checked, setChecked] = React.useState(true);
   const [open, setOpen] = React.useState(false);
 
@@ -196,8 +197,8 @@ export default function Signin() {
                     label="Remember for 30 days"
                   />
                   <Typography
-                    component={Link}
-                    to="/forgetpassword"
+                    // component={Link}
+                    // to="/forgetpassword"
                     className="text-sm text-right mt-2.5 font-medium text-fuchsia-600"
                     style={{
                       color: "#D22A8F",
@@ -209,8 +210,7 @@ export default function Signin() {
                 </div>
                 <div style={{ marginTop: "19px" }}>
                   <Button
-                    component={Link}
-                    to="/Confirmandpay"
+                 onClick={() => history.push('/Confirmandpay')}
                     style={{
                       backgroundColor: "rgba(210, 42, 143, 1)",
                       height: "44px",

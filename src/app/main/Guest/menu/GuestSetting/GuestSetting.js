@@ -67,8 +67,8 @@ function GuestSetting() {
     <div className="bg-gray-50 h-full">
       <div className="">
         <div className="flex flex-row items-center mx-auto w-5/6 py-24">
-          <IconButton component={Link} to="/GuestPanel">
-            <ArrowBackIcon size="large" className="mr-20" />
+          <IconButton component={Link} to="/GuestPanel" className="mr-20">
+            <ArrowBackIcon size="large"/>
           </IconButton>
           <Typography className="text-2xl font-normal font-Gilroy-Medium">
             Settings

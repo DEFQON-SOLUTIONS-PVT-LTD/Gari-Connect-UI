@@ -115,7 +115,7 @@ const PaymentsBilling = () => {
           </div>
         </div>
         <div className="ml-36 mt-36">
-          <Accordion className="w-1/2">
+          <Accordion className="w-2/5">
             <AccordionSummary
               InputProps={{ className: "h-80" }}
               expandIcon={<ExpandMoreIcon />}
@@ -147,7 +147,7 @@ const PaymentsBilling = () => {
                   name="customized-radios"
                 >
                   <div className="sm:flex sm:space-x-10 ">
-                    <Card style={{ width: "142px" }}>
+                    <Card className="h-60 w-full">
                       <CardContent>
                         <div className="flex">
                           <FormControlLabel
@@ -159,7 +159,7 @@ const PaymentsBilling = () => {
                         </div>
                       </CardContent>
                     </Card>
-                    <Card style={{ width: "142px" }}>
+                    <Card className="h-60 w-full">
                       <CardContent>
                         <div className="flex">
                           <FormControlLabel
@@ -174,7 +174,7 @@ const PaymentsBilling = () => {
                         </div>
                       </CardContent>
                     </Card>
-                    <Card style={{ width: "142px" }}>
+                    <Card className="h-60 w-full">
                       <CardContent>
                         <div className="flex">
                           <FormControlLabel

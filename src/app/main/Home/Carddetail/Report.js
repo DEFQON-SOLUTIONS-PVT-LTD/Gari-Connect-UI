@@ -88,14 +88,14 @@ export default function FormDialog() {
 
   return (
     <div>
-      <Link
+      <Typography
         style={{ color: "red" }}
-        className="cursor-pointer"
+        className="cursor-pointer underline underline-offset-1"
         variant="outlined"
         onClick={handleClickOpen}
       >
         Report listing
-      </Link>
+      </Typography>
       <Dialog
         style={{
           background: "#FFFFFF",

@@ -1,12 +1,15 @@
 import { Typography, TextField, FormControl, Paper, Input, Button, Box, Card, CardContent, CardActions, DialogTitle, DialogContent, DialogActions, Dialog } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import Icon from '@mui/material/Icon';
+import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import React from 'react'
 import Footer from '../../../Home/Footer/Footer';
 import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMainTheme } from 'app/store/fuse/settingsSlice';
+import GuestNav from '../../GuestNav';
+import {Link} from "react-router-dom";
 
 const card = (
     <React.Fragment>
@@ -38,11 +41,13 @@ const GuestSupport = () => {
 
     return (
         <div className="bg-gray-50 h-full">
-            <Navbar />
+            <GuestNav/>
 
             <div className="mx-auto w-5/6 py-24">
                 <div className="flex flex-row items-center mx-auto mb-28">
-                    <ArrowBackIcon size="large" className="mr-20" />
+                    <IconButton component={Link} to="GuestPanel" className='mr-20'>
+                    <ArrowBackIcon />
+                    </IconButton>   
                     <Typography className="text-2xl font-normal font-Gilroy-Medium">Help & support</Typography>
                 </div>
 

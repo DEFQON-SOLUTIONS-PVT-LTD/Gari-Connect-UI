@@ -53,7 +53,8 @@ var allCategoriesOptions = [
   { label: "premium", categoryId: "8" },
 ];
 
-const CarDetails = () => {
+const CarDetails = ({ checkFormData }) => {
+  console.log(checkFormData)
   const carKaState = useSelector((state) => state);
   // debugger;
 
@@ -169,11 +170,11 @@ const CarDetails = () => {
                   options={allMakesOptions}
                   onChange={(event, newValue) => {
                     console.log("chal gia onChange", newValue);
-
                     onChange(newValue);
                     getModelByMakeId();
                     dispatch(addMakeId(newValue.makeId));
                     dispatch(addMakeLabel(newValue.label));
+                    checkFormData('CarDetails')
                   }}
                   sx={{ height: 44 }}
                   renderInput={(params) => (
@@ -226,6 +227,7 @@ const CarDetails = () => {
                     dispatch(addCategoryId(newValue.categoryId));
                     dispatch(addCategoryLabel(newValue.label));
                     onChange(newValue);
+                    checkFormData('CarDetails')
                   }}
                   sx={{ height: 44 }}
                   renderInput={(params) => (
@@ -281,6 +283,7 @@ const CarDetails = () => {
                     dispatch(addModelId(newValue.modelId));
                     dispatch(addModelLabel(newValue.label));
                     onChange(newValue);
+                    checkFormData('CarDetails')
                   }}
                   sx={{ height: 44 }}
                   renderInput={(params) => (
@@ -326,6 +329,7 @@ const CarDetails = () => {
                   {...field}
                   helperText={errors?.chassis?.message}
                   onChange={(e) => {
+                    checkFormData('CarDetails')
                     dispatch(addChassisNumber(e.target.value));
                     field.onChange(e.target.value);
                   }}
@@ -363,6 +367,7 @@ const CarDetails = () => {
                   {...field}
                   helperText={errors?.plate?.message}
                   onChange={(e) => {
+                    checkFormData('CarDetails')
                     dispatch(addPlateNumber(e.target.value));
                     field.onChange(e.target.value);
                   }}
@@ -401,6 +406,7 @@ const CarDetails = () => {
                     {...field}
                     variant="outlined"
                     onChange={(e) => {
+                      checkFormData('CarDetails')
                       dispatch(addTransmissionId(e.target.value));
                       field.onChange(e.target.value);
                     }}
@@ -444,6 +450,7 @@ const CarDetails = () => {
                     {...field}
                     variant="outlined"
                     onChange={(e) => {
+                      checkFormData('CarDetails')
                       dispatch(addVehicleTypeId(e.target.value));
                       field.onChange(e.target.value);
                     }}
@@ -484,6 +491,7 @@ const CarDetails = () => {
                     {...field}
                     variant="outlined"
                     onChange={(e) => {
+                      checkFormData('CarDetails')
                       dispatch(addEcoFriendlyId(e.target.value));
                       field.onChange(e.target.value);
                     }}
@@ -525,6 +533,7 @@ const CarDetails = () => {
                   required
                   helperText={errors?.description?.message}
                   onChange={(e) => {
+                    checkFormData('CarDetails')
                     dispatch(addDescription(e.target.value));
                     field.onChange(e.target.value);
                   }}

@@ -8,15 +8,22 @@ import {
   removeImages,
 } from "../../ListStepper/store/addImageSlices";
 
-const AddImages = () => {
+const AddImages = ({ checkFormData }) => {
+
+  useEffect(() => {
+    checkFormData('Images')
+  })
+
   const dispatch = useDispatch();
   const imageFiLe = useSelector((state) => state.ListStepperReducer);
 
-  const [images, setImages] = React.useState([]);
+  const [images, setImages] = React.useState(imageFiLe.vehicleimages.images);
   const maxNumber = 5;
   const onChange = (imageList, onImageUpload, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
+
+    checkFormData('Images')
 
     setImages(imageList);
 

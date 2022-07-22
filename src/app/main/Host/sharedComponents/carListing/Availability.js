@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { Typography, Button } from "@mui/material";
 import Switch from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
@@ -18,7 +19,12 @@ const schema = yup.object().shape({
   Sunday: yup.boolean().oneOf([true], "You must turn it on."),
 });
 
-const Availability = () => {
+const Availability = ({ checkFormData }) => {
+
+  useEffect(() => {
+    checkFormData('Availability')
+  })
+
   const dispatch = useDispatch();
 
   const availabilities = useSelector(
@@ -96,6 +102,7 @@ const Availability = () => {
               <AntSwitch
                 checked={availabilities.days.monday.availability}
                 onChange={(event) => {
+                  checkFormData('Availability')
                   if (event.target.checked) {
                     dispatch(
                       addDayId({
@@ -132,6 +139,7 @@ const Availability = () => {
               <AntSwitch
                 checked={availabilities.days.tuesday.availability}
                 onChange={(event) => {
+                  checkFormData('Availability')
                   if (event.target.checked) {
                     dispatch(
                       addDayId({
@@ -168,6 +176,7 @@ const Availability = () => {
               <AntSwitch
                 checked={availabilities.days.wednesday.availability}
                 onChange={(event) => {
+                  checkFormData('Availability')
                   if (event.target.checked) {
                     dispatch(
                       addDayId({
@@ -204,6 +213,7 @@ const Availability = () => {
               <AntSwitch
                 checked={availabilities.days.thursday.availability}
                 onChange={(event) => {
+                  checkFormData('Availability')
                   if (event.target.checked) {
                     dispatch(
                       addDayId({
@@ -240,6 +250,7 @@ const Availability = () => {
               <AntSwitch
                 checked={availabilities.days.friday.availability}
                 onChange={(event) => {
+                  checkFormData('Availability')
                   if (event.target.checked) {
                     dispatch(
                       addDayId({
@@ -276,6 +287,7 @@ const Availability = () => {
               <AntSwitch
                 checked={availabilities.days.saturday.availability}
                 onChange={(event) => {
+                  checkFormData('Availability')
                   if (event.target.checked) {
                     dispatch(
                       addDayId({
@@ -312,6 +324,7 @@ const Availability = () => {
               <AntSwitch
                 checked={availabilities.days.sunday.availability}
                 onChange={(event) => {
+                  checkFormData('Availability')
                   if (event.target.checked) {
                     dispatch(
                       addDayId({

@@ -26,7 +26,12 @@ const schema = yup.object().shape({
   seats: yup.string().required("You must enter number of seats"),
 });
 
-const Features = () => {
+const Features = ({ checkFormData }) => {
+
+  useEffect(() => {
+    checkFormData('Features')
+  })
+
   const dispatch = useDispatch();
 
   const featuresData = useSelector(
@@ -55,6 +60,7 @@ const Features = () => {
   const [flags, setFlags] = useState(features);
 
   const handleCardClick = (key, value, identity) => {
+    checkFormData('Features')
     setFlags({
       ...flags,
       [key]: { id: identity.toString(), availability: !value },
@@ -116,6 +122,7 @@ const Features = () => {
                   variant="outlined"
                   fullWidth
                   onChange={(e) => {
+                    checkFormData('Features')
                     dispatch(addFeulType(e.target.value));
                     field.onChange(e.target.value);
                   }}
@@ -154,6 +161,7 @@ const Features = () => {
                 helperText={errors?.kmpl?.message}
                 style={{ marginTop: "6px", height: "44px" }}
                 onChange={(e) => {
+                  checkFormData('Features')
                   console.log(e.target.value);
                   dispatch(addKmpl(e.target.value));
                   field.onChange(e.target.value);
@@ -196,6 +204,7 @@ const Features = () => {
                   variant="outlined"
                   fullWidth
                   onChange={(e) => {
+                    checkFormData('Features')
                     dispatch(addDoors(e.target.value));
                     field.onChange(e.target.value);
                   }}
@@ -234,6 +243,7 @@ const Features = () => {
                 helperText={errors?.seats?.message}
                 style={{ marginTop: "6px", height: "44px" }}
                 onChange={(e) => {
+                  checkFormData('Features')
                   dispatch(addSeats(e.target.value));
                   field.onChange(e.target.value);
                 }}

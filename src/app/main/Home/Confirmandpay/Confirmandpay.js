@@ -21,16 +21,45 @@ import Edit from "./Edit/Edit";
 import Otp from "./Otp/Otp";
 import Insurance from "./Insurance/Insurance";
 import Payment from "./Payment/Payment";
-
-
+import IconButton from '@mui/material/IconButton';
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
+// import second from 'axios'
 
 export default function Confirmandpay() {
+  console.log(localStorage.getItem("jwt_access_token"));
+  const carInfo = useSelector(
+    (state) => state.bookAcarReducer.allCarsDetailSlice.data
+  );
+
   const [expanded, setExpanded] = React.useState(false);
 
   const confirmChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-  const [value, setValue] = React.useState(4);
+  const rating = carInfo.vehicleDetail[0].rating;
+
+  const handleConfirmBooking = () => {
+    // Request.Headers.Add(
+    //   "authorization",
+    //   localStorage.getItem("jwt_access_token")
+    // );
+    axios({
+      method: "post",
+      url: "https://api.gariconnect.com:8080/api/bookings/create",
+      data: {
+        userId: 5,
+        vehicleId: 190,
+        statusId: "1",
+        is_active: "true",
+        trip_startDate: "2022-04-20",
+        trip_endDate: "2022-04-24",
+      },
+    }).then((res) => {
+      console.log("mubarak hoo", res.data);
+    });
+  };
 
   return (
     <div>
@@ -39,7 +68,12 @@ export default function Confirmandpay() {
       <div>
         <div className="mt-32 sm:mr-0 mr-36">
           <div className="flex flex-row  px-24 py-24 sm:ml-28 md:ml-28 lg:ml-96">
-            <ArrowBackIcon size="large" className="mr-20 sm:ml-44 ml-0" />
+            <IconButton
+              component={Link}
+              to="/carddetail"
+              className="mr-20 sm:ml-44 ml-0">
+              <ArrowBackIcon size="large" />
+            </IconButton>
             <Typography className="text-2xl font-normal font-Gilroy-Medium">
               Confirm and pay
             </Typography>
@@ -149,12 +183,12 @@ export default function Confirmandpay() {
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Payment/>
+                    <Payment />
                     <Otp />
-                  </AccordionDetails>
-                </Accordion>
-              </div>
-            </div>
+                  </AccordionDetails >
+                </Accordion >
+              </div >
+            </div >
             <div className="col-span-1">
               <Card
                 className="shadow-none rounded-md border"
@@ -168,7 +202,7 @@ export default function Confirmandpay() {
                           <img
                             width="180"
                             className="mr-12"
-                            src="assets/images/logos/HondaAfb.svg"
+                            src={carInfo.VehicleImg[0].image}
                             alt=""
                           />
                         </div>
@@ -178,34 +212,31 @@ export default function Confirmandpay() {
                             <Rating
                               className="text-16"
                               name="simple-controlled"
-                              value={value}
-                              onChange={(event, newValue) => {
-                                setValue(newValue);
-                              }}
+                              value={rating}
                               max={4}
                             />
                             <Typography
                               className="text-sm font-normal ml-8"
                               color="text.black"
                             >
-                              4.0
+                              {rating}
                             </Typography>
                             <Typography
                               className="text-sm pl-8"
                               style={{ color: "#667085" }}
                             >
-                              15 trips
+                              {carInfo.vehicleDetail[0].total_trips} trips
                             </Typography>
                           </div>
                           <Typography className="text-16 font-600 font-Manrope">
-                            Honda Afb 8895-19
+                            {carInfo.vehicleDetail[0].vehicle_name}
                           </Typography>
 
                           <Typography
                             className="text-12"
                             color="text.secondary"
                           >
-                            Gulberg 3
+                            {carInfo.vehicleDetail[0].location}
                           </Typography>
                         </div>
                       </div>
@@ -255,7 +286,9 @@ export default function Confirmandpay() {
                     <Typography className="text-base" color="text.secondary">
                       Trip price
                     </Typography>
-                    <Typography className="text-base">Rs 4000/day</Typography>
+                    <Typography className="text-base">
+                      Rs {carInfo.vehicleDetail[0].vehicleprice}/day
+                    </Typography>
                   </div>
                   <div className="flex flex-row justify-between items-center mt-20 mr-14">
                     <Typography className="text-base" color="text.secondary">
@@ -295,26 +328,28 @@ export default function Confirmandpay() {
                       Rs 8200/-
                     </Typography>
                   </div>
+                  <Otp />
 
                   <div className="flex flex-row justify-end space-x-10 mt-44 mb-10">
                     <Button
                       variant="contained"
                       className="rounded-4 text-white w-full"
                       style={{ backgroundColor: "#D22A8F" }}
+                      onClick={handleConfirmBooking}
                     >
                       Pay now
                     </Button>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
+                </CardContent >
+              </Card >
+            </div >
+          </div >
+        </div >
         <div className="mt-32">
           <Footer />
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 const top100Films = [

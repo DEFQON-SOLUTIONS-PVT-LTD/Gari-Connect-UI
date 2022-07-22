@@ -148,7 +148,7 @@ const PaymentsBilling = () => {
                   name="customized-radios"
                 >
                   <div className="sm:flex sm:space-x-10">
-                    <Card style={{ width: "142px" }}>
+                    <Card className="h-60 w-full">
                       <CardContent>
                         <div className="flex">
                           <FormControlLabel
@@ -161,7 +161,7 @@ const PaymentsBilling = () => {
                         </div>
                       </CardContent>
                     </Card>
-                    <Card style={{ width: "142px" }}>
+                    <Card className="h-60 w-full">
                       <CardContent>
                         <div className="flex">
                           <FormControlLabel
@@ -176,7 +176,7 @@ const PaymentsBilling = () => {
                         </div>
                       </CardContent>
                     </Card>
-                    <Card style={{ width: "142px" }}>
+                    <Card className="h-60 w-full">
                       <CardContent>
                         <div className="flex">
                           <FormControlLabel
@@ -305,7 +305,8 @@ const PaymentsBilling = () => {
               </div>
             </AccordionDetails >
           </Accordion >
-        </div >
+          <Typography className="mt-20 font-500 text-14" style={{color:"#D22A8F"}}>Add new</Typography>
+        </div>
       </div >
     </>
   );

@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 
 const initialState = {
-  pricePerDay: "",
-  price_inc_driver: 0,
-  additional_Price: "",
+  pricePerDay: "0",
+  price_inc_driver: "0",
+  additional_Price: "0",
   with_driver: "true",
   pickAndDrop: "true",
   price: "0",
@@ -20,9 +20,11 @@ const priceSlice = createSlice({
   reducers: {
     addPrice: (state, action) => {
       state.price = action.payload;
+      // debugger
     },
     addCutPrice: (state, action) => {
       state.cutPrice = action.payload;
+      // debugger
     },
     addPricePerDay: (state, action) => {
       state.pricePerDay = action.payload;
