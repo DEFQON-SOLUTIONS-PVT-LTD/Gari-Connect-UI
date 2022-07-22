@@ -18,6 +18,7 @@ import Favorite from "@mui/icons-material/Favorite";
 import TripDateRange from "../../Host/sharedComponents/TripDateRange";
 import Signin from "../Carddetail/Signin";
 import Report from "./Report";
+import GoogleMap from 'google-map-react';
 
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -569,7 +570,7 @@ export default function Carddetail() {
               </Typography>
             </div>
           </div>
-          <div className="col-span-1 sm:max-w-8/12 md:w-7/12 lg:w-6/12 sm:ml-128 mx-8 sm:mt-0 mt-20">
+          <div className="col-span-1 sm:max-w-8/12 md:w-8/12 lg:w-6/12 sm:ml-128 mx-8 sm:mt-0 mt-20">
             <div>
               <Card style={{ height: "auto", border: "1px solid rgba(195, 203, 205, 0.42)" }}>
                 <Typography className="text-lg font-semibold ml-10 mt-10">
@@ -726,13 +727,17 @@ export default function Carddetail() {
           </div>
         </div>
       </div>
-      <div>
-        <img
-          style={{ marginTop: "152px" }}
-          className="w-full"
-          src="assets/images/logos/Detailmap.svg"
-          alt="logo"
-        />
+      <div className="mt-160">
+      <div className="w-full h-640">
+				<GoogleMap
+					bootstrapURLKeys={{
+						key: process.env.REACT_APP_MAP_KEY
+					}}
+					defaultZoom={12}
+					defaultCenter={[-34.397, 150.64]}
+				>
+				</GoogleMap>
+			</div>
       </div>
       <div>
         <Footer />

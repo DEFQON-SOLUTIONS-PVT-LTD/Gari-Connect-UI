@@ -1,5 +1,4 @@
 import React from 'react';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Card, CardContent, Typography, Rating, Divider } from '@mui/material';
 import Navbar from '../../hostPanel/Navbar';
 import Footer from '../../../Home/Footer/Footer';
@@ -13,7 +12,7 @@ export default function Profile() {
 
             <div className="">
                 <div className="flex flex-row items-center mx-auto w-5/6 py-24">
-                    <ArrowBackIcon size="large" className="mr-20" />
+                    
                     <Typography className="text-2xl font-normal font-Gilroy-Medium">Profile</Typography>
                 </div>
 

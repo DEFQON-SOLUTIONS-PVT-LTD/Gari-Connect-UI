@@ -21,8 +21,8 @@ import Edit from "./Edit/Edit";
 import Otp from "./Otp/Otp";
 import Insurance from "./Insurance/Insurance";
 import Payment from "./Payment/Payment";
-
-
+import IconButton from '@mui/material/IconButton';
+import {Link} from "react-router-dom";
 
 export default function Confirmandpay() {
   const [expanded, setExpanded] = React.useState(false);
@@ -39,7 +39,12 @@ export default function Confirmandpay() {
       <div>
         <div className="mt-32 sm:mr-0 mr-36">
           <div className="flex flex-row  px-24 py-24 sm:ml-28 md:ml-28 lg:ml-96">
-            <ArrowBackIcon size="large" className="mr-20 sm:ml-44 ml-0" />
+            <IconButton
+            component={Link}
+            to="/carddetail"
+            className="mr-20 sm:ml-44 ml-0">
+            <ArrowBackIcon size="large"/>
+            </IconButton>
             <Typography className="text-2xl font-normal font-Gilroy-Medium">
               Confirm and pay
             </Typography>
@@ -294,16 +299,6 @@ export default function Confirmandpay() {
                     >
                       Rs 8200/-
                     </Typography>
-                  </div>
-
-                  <div className="flex flex-row justify-end space-x-10 mt-44 mb-10">
-                    <Button
-                      variant="contained"
-                      className="rounded-4 text-white w-full"
-                      style={{ backgroundColor: "#D22A8F" }}
-                    >
-                      Pay now
-                    </Button>
                   </div>
                 </CardContent>
               </Card>
