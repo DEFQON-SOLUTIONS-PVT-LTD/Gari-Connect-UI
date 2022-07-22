@@ -78,7 +78,7 @@ export default function HostTabs() {
 
       <div className="sm:m-96 md:m-32 mx-0 mt-96">
         <Box sx={{ maxWidth: "100%" }}>
-          <div className="flex-row grid sm:grid-cols-4 grid-cols-1 gap-16">
+          <div className="flex-row grid sm:grid-cols-3 grid-cols-1 gap-16">
             <div className="flex col-span-3">
               <Paper
                 className="flex flex-row rounded-md w-full"
@@ -106,7 +106,7 @@ export default function HostTabs() {
               </Paper>
             </div>
 
-            <div className="flex flex-row col-span-1">
+            {/* <div className="flex flex-row col-span-1">
               <Card className="rounded-md w-full sm:ml-0 ml-28">
                 <CardContent>
                   <div className="flex flex-row items-center space-x-10">
@@ -168,7 +168,7 @@ export default function HostTabs() {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </div> */}
 
             <div className="flex flex-col col-span-3">
               <Box
