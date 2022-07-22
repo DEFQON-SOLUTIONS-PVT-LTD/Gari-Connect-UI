@@ -58,7 +58,7 @@ function GuestAccount() {
       <div className="w-full flex-row py-12 grid sm:grid-cols-3 grid-cols-1 mb-96">
         <div className="flex flex-col justify-start text-center space-y-20 col-span-1 mt-36">
           <div>
-            <img className="mx-auto sm:w-224 w-96 sm:h-224 h-96" src={image} alt="" />
+            <img className="mx-auto sm:w-224 w-96 sm:h-224 h-96 rounded-full" src={image} alt=""/>
           </div>
 
           <label htmlFor="contained-button-file">

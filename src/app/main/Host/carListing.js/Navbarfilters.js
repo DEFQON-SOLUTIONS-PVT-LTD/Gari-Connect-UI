@@ -102,7 +102,7 @@ const Navbarfilters = () => {
           <ClickAwayListener onClickAway={priceClickAway}>
             <Box sx={{ position: "relative" }}>
               <Button
-                className="text-xs w-136 h-52 rounded-lg"
+                className="text-xs w-full  h-52 rounded-lg"
                 style={{
                   border: "1px solid #D0D5DD",
                   color: "#667085",
@@ -115,7 +115,8 @@ const Navbarfilters = () => {
               >
                 Price
                 <KeyboardArrowDownIcon
-                    style={{ color: "rgba(0, 0, 0, 1)",marginLeft:"60px" }}
+                    style={{ color: "rgba(0, 0, 0, 1)"}}
+                    className="sm:ml-68 ml-80"
                   />
               </Button>
               {price ? (
